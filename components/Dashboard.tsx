@@ -119,7 +119,7 @@ export default function Dashboard() {
                       {[60, 75, 55, 80, 70, 90, 85, 95, 88, 92, 87, 98].map((height, i) => (
                         <div 
                           key={i} 
-                          className="flex-1 bg-gradient-to-t from-accent to-accent/60 rounded-t shadow-[0_-4px_12px_rgba(16,185,129,0.5)] hover:shadow-[0_-6px_16px_rgba(16,185,129,0.6)] transition-shadow" 
+                          className="flex-1 bg-gradient-to-t from-accent to-accent/60 rounded-t shadow-[inset_0_-12px_16px_-4px_rgba(0,0,0,0.4)] hover:shadow-[inset_0_-14px_20px_-4px_rgba(0,0,0,0.5)] transition-shadow" 
                           style={{ height: `${height}%` }}
                         ></div>
                       ))}
@@ -134,7 +134,7 @@ export default function Dashboard() {
                         <div className="flex-shrink-0 w-32 text-sm text-text-secondary">Asphalt Shingles</div>
                         <div className="flex-1 h-8 bg-bg-tertiary rounded-full overflow-hidden">
                           <div 
-                            className="h-full bg-gradient-to-r from-accent to-accent/80 rounded-full shadow-[0_4px_16px_rgba(16,185,129,0.5),inset_-2px_0_8px_rgba(16,185,129,0.6)]" 
+                            className="h-full bg-gradient-to-r from-accent to-accent/80 rounded-full shadow-[inset_-8px_0_12px_-4px_rgba(0,0,0,0.4)]" 
                             style={{ width: '85%' }}
                           ></div>
                         </div>
@@ -144,7 +144,7 @@ export default function Dashboard() {
                         <div className="flex-shrink-0 w-32 text-sm text-text-secondary">Metal Roofing</div>
                         <div className="flex-1 h-8 bg-bg-tertiary rounded-full overflow-hidden">
                           <div 
-                            className="h-full bg-gradient-to-r from-accent to-accent/80 rounded-full shadow-[0_4px_16px_rgba(16,185,129,0.5),inset_-2px_0_8px_rgba(16,185,129,0.6)]" 
+                            className="h-full bg-gradient-to-r from-accent to-accent/80 rounded-full shadow-[inset_-8px_0_12px_-4px_rgba(0,0,0,0.4)]" 
                             style={{ width: '68%' }}
                           ></div>
                         </div>
@@ -154,7 +154,7 @@ export default function Dashboard() {
                         <div className="flex-shrink-0 w-32 text-sm text-text-secondary">Clay Tiles</div>
                         <div className="flex-1 h-8 bg-bg-tertiary rounded-full overflow-hidden">
                           <div 
-                            className="h-full bg-gradient-to-r from-accent to-accent/80 rounded-full shadow-[0_4px_16px_rgba(16,185,129,0.5),inset_-2px_0_8px_rgba(16,185,129,0.6)]" 
+                            className="h-full bg-gradient-to-r from-accent to-accent/80 rounded-full shadow-[inset_-8px_0_12px_-4px_rgba(0,0,0,0.4)]" 
                             style={{ width: '42%' }}
                           ></div>
                         </div>
@@ -328,7 +328,7 @@ export default function Dashboard() {
                         </div>
                         <div className="h-3 bg-bg-tertiary rounded-full overflow-hidden">
                           <div 
-                            className="h-full bg-gradient-to-r from-accent via-accent to-accent/70 rounded-full shadow-[0_4px_12px_rgba(16,185,129,0.5),inset_-1px_0_6px_rgba(16,185,129,0.6)]"
+                            className="h-full bg-gradient-to-r from-accent via-accent to-accent/70 rounded-full shadow-[inset_-6px_0_10px_-3px_rgba(0,0,0,0.4)]"
                             style={{ width: '85%' }}
                           ></div>
                         </div>
@@ -340,7 +340,7 @@ export default function Dashboard() {
                         </div>
                         <div className="h-3 bg-bg-tertiary rounded-full overflow-hidden">
                           <div 
-                            className="h-full bg-gradient-to-r from-accent via-accent to-accent/70 rounded-full shadow-[0_4px_12px_rgba(16,185,129,0.5),inset_-1px_0_6px_rgba(16,185,129,0.6)]"
+                            className="h-full bg-gradient-to-r from-accent via-accent to-accent/70 rounded-full shadow-[inset_-6px_0_10px_-3px_rgba(0,0,0,0.4)]"
                             style={{ width: '68%' }}
                           ></div>
                         </div>
@@ -352,7 +352,7 @@ export default function Dashboard() {
                         </div>
                         <div className="h-3 bg-bg-tertiary rounded-full overflow-hidden">
                           <div 
-                            className="h-full bg-gradient-to-r from-accent via-accent to-accent/70 rounded-full shadow-[0_4px_12px_rgba(16,185,129,0.5),inset_-1px_0_6px_rgba(16,185,129,0.6)]"
+                            className="h-full bg-gradient-to-r from-accent via-accent to-accent/70 rounded-full shadow-[inset_-6px_0_10px_-3px_rgba(0,0,0,0.4)]"
                             style={{ width: '42%' }}
                           ></div>
                         </div>
@@ -364,7 +364,7 @@ export default function Dashboard() {
                         </div>
                         <div className="h-3 bg-bg-tertiary rounded-full overflow-hidden">
                           <div 
-                            className="h-full bg-gradient-to-r from-accent via-accent to-accent/70 rounded-full shadow-[0_4px_12px_rgba(16,185,129,0.5),inset_-1px_0_6px_rgba(16,185,129,0.6)]"
+                            className="h-full bg-gradient-to-r from-accent via-accent to-accent/70 rounded-full shadow-[inset_-6px_0_10px_-3px_rgba(0,0,0,0.4)]"
                             style={{ width: '35%' }}
                           ></div>
                         </div>
