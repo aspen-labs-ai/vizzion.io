@@ -1245,25 +1245,44 @@
     grid-template-columns: 1fr;
   }
   
+  /* Horizontal scrolling nav bar for mobile */
   .dashboard-sidebar {
     border-right: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    padding: var(--space-md);
+    padding: var(--space-sm) 0;
+    background: rgba(15, 23, 42, 0.8);
   }
   
   .dashboard-nav {
     flex-direction: row;
     overflow-x: auto;
-    padding: 0;
-    gap: var(--space-sm);
+    overflow-y: hidden;
+    padding: var(--space-xs) var(--space-md);
+    gap: var(--space-xs);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+  }
+  
+  .dashboard-nav::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
   }
   
   .dashboard-nav-item {
     white-space: nowrap;
+    flex-shrink: 0;
+    padding: var(--space-xs) var(--space-sm);
+    font-size: var(--text-xs);
+    min-width: auto;
   }
   
+  .dashboard-nav-item svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  /* Keep labels visible but smaller */
   .dashboard-nav-item span {
-    display: none;
+    font-size: var(--text-xs);
   }
   
   .dashboard-content {
@@ -1272,38 +1291,75 @@
   
   .dashboard-metrics {
     grid-template-columns: 1fr;
+    gap: var(--space-md);
   }
   
   .metric-value {
     font-size: var(--text-3xl);
   }
   
+  /* Better mobile bar chart layout */
   .bar-item {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     gap: var(--space-xs);
+    align-items: stretch;
   }
   
   .bar-label {
     font-size: var(--text-xs);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .bar-track {
+    order: 2;
+    height: 12px; /* Slightly taller for better touch targets */
   }
   
   .bar-value {
-    text-align: left;
+    order: 0;
+    text-align: right;
+    font-size: var(--text-sm);
   }
   
+  /* Stack chart header vertically */
   .chart-header {
     flex-direction: column;
     align-items: flex-start;
+    gap: var(--space-sm);
+  }
+  
+  /* Make period buttons touch-friendly */
+  .period-btn {
+    padding: var(--space-sm) var(--space-md);
+    min-width: 44px;
+    min-height: 32px;
+  }
+  
+  /* Reduce chart height on mobile */
+  .chart-container {
+    height: 120px;
   }
 }
 
 @media (max-width: 480px) {
   .dashboard-mockup-container {
-    padding: 0;
+    padding: var(--space-xs);
+    margin: var(--space-xl) auto;
   }
   
   .dashboard-mockup {
     padding: 2px;
+  }
+  
+  .dashboard-header {
+    padding: var(--space-xs) var(--space-sm);
+  }
+  
+  .dashboard-title {
+    font-size: var(--text-xs);
   }
   
   .dashboard-content {
@@ -1314,8 +1370,39 @@
     padding: var(--space-md);
   }
   
+  .metric-value {
+    font-size: var(--text-2xl);
+  }
+  
   .dashboard-chart-card {
     padding: var(--space-md);
+  }
+  
+  .chart-header h3 {
+    font-size: var(--text-md);
+  }
+  
+  .chart-container {
+    height: 100px;
+  }
+  
+  /* Further optimize bar chart for tiny screens */
+  .bar-chart {
+    gap: var(--space-sm);
+  }
+  
+  .bar-track {
+    height: 10px;
+  }
+  
+  /* Make dashboard features single column on mobile */
+  .dashboard-features {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+  
+  .dashboard-feature {
+    padding: var(--space-lg);
   }
 }
 
