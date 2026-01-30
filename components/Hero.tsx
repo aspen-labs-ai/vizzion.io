@@ -1,8 +1,11 @@
+import WidgetMockup from './WidgetMockup';
+
 export default function Hero() {
   return (
     <section className="pt-32 pb-24 px-6">
       <div className="max-w-[1400px] mx-auto">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left Column - Text Content */}
           <div className="space-y-8">
             <div className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent font-medium text-sm">
               Join 200+ businesses capturing 3x more leads
@@ -16,7 +19,7 @@ export default function Hero() {
               Vizzion captures emails <span className="font-semibold text-primary">before</span> showing visualizations. Your customers see your products on their own images—you get their contact info. It's that simple.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4">
               <a 
                 href="#pricing" 
                 className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-lg bg-accent text-primary hover:bg-accent-hover transition-all duration-250 hover:-translate-y-0.5 hover:shadow-md"
@@ -30,6 +33,11 @@ export default function Hero() {
                 See How It Works
               </a>
             </div>
+          </div>
+          
+          {/* Right Column - Widget Mockup */}
+          <div className="lg:block">
+            <WidgetMockup />
           </div>
         </div>
       </div>
