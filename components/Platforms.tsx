@@ -4,25 +4,50 @@ import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 
 export default function Platforms() {
-  const orbitRef1 = useRef<HTMLDivElement>(null);
-  const orbitRef2 = useRef<HTMLDivElement>(null);
+  const orbit1Ref = useRef<HTMLDivElement>(null);
+  const orbit2Ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let animationFrame: number;
     let angle1 = 0;
     let angle2 = 60;
+    let animationFrame: number;
 
     const animate = () => {
-      // Update angles
-      angle1 += 0.3;
-      angle2 -= 0.2;
+      angle1 += 0.2; // deg per frame
+      angle2 -= 0.15;
 
-      // Apply rotation to orbit paths
-      if (orbitRef1.current) {
-        orbitRef1.current.style.transform = `rotate(${angle1}deg)`;
+      if (orbit1Ref.current) {
+        const items = orbit1Ref.current.children;
+        for (let i = 0; i < items.length; i++) {
+          const item = items[i] as HTMLElement;
+          const baseAngle = (360 / items.length) * i;
+          const currentAngle = baseAngle + angle1;
+          const rad = (currentAngle - 90) * (Math.PI / 180);
+          const radius = 150;
+          
+          const x = radius + radius * Math.cos(rad);
+          const y = radius + radius * Math.sin(rad);
+          
+          item.style.left = `${x}px`;
+          item.style.top = `${y}px`;
+        }
       }
-      if (orbitRef2.current) {
-        orbitRef2.current.style.transform = `rotate(${angle2}deg)`;
+
+      if (orbit2Ref.current) {
+        const items = orbit2Ref.current.children;
+        for (let i = 0; i < items.length; i++) {
+          const item = items[i] as HTMLElement;
+          const baseAngle = (360 / items.length) * i;
+          const currentAngle = baseAngle + angle2;
+          const rad = (currentAngle - 90) * (Math.PI / 180);
+          const radius = 225;
+          
+          const x = radius + radius * Math.cos(rad);
+          const y = radius + radius * Math.sin(rad);
+          
+          item.style.left = `${x}px`;
+          item.style.top = `${y}px`;
+        }
       }
 
       animationFrame = requestAnimationFrame(animate);
@@ -55,7 +80,7 @@ export default function Platforms() {
           {/* Center Circle */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
             <div className="w-32 h-32 rounded-full bg-white shadow-xl flex flex-col items-center justify-center border-2 border-accent">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="2">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent">
                 <rect x="3" y="3" width="18" height="18" rx="2"></rect>
                 <path d="M3 9h18M9 21V9"></path>
               </svg>
@@ -63,81 +88,35 @@ export default function Platforms() {
             </div>
           </div>
           
-          {/* Orbit Path 1 - Inner */}
+          {/* Inner Orbit Path */}
           <div 
-            ref={orbitRef1}
-            className="absolute top-1/2 left-1/2 w-[300px] h-[300px] -ml-[150px] -mt-[150px] rounded-full"
-            style={{ transformOrigin: 'center' }}
+            ref={orbit1Ref}
+            className="absolute top-1/2 left-1/2 w-[300px] h-[300px] -ml-[150px] -mt-[150px]"
           >
-            {/* Logo at 0 degrees */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2" style={{ transform: 'translateX(-50%) translateY(-50%) rotate(-0deg)' }}>
-              <div className="w-20 h-20 rounded-full bg-white shadow-lg flex items-center justify-center border border-gray-200 hover:border-accent transition-colors" style={{ transform: 'rotate(0deg)' }}>
-                <Image src="/images/logos/shopify.svg" alt="Shopify" width={40} height={40} />
-              </div>
+            <div className="absolute w-20 h-20 rounded-full bg-white shadow-lg flex items-center justify-center border border-gray-200 hover:border-accent transition-colors -translate-x-1/2 -translate-y-1/2">
+              <Image src="/images/logos/shopify.svg" alt="Shopify" width={40} height={40} />
             </div>
-            
-            {/* Logo at 120 degrees */}
-            <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2" style={{ transform: 'translateX(-50%) translateY(-50%) rotate(-120deg)', transformOrigin: '150px center' }}>
-              <div className="w-20 h-20 rounded-full bg-white shadow-lg flex items-center justify-center border border-gray-200 hover:border-accent transition-colors" style={{ transform: 'rotate(120deg)' }}>
-                <Image src="/images/logos/wordpress.svg" alt="WordPress" width={40} height={40} />
-              </div>
+            <div className="absolute w-20 h-20 rounded-full bg-white shadow-lg flex items-center justify-center border border-gray-200 hover:border-accent transition-colors -translate-x-1/2 -translate-y-1/2">
+              <Image src="/images/logos/wordpress.svg" alt="WordPress" width={40} height={40} />
             </div>
-            
-            {/* Logo at 240 degrees */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2" style={{ transform: 'translateX(-50%) translateY(50%) rotate(-240deg)', transformOrigin: '0 -150px' }}>
-              <div className="w-20 h-20 rounded-full bg-white shadow-lg flex items-center justify-center border border-gray-200 hover:border-accent transition-colors" style={{ transform: 'rotate(240deg)' }}>
-                <Image src="/images/logos/wix.svg" alt="Wix" width={40} height={40} />
-              </div>
+            <div className="absolute w-20 h-20 rounded-full bg-white shadow-lg flex items-center justify-center border border-gray-200 hover:border-accent transition-colors -translate-x-1/2 -translate-y-1/2">
+              <Image src="/images/logos/wix.svg" alt="Wix" width={40} height={40} />
             </div>
           </div>
           
-          {/* Orbit Path 2 - Outer */}
+          {/* Outer Orbit Path */}
           <div 
-            ref={orbitRef2}
-            className="absolute top-1/2 left-1/2 w-[450px] h-[450px] -ml-[225px] -mt-[225px] rounded-full"
-            style={{ transformOrigin: 'center' }}
+            ref={orbit2Ref}
+            className="absolute top-1/2 left-1/2 w-[450px] h-[450px] -ml-[225px] -mt-[225px]"
           >
-            {/* Logo at 60 degrees */}
-            <div className="absolute top-[12.5%] right-[12.5%]" style={{ transform: 'rotate(-60deg)', transformOrigin: '-125px 100px' }}>
-              <div className="w-20 h-20 rounded-full bg-white shadow-lg flex items-center justify-center border border-gray-200 hover:border-accent transition-colors" style={{ transform: 'rotate(60deg)' }}>
-                <Image src="/images/logos/squarespace.svg" alt="Squarespace" width={40} height={40} />
-              </div>
+            <div className="absolute w-20 h-20 rounded-full bg-white shadow-lg flex items-center justify-center border border-gray-200 hover:border-accent transition-colors -translate-x-1/2 -translate-y-1/2">
+              <Image src="/images/logos/squarespace.svg" alt="Squarespace" width={40} height={40} />
             </div>
-            
-            {/* Logo at 180 degrees */}
-            <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2" style={{ transform: 'translateX(-50%) translateY(-50%) rotate(-180deg)', transformOrigin: '225px center' }}>
-              <div className="w-20 h-20 rounded-full bg-white shadow-lg flex items-center justify-center border border-gray-200 hover:border-accent transition-colors" style={{ transform: 'rotate(180deg)' }}>
-                <Image src="/images/logos/custom-code.svg" alt="Custom" width={40} height={40} />
-              </div>
+            <div className="absolute w-20 h-20 rounded-full bg-white shadow-lg flex items-center justify-center border border-gray-200 hover:border-accent transition-colors -translate-x-1/2 -translate-y-1/2">
+              <Image src="/images/logos/custom-code.svg" alt="Custom" width={40} height={40} />
             </div>
-            
-            {/* Logo at 300 degrees */}
-            <div className="absolute bottom-[12.5%] right-[12.5%]" style={{ transform: 'rotate(-300deg)', transformOrigin: '-125px -100px' }}>
-              <div className="w-20 h-20 rounded-full bg-white shadow-lg flex items-center justify-center border border-gray-200 hover:border-accent transition-colors" style={{ transform: 'rotate(300deg)' }}>
-                <div className="text-sm font-bold text-primary">Custom</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        {/* Code Example with Typing Animation */}
-        <div className="max-w-3xl mx-auto">
-          <div className="bg-[var(--color-gray-900)] rounded-2xl overflow-hidden shadow-2xl">
-            {/* Code Window Header */}
-            <div className="bg-[var(--color-gray-800)] px-4 py-3 flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-[#FF5F57]"></div>
-              <div className="w-3 h-3 rounded-full bg-[#FEBC2E]"></div>
-              <div className="w-3 h-3 rounded-full bg-[#28C840]"></div>
-            </div>
-            
-            {/* Code Content */}
-            <div className="p-8 font-mono text-sm">
-              <pre className="text-[var(--color-gray-300)]">
-                <code>
-                  <span className="text-[#FF6B6B]">&lt;script</span> <span className="text-accent">src</span>=<span className="text-[#FFD93D]">&quot;https://cdn.vizzion.app/widget.js&quot;</span><span className="text-[#FF6B6B]">&gt;&lt;/script&gt;</span>{'\n'}
-                  <span className="text-[#FF6B6B]">&lt;div</span> <span className="text-accent">id</span>=<span className="text-[#FFD93D]">&quot;vizzion-widget&quot;</span> <span className="text-accent">data-products</span>=<span className="text-[#FFD93D]">&quot;roofing&quot;</span><span className="text-[#FF6B6B]">&gt;&lt;/div&gt;</span>
-                </code>
-              </pre>
+            <div className="absolute w-20 h-20 rounded-full bg-white shadow-lg flex items-center justify-center border border-gray-200 hover:border-accent transition-colors -translate-x-1/2 -translate-y-1/2">
+              <div className="text-sm font-bold text-primary">Custom</div>
             </div>
           </div>
         </div>
