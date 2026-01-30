@@ -48,8 +48,8 @@ export default function WidgetMockup() {
           <div className={`w-2 h-2 rounded-full transition-all duration-300 ${currentStep >= 3 ? 'bg-accent' : 'bg-border-default'}`}></div>
         </div>
         
-        {/* Step Content - Animated transitions */}
-        <div className="space-y-2 min-h-[180px]">
+        {/* Step Content - Fixed height to prevent jumping */}
+        <div className="space-y-2 h-[220px] overflow-hidden">
           {/* Step 1: Upload Photo */}
           {currentStep === 1 && (
             <div className="animate-fadeIn">

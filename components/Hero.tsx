@@ -33,21 +33,6 @@ export default function Hero() {
                 See How It Works
               </a>
             </div>
-            
-            <div className="flex items-center gap-8 pt-4">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-accent">24%</div>
-                <div className="text-sm text-text-tertiary">Avg Conversion</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-accent">3x</div>
-                <div className="text-sm text-text-tertiary">More Leads</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-accent">5 min</div>
-                <div className="text-sm text-text-tertiary">Setup Time</div>
-              </div>
-            </div>
           </div>
           
           {/* Right Column - Widget Mockup */}
