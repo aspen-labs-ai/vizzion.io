@@ -20,7 +20,7 @@ export default function CTA() {
           </a>
           <a 
             href="#how-it-works" 
-            className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-lg bg-primary text-white hover:bg-primary-light transition-all duration-250 hover:-translate-y-0.5 hover:shadow-md"
+            className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-lg bg-bg-tertiary text-text-primary border border-border-default hover:border-accent transition-all duration-250 hover:-translate-y-0.5 hover:shadow-md"
           >
             See a 2-Minute Demo
           </a>

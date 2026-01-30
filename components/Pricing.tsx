@@ -67,7 +67,7 @@ export default function Pricing() {
             </ul>
             <a 
               href="#" 
-              className="block w-full text-center px-6 py-3 font-semibold rounded-lg bg-primary text-white hover:bg-primary-light transition-all duration-250 hover:-translate-y-0.5 hover:shadow-md"
+              className="block w-full text-center px-6 py-3 font-semibold rounded-lg bg-bg-tertiary text-text-primary border border-border-default hover:border-accent transition-all duration-250 hover:-translate-y-0.5 hover:shadow-md"
             >
               Start Free Trial
             </a>
@@ -194,7 +194,7 @@ export default function Pricing() {
             </ul>
             <a 
               href="#" 
-              className="block w-full text-center px-6 py-3 font-semibold rounded-lg bg-primary text-white hover:bg-primary-light transition-all duration-250 hover:-translate-y-0.5 hover:shadow-md"
+              className="block w-full text-center px-6 py-3 font-semibold rounded-lg bg-bg-tertiary text-text-primary border border-border-default hover:border-accent transition-all duration-250 hover:-translate-y-0.5 hover:shadow-md"
             >
               Contact Sales
             </a>

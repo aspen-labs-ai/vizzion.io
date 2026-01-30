@@ -100,14 +100,14 @@ export default function ThreeSteps() {
               </li>
             </ul>
             
-            <div className="mt-8 pt-8 border-t border-gray-200">
-              <div className="bg-gray-50 rounded-lg p-6">
-                <div className="bg-white border border-gray-200 rounded-lg p-4 space-y-3">
+            <div className="mt-8 pt-8 border-t border-border-subtle">
+              <div className="bg-bg-tertiary rounded-lg p-6">
+                <div className="bg-bg-primary border border-border-default rounded-lg p-4 space-y-3">
                   <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                    <div className="w-2 h-2 rounded-full bg-accent"></div>
                     <span className="text-sm font-semibold text-primary">New Lead Captured</span>
                   </div>
-                  <div className="text-xs text-gray-600 font-mono truncate">
+                  <div className="text-xs text-text-tertiary font-mono truncate">
                     john.smith@email.com
                   </div>
                 </div>
@@ -150,8 +150,8 @@ export default function ThreeSteps() {
               </li>
             </ul>
             
-            <div className="mt-8 pt-8 border-t border-gray-200">
-              <div className="bg-gray-50 rounded-lg p-6 flex items-center justify-center">
+            <div className="mt-8 pt-8 border-t border-border-subtle">
+              <div className="bg-bg-tertiary rounded-lg p-6 flex items-center justify-center">
                 <div className="text-center">
                   <div className="text-4xl font-extrabold text-accent mb-1">+247%</div>
                   <div className="text-sm font-medium text-text-secondary">ROI</div>
