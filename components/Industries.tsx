@@ -1,43 +1,43 @@
-import { Home, Anchor, Building2, Palette, Trees, Boxes } from 'lucide-react';
+import { Home, Building2, DoorOpen, Boxes, Table2, PanelTop } from 'lucide-react';
 
 export default function Industries() {
   const industries = [
     {
       icon: Home,
-      name: 'Roofing & Exteriors',
-      description: 'Help homeowners confidently choose shingles, metal roofing, or tiles by showing realistic visualizations on their actual home. Eliminate decision paralysis and reduce sample requests while dramatically shortening the sales cycle from quote to close.',
+      name: 'Roofing',
+      description: 'Help homeowners make confident roofing decisions by showing exactly how different materials and colors look on their actual home. From traditional asphalt shingles to premium metal roofing, customers can compare options side-by-side before committing to a major investment.',
       popular: true,
       href: '/industries/roofing'
     },
     {
-      icon: Anchor,
-      name: 'Marine & Boat Decking',
-      description: 'Let boat owners see exactly how different decking materials and colors will look on their vessel before making expensive commitments. Reduce returns and increase buyer confidence with accurate, personalized visualizations.',
-      href: '/industries/marine'
-    },
-    {
       icon: Building2,
-      name: 'Siding & Exteriors',
-      description: 'Transform the siding selection process by letting customers instantly preview materials, textures, and colors on their home. Remove the guesswork and build trust by showing them exactly what they\'re buying before installation.',
+      name: 'Siding',
+      description: 'Transform exterior design decisions from guesswork to certainty. Customers visualize vinyl, fiber cement, wood, and stone siding options on their actual home, comparing styles and colors before the first panel is installed.',
       href: '/industries/siding'
     },
     {
-      icon: Palette,
-      name: 'Paint & Finishes',
-      description: 'Enable customers to experiment with unlimited color combinations and finishes on their actual property photos. Turn browsers into buyers by helping them visualize bold choices with confidence, eliminating costly color regrets.',
-      href: '/industries/paint'
+      icon: DoorOpen,
+      name: 'Windows & Doors',
+      description: 'Help customers choose window styles, door colors, and hardware finishes with confidence. Visualize how new windows transform a home\'s character—from modern black frames to classic white trim—on their actual property.',
+      href: '/industries/windows-doors'
     },
     {
-      icon: Trees,
-      name: 'Landscaping',
-      description: 'Bring landscape designs to life by showing clients how plants, hardscaping, and outdoor features will transform their property. Win more bids by helping customers see the full vision before a single shovel hits the ground.',
-      href: '/industries/landscaping'
+      icon: PanelTop,
+      name: 'Decking',
+      description: 'Let customers design their dream outdoor living space by visualizing composite, wood, and PVC decking materials. See how different board widths, colors, and railing styles come together before construction begins.',
+      href: '/industries/decking'
     },
     {
       icon: Boxes,
-      name: 'Flooring & Interiors',
-      description: 'Let customers see how different flooring materials, patterns, and colors will actually look in their rooms with their existing furniture and lighting. Reduce showroom visits and speed up the decision-making process dramatically.',
+      name: 'Flooring',
+      description: 'Eliminate flooring showroom overwhelm by letting customers see hardwood, LVP, tile, and carpet in their actual rooms. Upload a photo, select materials, and instantly compare options in their real lighting and space.',
       href: '/industries/flooring'
+    },
+    {
+      icon: Table2,
+      name: 'Countertops',
+      description: 'Transform kitchen and bathroom decisions with instant countertop visualization. Customers compare granite, quartz, marble, and butcher block on their actual cabinets—no samples or imagination required.',
+      href: '/industries/countertops'
     }
   ];
 
