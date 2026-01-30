@@ -24,12 +24,15 @@ export default function Platforms() {
         <div className="relative h-[500px] md:h-[600px] w-full max-w-3xl mx-auto flex items-center justify-center">
           {/* Center Circle */}
           <div className="relative z-10">
-            <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-bg-tertiary shadow-xl flex flex-col items-center justify-center border-2 border-accent">
-              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent md:w-12 md:h-12">
-                <rect x="3" y="3" width="18" height="18" rx="2"></rect>
-                <path d="M3 9h18M9 21V9"></path>
-              </svg>
-              <div className="text-xs md:text-sm font-bold text-text-primary mt-1 md:mt-2">Vizzion</div>
+            <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-bg-tertiary shadow-xl flex flex-col items-center justify-center gap-2 border-2 border-accent p-4">
+              <Image 
+                src="/vizzion-logo.png" 
+                alt="Vizzion" 
+                width={80} 
+                height={30}
+                className="w-16 md:w-20 h-auto"
+              />
+              <div className="text-xs md:text-sm font-bold text-text-primary tracking-tight">VIZZION.IO</div>
             </div>
           </div>
           
