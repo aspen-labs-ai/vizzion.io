@@ -40,10 +40,10 @@ export default function Header() {
   }, [mobileMenuOpen]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-[var(--color-border)]">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200">
       <div className="max-w-[1400px] mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <div className="text-2xl font-bold text-[var(--color-primary)] font-['Space_Grotesk']">
+        <div className="text-2xl font-bold text-primary font-['Space_Grotesk']">
           Vizzion
         </div>
         
@@ -51,31 +51,31 @@ export default function Header() {
         <nav className="hidden md:flex items-center gap-8">
           <Link 
             href="#how-it-works" 
-            className="text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors duration-[var(--transition-base)]"
+            className="text-[var(--color-text-primary)] hover:text-accent transition-colors duration-250"
           >
             How It Works
           </Link>
           <Link 
             href="#industries" 
-            className="text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors duration-[var(--transition-base)]"
+            className="text-[var(--color-text-primary)] hover:text-accent transition-colors duration-250"
           >
             Industries
           </Link>
           <Link 
             href="#dashboard" 
-            className="text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors duration-[var(--transition-base)]"
+            className="text-[var(--color-text-primary)] hover:text-accent transition-colors duration-250"
           >
             Dashboard
           </Link>
           <Link 
             href="#pricing" 
-            className="text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors duration-[var(--transition-base)]"
+            className="text-[var(--color-text-primary)] hover:text-accent transition-colors duration-250"
           >
             Pricing
           </Link>
           <Link 
             href="#" 
-            className="inline-flex items-center justify-center gap-2 px-6 py-2 font-['Space_Grotesk'] font-semibold rounded-lg bg-[var(--color-accent)] text-[var(--color-primary)] hover:bg-[var(--color-accent-hover)] transition-all duration-[var(--transition-base)] hover:-translate-y-0.5 hover:shadow-[var(--shadow-md)]"
+            className="inline-flex items-center justify-center gap-2 px-6 py-2 font-['Space_Grotesk'] font-semibold rounded-lg bg-accent text-primary hover:bg-accent-hover transition-all duration-250 hover:-translate-y-0.5 hover:shadow-md"
           >
             Get Started
           </Link>
@@ -88,9 +88,9 @@ export default function Header() {
           aria-expanded={mobileMenuOpen}
           onClick={toggleMobileMenu}
         >
-          <span className={`w-6 h-0.5 bg-[var(--color-primary)] transition-all duration-300 ${mobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
-          <span className={`w-6 h-0.5 bg-[var(--color-primary)] transition-all duration-300 ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
-          <span className={`w-6 h-0.5 bg-[var(--color-primary)] transition-all duration-300 ${mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+          <span className={`w-6 h-0.5 bg-primary transition-all duration-300 ${mobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+          <span className={`w-6 h-0.5 bg-primary transition-all duration-300 ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
+          <span className={`w-6 h-0.5 bg-primary transition-all duration-300 ${mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
         </button>
       </div>
       
@@ -101,35 +101,35 @@ export default function Header() {
         <nav className="flex flex-col p-6 gap-4">
           <Link 
             href="#how-it-works" 
-            className="py-3 text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors"
+            className="py-3 text-[var(--color-text-primary)] hover:text-accent transition-colors"
             onClick={closeMobileMenu}
           >
             How It Works
           </Link>
           <Link 
             href="#industries" 
-            className="py-3 text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors"
+            className="py-3 text-[var(--color-text-primary)] hover:text-accent transition-colors"
             onClick={closeMobileMenu}
           >
             Industries
           </Link>
           <Link 
             href="#dashboard" 
-            className="py-3 text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors"
+            className="py-3 text-[var(--color-text-primary)] hover:text-accent transition-colors"
             onClick={closeMobileMenu}
           >
             Dashboard
           </Link>
           <Link 
             href="#pricing" 
-            className="py-3 text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors"
+            className="py-3 text-[var(--color-text-primary)] hover:text-accent transition-colors"
             onClick={closeMobileMenu}
           >
             Pricing
           </Link>
           <Link 
             href="#" 
-            className="py-3 px-6 text-center font-semibold rounded-lg bg-[var(--color-accent)] text-[var(--color-primary)] mt-4"
+            className="py-3 px-6 text-center font-semibold rounded-lg bg-accent text-primary mt-4"
             onClick={closeMobileMenu}
           >
             Get Started

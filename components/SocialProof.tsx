@@ -16,7 +16,7 @@ export default function SocialProof() {
   ];
 
   return (
-    <section className="py-12 px-6 bg-[var(--color-gray-50)] border-y border-[var(--color-border)]">
+    <section className="py-12 px-6 bg-gray-50 border-y border-gray-200">
       <div className="max-w-[1400px] mx-auto">
         <div className="grid md:grid-cols-3 gap-8 md:gap-12">
           {stats.map((stat, index) => (
@@ -27,10 +27,10 @@ export default function SocialProof() {
               }`}
               style={{ transitionDelay: `${index * 150}ms` }}
             >
-              <div className="text-5xl md:text-6xl font-extrabold text-[var(--color-accent)] mb-2">
+              <div className="text-5xl md:text-6xl font-extrabold text-accent mb-2">
                 {stat.value}
               </div>
-              <div className="text-sm md:text-base font-medium text-[var(--color-text-secondary)] uppercase tracking-wide">
+              <div className="text-sm md:text-base font-medium text-gray-700 uppercase tracking-wide">
                 {stat.label}
               </div>
             </div>
