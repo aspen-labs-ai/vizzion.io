@@ -24,15 +24,15 @@ export default function Platforms() {
         <div className="relative h-[500px] md:h-[600px] w-full max-w-3xl mx-auto flex items-center justify-center">
           {/* Center Circle */}
           <div className="relative z-10">
-            <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-bg-tertiary shadow-xl flex flex-col items-center justify-center gap-2 border-2 border-accent p-4">
+            <div className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-bg-tertiary shadow-xl flex flex-col items-center justify-center gap-1 border-2 border-accent p-3">
               <Image 
                 src="/vizzion-logo.png" 
                 alt="Vizzion" 
-                width={80} 
-                height={30}
-                className="w-16 md:w-20 h-auto"
+                width={60} 
+                height={22}
+                className="w-12 md:w-14 h-auto"
               />
-              <div className="text-xs md:text-sm font-bold text-text-primary tracking-tight">VIZZION.IO</div>
+              <div className="text-[10px] md:text-xs font-bold text-text-primary tracking-tight">VIZZION.IO</div>
             </div>
           </div>
           
