@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 export default function Hero() {
-  const [currentStep, setCurrentStep] = useState(2);
+  const [currentStep] = useState(2);
 
   // Auto-cycle through steps (placeholder for future enhancement)
   useEffect(() => {

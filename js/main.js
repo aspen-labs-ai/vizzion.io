@@ -124,7 +124,7 @@
 
   // Track CTA clicks (placeholder for analytics)
   document.querySelectorAll('.btn-primary').forEach(btn => {
-    btn.addEventListener('click', function(e) {
+    btn.addEventListener('click', function() {
       const btnText = this.textContent.trim();
       console.log('CTA clicked:', btnText);
       // Add your analytics tracking here
