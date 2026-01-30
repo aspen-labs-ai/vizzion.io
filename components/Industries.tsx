@@ -1,3 +1,5 @@
+import { Home, TrendingUp, DollarSign, Anchor, Building2, Boxes, Palette, Trees } from 'lucide-react';
+
 export default function Industries() {
   return (
     <section className="py-24 px-6" id="industries">
@@ -21,7 +23,7 @@ export default function Industries() {
               Most Popular
             </div>
             
-            <div className="text-5xl mb-4">🏠</div>
+            <Home className="w-12 h-12 mb-4 text-[var(--color-accent)]" />
             <h3 className="text-3xl font-bold mb-4 text-[var(--color-primary)]">Roofing</h3>
             <p className="text-lg text-[var(--color-text-secondary)] mb-6 leading-relaxed">
               Let homeowners visualize different roofing materials, colors, and styles on their actual home.
@@ -50,14 +52,14 @@ export default function Industries() {
             
             <div className="grid grid-cols-2 gap-6 mb-6">
               <div className="flex items-center gap-3 bg-[var(--color-gray-50)] rounded-lg p-4">
-                <div className="text-2xl">📊</div>
+                <TrendingUp className="w-8 h-8 text-[var(--color-accent)]" />
                 <div>
                   <div className="text-2xl font-bold text-[var(--color-primary)]">3.2x</div>
                   <div className="text-sm text-[var(--color-text-muted)]">More qualified leads</div>
                 </div>
               </div>
               <div className="flex items-center gap-3 bg-[var(--color-gray-50)] rounded-lg p-4">
-                <div className="text-2xl">💰</div>
+                <DollarSign className="w-8 h-8 text-[var(--color-accent)]" />
                 <div>
                   <div className="text-2xl font-bold text-[var(--color-primary)]">45%</div>
                   <div className="text-sm text-[var(--color-text-muted)]">Higher close rate</div>
@@ -80,7 +82,7 @@ export default function Industries() {
           
           {/* Medium Card - Marine */}
           <div className="bg-white rounded-2xl p-8 border border-[var(--color-border)] hover:border-[var(--color-accent)] hover:shadow-[var(--shadow-lg)] transition-all duration-[var(--transition-base)] hover:-translate-y-1">
-            <div className="text-5xl mb-4">⚓</div>
+            <Anchor className="w-12 h-12 mb-4 text-[var(--color-accent)]" />
             <h3 className="text-2xl font-bold mb-4 text-[var(--color-primary)]">Marine & Boat Decking</h3>
             <p className="text-[var(--color-text-secondary)] leading-relaxed">
               Visualize different decking materials and patterns before installation.
@@ -89,7 +91,7 @@ export default function Industries() {
           
           {/* Medium Card - Siding */}
           <div className="bg-white rounded-2xl p-8 border border-[var(--color-border)] hover:border-[var(--color-accent)] hover:shadow-[var(--shadow-lg)] transition-all duration-[var(--transition-base)] hover:-translate-y-1">
-            <div className="text-5xl mb-4">🏘️</div>
+            <Building2 className="w-12 h-12 mb-4 text-[var(--color-accent)]" />
             <h3 className="text-2xl font-bold mb-4 text-[var(--color-primary)]">Siding & Exteriors</h3>
             <p className="text-[var(--color-text-secondary)] leading-relaxed">
               See how different siding materials and colors transform a home&apos;s exterior.
@@ -98,7 +100,7 @@ export default function Industries() {
           
           {/* Small Card - Flooring */}
           <div className="bg-white rounded-2xl p-8 border border-[var(--color-border)] hover:border-[var(--color-accent)] hover:shadow-[var(--shadow-lg)] transition-all duration-[var(--transition-base)] hover:-translate-y-1">
-            <div className="text-5xl mb-4">🪵</div>
+            <Boxes className="w-12 h-12 mb-4 text-[var(--color-accent)]" />
             <h3 className="text-2xl font-bold mb-4 text-[var(--color-primary)]">Flooring</h3>
             <p className="text-[var(--color-text-secondary)] leading-relaxed">
               Visualize hardwood, tile, and carpet in actual spaces.
@@ -107,7 +109,7 @@ export default function Industries() {
           
           {/* Small Card - Paint */}
           <div className="bg-white rounded-2xl p-8 border border-[var(--color-border)] hover:border-[var(--color-accent)] hover:shadow-[var(--shadow-lg)] transition-all duration-[var(--transition-base)] hover:-translate-y-1">
-            <div className="text-5xl mb-4">🎨</div>
+            <Palette className="w-12 h-12 mb-4 text-[var(--color-accent)]" />
             <h3 className="text-2xl font-bold mb-4 text-[var(--color-primary)]">Paint & Finishes</h3>
             <p className="text-[var(--color-text-secondary)] leading-relaxed">
               Color confidence before the first brushstroke.
@@ -116,7 +118,7 @@ export default function Industries() {
           
           {/* Small Card - Landscaping */}
           <div className="bg-white rounded-2xl p-8 border border-[var(--color-border)] hover:border-[var(--color-accent)] hover:shadow-[var(--shadow-lg)] transition-all duration-[var(--transition-base)] hover:-translate-y-1">
-            <div className="text-5xl mb-4">🌳</div>
+            <Trees className="w-12 h-12 mb-4 text-[var(--color-accent)]" />
             <h3 className="text-2xl font-bold mb-4 text-[var(--color-primary)]">Landscaping</h3>
             <p className="text-[var(--color-text-secondary)] leading-relaxed">
               Transform outdoor spaces with visualization.
