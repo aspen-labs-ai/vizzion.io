@@ -119,95 +119,10 @@ export default function Dashboard() {
                       {[60, 75, 55, 80, 70, 90, 85, 95, 88, 92, 87, 98].map((height, i) => (
                         <div 
                           key={i} 
-                          className="flex-1 bg-gradient-to-t from-accent to-accent/60 rounded-t shadow-lg hover:shadow-accent/50 transition-shadow" 
+                          className="flex-1 bg-gradient-to-t from-accent to-accent/60 rounded-t shadow-[0_-4px_12px_rgba(16,185,129,0.5)] hover:shadow-[0_-6px_16px_rgba(16,185,129,0.6)] transition-shadow" 
                           style={{ height: `${height}%` }}
                         ></div>
                       ))}
-                    </div>
-                  </div>
-
-                  {/* Materials Trend Line Chart */}
-                  <div className="bg-bg-secondary border border-border-default rounded-xl p-6 mb-8">
-                    <div className="flex items-center justify-between mb-6">
-                      <h3 className="text-lg font-semibold text-text-primary">Materials Trend</h3>
-                      <div className="flex gap-4 text-sm">
-                        <div className="flex items-center gap-2">
-                          <div className="w-3 h-3 rounded-full bg-emerald-500"></div>
-                          <span className="text-text-secondary">Asphalt Shingles</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="w-3 h-3 rounded-full bg-emerald-400"></div>
-                          <span className="text-text-secondary">Metal Roofing</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="w-3 h-3 rounded-full bg-emerald-300"></div>
-                          <span className="text-text-secondary">Clay Tiles</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="h-48 relative">
-                      <svg className="w-full h-full" viewBox="0 0 400 150" preserveAspectRatio="none">
-                        {/* Grid lines */}
-                        <line x1="0" y1="37.5" x2="400" y2="37.5" stroke="currentColor" strokeWidth="0.5" className="text-border-subtle" />
-                        <line x1="0" y1="75" x2="400" y2="75" stroke="currentColor" strokeWidth="0.5" className="text-border-subtle" />
-                        <line x1="0" y1="112.5" x2="400" y2="112.5" stroke="currentColor" strokeWidth="0.5" className="text-border-subtle" />
-                        
-                        {/* Asphalt Shingles line - emerald-500 */}
-                        <path
-                          d="M 0 90 L 30 85 L 60 80 L 90 75 L 120 72 L 150 68 L 180 65 L 210 60 L 240 58 L 270 55 L 300 50 L 330 48 L 360 45 L 390 40"
-                          fill="none"
-                          stroke="#10b981"
-                          strokeWidth="3"
-                          className="drop-shadow-lg"
-                        />
-                        
-                        {/* Metal Roofing line - emerald-400 */}
-                        <path
-                          d="M 0 110 L 30 108 L 60 105 L 90 100 L 120 98 L 150 95 L 180 92 L 210 88 L 240 85 L 270 82 L 300 78 L 330 75 L 360 72 L 390 68"
-                          fill="none"
-                          stroke="#34d399"
-                          strokeWidth="3"
-                          className="drop-shadow-lg"
-                        />
-                        
-                        {/* Clay Tiles line - emerald-300 */}
-                        <path
-                          d="M 0 125 L 30 123 L 60 120 L 90 118 L 120 115 L 150 113 L 180 110 L 210 108 L 240 105 L 270 103 L 300 100 L 330 98 L 360 95 L 390 92"
-                          fill="none"
-                          stroke="#6ee7b7"
-                          strokeWidth="3"
-                          className="drop-shadow-lg"
-                        />
-                        
-                        {/* Data points for Asphalt Shingles */}
-                        {[
-                          [0, 90], [30, 85], [60, 80], [90, 75], [120, 72], [150, 68],
-                          [180, 65], [210, 60], [240, 58], [270, 55], [300, 50], [330, 48], [360, 45], [390, 40]
-                        ].map(([x, y], i) => (
-                          <circle key={`asphalt-${i}`} cx={x} cy={y} r="3" fill="#10b981" />
-                        ))}
-                        
-                        {/* Data points for Metal Roofing */}
-                        {[
-                          [0, 110], [30, 108], [60, 105], [90, 100], [120, 98], [150, 95],
-                          [180, 92], [210, 88], [240, 85], [270, 82], [300, 78], [330, 75], [360, 72], [390, 68]
-                        ].map(([x, y], i) => (
-                          <circle key={`metal-${i}`} cx={x} cy={y} r="3" fill="#34d399" />
-                        ))}
-                        
-                        {/* Data points for Clay Tiles */}
-                        {[
-                          [0, 125], [30, 123], [60, 120], [90, 118], [120, 115], [150, 113],
-                          [180, 110], [210, 108], [240, 105], [270, 103], [300, 100], [330, 98], [360, 95], [390, 92]
-                        ].map(([x, y], i) => (
-                          <circle key={`clay-${i}`} cx={x} cy={y} r="3" fill="#6ee7b7" />
-                        ))}
-                      </svg>
-                    </div>
-                    <div className="flex justify-between text-xs text-text-tertiary mt-4">
-                      <span>Day 1</span>
-                      <span>Day 15</span>
-                      <span>Day 30</span>
                     </div>
                   </div>
                   
@@ -219,7 +134,7 @@ export default function Dashboard() {
                         <div className="flex-shrink-0 w-32 text-sm text-text-secondary">Asphalt Shingles</div>
                         <div className="flex-1 h-8 bg-bg-tertiary rounded-full overflow-hidden">
                           <div 
-                            className="h-full bg-gradient-to-r from-accent to-accent/80 rounded-full shadow-lg shadow-accent/30" 
+                            className="h-full bg-gradient-to-r from-accent to-accent/80 rounded-full shadow-[0_4px_16px_rgba(16,185,129,0.5),inset_-2px_0_8px_rgba(16,185,129,0.6)]" 
                             style={{ width: '85%' }}
                           ></div>
                         </div>
@@ -229,7 +144,7 @@ export default function Dashboard() {
                         <div className="flex-shrink-0 w-32 text-sm text-text-secondary">Metal Roofing</div>
                         <div className="flex-1 h-8 bg-bg-tertiary rounded-full overflow-hidden">
                           <div 
-                            className="h-full bg-gradient-to-r from-accent to-accent/80 rounded-full shadow-lg shadow-accent/30" 
+                            className="h-full bg-gradient-to-r from-accent to-accent/80 rounded-full shadow-[0_4px_16px_rgba(16,185,129,0.5),inset_-2px_0_8px_rgba(16,185,129,0.6)]" 
                             style={{ width: '68%' }}
                           ></div>
                         </div>
@@ -239,7 +154,7 @@ export default function Dashboard() {
                         <div className="flex-shrink-0 w-32 text-sm text-text-secondary">Clay Tiles</div>
                         <div className="flex-1 h-8 bg-bg-tertiary rounded-full overflow-hidden">
                           <div 
-                            className="h-full bg-gradient-to-r from-accent to-accent/80 rounded-full shadow-lg shadow-accent/30" 
+                            className="h-full bg-gradient-to-r from-accent to-accent/80 rounded-full shadow-[0_4px_16px_rgba(16,185,129,0.5),inset_-2px_0_8px_rgba(16,185,129,0.6)]" 
                             style={{ width: '42%' }}
                           ></div>
                         </div>
@@ -413,7 +328,7 @@ export default function Dashboard() {
                         </div>
                         <div className="h-3 bg-bg-tertiary rounded-full overflow-hidden">
                           <div 
-                            className="h-full bg-gradient-to-r from-accent via-accent to-accent/70 rounded-full shadow-md shadow-accent/40"
+                            className="h-full bg-gradient-to-r from-accent via-accent to-accent/70 rounded-full shadow-[0_4px_12px_rgba(16,185,129,0.5),inset_-1px_0_6px_rgba(16,185,129,0.6)]"
                             style={{ width: '85%' }}
                           ></div>
                         </div>
@@ -425,7 +340,7 @@ export default function Dashboard() {
                         </div>
                         <div className="h-3 bg-bg-tertiary rounded-full overflow-hidden">
                           <div 
-                            className="h-full bg-gradient-to-r from-accent via-accent to-accent/70 rounded-full shadow-md shadow-accent/40"
+                            className="h-full bg-gradient-to-r from-accent via-accent to-accent/70 rounded-full shadow-[0_4px_12px_rgba(16,185,129,0.5),inset_-1px_0_6px_rgba(16,185,129,0.6)]"
                             style={{ width: '68%' }}
                           ></div>
                         </div>
@@ -437,7 +352,7 @@ export default function Dashboard() {
                         </div>
                         <div className="h-3 bg-bg-tertiary rounded-full overflow-hidden">
                           <div 
-                            className="h-full bg-gradient-to-r from-accent via-accent to-accent/70 rounded-full shadow-md shadow-accent/40"
+                            className="h-full bg-gradient-to-r from-accent via-accent to-accent/70 rounded-full shadow-[0_4px_12px_rgba(16,185,129,0.5),inset_-1px_0_6px_rgba(16,185,129,0.6)]"
                             style={{ width: '42%' }}
                           ></div>
                         </div>
@@ -449,7 +364,7 @@ export default function Dashboard() {
                         </div>
                         <div className="h-3 bg-bg-tertiary rounded-full overflow-hidden">
                           <div 
-                            className="h-full bg-gradient-to-r from-accent via-accent to-accent/70 rounded-full shadow-md shadow-accent/40"
+                            className="h-full bg-gradient-to-r from-accent via-accent to-accent/70 rounded-full shadow-[0_4px_12px_rgba(16,185,129,0.5),inset_-1px_0_6px_rgba(16,185,129,0.6)]"
                             style={{ width: '35%' }}
                           ></div>
                         </div>
