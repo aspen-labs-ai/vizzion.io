@@ -18,7 +18,7 @@ export default function SocialProof() {
   return (
     <section className="py-12 px-6 bg-bg-secondary border-y border-border-default">
       <div className="max-w-[1400px] mx-auto">
-        <div className="grid md:grid-cols-3 gap-8 md:gap-12">
+        <div className="grid grid-cols-3 gap-4 md:gap-12">
           {stats.map((stat, index) => (
             <div 
               key={index}
@@ -27,10 +27,10 @@ export default function SocialProof() {
               }`}
               style={{ transitionDelay: `${index * 150}ms` }}
             >
-              <div className="text-5xl md:text-6xl font-bold text-accent mb-2">
+              <div className="text-3xl md:text-6xl font-bold text-accent mb-1 md:mb-2">
                 {stat.value}
               </div>
-              <div className="text-sm md:text-base font-medium text-text-secondary uppercase tracking-wide">
+              <div className="text-xs md:text-base font-medium text-text-secondary uppercase tracking-wide">
                 {stat.label}
               </div>
             </div>
