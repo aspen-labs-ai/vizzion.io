@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Footer() {
   return (
@@ -7,8 +8,14 @@ export default function Footer() {
         <div className="grid md:grid-cols-5 gap-12 mb-12">
           {/* Brand */}
           <div className="md:col-span-2">
-            <div className="text-2xl font-bold text-text-primary mb-4 font-['Space_Grotesk']">
-              Vizzion
+            <div className="mb-4">
+              <Image 
+                src="/vizzion-logo.png" 
+                alt="Vizzion" 
+                width={120} 
+                height={40}
+                className="h-8 w-auto"
+              />
             </div>
             <p className="text-text-secondary leading-relaxed">
               Transform how customers shop with visual customization.

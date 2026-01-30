@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -43,9 +44,16 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-bg-secondary/95 backdrop-blur-sm border-b border-border-default">
       <div className="max-w-[1400px] mx-auto px-6 py-4 flex items-center justify-center">
         {/* Logo */}
-        <div className="text-2xl font-bold text-text-primary">
-          Vizzion
-        </div>
+        <Link href="/" className="flex items-center">
+          <Image 
+            src="/vizzion-logo.png" 
+            alt="Vizzion" 
+            width={120} 
+            height={40}
+            className="h-8 w-auto"
+            priority
+          />
+        </Link>
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
