@@ -42,48 +42,51 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-bg-secondary/95 backdrop-blur-sm border-b border-border-default">
-      <div className="max-w-[1400px] mx-auto px-6 py-4 flex items-center justify-center">
-        {/* Logo */}
-        <Link href="/" className="flex items-center">
+      <div className="max-w-[1400px] mx-auto px-6 py-5 flex items-center justify-between">
+        {/* Logo & Brand */}
+        <Link href="/" className="flex items-center gap-4 group">
           <Image 
             src="/vizzion-logo.png" 
             alt="Vizzion" 
-            width={120} 
-            height={40}
-            className="h-8 w-auto"
+            width={140} 
+            height={45}
+            className="h-10 w-auto transition-transform duration-300 group-hover:scale-105"
             priority
           />
+          <div className="text-2xl font-bold text-text-primary tracking-tight">
+            VIZZION.IO
+          </div>
         </Link>
         
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-10">
           <Link 
             href="#how-it-works" 
-            className="text-text-secondary hover:text-accent transition-colors duration-250"
+            className="text-text-secondary hover:text-accent transition-colors duration-250 font-medium"
           >
             How It Works
           </Link>
           <Link 
             href="#industries" 
-            className="text-text-secondary hover:text-accent transition-colors duration-250"
+            className="text-text-secondary hover:text-accent transition-colors duration-250 font-medium"
           >
             Industries
           </Link>
           <Link 
             href="#dashboard" 
-            className="text-text-secondary hover:text-accent transition-colors duration-250"
+            className="text-text-secondary hover:text-accent transition-colors duration-250 font-medium"
           >
             Dashboard
           </Link>
           <Link 
             href="#pricing" 
-            className="text-text-secondary hover:text-accent transition-colors duration-250"
+            className="text-text-secondary hover:text-accent transition-colors duration-250 font-medium"
           >
             Pricing
           </Link>
           <Link 
             href="#signup" 
-            className="inline-flex items-center justify-center gap-2 px-6 py-2 font-semibold rounded-lg bg-accent text-primary hover:bg-accent-hover transition-all duration-250 hover:-translate-y-0.5 hover:shadow-accent-glow"
+            className="inline-flex items-center justify-center gap-2 px-8 py-3 font-semibold rounded-lg bg-accent text-primary hover:bg-accent-hover transition-all duration-250 hover:-translate-y-0.5 hover:shadow-accent-glow"
           >
             Get Started
           </Link>
@@ -104,7 +107,7 @@ export default function Header() {
       
       {/* Mobile Navigation Drawer */}
       <div 
-        className={`md:hidden fixed top-[73px] right-0 bottom-0 w-64 bg-bg-secondary border-l border-border-default shadow-xl transform transition-transform duration-300 ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`md:hidden fixed top-[81px] right-0 bottom-0 w-72 bg-bg-secondary border-l border-border-default shadow-xl transform transition-transform duration-300 ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
         <nav className="flex flex-col p-6 gap-4">
           <Link 
@@ -148,7 +151,7 @@ export default function Header() {
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
         <div 
-          className="md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm top-[73px]"
+          className="md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm top-[81px]"
           onClick={closeMobileMenu}
         />
       )}
