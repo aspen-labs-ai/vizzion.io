@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vizzion - Visual Customization Widget for Businesses</title>
+  <meta name="description" content="Let customers visualize your products on their own images. Embed Vizzion on your website and turn browsers into buyers.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/design-tokens.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- ============================================
+       HEADER / NAVIGATION
+       ============================================ -->
+  <header class="header">
+    <div class="header-container">
+      <div class="header-logo">Vizzion</div>
+      
+      <!-- Desktop Navigation -->
+      <nav class="header-nav">
+        <a href="#how-it-works">How It Works</a>
+        <a href="#industries">Industries</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#" class="btn btn-primary btn-sm">Get Started</a>
+      </nav>
+      
+      <!-- Mobile Hamburger Button -->
+      <button class="mobile-menu-button" aria-label="Open mobile menu" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+    
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav-drawer">
+      <nav class="mobile-nav">
+        <a href="#how-it-works" class="mobile-nav-link">How It Works</a>
+        <a href="#industries" class="mobile-nav-link">Industries</a>
+        <a href="#dashboard" class="mobile-nav-link">Dashboard</a>
+        <a href="#pricing" class="mobile-nav-link">Pricing</a>
+        <a href="#" class="mobile-nav-link mobile-nav-cta">Get Started</a>
+      </nav>
+    </div>
+    
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay"></div>
+  </header>
+
+  <!-- ============================================
+       HERO SECTION
+       ============================================ -->
+  <section class="hero-clean">
+    <div class="hero-container-clean">
+      <div class="hero-content-clean">
+        <div class="hero-badge-clean">Transform How Customers Shop</div>
+        <h1 class="hero-title-clean">Turn browsers into buyers with visual customization</h1>
+        <p class="hero-subtitle-clean">
+          Embed Vizzion on your website. Let customers see your products on their own images. Watch conversion rates soar.
+        </p>
+        <div class="hero-cta-clean">
+          <a href="#pricing" class="btn btn-primary btn-lg">Get Started Free</a>
+          <a href="#how-it-works" class="btn btn-secondary btn-lg">See How It Works</a>
+        </div>
+      </div>
+      
+      <div class="hero-visual-clean">
+        <div class="widget-mockup-clean">
+          <div class="widget-window-clean">
+            <div class="widget-header-clean">
+              <span class="code-window-dot"></span>
+              <span class="code-window-dot"></span>
+              <span class="code-window-dot"></span>
+            </div>
+            <div class="widget-content-clean">
+              <h3 style="font-size: var(--text-xl); margin-bottom: var(--space-md); font-weight: 600;">Summit Roofing</h3>
+              
+              <!-- House Preview Image -->
+              <div style="margin-bottom: var(--space-md); border-radius: 8px; overflow: hidden;">
+                <img src="images/demo-house.png" alt="House preview" style="width: 100%; height: auto; display: block;">
+              </div>
+              
+              <!-- Step Progress Indicator -->
+              <div class="widget-stepper-progress">
+                <div class="stepper-dot-clean active" data-step="1"></div>
+                <div class="stepper-line-clean"></div>
+                <div class="stepper-dot-clean" data-step="2"></div>
+                <div class="stepper-line-clean"></div>
+                <div class="stepper-dot-clean" data-step="3"></div>
+              </div>
+              
+              <!-- Step Content -->
+              <div class="widget-step-clean active">
+                <div class="step-label-clean">Step 2 of 3</div>
+                <h4 class="step-title-clean">Choose Your Material</h4>
+                <div class="widget-selector-clean">
+                  <div class="widget-swatch-clean" style="background-image: url('images/swatch-metal.png'); background-size: cover; background-position: center;">
+                    <div class="swatch-label-clean">Metal</div>
+                  </div>
+                  <div class="widget-swatch-clean selected" style="background-image: url('images/swatch-shingles.png'); background-size: cover; background-position: center;">
+                    <div class="swatch-label-clean">Shingles</div>
+                    <div class="swatch-checkmark-clean">✓</div>
+                  </div>
+                  <div class="widget-swatch-clean" style="background-image: url('images/swatch-tile.png'); background-size: cover; background-position: center;">
+                    <div class="swatch-label-clean">Tile</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       HOW IT WORKS - CLEAN REDESIGN (NO GRADIENTS)
+       ============================================ -->
+  <section class="section-clean" id="how-it-works">
+    <div class="section-container-clean">
+      <div class="section-header-clean">
+        <h2 class="section-title-clean">Three steps to higher conversions</h2>
+        <p class="section-subtitle-clean">
+          No developers needed. No complicated setup. Just results.
+        </p>
+      </div>
+      
+      <!-- Clean Three Column Layout -->
+      <div class="steps-grid-clean">
+        
+        <!-- Step 1: Upload & Visualize -->
+        <div class="step-card-clean">
+          <div class="step-icon-large-clean">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <circle cx="8.5" cy="8.5" r="1.5"></circle>
+              <polyline points="21 15 16 10 5 21"></polyline>
+            </svg>
+          </div>
+          
+          <h3 class="step-title-clean">Upload & Visualize</h3>
+          <p class="step-description-clean">
+            Customers upload a photo of their home, boat, or space. AI instantly shows your products on their image—no mockup needed.
+          </p>
+          
+          <ul class="step-feature-list-clean">
+            <li>Any image works</li>
+            <li>Instant AI rendering</li>
+            <li>Photorealistic results</li>
+          </ul>
+          
+          <div class="step-visual-clean">
+            <div class="image-upload-preview-clean">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Step 2: Capture Leads -->
+        <div class="step-card-clean">
+          <div class="step-icon-large-clean">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </div>
+          
+          <h3 class="step-title-clean">Capture Leads</h3>
+          <p class="step-description-clean">
+            Before they see the final result, collect their email. Every visualization becomes a qualified lead in your pipeline.
+          </p>
+          
+          <ul class="step-feature-list-clean">
+            <li>Built-in lead capture</li>
+            <li>Email integration</li>
+            <li>CRM-ready exports</li>
+          </ul>
+          
+          <div class="step-visual-clean">
+            <div class="email-capture-preview-clean">
+              <div class="email-input-mock">
+                <div class="input-icon">@</div>
+                <div class="input-text">your.email@example.com</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Step 3: Close More Deals -->
+        <div class="step-card-clean">
+          <div class="step-icon-large-clean">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+          
+          <h3 class="step-title-clean">Close More Deals</h3>
+          <p class="step-description-clean">
+            They see it, they love it, they buy it. Vizzion users report 3x more leads and 60% higher close rates.
+          </p>
+          
+          <ul class="step-feature-list-clean">
+            <li>3x more leads</li>
+            <li>60% higher close rate</li>
+            <li>Confident buyers</li>
+          </ul>
+          
+          <div class="step-visual-clean">
+            <div class="success-metrics-clean">
+              <div class="metric-pill-clean">
+                <span class="metric-number">+247%</span>
+                <span class="metric-label">ROI</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       INTEGRATION WITH ANIMATED TYPING CODE
+       ============================================ -->
+  <section class="section-clean section-gray-clean" id="integration">
+    <div class="section-container-clean">
+      <div class="section-header-clean">
+        <h2 class="section-title-clean">Works seamlessly with every platform</h2>
+        <p class="section-subtitle-clean">
+          Embed in minutes. No developers needed.
+        </p>
+      </div>
+      
+      <!-- Orbiting Circles Container -->
+      <div class="orbiting-circles-container">
+        <div class="orbit-center">
+          <div class="center-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+              <path d="M3 9h18M9 21V9"></path>
+            </svg>
+          </div>
+          <div class="center-label">Vizzion</div>
+        </div>
+        
+        <!-- Orbit Paths -->
+        <div class="orbit-path orbit-1">
+          <div class="orbit-item" data-angle="0">
+            <img src="images/logos/shopify.svg" alt="Shopify" class="platform-logo-orbit">
+          </div>
+          <div class="orbit-item" data-angle="120">
+            <img src="images/logos/wordpress.svg" alt="WordPress" class="platform-logo-orbit">
+          </div>
+          <div class="orbit-item" data-angle="240">
+            <img src="images/logos/wix.svg" alt="Wix" class="platform-logo-orbit">
+          </div>
+        </div>
+        
+        <div class="orbit-path orbit-2">
+          <div class="orbit-item" data-angle="60">
+            <img src="images/logos/squarespace.svg" alt="Squarespace" class="platform-logo-orbit">
+          </div>
+          <div class="orbit-item" data-angle="180">
+            <img src="images/logos/custom-code.svg" alt="Custom" class="platform-logo-orbit">
+          </div>
+          <div class="orbit-item" data-angle="300">
+            <div class="custom-platform-logo">Custom</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Animated Typing Code Example -->
+      <div class="code-example-clean">
+        <div class="code-window">
+          <div class="code-window-header">
+            <span class="code-window-dot"></span>
+            <span class="code-window-dot"></span>
+            <span class="code-window-dot"></span>
+          </div>
+          <div class="code-window-content">
+            <pre id="typing-code"><span id="typing-output"></span><span class="typing-cursor"></span></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       INDUSTRIES - BENTO GRID
+       ============================================ -->
+  <section class="section-clean" id="industries">
+    <div class="section-container-clean">
+      <div class="section-header-clean">
+        <h2 class="section-title-clean">Built for businesses that sell visual products</h2>
+        <p class="section-subtitle-clean">
+          If your customers need to see it to believe it, Vizzion is for you.
+        </p>
+      </div>
+      
+      <!-- Bento Grid Layout -->
+      <div class="bento-grid">
+        
+        <!-- Large Card - Roofing -->
+        <div class="bento-card bento-large">
+          <div class="bento-icon">🏠</div>
+          <h3 class="bento-title">Roofing</h3>
+          <p class="bento-description">
+            Let homeowners visualize different roofing materials, colors, and styles on their actual home.
+          </p>
+          <ul class="bento-features">
+            <li>Asphalt shingles</li>
+            <li>Metal roofing</li>
+            <li>Specialty materials</li>
+          </ul>
+          <div class="bento-stats">
+            <div class="bento-stat">
+              <div class="bento-stat-icon">📊</div>
+              <div class="bento-stat-content">
+                <div class="bento-stat-value">3.2x</div>
+                <div class="bento-stat-label">More qualified leads</div>
+              </div>
+            </div>
+            <div class="bento-stat">
+              <div class="bento-stat-icon">💰</div>
+              <div class="bento-stat-content">
+                <div class="bento-stat-value">45%</div>
+                <div class="bento-stat-label">Higher close rate</div>
+              </div>
+            </div>
+          </div>
+          <div class="bento-visual-element">
+            <div class="bento-sample-colors">
+              <div class="bento-color-swatch" style="background: #8B7355;"></div>
+              <div class="bento-color-swatch" style="background: #2C3E50;"></div>
+              <div class="bento-color-swatch" style="background: #7F8C8D;"></div>
+              <div class="bento-color-swatch" style="background: #34495E;"></div>
+              <div class="bento-color-swatch" style="background: #C0392B;"></div>
+              <div class="bento-color-swatch" style="background: #27AE60;"></div>
+            </div>
+            <div class="bento-visual-label">Popular roofing colors</div>
+          </div>
+          <div class="bento-badge">Most Popular</div>
+        </div>
+        
+        <!-- Medium Card - Marine -->
+        <div class="bento-card bento-medium">
+          <div class="bento-icon">⚓</div>
+          <h3 class="bento-title">Marine & Boat Decking</h3>
+          <p class="bento-description">
+            Visualize different decking materials and patterns before installation.
+          </p>
+        </div>
+        
+        <!-- Medium Card - Siding -->
+        <div class="bento-card bento-medium">
+          <div class="bento-icon">🏘️</div>
+          <h3 class="bento-title">Siding & Exteriors</h3>
+          <p class="bento-description">
+            See how different siding materials and colors transform a home's exterior.
+          </p>
+        </div>
+        
+        <!-- Small Card - Flooring -->
+        <div class="bento-card bento-small">
+          <div class="bento-icon">🪵</div>
+          <h3 class="bento-title">Flooring</h3>
+          <p class="bento-description">
+            Visualize hardwood, tile, and carpet in actual spaces.
+          </p>
+        </div>
+        
+        <!-- Small Card - Paint -->
+        <div class="bento-card bento-small">
+          <div class="bento-icon">🎨</div>
+          <h3 class="bento-title">Paint & Finishes</h3>
+          <p class="bento-description">
+            Color confidence before the first brushstroke.
+          </p>
+        </div>
+        
+        <!-- Small Card - Landscaping -->
+        <div class="bento-card bento-small">
+          <div class="bento-icon">🌳</div>
+          <h3 class="bento-title">Landscaping</h3>
+          <p class="bento-description">
+            Transform outdoor spaces with visualization.
+          </p>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       DASHBOARD SECTION
+       ============================================ -->
+  <section class="section" id="dashboard">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Powerful dashboard to track what matters</h2>
+        <p class="section-subtitle">
+          Monitor conversions, analyze trends, and manage your product catalog—all from one beautiful interface.
+        </p>
+      </div>
+      
+      <div class="dashboard-mockup-container">
+        <div class="dashboard-mockup">
+          <div class="dashboard-window">
+            <!-- Mac-style header with stoplight buttons -->
+            <div class="dashboard-header">
+              <span class="code-window-dot"></span>
+              <span class="code-window-dot"></span>
+              <span class="code-window-dot"></span>
+              <span class="dashboard-title">Vizzion Dashboard</span>
+            </div>
+            
+            <div class="dashboard-layout">
+              <!-- Sidebar Navigation -->
+              <div class="dashboard-sidebar">
+                <nav class="dashboard-nav">
+                  <a href="#" class="dashboard-nav-item active">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="3" y="3" width="7" height="7"></rect>
+                      <rect x="14" y="3" width="7" height="7"></rect>
+                      <rect x="14" y="14" width="7" height="7"></rect>
+                      <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                    <span>Dashboard</span>
+                  </a>
+                  <a href="#" class="dashboard-nav-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="12" y1="20" x2="12" y2="10"></line>
+                      <line x1="18" y1="20" x2="18" y2="4"></line>
+                      <line x1="6" y1="20" x2="6" y2="16"></line>
+                    </svg>
+                    <span>Analytics</span>
+                  </a>
+                  <a href="#" class="dashboard-nav-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M20 7h-9M14 17H5M17 12h-3M7 7a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM17 17a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM7 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
+                    </svg>
+                    <span>Materials</span>
+                  </a>
+                  <a href="#" class="dashboard-nav-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="3"></circle>
+                      <path d="M12 1v6m0 6v6M5.6 5.6l4.2 4.2m4.2 4.2l4.2 4.2M1 12h6m6 0h6M5.6 18.4l4.2-4.2m4.2-4.2l4.2-4.2"></path>
+                    </svg>
+                    <span>Settings</span>
+                  </a>
+                </nav>
+              </div>
+              
+              <!-- Main Dashboard Content -->
+              <div class="dashboard-content">
+                <!-- Key Metrics Row -->
+                <div class="dashboard-metrics">
+                  <div class="metric-card">
+                    <div class="metric-label">Total Visualizations</div>
+                    <div class="metric-value">2,847</div>
+                    <div class="metric-trend positive">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M8 12V4M4 8l4-4 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      <span>12.5% vs last month</span>
+                    </div>
+                  </div>
+                  
+                  <div class="metric-card metric-card-highlight">
+                    <div class="metric-label">Conversion Rate</div>
+                    <div class="metric-value">24.3%</div>
+                    <div class="metric-trend positive">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M8 12V4M4 8l4-4 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      <span>8.2% vs last month</span>
+                    </div>
+                  </div>
+                  
+                  <div class="metric-card">
+                    <div class="metric-label">Active Leads</div>
+                    <div class="metric-value">142</div>
+                    <div class="metric-trend neutral">
+                      <span>2 new today</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Visualizations Over Time Chart -->
+                <div class="dashboard-chart-card">
+                  <div class="chart-header">
+                    <h3>Visualizations Over Time</h3>
+                    <div class="chart-period">
+                      <button class="period-btn">7D</button>
+                      <button class="period-btn active">30D</button>
+                      <button class="period-btn">90D</button>
+                    </div>
+                  </div>
+                  <div class="chart-container">
+                    <svg class="line-chart" viewBox="0 0 400 120" preserveAspectRatio="none">
+                      <defs>
+                        <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                          <stop offset="0%" style="stop-color:rgba(0,217,192,0.4);stop-opacity:1" />
+                          <stop offset="100%" style="stop-color:rgba(0,217,192,0);stop-opacity:0" />
+                        </linearGradient>
+                      </defs>
+                      <!-- Area fill -->
+                      <path d="M 0 100 L 0 80 Q 50 60, 100 70 T 200 50 T 300 40 T 400 20 L 400 100 Z" fill="url(#chartGradient)" />
+                      <!-- Line -->
+                      <path d="M 0 80 Q 50 60, 100 70 T 200 50 T 300 40 T 400 20" fill="none" stroke="var(--color-accent)" stroke-width="3" stroke-linecap="round"/>
+                      <!-- Dot markers -->
+                      <circle cx="0" cy="80" r="4" fill="var(--color-accent)"/>
+                      <circle cx="100" cy="70" r="4" fill="var(--color-accent)"/>
+                      <circle cx="200" cy="50" r="4" fill="var(--color-accent)"/>
+                      <circle cx="300" cy="40" r="4" fill="var(--color-accent)"/>
+                      <circle cx="400" cy="20" r="5" fill="var(--color-accent)" stroke="rgba(0,217,192,0.3)" stroke-width="6"/>
+                    </svg>
+                  </div>
+                </div>
+                
+                <!-- Popular Materials Chart -->
+                <div class="dashboard-chart-card">
+                  <div class="chart-header">
+                    <h3>Most Popular Materials</h3>
+                  </div>
+                  <div class="bar-chart">
+                    <div class="bar-item">
+                      <div class="bar-label">Asphalt Shingles</div>
+                      <div class="bar-track">
+                        <div class="bar-fill" style="width: 85%"></div>
+                      </div>
+                      <div class="bar-value">1,247</div>
+                    </div>
+                    <div class="bar-item">
+                      <div class="bar-label">Metal Roofing</div>
+                      <div class="bar-track">
+                        <div class="bar-fill" style="width: 68%"></div>
+                      </div>
+                      <div class="bar-value">992</div>
+                    </div>
+                    <div class="bar-item">
+                      <div class="bar-label">Clay Tiles</div>
+                      <div class="bar-track">
+                        <div class="bar-fill" style="width: 42%"></div>
+                      </div>
+                      <div class="bar-value">608</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="dashboard-features">
+        <div class="dashboard-feature">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="20" x2="18" y2="10"></line>
+            <line x1="12" y1="20" x2="12" y2="4"></line>
+            <line x1="6" y1="20" x2="6" y2="14"></line>
+          </svg>
+          <h4>Real-Time Analytics</h4>
+          <p>Track engagement, conversions, and user behavior as it happens.</p>
+        </div>
+        <div class="dashboard-feature">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+            <path d="M3 9h18M9 21V9"></path>
+          </svg>
+          <h4>Material Management</h4>
+          <p>Add, edit, and organize your product catalog with ease.</p>
+        </div>
+        <div class="dashboard-feature">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
+          </svg>
+          <h4>Custom Branding</h4>
+          <p>White-label the experience with your logo, colors, and style.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       PRICING
+       ============================================ -->
+  <section class="section-clean section-gray-clean" id="pricing">
+    <div class="section-container-clean">
+      <div class="section-header-clean">
+        <h2 class="section-title-clean">Simple, transparent pricing</h2>
+        <p class="section-subtitle-clean">
+          Choose the plan that fits your business. No hidden fees. Cancel anytime.
+        </p>
+      </div>
+      
+      <div class="pricing-grid">
+        <!-- Starter -->
+        <div class="pricing-card-clean">
+          <div class="pricing-tier">Starter</div>
+          <div class="pricing-price">
+            <span class="pricing-price-currency">$</span>49<span class="pricing-price-period">/mo</span>
+          </div>
+          <ul class="pricing-features">
+            <li>Up to 500 visualizations/month</li>
+            <li>1 website embed</li>
+            <li>Basic product library</li>
+            <li>Email support</li>
+            <li>Analytics dashboard</li>
+          </ul>
+          <a href="#" class="btn btn-secondary" style="width: 100%;">Start Free Trial</a>
+        </div>
+        
+        <!-- Professional (Featured) -->
+        <div class="pricing-card-clean pricing-card-featured-clean">
+          <div class="pricing-badge-clean">Most Popular</div>
+          <div class="pricing-tier">Professional</div>
+          <div class="pricing-price">
+            <span class="pricing-price-currency">$</span>149<span class="pricing-price-period">/mo</span>
+          </div>
+          <ul class="pricing-features">
+            <li>Unlimited visualizations</li>
+            <li>Unlimited website embeds</li>
+            <li>Full product library</li>
+            <li>Priority support</li>
+            <li>Advanced analytics</li>
+            <li>Custom branding</li>
+            <li>Lead capture forms</li>
+          </ul>
+          <a href="#" class="btn btn-primary" style="width: 100%;">Start Free Trial</a>
+        </div>
+        
+        <!-- Enterprise -->
+        <div class="pricing-card-clean">
+          <div class="pricing-tier">Enterprise</div>
+          <div class="pricing-price">
+            Custom
+          </div>
+          <ul class="pricing-features">
+            <li>Everything in Professional</li>
+            <li>White-label solution</li>
+            <li>Multi-location support</li>
+            <li>Dedicated account manager</li>
+            <li>Custom integrations</li>
+            <li>SLA guarantee</li>
+            <li>Training & onboarding</li>
+          </ul>
+          <a href="#" class="btn btn-secondary" style="width: 100%;">Contact Sales</a>
+        </div>
+      </div>
+      
+      <div style="text-align: center; margin-top: var(--space-2xl); color: var(--color-text-secondary);">
+        <p style="font-size: var(--text-base);">
+          14-day free trial • No credit card required • Cancel anytime
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FINAL CTA
+       ============================================ -->
+  <section class="cta-clean">
+    <div class="section-container-clean">
+      <h2 class="cta-title-clean">Ready to turn visitors into customers?</h2>
+      <p class="cta-subtitle-clean">
+        Join hundreds of businesses using Vizzion to boost conversions and close more deals.
+      </p>
+      <div class="cta-buttons-clean">
+        <a href="#pricing" class="btn btn-primary btn-lg">Get Started Free</a>
+        <a href="#" class="btn btn-secondary btn-lg">Schedule a Demo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="footer-clean">
+    <div class="section-container-clean">
+      <div class="footer-content-clean">
+        <div class="footer-brand-clean">
+          <div class="footer-logo-clean">Vizzion</div>
+          <p class="footer-tagline-clean">Transform how customers shop with visual customization.</p>
+        </div>
+        <div class="footer-links-clean">
+          <div class="footer-col-clean">
+            <h4>Product</h4>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#industries">Industries</a>
+            <a href="#pricing">Pricing</a>
+          </div>
+          <div class="footer-col-clean">
+            <h4>Company</h4>
+            <a href="#">About</a>
+            <a href="#">Blog</a>
+            <a href="#">Contact</a>
+          </div>
+          <div class="footer-col-clean">
+            <h4>Legal</h4>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom-clean">
+        <p>&copy; 2025 Vizzion. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/orbiting.js"></script>
+
+</body>
+</html>
