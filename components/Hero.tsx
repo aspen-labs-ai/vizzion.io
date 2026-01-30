@@ -18,15 +18,15 @@ export default function Hero() {
           {/* Left Content */}
           <div className="space-y-8">
             <div className="inline-block px-4 py-2 rounded-full bg-[var(--color-accent-light)] text-[var(--color-accent)] font-medium text-sm">
-              Transform How Customers Shop
+              Join 200+ businesses capturing 3x more leads
             </div>
             
             <h1 className="text-5xl md:text-6xl font-extrabold leading-tight text-[var(--color-primary)]">
-              Turn browsers into buyers with visual customization
+              Turn Every Website Visitor Into a Qualified Lead
             </h1>
             
             <p className="text-xl text-[var(--color-text-secondary)] leading-relaxed">
-              Embed Vizzion on your website. Let customers see your products on their own images. Watch conversion rates soar.
+              Vizzion captures emails <span className="font-semibold text-[var(--color-primary)]">before</span> showing visualizations. Your customers see your products on their own images—you get their contact info. It's that simple.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
@@ -34,7 +34,7 @@ export default function Hero() {
                 href="#pricing" 
                 className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-lg bg-[var(--color-accent)] text-[var(--color-primary)] hover:bg-[var(--color-accent-hover)] transition-all duration-[var(--transition-base)] hover:-translate-y-0.5 hover:shadow-[var(--shadow-md)]"
               >
-                Get Started Free
+                Start Your Free Trial
               </a>
               <a 
                 href="#how-it-works" 

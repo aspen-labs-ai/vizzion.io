@@ -7,9 +7,19 @@ export default function Pricing() {
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[var(--color-primary)]">
             Simple, transparent pricing
           </h2>
-          <p className="text-xl text-[var(--color-text-secondary)]">
+          <p className="text-xl text-[var(--color-text-secondary)] mb-6">
             Choose the plan that fits your business. No hidden fees. Cancel anytime.
           </p>
+          
+          {/* ROI Framing */}
+          <div className="inline-block mt-8 px-6 py-4 bg-[var(--color-accent-light)] border border-[var(--color-accent)] rounded-xl">
+            <div className="text-lg font-bold text-[var(--color-primary)] mb-1">
+              Pay for itself in 3 leads
+            </div>
+            <div className="text-sm text-[var(--color-text-secondary)]">
+              At 60% higher close rates, most businesses recover their investment in the first week
+            </div>
+          </div>
         </div>
         
         {/* Pricing Grid */}
@@ -69,10 +79,16 @@ export default function Pricing() {
               Most Popular
             </div>
             <div className="text-lg font-semibold text-[var(--color-text-secondary)] mb-4">Professional</div>
-            <div className="flex items-baseline mb-8">
+            <div className="flex items-baseline mb-2">
               <span className="text-2xl font-bold text-[var(--color-primary)]">$</span>
               <span className="text-5xl font-bold text-[var(--color-primary)]">149</span>
               <span className="text-xl text-[var(--color-text-muted)]">/mo</span>
+            </div>
+            <div className="mb-8 p-3 bg-[var(--color-accent-light)] rounded-lg">
+              <div className="text-sm font-bold text-[var(--color-primary)]">Average ROI: 247%</div>
+              <div className="text-xs text-[var(--color-text-secondary)] mt-1">
+                40+ qualified leads/month = $3.72 per lead
+              </div>
             </div>
             <ul className="space-y-4 mb-8">
               <li className="flex items-start gap-3">

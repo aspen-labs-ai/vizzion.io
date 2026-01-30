@@ -5,29 +5,28 @@ export default function ThreeSteps() {
         {/* Section Header */}
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[var(--color-primary)]">
-            Three steps to higher conversions
+            Three Steps to Capturing More Leads
           </h2>
           <p className="text-xl text-[var(--color-text-secondary)]">
-            No developers needed. No complicated setup. Just results.
+            Get up and running in 5 minutes. No developers needed. No complicated setup. Just results.
           </p>
         </div>
         
         {/* Three Column Layout */}
         <div className="grid md:grid-cols-3 gap-6 md:gap-12">
           
-          {/* Step 1: Upload & Visualize */}
+          {/* Step 1: Embed the Widget */}
           <div className="bg-white rounded-2xl p-6 md:p-8 border border-[var(--color-border)] hover:border-[var(--color-accent)] hover:shadow-[var(--shadow-lg)] transition-all duration-[var(--transition-base)] hover:-translate-y-1">
             <div className="w-16 h-16 mb-6 rounded-xl bg-[var(--color-accent-light)] text-[var(--color-accent)] flex items-center justify-center">
               <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                <polyline points="21 15 16 10 5 21"></polyline>
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
               </svg>
             </div>
             
-            <h3 className="text-2xl font-bold mb-4 text-[var(--color-primary)]">Upload & Visualize</h3>
+            <h3 className="text-2xl font-bold mb-4 text-[var(--color-primary)]">Embed the Widget</h3>
             <p className="text-[var(--color-text-secondary)] mb-6 leading-relaxed">
-              Customers upload a photo of their home, boat, or space. AI instantly shows your products on their image—no mockup needed.
+              Copy-paste our embed code into your website. Works with Shopify, WordPress, Wix, or any platform. No developer needed.
             </p>
             
             <ul className="space-y-3">
@@ -35,34 +34,32 @@ export default function ThreeSteps() {
                 <svg className="w-5 h-5 mt-0.5 text-[var(--color-accent)] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <span className="text-[var(--color-text-secondary)]">Any image works</span>
+                <span className="text-[var(--color-text-secondary)]">5-minute setup</span>
               </li>
               <li className="flex items-start gap-3">
                 <svg className="w-5 h-5 mt-0.5 text-[var(--color-accent)] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <span className="text-[var(--color-text-secondary)]">Instant AI rendering</span>
+                <span className="text-[var(--color-text-secondary)]">Works on any website platform</span>
               </li>
               <li className="flex items-start gap-3">
                 <svg className="w-5 h-5 mt-0.5 text-[var(--color-accent)] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <span className="text-[var(--color-text-secondary)]">Photorealistic results</span>
+                <span className="text-[var(--color-text-secondary)]">Customizable to your brand</span>
               </li>
             </ul>
             
             <div className="mt-8 pt-8 border-t border-[var(--color-border)]">
-              <div className="bg-[var(--color-gray-50)] rounded-lg p-6 flex items-center justify-center aspect-square">
-                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.4">
-                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                  <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                  <polyline points="21 15 16 10 5 21"></polyline>
-                </svg>
+              <div className="bg-[var(--color-gray-50)] rounded-lg p-6 flex items-center justify-center">
+                <div className="font-mono text-xs text-[var(--color-text-muted)] bg-[var(--color-primary)] text-[var(--color-accent)] px-3 py-2 rounded">
+                  {'<script src="vizzion.js"></script>'}
+                </div>
               </div>
             </div>
           </div>
           
-          {/* Step 2: Capture Leads */}
+          {/* Step 2: Capture Every Lead Automatically */}
           <div className="bg-white rounded-2xl p-6 md:p-8 border border-[var(--color-border)] hover:border-[var(--color-accent)] hover:shadow-[var(--shadow-lg)] transition-all duration-[var(--transition-base)] hover:-translate-y-1">
             <div className="w-16 h-16 mb-6 rounded-xl bg-[var(--color-accent-light)] text-[var(--color-accent)] flex items-center justify-center">
               <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -71,9 +68,9 @@ export default function ThreeSteps() {
               </svg>
             </div>
             
-            <h3 className="text-2xl font-bold mb-4 text-[var(--color-primary)]">Capture Leads</h3>
+            <h3 className="text-2xl font-bold mb-4 text-[var(--color-primary)]">Capture Every Lead Automatically</h3>
             <p className="text-[var(--color-text-secondary)] mb-6 leading-relaxed">
-              Before they see the final result, collect their email. Every visualization becomes a qualified lead in your pipeline.
+              Before customers see their visualization, they enter their email. Every interaction becomes a qualified lead. Emails sync automatically to your CRM or inbox.
             </p>
             
             <ul className="space-y-3">
@@ -81,33 +78,38 @@ export default function ThreeSteps() {
                 <svg className="w-5 h-5 mt-0.5 text-[var(--color-accent)] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <span className="text-[var(--color-text-secondary)]">Built-in lead capture</span>
+                <span className="text-[var(--color-text-secondary)]">Email required before visualization</span>
               </li>
               <li className="flex items-start gap-3">
                 <svg className="w-5 h-5 mt-0.5 text-[var(--color-accent)] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <span className="text-[var(--color-text-secondary)]">Email integration</span>
+                <span className="text-[var(--color-text-secondary)]">Automatic lead capture</span>
               </li>
               <li className="flex items-start gap-3">
                 <svg className="w-5 h-5 mt-0.5 text-[var(--color-accent)] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <span className="text-[var(--color-text-secondary)]">CRM-ready exports</span>
+                <span className="text-[var(--color-text-secondary)]">CRM integration (Salesforce, HubSpot)</span>
               </li>
             </ul>
             
             <div className="mt-8 pt-8 border-t border-[var(--color-border)]">
-              <div className="bg-[var(--color-gray-50)] rounded-lg p-6 flex items-center justify-center aspect-square">
-                <div className="w-full max-w-[200px] bg-white border border-[var(--color-border)] rounded-lg p-3 flex items-center gap-2 overflow-hidden">
-                  <div className="text-[var(--color-accent)] font-bold text-lg flex-shrink-0">@</div>
-                  <div className="text-sm text-[var(--color-text-muted)] truncate">your.email@example.com</div>
+              <div className="bg-[var(--color-gray-50)] rounded-lg p-6">
+                <div className="bg-white border border-[var(--color-border)] rounded-lg p-4 space-y-3">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                    <span className="text-sm font-semibold text-[var(--color-primary)]">New Lead Captured</span>
+                  </div>
+                  <div className="text-xs text-[var(--color-text-muted)] font-mono truncate">
+                    john.smith@email.com
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           
-          {/* Step 3: Close More Deals */}
+          {/* Step 3: Convert Hot Leads Into Sales */}
           <div className="bg-white rounded-2xl p-6 md:p-8 border border-[var(--color-border)] hover:border-[var(--color-accent)] hover:shadow-[var(--shadow-lg)] transition-all duration-[var(--transition-base)] hover:-translate-y-1">
             <div className="w-16 h-16 mb-6 rounded-xl bg-[var(--color-accent-light)] text-[var(--color-accent)] flex items-center justify-center">
               <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -116,9 +118,9 @@ export default function ThreeSteps() {
               </svg>
             </div>
             
-            <h3 className="text-2xl font-bold mb-4 text-[var(--color-primary)]">Close More Deals</h3>
+            <h3 className="text-2xl font-bold mb-4 text-[var(--color-primary)]">Convert Hot Leads Into Sales</h3>
             <p className="text-[var(--color-text-secondary)] mb-6 leading-relaxed">
-              They see it, they love it, they buy it. Vizzion users report 3x more leads and 60% higher close rates.
+              Your leads have already visualized your product on their property. They're qualified, engaged, and ready to buy. Follow up while they're excited.
             </p>
             
             <ul className="space-y-3">
@@ -126,7 +128,7 @@ export default function ThreeSteps() {
                 <svg className="w-5 h-5 mt-0.5 text-[var(--color-accent)] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <span className="text-[var(--color-text-secondary)]">3x more leads</span>
+                <span className="text-[var(--color-text-secondary)]">3x more qualified leads</span>
               </li>
               <li className="flex items-start gap-3">
                 <svg className="w-5 h-5 mt-0.5 text-[var(--color-accent)] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -138,15 +140,15 @@ export default function ThreeSteps() {
                 <svg className="w-5 h-5 mt-0.5 text-[var(--color-accent)] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <span className="text-[var(--color-text-secondary)]">Confident buyers</span>
+                <span className="text-[var(--color-text-secondary)]">Customers come in pre-sold</span>
               </li>
             </ul>
             
             <div className="mt-8 pt-8 border-t border-[var(--color-border)]">
-              <div className="bg-[var(--color-gray-50)] rounded-lg p-6 flex items-center justify-center aspect-square">
-                <div className="bg-[var(--color-accent)] text-[var(--color-primary)] rounded-full px-6 py-3 font-bold">
-                  <div className="text-3xl">+247%</div>
-                  <div className="text-sm mt-1">ROI</div>
+              <div className="bg-[var(--color-gray-50)] rounded-lg p-6 flex items-center justify-center">
+                <div className="text-center">
+                  <div className="text-4xl font-extrabold text-[var(--color-accent)] mb-1">+247%</div>
+                  <div className="text-sm font-medium text-[var(--color-text-secondary)]">ROI</div>
                 </div>
               </div>
             </div>
