@@ -55,13 +55,13 @@ export default function Dashboard() {
               </div>
               
               {/* Main Content */}
-              <div className="flex-1 p-8 bg-white">
+              <div className="flex-1 p-8 bg-bg-primary">
                 {/* Key Metrics */}
                 <div className="grid grid-cols-3 gap-6 mb-8">
                   <div className="p-6 bg-bg-secondary border border-border-default rounded-xl">
                     <div className="text-sm text-text-tertiary mb-2">Total Visualizations</div>
                     <div className="text-3xl font-bold text-text-primary mb-2">2,847</div>
-                    <div className="flex items-center gap-2 text-sm text-green-600">
+                    <div className="flex items-center gap-2 text-sm text-accent">
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                         <path d="M8 12V4M4 8l4-4 4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
@@ -72,7 +72,7 @@ export default function Dashboard() {
                   <div className="p-6 bg-accent/10 border border-accent rounded-xl">
                     <div className="text-sm text-text-tertiary mb-2">Conversion Rate</div>
                     <div className="text-3xl font-bold text-text-primary mb-2">24.3%</div>
-                    <div className="flex items-center gap-2 text-sm text-green-600">
+                    <div className="flex items-center gap-2 text-sm text-accent">
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                         <path d="M8 12V4M4 8l4-4 4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
