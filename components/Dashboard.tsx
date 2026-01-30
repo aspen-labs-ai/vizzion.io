@@ -30,9 +30,9 @@ export default function Dashboard() {
             </div>
             
             {/* Dashboard Layout */}
-            <div className="flex">
-              {/* Sidebar */}
-              <div className="w-64 bg-bg-tertiary border-r border-border-default p-6">
+            <div className="flex flex-col md:flex-row">
+              {/* Sidebar - Hidden on mobile, visible on desktop */}
+              <div className="hidden md:block md:w-64 bg-bg-tertiary border-r border-border-default p-6">
                 <nav className="space-y-2">
                   <button 
                     onClick={() => setActiveTab('dashboard')}
@@ -73,9 +73,14 @@ export default function Dashboard() {
               
               {/* Main Content - Dashboard View */}
               {activeTab === 'dashboard' && (
-                <div className="flex-1 p-8 bg-bg-primary">
+                <div className="w-full md:flex-1 p-4 md:p-8 bg-bg-primary">
+                  {/* Mobile Section Label */}
+                  <div className="md:hidden mb-4 pb-3 border-b border-border-subtle">
+                    <h3 className="text-sm font-semibold text-accent">Dashboard</h3>
+                  </div>
+                  
                   {/* Key Metrics */}
-                  <div className="grid grid-cols-3 gap-6 mb-8">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
                     <div className="p-6 bg-bg-secondary border border-border-default rounded-xl hover:border-accent transition-colors">
                       <div className="text-sm text-text-tertiary mb-2">Total Visualizations</div>
                       <div className="text-3xl font-bold text-text-primary mb-2">2,847</div>
@@ -107,8 +112,8 @@ export default function Dashboard() {
                   
                   {/* Chart */}
                   <div className="bg-bg-secondary border border-border-default rounded-xl p-6 mb-8">
-                    <div className="flex items-center justify-between mb-6">
-                      <h3 className="text-lg font-semibold text-text-primary">Visualizations Over Time</h3>
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center sm:justify-between gap-3 mb-6">
+                      <h3 className="text-base sm:text-lg font-semibold text-text-primary">Visualizations Over Time</h3>
                       <div className="flex gap-2">
                         <button className="px-3 py-1 text-sm rounded bg-bg-tertiary text-text-secondary hover:bg-accent hover:text-primary transition-colors">7D</button>
                         <button className="px-3 py-1 text-sm rounded bg-accent text-primary">30D</button>
@@ -167,7 +172,7 @@ export default function Dashboard() {
 
               {/* Analytics View */}
               {activeTab === 'analytics' && (
-                <div className="flex-1 p-8 bg-bg-primary">
+                <div className="w-full md:flex-1 p-4 md:p-8 bg-bg-primary">
                   <h2 className="text-2xl font-bold mb-6 text-text-primary">Analytics Overview</h2>
                   
                   {/* Line Chart - Conversion Trends */}
@@ -211,7 +216,7 @@ export default function Dashboard() {
                   </div>
 
                   {/* Performance Metrics Grid */}
-                  <div className="grid grid-cols-2 gap-6 mb-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
                     <div className="bg-bg-secondary border border-border-default rounded-xl p-6">
                       <h4 className="text-sm font-semibold text-text-tertiary mb-4">Average Session Duration</h4>
                       <div className="text-3xl font-bold text-text-primary mb-2">2m 34s</div>
@@ -258,7 +263,7 @@ export default function Dashboard() {
 
               {/* Materials View */}
               {activeTab === 'materials' && (
-                <div className="flex-1 p-8 bg-bg-primary">
+                <div className="w-full md:flex-1 p-4 md:p-8 bg-bg-primary">
                   <div className="flex justify-between items-center mb-6">
                     <h2 className="text-2xl font-bold text-text-primary">Material Library</h2>
                     <button className="px-4 py-2 bg-accent text-primary rounded-lg font-semibold hover:bg-accent-hover transition-colors">
@@ -267,7 +272,7 @@ export default function Dashboard() {
                   </div>
                   
                   {/* Material Cards Grid */}
-                  <div className="grid grid-cols-2 gap-6 mb-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
                     <div className="bg-bg-secondary border border-border-default rounded-xl p-6 hover:border-accent transition-all">
                       <div className="flex justify-between items-start mb-4">
                         <div>
