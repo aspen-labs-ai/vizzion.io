@@ -5,62 +5,38 @@ export default function Industries() {
     {
       icon: Home,
       name: 'Roofing & Exteriors',
-      description: 'Turn browsing homeowners into qualified leads with instant visualizations',
-      metrics: [
-        { value: '3.2x', label: 'More Leads' },
-        { value: '45%', label: 'Higher Close Rate' }
-      ],
+      description: 'Help homeowners confidently choose shingles, metal roofing, or tiles by showing realistic visualizations on their actual home. Eliminate decision paralysis and reduce sample requests while dramatically shortening the sales cycle from quote to close.',
       popular: true,
       href: '/industries/roofing'
     },
     {
       icon: Anchor,
       name: 'Marine & Boat Decking',
-      description: 'Boat owners see products on their vessel before committing',
-      metrics: [
-        { value: '2.8x', label: 'More Leads' },
-        { value: '38%', label: 'Higher Close Rate' }
-      ],
+      description: 'Let boat owners see exactly how different decking materials and colors will look on their vessel before making expensive commitments. Reduce returns and increase buyer confidence with accurate, personalized visualizations.',
       href: '/industries/marine'
     },
     {
       icon: Building2,
       name: 'Siding & Exteriors',
-      description: 'Homeowners visualize siding materials and colors instantly',
-      metrics: [
-        { value: '3.1x', label: 'More Leads' },
-        { value: '42%', label: 'Higher Close Rate' }
-      ],
+      description: 'Transform the siding selection process by letting customers instantly preview materials, textures, and colors on their home. Remove the guesswork and build trust by showing them exactly what they\'re buying before installation.',
       href: '/industries/siding'
     },
     {
       icon: Palette,
       name: 'Paint & Finishes',
-      description: 'Customers see color combinations on their property before purchase',
-      metrics: [
-        { value: '2.9x', label: 'More Leads' },
-        { value: '40%', label: 'Higher Close Rate' }
-      ],
+      description: 'Enable customers to experiment with unlimited color combinations and finishes on their actual property photos. Turn browsers into buyers by helping them visualize bold choices with confidence, eliminating costly color regrets.',
       href: '/industries/paint'
     },
     {
       icon: Trees,
       name: 'Landscaping',
-      description: 'Property owners preview outdoor transformations with confidence',
-      metrics: [
-        { value: '2.7x', label: 'More Leads' },
-        { value: '36%', label: 'Higher Close Rate' }
-      ],
+      description: 'Bring landscape designs to life by showing clients how plants, hardscaping, and outdoor features will transform their property. Win more bids by helping customers see the full vision before a single shovel hits the ground.',
       href: '/industries/landscaping'
     },
     {
       icon: Boxes,
       name: 'Flooring & Interiors',
-      description: 'Homeowners visualize flooring materials in their actual rooms',
-      metrics: [
-        { value: '2.6x', label: 'More Leads' },
-        { value: '34%', label: 'Higher Close Rate' }
-      ],
+      description: 'Let customers see how different flooring materials, patterns, and colors will actually look in their rooms with their existing furniture and lighting. Reduce showroom visits and speed up the decision-making process dramatically.',
       href: '/industries/flooring'
     }
   ];
@@ -108,19 +84,9 @@ export default function Industries() {
                 </h3>
                 
                 {/* Value Proposition */}
-                <p className="text-text-secondary text-sm mb-4 leading-relaxed">
+                <p className="text-text-secondary text-sm leading-relaxed">
                   {industry.description}
                 </p>
-                
-                {/* Metrics */}
-                <div className="flex gap-4 pt-4 border-t border-border-subtle">
-                  {industry.metrics.map((metric, idx) => (
-                    <div key={idx} className="flex-1">
-                      <div className="text-2xl font-bold text-accent">{metric.value}</div>
-                      <div className="text-xs text-text-tertiary">{metric.label}</div>
-                    </div>
-                  ))}
-                </div>
                 
                 {/* Arrow indicator */}
                 <div className="mt-4 flex items-center text-sm text-accent opacity-0 group-hover:opacity-100 transition-opacity">

@@ -8,7 +8,6 @@ import Dashboard from '@/components/Dashboard';
 import Testimonials from '@/components/Testimonials';
 import Pricing from '@/components/Pricing';
 import SignupSection from '@/components/SignupSection';
-import CTA from '@/components/CTA';
 import Footer from '@/components/Footer';
 
 export default function Home() {
@@ -25,7 +24,6 @@ export default function Home() {
         <Testimonials />
         <Pricing />
         <SignupSection />
-        <CTA />
       </main>
       <Footer />
     </>
