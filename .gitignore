@@ -1,34 +1,41 @@
-# Backups
-*backup*.html
-*backup*.css
-*-broken-*.css
-*-clean-*.html
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Documentation (keep reports, ignore temp docs)
-README-*.md
-TASK-*.md
-DELIVERABLES.md
-FIXES-*.md
-CHANGES-*.md
-validate-*.sh
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
-# OS files
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
 .DS_Store
-Thumbs.db
+*.pem
 
-# Editor
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# Logs
-*.log
+# debug
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
 
-# Python
-__pycache__/
-*.py[cod]
-*.so
-.Python
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
