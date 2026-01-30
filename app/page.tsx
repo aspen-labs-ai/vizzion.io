@@ -5,7 +5,9 @@ import ThreeSteps from '@/components/ThreeSteps';
 import Platforms from '@/components/Platforms';
 import Industries from '@/components/Industries';
 import Dashboard from '@/components/Dashboard';
+import Testimonials from '@/components/Testimonials';
 import Pricing from '@/components/Pricing';
+import SignupSection from '@/components/SignupSection';
 import CTA from '@/components/CTA';
 import Footer from '@/components/Footer';
 
@@ -20,7 +22,9 @@ export default function Home() {
         <Platforms />
         <Industries />
         <Dashboard />
+        <Testimonials />
         <Pricing />
+        <SignupSection />
         <CTA />
       </main>
       <Footer />

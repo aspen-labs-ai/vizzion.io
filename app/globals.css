@@ -1,49 +1,156 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-@theme {
-  /* Colors */
-  --color-primary: #0a1628;
-  --color-primary-light: #1a2d4a;
-  --color-accent: #00d9c0;
-  --color-accent-hover: #00c4ad;
-  --color-accent-light: rgba(0, 217, 192, 0.1);
+@theme inline {
+  /* ==============================================
+     DARK THEME COLORS - Professional & Techy
+     ============================================== */
   
-  /* Grays */
-  --color-gray-50: #f9fafb;
-  --color-gray-100: #f3f4f6;
-  --color-gray-200: #e5e7eb;
-  --color-gray-300: #d1d5db;
-  --color-gray-600: #4b5563;
-  --color-gray-700: #374151;
-  --color-gray-900: #111827;
+  /* Backgrounds - Dark hierarchy */
+  --color-bg-primary: #0D1117;    /* Main background (GitHub dark) */
+  --color-bg-secondary: #161B22;  /* Cards, elevated surfaces */
+  --color-bg-tertiary: #21262D;   /* Nested elements, hover states */
+  
+  /* Text - High contrast for readability */
+  --color-text-primary: #F9FAFB;   /* Main text (near white) */
+  --color-text-secondary: #D1D5DB; /* Secondary text (light gray) */
+  --color-text-tertiary: #9CA3AF;  /* Muted text (medium gray) */
+  --color-text-disabled: #6B7280;  /* Disabled state */
+  
+  /* ============================================== 
+     ACCENT COLOR - Easily Changeable
+     Change this ONE value to rebrand entire site
+     ============================================== */
+  --color-accent: #10B981;         /* Emerald Green - Professional, modern */
+  --color-accent-hover: #059669;   /* Darker on hover */
+  --color-accent-light: rgba(16, 185, 129, 0.1); /* Subtle backgrounds */
+  --color-accent-glow: rgba(16, 185, 129, 0.4);  /* Glow effects */
+  
+  /* Alternative accent options (uncomment to switch):
+  --color-accent: #06B6D4;  // Cyan - Techy, energetic
+  --color-accent: #3B82F6;  // Blue - Trustworthy, stable
+  --color-accent: #F59E0B;  // Amber - Warm, inviting
+  */
+  
+  /* Borders - Subtle separation */
+  --color-border-subtle: #30363D;  /* Very subtle borders */
+  --color-border-default: #373E47; /* Standard borders */
+  --color-border-emphasis: #484F58; /* Emphasized borders */
   
   /* Semantic colors */
-  --color-text-secondary: #374151;
-  --color-text-muted: #4b5563;
-  --color-border: #e5e7eb;
+  --color-primary: var(--color-text-primary);
+  --color-primary-light: var(--color-text-secondary);
   
-  /* Shadows */
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  /* Grays (for Tailwind compatibility) */
+  --color-gray-50: #F9FAFB;
+  --color-gray-100: #F3F4F6;
+  --color-gray-200: #E5E7EB;
+  --color-gray-300: #D1D5DB;
+  --color-gray-400: #9CA3AF;
+  --color-gray-500: #6B7280;
+  --color-gray-600: #4B5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1F2937;
+  --color-gray-900: #111827;
+  
+  /* Shadows - Optimized for dark backgrounds */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.5);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.5);
+  
+  /* Glow effects for accent elements */
+  --shadow-accent-glow: 0 0 20px var(--color-accent-glow);
   
   /* Transitions */
   --transition-base: 250ms;
+  --transition-fast: 150ms;
+  
+  /* Border radius - Professional, not over-rounded */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
   
   /* Fonts */
-  --font-sans: Inter, system-ui, sans-serif;
-  --font-display: Space Grotesk, system-ui, sans-serif;
+  --font-sans: Inter, system-ui, -apple-system, sans-serif;
+  --font-display: Inter, system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  
+  /* ==============================================
+     ORBITING CIRCLES ANIMATION
+     ============================================== */
+  --animate-orbit: orbit calc(var(--duration) * 1s) linear infinite;
+
+  @keyframes orbit {
+    0% {
+      transform: rotate(calc(var(--angle) * 1deg))
+        translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg));
+    }
+    100% {
+      transform: rotate(calc(var(--angle) * 1deg + 360deg))
+        translateY(calc(var(--radius) * 1px))
+        rotate(calc((var(--angle) * -1deg) - 360deg));
+    }
+  }
+  
+  /* Fade in animation for widget steps */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
 @layer base {
+  /* Dark theme base styles */
   body {
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
   }
   
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
+    color: var(--color-text-primary);
+  }
+  
+  /* Accent color utility classes */
+  .text-accent {
+    color: var(--color-accent);
+  }
+  
+  .bg-accent {
+    background-color: var(--color-accent);
+  }
+  
+  .bg-accent-light {
+    background-color: var(--color-accent-light);
+  }
+  
+  .border-accent {
+    border-color: var(--color-accent);
+  }
+  
+  .hover\:bg-accent-hover:hover {
+    background-color: var(--color-accent-hover);
+  }
+  
+  /* Smooth transitions for interactive elements */
+  a, button {
+    transition: all var(--transition-base) ease;
+  }
+}
+
+@layer utilities {
+  .animate-fadeIn {
+    animation: fadeIn 0.4s ease-out;
   }
 }
 
@@ -51,4 +158,22 @@
 .resize-animation-stopper * {
   animation: none !important;
   transition: none !important;
+}
+
+/* Dark theme scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-emphasis);
+  border-radius: var(--radius-sm);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
 }
