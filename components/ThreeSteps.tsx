@@ -1,7 +1,7 @@
 export default function ThreeSteps() {
   return (
-    <section className="py-24 px-6" id="how-it-works">
-      <div className="max-w-[1400px] mx-auto">
+    <section className="py-24 px-4 sm:px-6" id="how-it-works">
+      <div className="max-w-[1400px] mx-auto overflow-hidden">
         {/* Section Header */}
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[var(--color-primary)]">
@@ -13,10 +13,10 @@ export default function ThreeSteps() {
         </div>
         
         {/* Three Column Layout */}
-        <div className="grid md:grid-cols-3 gap-12">
+        <div className="grid md:grid-cols-3 gap-6 md:gap-12">
           
           {/* Step 1: Upload & Visualize */}
-          <div className="bg-white rounded-2xl p-8 border border-[var(--color-border)] hover:border-[var(--color-accent)] hover:shadow-[var(--shadow-lg)] transition-all duration-[var(--transition-base)] hover:-translate-y-1">
+          <div className="bg-white rounded-2xl p-6 md:p-8 border border-[var(--color-border)] hover:border-[var(--color-accent)] hover:shadow-[var(--shadow-lg)] transition-all duration-[var(--transition-base)] hover:-translate-y-1">
             <div className="w-16 h-16 mb-6 rounded-xl bg-[var(--color-accent-light)] text-[var(--color-accent)] flex items-center justify-center">
               <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
@@ -63,7 +63,7 @@ export default function ThreeSteps() {
           </div>
           
           {/* Step 2: Capture Leads */}
-          <div className="bg-white rounded-2xl p-8 border border-[var(--color-border)] hover:border-[var(--color-accent)] hover:shadow-[var(--shadow-lg)] transition-all duration-[var(--transition-base)] hover:-translate-y-1">
+          <div className="bg-white rounded-2xl p-6 md:p-8 border border-[var(--color-border)] hover:border-[var(--color-accent)] hover:shadow-[var(--shadow-lg)] transition-all duration-[var(--transition-base)] hover:-translate-y-1">
             <div className="w-16 h-16 mb-6 rounded-xl bg-[var(--color-accent-light)] text-[var(--color-accent)] flex items-center justify-center">
               <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
@@ -99,16 +99,16 @@ export default function ThreeSteps() {
             
             <div className="mt-8 pt-8 border-t border-[var(--color-border)]">
               <div className="bg-[var(--color-gray-50)] rounded-lg p-6 flex items-center justify-center aspect-square">
-                <div className="w-full max-w-[200px] bg-white border border-[var(--color-border)] rounded-lg p-3 flex items-center gap-2">
-                  <div className="text-[var(--color-accent)] font-bold text-lg">@</div>
-                  <div className="text-sm text-[var(--color-text-muted)]">your.email@example.com</div>
+                <div className="w-full max-w-[200px] bg-white border border-[var(--color-border)] rounded-lg p-3 flex items-center gap-2 overflow-hidden">
+                  <div className="text-[var(--color-accent)] font-bold text-lg flex-shrink-0">@</div>
+                  <div className="text-sm text-[var(--color-text-muted)] truncate">your.email@example.com</div>
                 </div>
               </div>
             </div>
           </div>
           
           {/* Step 3: Close More Deals */}
-          <div className="bg-white rounded-2xl p-8 border border-[var(--color-border)] hover:border-[var(--color-accent)] hover:shadow-[var(--shadow-lg)] transition-all duration-[var(--transition-base)] hover:-translate-y-1">
+          <div className="bg-white rounded-2xl p-6 md:p-8 border border-[var(--color-border)] hover:border-[var(--color-accent)] hover:shadow-[var(--shadow-lg)] transition-all duration-[var(--transition-base)] hover:-translate-y-1">
             <div className="w-16 h-16 mb-6 rounded-xl bg-[var(--color-accent-light)] text-[var(--color-accent)] flex items-center justify-center">
               <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
