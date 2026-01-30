@@ -49,7 +49,7 @@ export default function EmbedCodePreview() {
         </div>
         
         {/* Code content */}
-        <div className="p-4 font-mono text-sm text-gray-300 min-h-[140px]">
+        <div className="p-4 font-mono text-sm text-gray-300 h-[140px] overflow-hidden">
           <pre className="whitespace-pre-wrap break-words">
             <code>
               {displayedCode}
