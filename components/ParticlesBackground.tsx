@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface Particle {
   x: number;
@@ -15,13 +15,23 @@ export default function ParticlesBackground() {
   const particlesRef = useRef<Particle[]>([]);
   const mouseRef = useRef({ x: -1000, y: -1000 });
   const animationFrameRef = useRef<number | undefined>(undefined);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Detect mobile device
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768 || 'ontouchstart' in window);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
+
+    const mobile = window.innerWidth < 768 || 'ontouchstart' in window;
 
     // Set canvas size
     const resize = () => {
@@ -30,17 +40,31 @@ export default function ParticlesBackground() {
       initParticles();
     };
 
-    // Particle configuration (matching particles.js demo with emerald branding)
-    const config = {
+    // Particle configuration - more subtle on mobile
+    const config = mobile ? {
+      // Mobile: subtle, non-interactive floating particles
+      particleCount: 40,
+      particleColor: '#10B981',
+      lineColor: '#10B981',
+      particleOpacity: 0.3,
+      lineOpacity: 0.2,
+      particleMinRadius: 1.5,
+      particleMaxRadius: 3,
+      lineDistance: 100,
+      moveSpeed: 2, // Slower, gentler movement
+      hoverDistance: 0, // No hover interaction
+      clickPushCount: 0,
+    } : {
+      // Desktop: full interactive experience
       particleCount: 80,
-      particleColor: '#10B981', // Emerald green
+      particleColor: '#10B981',
       lineColor: '#10B981',
       particleOpacity: 0.5,
       lineOpacity: 0.4,
       particleMinRadius: 2,
       particleMaxRadius: 5,
       lineDistance: 150,
-      moveSpeed: 6, // Match demo speed
+      moveSpeed: 6,
       hoverDistance: 200,
       clickPushCount: 4,
     };
@@ -65,8 +89,9 @@ export default function ParticlesBackground() {
       };
     };
 
-    // Mouse move handler (track on window so it works even when hovering content)
+    // Mouse move handler - only for desktop
     const handleMouseMove = (e: MouseEvent) => {
+      if (mobile) return; // Skip on mobile
       const rect = canvas.getBoundingClientRect();
       mouseRef.current = {
         x: e.clientX - rect.left,
@@ -93,16 +118,18 @@ export default function ParticlesBackground() {
         if (particle.y < 0) particle.y = canvas.height;
         if (particle.y > canvas.height) particle.y = 0;
 
-        // Mouse repulsion effect (hover mode: repulse)
-        const dx = mouse.x - particle.x;
-        const dy = mouse.y - particle.y;
-        const distanceToMouse = Math.sqrt(dx * dx + dy * dy);
+        // Mouse repulsion effect - only on desktop
+        if (!mobile && config.hoverDistance > 0) {
+          const dx = mouse.x - particle.x;
+          const dy = mouse.y - particle.y;
+          const distanceToMouse = Math.sqrt(dx * dx + dy * dy);
 
-        if (distanceToMouse < config.hoverDistance && mouse.x !== -1000) {
-          const angle = Math.atan2(dy, dx);
-          const force = (config.hoverDistance - distanceToMouse) / config.hoverDistance;
-          particle.vx -= Math.cos(angle) * force * 0.5;
-          particle.vy -= Math.sin(angle) * force * 0.5;
+          if (distanceToMouse < config.hoverDistance && mouse.x !== -1000) {
+            const angle = Math.atan2(dy, dx);
+            const force = (config.hoverDistance - distanceToMouse) / config.hoverDistance;
+            particle.vx -= Math.cos(angle) * force * 0.5;
+            particle.vy -= Math.sin(angle) * force * 0.5;
+          }
         }
 
         // Add slight damping to velocity
@@ -150,21 +177,24 @@ export default function ParticlesBackground() {
       animationFrameRef.current = requestAnimationFrame(animate);
     };
 
-    // Mouse leave handler
-    const handleMouseLeave = () => {
-      mouseRef.current = { x: -1000, y: -1000 };
-    };
-
     // Initialize
     resize();
     window.addEventListener('resize', resize);
-    window.addEventListener('mousemove', handleMouseMove);
+    
+    // Only add mouse listeners on desktop
+    if (!mobile) {
+      window.addEventListener('mousemove', handleMouseMove);
+    }
+    
     animate();
 
     // Cleanup
     return () => {
       window.removeEventListener('resize', resize);
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('resize', checkMobile);
+      if (!mobile) {
+        window.removeEventListener('mousemove', handleMouseMove);
+      }
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
@@ -178,7 +208,7 @@ export default function ParticlesBackground() {
       style={{ 
         width: '100%', 
         height: '100%',
-        pointerEvents: 'none', // Allow clicks through to content
+        pointerEvents: 'none',
       }}
     />
   );
