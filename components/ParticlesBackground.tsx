@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface Particle {
   x: number;
@@ -15,16 +15,9 @@ export default function ParticlesBackground() {
   const particlesRef = useRef<Particle[]>([]);
   const mouseRef = useRef({ x: -1000, y: -1000 });
   const animationFrameRef = useRef<number | undefined>(undefined);
-  const [isMobile, setIsMobile] = useState(false);
+  const initializedRef = useRef(false);
 
   useEffect(() => {
-    // Detect mobile device
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768 || 'ontouchstart' in window);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -32,13 +25,6 @@ export default function ParticlesBackground() {
     if (!ctx) return;
 
     const mobile = window.innerWidth < 768 || 'ontouchstart' in window;
-
-    // Set canvas size
-    const resize = () => {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-      initParticles();
-    };
 
     // Particle configuration - more subtle on mobile
     const config = mobile ? {
@@ -51,9 +37,8 @@ export default function ParticlesBackground() {
       particleMinRadius: 1.5,
       particleMaxRadius: 3,
       lineDistance: 100,
-      moveSpeed: 2, // Slower, gentler movement
-      hoverDistance: 0, // No hover interaction
-      clickPushCount: 0,
+      moveSpeed: 2,
+      hoverDistance: 0,
     } : {
       // Desktop: full interactive experience
       particleCount: 80,
@@ -66,15 +51,6 @@ export default function ParticlesBackground() {
       lineDistance: 150,
       moveSpeed: 6,
       hoverDistance: 200,
-      clickPushCount: 4,
-    };
-
-    // Initialize particles
-    const initParticles = () => {
-      particlesRef.current = [];
-      for (let i = 0; i < config.particleCount; i++) {
-        particlesRef.current.push(createParticle());
-      }
     };
 
     // Create a single particle
@@ -89,9 +65,39 @@ export default function ParticlesBackground() {
       };
     };
 
+    // Initialize particles (only once)
+    const initParticles = () => {
+      if (initializedRef.current && mobile) return; // Don't reinit on mobile
+      particlesRef.current = [];
+      for (let i = 0; i < config.particleCount; i++) {
+        particlesRef.current.push(createParticle());
+      }
+      initializedRef.current = true;
+    };
+
+    // Set canvas size - on mobile, don't reinit particles
+    const resize = () => {
+      const oldWidth = canvas.width;
+      const oldHeight = canvas.height;
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+      
+      if (mobile && initializedRef.current && oldWidth > 0 && oldHeight > 0) {
+        // On mobile, scale existing particle positions instead of reinitializing
+        const scaleX = canvas.width / oldWidth;
+        const scaleY = canvas.height / oldHeight;
+        particlesRef.current.forEach(p => {
+          p.x *= scaleX;
+          p.y *= scaleY;
+        });
+      } else {
+        initParticles();
+      }
+    };
+
     // Mouse move handler - only for desktop
     const handleMouseMove = (e: MouseEvent) => {
-      if (mobile) return; // Skip on mobile
+      if (mobile) return;
       const rect = canvas.getBoundingClientRect();
       mouseRef.current = {
         x: e.clientX - rect.left,
@@ -106,19 +112,18 @@ export default function ParticlesBackground() {
       const particles = particlesRef.current;
       const mouse = mouseRef.current;
 
-      // Update and draw particles
       particles.forEach((particle, i) => {
         // Move particle
         particle.x += particle.vx;
         particle.y += particle.vy;
 
-        // Bounce off walls or wrap around
+        // Wrap around edges
         if (particle.x < 0) particle.x = canvas.width;
         if (particle.x > canvas.width) particle.x = 0;
         if (particle.y < 0) particle.y = canvas.height;
         if (particle.y > canvas.height) particle.y = 0;
 
-        // Mouse repulsion effect - only on desktop
+        // Mouse repulsion - desktop only
         if (!mobile && config.hoverDistance > 0) {
           const dx = mouse.x - particle.x;
           const dy = mouse.y - particle.y;
@@ -132,11 +137,11 @@ export default function ParticlesBackground() {
           }
         }
 
-        // Add slight damping to velocity
+        // Damping
         particle.vx *= 0.99;
         particle.vy *= 0.99;
 
-        // Ensure minimum velocity (keep particles moving)
+        // Maintain minimum velocity
         const currentSpeed = Math.sqrt(particle.vx * particle.vx + particle.vy * particle.vy);
         const minSpeed = config.moveSpeed / 20;
         if (currentSpeed < minSpeed) {
@@ -153,7 +158,7 @@ export default function ParticlesBackground() {
         ctx.fill();
         ctx.globalAlpha = 1;
 
-        // Draw lines to nearby particles
+        // Draw connection lines
         for (let j = i + 1; j < particles.length; j++) {
           const other = particles[j];
           const dx = particle.x - other.x;
@@ -179,21 +184,26 @@ export default function ParticlesBackground() {
 
     // Initialize
     resize();
-    window.addEventListener('resize', resize);
     
-    // Only add mouse listeners on desktop
+    // Desktop: listen to resize and mouse events
+    // Mobile: only listen to orientation changes (not scroll-triggered resizes)
     if (!mobile) {
+      window.addEventListener('resize', resize);
       window.addEventListener('mousemove', handleMouseMove);
+    } else {
+      // On mobile, only handle actual orientation changes
+      window.addEventListener('orientationchange', resize);
     }
     
     animate();
 
     // Cleanup
     return () => {
-      window.removeEventListener('resize', resize);
-      window.removeEventListener('resize', checkMobile);
       if (!mobile) {
+        window.removeEventListener('resize', resize);
         window.removeEventListener('mousemove', handleMouseMove);
+      } else {
+        window.removeEventListener('orientationchange', resize);
       }
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
