@@ -38,7 +38,7 @@ export default function EmbedCodePreview() {
   }, [fullCode]);
 
   return (
-    <div className="mt-8 pt-8 border-t border-gray-200">
+    <div className="mt-8">
       <div className="bg-gray-900 rounded-xl shadow-lg overflow-hidden">
         {/* Mac-style header with stoplight buttons */}
         <div className="bg-gray-800 px-3 py-2 flex items-center gap-1.5">

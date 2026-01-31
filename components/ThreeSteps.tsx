@@ -100,7 +100,7 @@ export default function ThreeSteps() {
               </li>
             </ul>
             
-            <div className="mt-8 pt-8 border-t border-border-subtle">
+            <div className="mt-8">
               <div className="bg-bg-tertiary rounded-lg p-6">
                 <div className="bg-bg-primary border border-border-default rounded-lg p-4 space-y-3">
                   <div className="flex items-center gap-2">
@@ -115,7 +115,7 @@ export default function ThreeSteps() {
             </div>
           </div>
           
-          {/* Step 3: Convert Hot Leads Into Sales */}
+          {/* Step 3: Close Deals Faster */}
           <div className="bg-bg-secondary rounded-2xl p-6 md:p-8 border border-border-default hover:border-accent hover:shadow-lg transition-all duration-250 hover:-translate-y-1">
             <div className="w-16 h-16 mb-6 rounded-xl bg-accent/10 text-accent flex items-center justify-center">
               <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -124,9 +124,9 @@ export default function ThreeSteps() {
               </svg>
             </div>
             
-            <h3 className="text-2xl font-bold mb-4 text-text-primary">Convert Hot Leads Into Sales</h3>
+            <h3 className="text-2xl font-bold mb-4 text-text-primary">Close Deals Faster</h3>
             <p className="text-text-secondary mb-6 leading-relaxed">
-              Your leads have already visualized your product on their property. They're qualified, engaged, and ready to buy. Follow up while they're excited.
+              Your leads have already visualized what they want. They're pre-qualified and ready to buy. No cold calls—they came to you excited. Follow up while they're engaged.
             </p>
             
             <ul className="space-y-3">
@@ -134,27 +134,48 @@ export default function ThreeSteps() {
                 <svg className="w-5 h-5 mt-0.5 text-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <span className="text-text-secondary">3x more qualified leads</span>
+                <span className="text-text-secondary">Leads arrive pre-qualified and excited</span>
               </li>
               <li className="flex items-start gap-3">
                 <svg className="w-5 h-5 mt-0.5 text-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <span className="text-text-secondary">60% higher close rate</span>
+                <span className="text-text-secondary">They've already seen the product on their property</span>
               </li>
               <li className="flex items-start gap-3">
                 <svg className="w-5 h-5 mt-0.5 text-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <span className="text-text-secondary">Customers come in pre-sold</span>
+                <span className="text-text-secondary">Skip the convincing—they're ready to buy</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <svg className="w-5 h-5 mt-0.5 text-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                <span className="text-text-secondary">Strike while the iron is hot</span>
               </li>
             </ul>
             
-            <div className="mt-8 pt-8 border-t border-border-subtle">
-              <div className="bg-bg-tertiary rounded-lg p-6 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-4xl font-extrabold text-accent mb-1">+247%</div>
-                  <div className="text-sm font-medium text-text-secondary">ROI</div>
+            <div className="mt-8">
+              <div className="bg-bg-tertiary rounded-lg p-6">
+                <div className="bg-bg-primary border border-accent rounded-lg p-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
+                        <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <div>
+                        <div className="text-sm font-semibold text-primary">Deal Closed</div>
+                        <div className="text-xs text-text-tertiary">Summit Roofing Project</div>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-lg font-bold text-accent">$12,500</div>
+                      <div className="text-xs text-text-tertiary">2 days</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

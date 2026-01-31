@@ -104,6 +104,105 @@
       transform: translateY(0);
     }
   }
+  
+  /* Floating particles animation */
+  @keyframes float {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+      opacity: 0.3;
+    }
+    25% {
+      transform: translate(20px, -30px) scale(1.2);
+      opacity: 0.7;
+    }
+    50% {
+      transform: translate(-15px, -60px) scale(0.8);
+      opacity: 0.4;
+    }
+    75% {
+      transform: translate(-30px, -30px) scale(1.1);
+      opacity: 0.6;
+    }
+  }
+  
+  /* Asteroid flying across screen */
+  @keyframes asteroid {
+    0% {
+      transform: translate(0, 0);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.8;
+    }
+    90% {
+      opacity: 0.8;
+    }
+    100% {
+      transform: translate(var(--travel-x), var(--travel-y));
+      opacity: 0;
+    }
+  }
+  
+  /* Slow rotation for asteroids */
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Impact ring expansion */
+  @keyframes ring-expand {
+    0% {
+      width: 16px;
+      height: 16px;
+      opacity: 1;
+    }
+    100% {
+      width: 80px;
+      height: 80px;
+      opacity: 0;
+    }
+  }
+  
+  /* Particle burst outward */
+  @keyframes burst {
+    0% {
+      transform: rotate(var(--angle)) translateX(0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: rotate(var(--angle)) translateX(40px) scale(0);
+      opacity: 0;
+    }
+  }
+  
+  /* Flash effect */
+  @keyframes flash {
+    0%, 100% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+    50% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.5);
+    }
+  }
+  
+  /* Impact shake */
+  @keyframes impact {
+    0%, 100% {
+      transform: translate(0, 0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+      transform: translate(-2px, 2px);
+    }
+    20%, 40%, 60%, 80% {
+      transform: translate(2px, -2px);
+    }
+  }
 }
 
 @layer base {
@@ -151,6 +250,34 @@
 @layer utilities {
   .animate-fadeIn {
     animation: fadeIn 0.4s ease-out;
+  }
+  
+  .animate-float {
+    animation: float 20s ease-in-out infinite;
+  }
+  
+  .animate-asteroid {
+    animation: asteroid var(--duration, 10s) linear infinite;
+  }
+  
+  .animate-spin-slow {
+    animation: spin-slow 8s linear infinite;
+  }
+  
+  .animate-ring-expand {
+    animation: ring-expand 0.8s ease-out forwards;
+  }
+  
+  .animate-burst {
+    animation: burst 0.6s ease-out forwards;
+  }
+  
+  .animate-flash {
+    animation: flash 0.5s ease-out forwards;
+  }
+  
+  .animate-impact {
+    animation: impact 0.4s ease-out;
   }
 }
 
