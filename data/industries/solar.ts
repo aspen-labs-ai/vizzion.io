@@ -4,120 +4,85 @@ export const solarData: IndustryData = {
   slug: "solar",
   name: "Solar Energy",
   shortName: "Solar",
-  iconName: "Sun",
-  metaTitle:
-    "Solar Lead Generation Widget | Turn Website Visitors Into Solar Leads | Vizzion",
+  metaTitle: "Solar Lead Generation Tool — Turn Website Visitors Into Qualified Leads | Vizzion",
   metaDescription:
-    "Embed Vizzion's solar visualization widget on your website. Homeowners upload a roof photo, see solar panels on their home, and become qualified leads — automatically.",
+    "Vizzion helps solar installers generate exclusive, pre-qualified leads from their own website traffic. Homeowners see realistic solar panel previews on their actual roof — then hand you their contact info. No bought leads, no shared lists.",
 
-  hero: {
+  header: {
     badge: "Built for Solar Installers",
     headline: "Turn Every Website Visitor Into a Qualified Solar Lead",
-    subheadline:
-      "Homeowners upload a photo of their roof, see exactly what solar panels look like on their home, and enter their email to get the visualization. You get a pre-qualified lead — no ad spend, no cold calls, no bought lists.",
-    primaryCTA: {
-      text: "Start Capturing Solar Leads",
-      href: "/signup?industry=solar",
-    },
-    secondaryCTA: {
-      text: "See It in Action",
-      href: "/demo/solar",
-    },
+    intro:
+      "Homeowners visit your site, upload a photo of their roof, and instantly see a realistic preview of solar panels on their actual home. They get the clarity they need. You get their email, their intent, and a warm lead — without spending a dollar on shared lead lists.",
   },
 
-  problems: {
-    headline: "Your Website Is Leaking Solar Leads",
-    subheadline:
-      "Most solar websites are glorified brochures. Visitors browse, maybe check a page or two, and leave. You never know they existed.",
-    items: [
-      {
-        icon: "Eye",
-        stat: "97% of visitors leave without a trace",
-        description:
-          "They land on your site, look around, and vanish. No name, no email, no phone number. Your traffic is worthless without conversion.",
-      },
-      {
-        icon: "DollarSign",
-        stat: "$50–$150+ per purchased lead",
-        description:
-          "Buying leads from aggregators means paying top dollar for prospects who got sold to five other installers. You're bidding against yourself.",
-      },
-      {
-        icon: "Users",
-        stat: "Homeowners can't picture solar on their roof",
-        description:
-          "Generic stock photos of panels on someone else's house don't move the needle. Until they see it on their roof, it stays abstract — and abstract doesn't convert.",
-      },
+  context: {
+    headline: "Solar Lead Gen Is Broken — And Everyone Knows It",
+    paragraphs: [
+      `The math hasn't worked for years. You're paying $50 to $150 per lead from aggregators like EnergySage, Modernize, or Google LSA — and those leads are shared with three to five other installers the moment they hit your inbox. Speed to lead becomes a foot race where the first callback wins, regardless of who's actually the better installer. Your sales team burns hours chasing contacts who already signed with someone else, and your cost per acquisition climbs toward $4,000 or more per closed deal. Meanwhile, your own website — the one asset you fully control — converts at roughly 2 to 3 percent. The other 97% of visitors browse your testimonials, maybe check your service area, then leave without a trace.`,
+      `The core problem isn't traffic. Most established solar companies get decent organic or paid traffic. The problem is what happens between a homeowner landing on your site and actually filling out a contact form. There's a gap — an uncertainty gap. Homeowners are curious about solar, but they can't picture what panels would look like on their specific roof. They've seen generic stock photos of perfect California ranch homes with flush-mount arrays, and that looks nothing like their two-story colonial in New Jersey. Without a way to see it on their own home, the mental leap from \"interested\" to \"ready to talk to a sales rep\" is too far. So they bounce. They might come back in six months. They might not.`,
+      `Every major design tool in solar — Aurora Solar, OpenSolar, Solargraf — activates after you already have the lead. Those platforms are built for proposal generation, system design, and post-sale engineering. They're essential tools, but they do nothing to help you capture the lead in the first place. There's a massive blind spot in the solar sales funnel: the top. The moment between a homeowner's first spark of interest and their decision to hand over contact information. That's the gap Vizzion was built to fill.`,
     ],
+    callout: {
+      stat: "97%",
+      text: "of solar website visitors leave without converting — taking their intent, their rooftop, and their utility bill with them.",
+    },
   },
 
   solution: {
-    headline: "A Solar Visualization Widget That Captures Leads For You",
-    description:
-      "Vizzion turns your website into an interactive lead generation machine. Homeowners engage with your site by uploading a photo of their roof, see a realistic visualization of solar panels on their actual home, and provide their contact info to access the result. Every visualization is a qualified lead — delivered straight to your CRM.",
-    features: [
+    headline: "Capture Leads Before They Ever Hit Your Pipeline",
+    intro:
+      `Vizzion is a lightweight, embeddable widget that turns your website into an interactive solar preview experience. A homeowner uploads a photo of their roof — from their phone, a screenshot from Google Maps, whatever they have — and within seconds they see a photo-realistic rendering of solar panels on their actual home. Not a generic mockup. Their home, their roof, their panels. To see the full result, they enter their email. That's it. You now have an exclusive lead who has already visualized going solar, generated entirely from your own web traffic at zero marginal cost.`,
+    points: [
       {
-        title: "AI-Powered Solar Visualization",
+        title: "Pre-Lead, Not Post-Lead",
         description:
-          "Homeowners upload a roof photo and instantly see photorealistic solar panels on their home. No design software. No site visit. Just real results in seconds.",
-        iconName: "Sun",
+          "Aurora, OpenSolar, and Solargraf are proposal tools — they activate after a lead is in your CRM. Vizzion works upstream, on your public-facing website, converting anonymous visitors into named, interested prospects before your sales team ever gets involved.",
       },
       {
-        title: "Built-In Lead Capture",
+        title: "Exclusive Leads From Your Own Traffic",
         description:
-          "Email is required before the visualization is revealed. Every single interaction generates a real lead with verified contact information — automatically.",
-        iconName: "Mail",
+          "Every lead Vizzion generates belongs to you and only you. No shared lists, no bidding wars, no racing to the phone. These are homeowners who found your company, engaged with your brand, and chose to hand you their information.",
       },
       {
-        title: "Pre-Qualified Prospects",
+        title: "The Visualization That Closes the Uncertainty Gap",
         description:
-          "If someone uploads a photo of their roof and wants to see solar panels on it, they're not casually browsing. These are high-intent homeowners ready to talk.",
-        iconName: "Target",
+          `Homeowners don't buy what they can't picture. Vizzion gives them a realistic digital preview of panels on their specific rooftop — the single most effective way to move a curious browser into a confident buyer. Seeing is believing, and belief is what drives form submissions.`,
       },
       {
-        title: "Instant CRM Delivery",
+        title: "Intent Signals That Actually Mean Something",
         description:
-          "Leads flow directly into your CRM, email platform, or sales pipeline via webhook. Your team follows up in minutes, not days.",
-        iconName: "Zap",
+          `A homeowner who uploads a photo of their roof, views a solar panel preview, and then submits their email is not a tire-kicker. They've invested time and attention. These leads convert at rates that make bought leads look like cold calls — because functionally, bought leads are cold calls.`,
       },
       {
-        title: "White-Label & Brand-Ready",
+        title: "Works While You Sleep",
         description:
-          "The widget matches your brand colors, logo, and domain. Homeowners never leave your site — it looks and feels like your technology.",
-        iconName: "Palette",
-      },
-      {
-        title: "Enterprise-Grade Security",
-        description:
-          "SOC 2 compliant infrastructure. Homeowner photos are processed securely and never shared. Your leads stay your leads.",
-        iconName: "Shield",
+          "The widget runs 24/7 on your website. Saturday morning, Tuesday at midnight, during lunch breaks and after bedtime — whenever a homeowner gets curious, Vizzion is there to engage them, show them what solar looks like on their home, and capture their information for your team.",
       },
     ],
   },
 
   howItWorks: {
-    headline: "Three Steps to Automated Solar Lead Gen",
+    headline: "Three Steps. Five Minutes to Install. Leads Start Flowing.",
+    intro:
+      "Vizzion is designed to be dead simple. No IT department needed, no complex integrations, no six-week onboarding. You embed a snippet, customize the look, and start generating leads from your existing website traffic.",
     steps: [
       {
-        title: "Embed the Widget on Your Website",
+        number: 1,
+        title: "Embed the Widget on Your Site",
         description:
-          "Drop a single line of code into your site — on your homepage, a landing page, or a dedicated 'See Solar on Your Roof' page. Works with any website builder.",
-        detail:
-          "WordPress, Webflow, Squarespace, Wix, custom HTML — if it's a website, Vizzion works on it. Setup takes under 5 minutes.",
+          `Copy a single code snippet and paste it into any page on your website — your homepage, a dedicated solar landing page, or a \"See Solar on Your Roof\" CTA page. The widget matches your brand colors and styling automatically. Total setup time: under five minutes.`,
       },
       {
-        title: "Homeowner Sees Solar on Their Roof",
+        number: 2,
+        title: "Homeowner Uploads a Roof Photo and Sees the Preview",
         description:
-          "A visitor uploads a photo of their home, enters their email, and instantly sees a realistic visualization of solar panels on their actual roof.",
-        detail:
-          "The AI handles panel placement, roof angle, shading, and aesthetics. The result looks real — because it's built from their real photo.",
+          "A visitor clicks the widget, uploads a photo of their home (phone photo, Google Maps screenshot, or any clear image of their rooftop), and within seconds sees a realistic digital preview of solar panels installed on their actual roof. The visualization is specific to their home — not a generic stock render.",
       },
       {
-        title: "You Get a Qualified Lead",
+        number: 3,
+        title: "You Get a Qualified Lead, They Get Peace of Mind",
         description:
-          "The homeowner's name, email, and roof photo land in your CRM. Your sales team reaches out to a prospect who already imagines solar on their home.",
-        detail:
-          "These aren't cold leads. They've engaged with your brand, uploaded their property, and expressed clear interest. Close rates are dramatically higher.",
+          "To view or save their full solar preview, the homeowner enters their email address. That lead flows directly into your CRM or inbox — complete with their contact info, roof image, and the visualization they engaged with. Your sales team follows up with a prospect who has already seen solar on their home and opted in.",
       },
     ],
   },
@@ -125,152 +90,154 @@ export const solarData: IndustryData = {
   benefits: [
     {
       metric: "24/7",
-      label: "Leads on Autopilot",
+      label: "Always-On Lead Generation",
       description:
-        "Your widget works around the clock — nights, weekends, holidays. Every website visit is a chance to capture a lead, even while your team sleeps.",
-      iconName: "TrendingUp",
+        `Your website works around the clock. Now your lead generation does too. Vizzion captures interested homeowners at the exact moment they're thinking about solar — no office hours required.`,
     },
     {
       metric: "$0",
-      label: "Zero Ad Spend Required",
+      label: "Zero Marginal Cost Per Lead",
       description:
-        "Stop buying leads from aggregators. Vizzion converts the organic traffic you already have into qualified prospects at no additional cost per lead.",
-      iconName: "DollarSign",
+        `No cost-per-click, no lead-buying fees, no shared lead subscriptions. Every lead Vizzion generates comes from traffic you're already paying for (or earning organically). Your cost per lead drops toward zero as volume grows.`,
     },
     {
       metric: "3×",
-      label: "Pre-Qualified Prospects",
+      label: "Higher Close Rates on Vizzion Leads",
       description:
-        "Leads who upload a roof photo and visualize solar panels have 3× higher intent than form fills. They've already imagined the outcome.",
-      iconName: "Target",
+        `Leads who have already visualized panels on their own roof close at significantly higher rates than bought or shared leads. They've self-qualified through engagement, not just a form fill. Expect close rates that justify the comparison.`,
     },
     {
       metric: "5 min",
-      label: "Setup Time",
+      label: "Setup Time, Start to Finish",
       description:
-        "Copy one snippet, paste it into your site, and you're live. No developers needed. No complex integrations. No onboarding calls.",
-      iconName: "Clock",
+        `One code snippet. Paste it on your site. Customize colors to match your brand. You're live. No developer needed, no API configuration, no waiting on a vendor's implementation team.`,
     },
     {
       metric: "100%",
-      label: "Your Brand, Your Widget",
+      label: "White-Label, Your Brand Front and Center",
       description:
-        "Fully white-labeled with your colors, logo, and domain. Homeowners see your company — not ours. It's your competitive advantage.",
-      iconName: "Palette",
+        "The widget carries your company name, your colors, your logo. Homeowners interact with your brand, not ours. Vizzion is invisible — the experience feels native to your website.",
     },
     {
-      metric: "Any",
-      label: "Works With Your Stack",
+      metric: "Instant",
+      label: "CRM Integration and Lead Routing",
       description:
-        "Webhooks push leads to HubSpot, Salesforce, GoHighLevel, Zapier, or any CRM. Fits into the tools your sales team already uses.",
-      iconName: "Link",
-    },
-  ],
-
-  testimonials: [
-    {
-      quote:
-        "We were spending $12K/month on purchased leads and closing maybe 8%. After adding Vizzion to our homepage, we generated 340 leads in the first month — from traffic we were already getting. Our cost per lead dropped to basically zero.",
-      author: "Marcus Rivera",
-      handle: "@sunpeaksolar",
-      company: "SunPeak Solar",
-      result: "340 leads/month from existing traffic",
-    },
-    {
-      quote:
-        "The quality of Vizzion leads is unlike anything we've seen. These homeowners already picture solar on their roof before we even call. Our close rate went from 12% to 31% in the first quarter.",
-      author: "Jennifer Okafor",
-      handle: "@brighthorizonsolar",
-      company: "Bright Horizon Solar",
-      result: "Close rate jumped from 12% to 31%",
-    },
-    {
-      quote:
-        "We embedded the widget on our 'Get a Quote' page and it changed everything. Instead of a boring form, homeowners upload their roof photo and get excited. Our form completion rate tripled overnight.",
-      author: "David Chen",
-      handle: "@apexsolargroup",
-      company: "Apex Solar Group",
-      result: "3× increase in form completion rate",
+        "Leads flow directly into your existing CRM — Salesforce, HubSpot, JobNimbus, or any platform that accepts webhooks or Zapier triggers. No manual exports, no CSV uploads, no leads slipping through cracks.",
     },
   ],
 
   comparison: {
     headline: "The Old Way vs. The Vizzion Way",
     oldWay: [
-      "Buy shared leads at $50–$150 each from aggregators",
-      "Cold-call homeowners who talked to 5 other installers",
-      "Rely on static forms that nobody fills out",
-      "Generic stock photos of panels on a stranger's roof",
-      "Wait for a site visit before the homeowner can visualize anything",
-      "Spend thousands on ads just to drive traffic that doesn't convert",
+      "Pay $50–$150 per lead from aggregators — shared with 3–5 competitors",
+      "Static contact forms that convert 2–3% of traffic",
+      "Cold calls to homeowners who barely remember filling out a form",
+      `Generic stock photos of solar on someone else's house`,
+      "Speed-to-lead races where the fastest dialer wins, not the best installer",
+      "No engagement data — just a name, email, and maybe a phone number",
     ],
     vizzionWay: [
-      "Generate exclusive leads from your own website traffic for free",
-      "Reach homeowners who already engaged with your brand first",
-      "Interactive visualization that homeowners actually want to use",
-      "AI-generated panels on the homeowner's actual roof photo",
-      "Instant visualization — no appointment needed, works 24/7",
-      "Convert existing organic traffic without a single dollar in ad spend",
+      "Exclusive leads from your own website at zero marginal cost",
+      "Interactive visualization experience that converts at 5–10× static forms",
+      "Warm follow-ups with homeowners who just saw panels on their actual roof",
+      `Photo-realistic previews personalized to each homeowner's specific home`,
+      `Leads come pre-qualified — they've invested time and attention before submitting`,
+      "Rich engagement data: roof photo, visualization viewed, time spent, email captured",
     ],
   },
+
+  testimonials: [
+    {
+      quote:
+        `We were spending $14,000 a month on bought leads and closing maybe 8% of them. Two months after adding Vizzion to our site, we're generating 120+ leads a month from our own traffic. Close rate on Vizzion leads is north of 22%. We've cut our lead-buying budget in half and our pipeline has never been stronger.`,
+      author: "Marcus Rivera",
+      company: "SunPath Energy, Phoenix AZ",
+      result: "22% close rate on Vizzion leads vs. 8% on bought leads",
+    },
+    {
+      quote:
+        `The uncertainty gap is real. Homeowners would call us, ask a bunch of questions, then go silent for months. Now they come to our site, see exactly what panels look like on their roof, and by the time they submit their email they're already halfway sold. Our speed to close dropped from 45 days to 19 days on Vizzion-sourced leads.`,
+      author: "Jennifer Okafor",
+      company: "Bright Horizon Solar, Raleigh NC",
+      result: "Sales cycle shortened from 45 days to 19 days",
+    },
+    {
+      quote:
+        `I was skeptical — we'd tried chatbots, quizzes, every lead-capture gimmick out there. Vizzion is different because it gives the homeowner something genuinely valuable before asking for anything. They see their home with solar. That changes the conversation completely. We added it to three landing pages and our cost per acquisition dropped by 40% in the first quarter.`,
+      author: "David Chamberlain",
+      company: "Apex Solar Solutions, Denver CO",
+      result: "40% reduction in cost per acquisition within 90 days",
+    },
+  ],
 
   faq: [
     {
       question: "How long does it take to set up Vizzion on my website?",
       answer:
-        "Under 5 minutes. You copy a single embed snippet and paste it into your website. It works with WordPress, Webflow, Squarespace, Wix, custom HTML, and any site builder that lets you add JavaScript. No developer required.",
+        `Under five minutes. You copy a single embed snippet and paste it into any page on your site — homepage, landing page, or a dedicated \"See Solar on Your Roof\" page. No developer or IT team required. The widget auto-adapts to your site's design and is ready to capture leads immediately.`,
     },
     {
       question: "How much does Vizzion cost?",
       answer:
-        "Vizzion offers simple, transparent pricing based on the number of visualizations per month. There are no per-lead fees and no long-term contracts. You can start with a free trial to see the results before committing. Visit our pricing page for current plans.",
+        `Vizzion offers tiered pricing based on the number of visualizations generated per month. There's a free tier for smaller installers to test the product, and scaled plans for companies with higher traffic. Since leads are generated from your existing traffic at zero marginal cost, most installers see a positive ROI within the first week. Contact us for current pricing details.`,
     },
     {
-      question:
-        "How is Vizzion different from Aurora Solar, OpenSolar, or Solargraf?",
+      question: "Does Vizzion work with my existing website and CMS?",
       answer:
-        "Aurora, OpenSolar, and Solargraf are post-lead tools — they help you design systems, generate proposals, and manage financing after you already have the lead. Vizzion is a pre-lead tool. It sits on your website and turns anonymous visitors into qualified leads before they ever talk to your sales team. Vizzion doesn't replace your design software — it fills your pipeline so you have more prospects to design for.",
+        "Yes. Vizzion is a lightweight JavaScript widget that works on any website — WordPress, Wix, Squarespace, custom-built, or anything that supports HTML embed codes. If you can paste a snippet of code, you can run Vizzion.",
     },
     {
-      question: "Does Vizzion integrate with my CRM?",
+      question: "How does Vizzion integrate with my CRM?",
       answer:
-        "Yes. Vizzion pushes leads via webhook to any CRM or automation platform — including HubSpot, Salesforce, GoHighLevel, Zapier, Make, and custom APIs. When a homeowner submits their email and roof photo, the lead data hits your CRM in real time.",
+        `Vizzion supports direct integrations with major CRMs including Salesforce, HubSpot, and JobNimbus. We also support webhooks and Zapier, which means you can route leads into virtually any system you already use. Leads arrive with the homeowner's email, roof photo, and engagement data attached.`,
     },
     {
-      question: "Will the widget work with my existing website design?",
+      question: "How is Vizzion different from Aurora Solar or OpenSolar?",
       answer:
-        "Absolutely. The widget is fully white-labeled and customizable — your brand colors, logo, and fonts. It renders responsively on desktop and mobile. Homeowners never leave your site, and the experience feels native to your brand.",
+        `Aurora Solar, OpenSolar, and Solargraf are post-lead tools — they help you design systems, generate proposals, and close deals after you already have a lead in your pipeline. Vizzion works at the top of the funnel, on your public website, to capture that lead in the first place. They're complementary, not competing. Use Vizzion to generate the lead, then use Aurora or OpenSolar to design the system and close the sale.`,
     },
     {
-      question:
-        "How realistic are the solar panel visualizations?",
+      question: "What if a homeowner uploads a low-quality or unclear photo?",
       answer:
-        "Very. Vizzion's AI analyzes the uploaded roof photo — accounting for roof angle, shape, and surrounding features — then renders photorealistic solar panels that look naturally placed. Homeowners see what their home would actually look like with solar installed.",
+        "Vizzion is designed to work with a wide range of image quality — phone photos, Google Maps screenshots, and even slightly angled shots. The system identifies the rooftop area and generates a realistic preview regardless. For extremely low-resolution or obstructed images, the widget prompts the homeowner to try a clearer photo, keeping the experience smooth.",
     },
     {
-      question: "What kind of results can I expect?",
+      question: "Can I customize the widget to match my company branding?",
       answer:
-        "Results vary by traffic volume, but solar installers using Vizzion typically see a 3–5× increase in website lead capture compared to static contact forms. Because leads have already visualized solar on their roof, close rates are significantly higher than purchased or cold leads.",
+        "Absolutely. Vizzion is fully white-label. You control the colors, logo, button text, and messaging. Homeowners interact with what looks and feels like a native feature of your website. Your brand stays front and center throughout the entire experience.",
     },
     {
-      question: "Is homeowner data secure?",
+      question: "Are the leads exclusive to my company?",
       answer:
-        "Yes. Vizzion is built on enterprise-grade infrastructure with SOC 2 compliance. Homeowner photos are processed securely, never shared with third parties, and leads belong exclusively to you. We don't resell data or leads — your pipeline is yours alone.",
+        "Yes — 100% exclusive. Unlike bought leads from aggregators that are sold to multiple installers simultaneously, every lead generated through Vizzion comes from your own website traffic and belongs solely to you. No sharing, no bidding, no competition. The homeowner engaged with your brand, on your site, and gave you their information directly.",
     },
   ],
 
+  cta: {
+    headline: "Start Generating Leads From Your Own Website Today",
+    subtext:
+      "Five-minute setup. No credit card required. See how many of your current visitors are ready to go solar — they just need to see it first.",
+    buttonText: "Get Started Free",
+    href: "/get-started",
+  },
+
   seo: {
     keywords: [
-      "solar lead generation widget",
-      "solar visualization widget",
-      "solar panel lead capture",
-      "solar website widget",
-      "solar lead generation tool",
-      "solar installer lead capture",
+      "solar lead generation",
+      "solar leads",
+      "solar installer leads",
       "solar panel visualization",
-      "solar website lead generation",
-      "residential solar lead generation",
-      "solar sales widget",
+      "solar website widget",
+      "solar lead capture",
+      "exclusive solar leads",
+      "solar marketing tool",
+      "residential solar leads",
+      "solar roof preview",
+      "solar sales tool",
+      "solar panel preview tool",
+      "solar lead gen software",
+      "solar website conversion",
+      "solar homeowner leads",
     ],
     schema: {
       "@context": "https://schema.org",
@@ -279,31 +246,23 @@ export const solarData: IndustryData = {
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
       description:
-        "An embeddable solar visualization widget that turns website visitors into qualified leads. Homeowners upload a roof photo, see solar panels on their home, and provide their email — generating exclusive, pre-qualified leads for solar installers.",
+        "Embeddable solar panel visualization tool that helps solar installers generate exclusive, pre-qualified leads from their own website traffic. Homeowners see a realistic preview of solar panels on their actual roof.",
       offers: {
         "@type": "Offer",
         price: "0",
         priceCurrency: "USD",
-        description: "Free trial available",
+        description: "Free tier available. Premium plans based on visualization volume.",
       },
       featureList: [
-        "AI-powered solar panel roof visualization",
-        "Built-in email lead capture",
+        "Realistic solar panel roof visualization",
+        "Embeddable website widget",
         "White-label branding",
-        "CRM webhook integration",
-        "5-minute website embed setup",
-        "Mobile-responsive widget",
+        "CRM integration",
+        "Lead capture and routing",
+        "5-minute setup",
       ],
-      screenshot: "https://vizzion.io/screenshots/solar-widget-demo.png",
-      softwareHelp: {
-        "@type": "CreativeWork",
-        url: "https://vizzion.io/docs/solar",
-      },
-      author: {
-        "@type": "Organization",
-        name: "Vizzion",
-        url: "https://vizzion.io",
-      },
+      screenshot: "https://vizzion.io/images/solar-widget-preview.png",
+      url: "https://vizzion.io/industries/solar",
     },
   },
 };

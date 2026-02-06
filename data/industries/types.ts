@@ -2,44 +2,40 @@ export interface IndustryData {
   slug: string;
   name: string;
   shortName: string;
-  iconName: string;
   metaTitle: string;
   metaDescription: string;
 
-  hero: {
+  header: {
     badge: string;
     headline: string;
-    subheadline: string;
-    primaryCTA: { text: string; href: string };
-    secondaryCTA: { text: string; href: string };
+    intro: string;
   };
 
-  problems: {
+  context: {
     headline: string;
-    subheadline: string;
-    items: Array<{
-      icon: string;
+    paragraphs: string[];
+    callout?: {
       stat: string;
-      description: string;
-    }>;
+      text: string;
+    };
   };
 
   solution: {
     headline: string;
-    description: string;
-    features: Array<{
+    intro: string;
+    points: Array<{
       title: string;
       description: string;
-      iconName: string;
     }>;
   };
 
   howItWorks: {
     headline: string;
+    intro: string;
     steps: Array<{
+      number: number;
       title: string;
       description: string;
-      detail: string;
     }>;
   };
 
@@ -47,15 +43,6 @@ export interface IndustryData {
     metric: string;
     label: string;
     description: string;
-    iconName: string;
-  }>;
-
-  testimonials: Array<{
-    quote: string;
-    author: string;
-    handle: string;
-    company: string;
-    result: string;
   }>;
 
   comparison: {
@@ -64,10 +51,24 @@ export interface IndustryData {
     vizzionWay: string[];
   };
 
+  testimonials: Array<{
+    quote: string;
+    author: string;
+    company: string;
+    result: string;
+  }>;
+
   faq: Array<{
     question: string;
     answer: string;
   }>;
+
+  cta: {
+    headline: string;
+    subtext: string;
+    buttonText: string;
+    href: string;
+  };
 
   seo: {
     keywords: string[];

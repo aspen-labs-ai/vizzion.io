@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import IndustryHero from '@/components/industries/IndustryHero';
-import IndustryProblem from '@/components/industries/IndustryProblem';
+import IndustryPageHeader from '@/components/industries/IndustryPageHeader';
+import IndustryContext from '@/components/industries/IndustryContext';
+import IndustrySolution from '@/components/industries/IndustrySolution';
 import IndustryHowItWorks from '@/components/industries/IndustryHowItWorks';
 import IndustryBenefits from '@/components/industries/IndustryBenefits';
 import IndustryComparison from '@/components/industries/IndustryComparison';
@@ -21,8 +22,9 @@ export default function SolarIndustryPage() {
     <>
       <Header />
       <main>
-        <IndustryHero data={solarData} />
-        <IndustryProblem data={solarData} />
+        <IndustryPageHeader data={solarData} />
+        <IndustryContext data={solarData} />
+        <IndustrySolution data={solarData} />
         <IndustryHowItWorks data={solarData} />
         <IndustryBenefits data={solarData} />
         <IndustryComparison data={solarData} />

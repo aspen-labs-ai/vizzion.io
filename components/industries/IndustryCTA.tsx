@@ -2,33 +2,23 @@ import { IndustryData } from '@/data/industries/types';
 
 export default function IndustryCTA({ data }: { data: IndustryData }) {
   return (
-    <section className="py-24 px-6 bg-accent/5 border-t border-accent/20">
-      <div className="max-w-[800px] mx-auto text-center">
-        <h2 className="text-4xl md:text-5xl font-bold mb-6 text-text-primary">
-          Ready to Turn Your Website Into a Lead Machine?
+    <section className="py-20 px-6 bg-bg-primary">
+      <div className="max-w-[700px] mx-auto text-center">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-text-primary">
+          {data.cta.headline}
         </h2>
-        <p className="text-text-secondary text-lg md:text-xl mb-10 leading-relaxed">
-          Join hundreds of {data.name.toLowerCase()} companies already using Vizzion to
-          convert more visitors into qualified leads.
+        <p className="text-text-secondary text-lg mb-8 leading-relaxed">
+          {data.cta.subtext}
         </p>
 
         <a
-          href="/signup"
-          className="inline-flex items-center justify-center px-10 py-5 text-xl font-semibold rounded-lg bg-accent text-primary hover:bg-accent-hover transition-all duration-250"
+          href={data.cta.href}
+          className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-lg bg-accent text-primary hover:bg-accent-hover transition-all duration-250 hover:-translate-y-0.5 hover:shadow-accent-glow"
         >
-          Get Started Free
-          <svg
-            className="w-5 h-5 ml-2"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-          </svg>
+          {data.cta.buttonText}
         </a>
 
-        <p className="text-text-tertiary text-sm mt-6">
+        <p className="text-text-tertiary text-sm mt-4">
           No credit card required. Set up in under 5 minutes.
         </p>
       </div>
