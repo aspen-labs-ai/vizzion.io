@@ -13,7 +13,8 @@ export const solarData: IndustryData = {
     headline: "Turn Every Website Visitor Into a Qualified Solar Lead",
     highlightWord: "Solar",
     intro:
-      "Homeowners visit your site, upload a photo of their roof, and instantly see a realistic preview of solar panels on their actual home. They get the clarity they need. You get their email, their intent, and a warm lead — without spending a dollar on shared lead lists.",
+      "Homeowners don't buy what they can't picture. Vizzion lets them see solar panels on their actual roof — then captures their email before they see the result. You get a warm, exclusive lead from your own website traffic. No bought lists, no shared leads, no guesswork.",
+    introHighlight: "Homeowners don't buy what they can't picture.",
     cta: { text: "See It in Action", href: "#how-it-works" },
   },
 

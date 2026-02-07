@@ -10,6 +10,7 @@ export interface IndustryData {
     headline: string;
     highlightWord: string;
     intro: string;
+    introHighlight?: string;
     cta: { text: string; href: string };
   };
 

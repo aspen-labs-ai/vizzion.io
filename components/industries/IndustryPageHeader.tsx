@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { IndustryData } from '@/data/industries/types';
 import WidgetMockup from '@/components/WidgetMockup';
 import { HighlightedHeadline } from './HighlightedHeadline';
+import { HighlightedIntro } from './HighlightedIntro';
 
 export default function IndustryPageHeader({ data }: { data: IndustryData }) {
   return (
@@ -37,9 +38,12 @@ export default function IndustryPageHeader({ data }: { data: IndustryData }) {
               />
             </h1>
 
-            <p className="text-xl text-text-secondary leading-relaxed max-w-2xl mb-8">
-              {data.header.intro}
-            </p>
+            <div className="text-xl text-text-secondary leading-relaxed max-w-2xl mb-8">
+              <HighlightedIntro
+                text={data.header.intro}
+                highlight={data.header.introHighlight}
+              />
+            </div>
 
             <a
               href={data.header.cta.href}
