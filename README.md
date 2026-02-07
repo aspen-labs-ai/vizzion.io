@@ -48,10 +48,36 @@ docs/research/              # Strategy, research, and planning docs
   product-marketing-context.md  # Product context for all marketing tasks
 ```
 
-## Development
+## Development Setup (Mac)
+
+**First time only:**
+```bash
+git clone https://github.com/aspen-labs-ai/vizzion.io.git
+cd vizzion.io
+npm install
+```
+
+**Every time you start working:**
+```bash
+cd ~/vizzion.io        # or wherever you cloned it
+git pull               # get latest changes (Jak may have pushed updates)
+npm run dev            # start dev server at http://localhost:3000
+```
+
+**When you're done:**
+```bash
+git add .
+git commit -m "describe your changes"
+git push
+```
+
+> **⚠️ Important:** Clone this repo separately from the Syncthing `~/clawd` folder. Use Git for this project, not Syncthing. The Pi has its own local clone — both push/pull from the same GitHub repo.
+
+> **💡 If `npm run dev` errors after a pull:** Run `npm install` — a new dependency may have been added.
+
+## Commands
 
 ```bash
-npm install       # Install dependencies
 npm run dev       # Start dev server at http://localhost:3000
 npm run build     # Production build
 npm run lint      # ESLint
