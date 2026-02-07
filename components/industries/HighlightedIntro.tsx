@@ -22,7 +22,7 @@ export function HighlightedIntro({ text, highlight }: HighlightedIntroProps) {
           <Highlighter
             key={i}
             action="highlight"
-            color="rgba(16, 185, 129, 0.15)"
+            color="rgba(16, 185, 129, 0.45)"
             strokeWidth={1.5}
             animationDuration={1000}
             iterations={1}

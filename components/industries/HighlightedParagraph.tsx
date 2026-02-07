@@ -36,7 +36,7 @@ export function HighlightedParagraph({ text, highlights }: HighlightedParagraphP
             <Highlighter
               key={i}
               action={action}
-              color={action === "highlight" ? "rgba(16, 185, 129, 0.2)" : "#10B981"}
+              color={action === "highlight" ? "rgba(16, 185, 129, 0.45)" : "#10B981"}
               strokeWidth={action === "highlight" ? 1 : 2.5}
               animationDuration={800}
               iterations={1}
