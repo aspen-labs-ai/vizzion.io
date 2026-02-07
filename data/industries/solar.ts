@@ -36,6 +36,15 @@ export const solarData: IndustryData = {
     },
   },
 
+  showcase: {
+    headline: "See the Difference Instantly",
+    subtext: "This is exactly what your website visitors experience. They upload a photo of their roof — and within seconds, they see solar panels on their actual home.",
+    beforeImage: "/images/demo-house-old-roof.png",
+    afterImage: "/images/demo-house-metal-roof.png",
+    beforeLabel: "Original Roof",
+    afterLabel: "With Solar Panels",
+  },
+
   solution: {
     headline: "Capture Leads Before They Ever Hit Your Pipeline",
     intro:

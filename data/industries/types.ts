@@ -24,6 +24,15 @@ export interface IndustryData {
     };
   };
 
+  showcase?: {
+    headline: string;
+    subtext?: string;
+    beforeImage: string;
+    afterImage: string;
+    beforeLabel?: string;
+    afterLabel?: string;
+  };
+
   solution: {
     headline: string;
     intro: string;

@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import IndustryPageHeader from '@/components/industries/IndustryPageHeader';
 import IndustryContext from '@/components/industries/IndustryContext';
+import IndustryShowcase from '@/components/industries/IndustryShowcase';
 import IndustrySolution from '@/components/industries/IndustrySolution';
 import IndustryHowItWorks from '@/components/industries/IndustryHowItWorks';
 import IndustryBenefits from '@/components/industries/IndustryBenefits';
@@ -24,6 +25,7 @@ export default function SolarIndustryPage() {
       <main>
         <IndustryPageHeader data={solarData} />
         <IndustryContext data={solarData} />
+        <IndustryShowcase data={solarData} />
         <IndustrySolution data={solarData} />
         <IndustryHowItWorks data={solarData} />
         <IndustryBenefits data={solarData} />
