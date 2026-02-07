@@ -1,16 +1,16 @@
 # Product Marketing Context
 
-*Last updated: February 7, 2026*
+*Last updated: February 7, 2026 (expanded to 17 industries)*
 
 ---
 
 ## Product Overview
 
-**One-liner:** Vizzion is a product visualization widget that turns home improvement website visitors into qualified leads by letting homeowners see products on their actual home before sharing their contact info.
+**One-liner:** Vizzion is a product visualization widget that turns website visitors into qualified leads by letting customers see products on their actual property, vehicle, or body before sharing their contact info.
 
-**What it does:** Homeowners visit a home improvement company's website, upload a photo of their home, and instantly see a photo-realistic rendering of products (solar panels, new roofing, siding, etc.) installed on their property. To view the full visualization, they enter their email — generating an exclusive, pre-qualified lead for the business. The entire experience is embeddable, white-label, and takes under 5 minutes to set up.
+**What it does:** Customers visit a business's website, upload a photo of their property, vehicle, or themselves, and instantly see a photo-realistic rendering of products (solar panels, new roofing, vehicle wraps, tattoo designs, etc.) applied to their actual photo. To view the full visualization, they enter their email — generating an exclusive, pre-qualified lead for the business. The entire experience is embeddable, white-label, and takes under 5 minutes to set up.
 
-**Product category:** Lead generation / website conversion tool for home improvement businesses. Sits at the intersection of "lead generation software," "website widget," and "product visualization tool." Customers search for terms like "solar lead generation tool," "roofing website widget," "home improvement lead capture."
+**Product category:** Lead generation / website conversion tool for home improvement and adjacent visual industries. Sits at the intersection of "lead generation software," "website widget," and "product visualization tool." Customers search for terms like "solar lead generation tool," "roofing website widget," "home improvement lead capture," "vehicle wrap preview tool," "tattoo visualization widget."
 
 **Product type:** B2B SaaS — embeddable website widget.
 
@@ -20,7 +20,13 @@
 
 ## Target Audience
 
-**Target companies:** Home improvement businesses across 12 verticals — solar installers, roofing contractors, siding companies, window & door dealers, decking builders, fencing companies, landscapers, painting contractors, gutter installers, garage door companies, outdoor lighting businesses, and driveway/paving contractors. Ranges from small local contractors to mid-market regional companies. They have a website with existing traffic but poor conversion rates.
+**Target companies:** Businesses across 17 verticals in home improvement and adjacent visual industries. Ranges from small local contractors and shops to mid-market regional companies. They have a website with existing traffic but poor conversion rates.
+
+*Home Improvement (12 verticals):* Solar installers, roofing contractors, siding companies, window & door dealers, decking builders, fencing companies, landscapers, painting contractors, gutter installers, garage door companies, outdoor lighting businesses, and flooring/countertop specialists.
+
+*Beyond Home Improvement (5 verticals):* Car/vehicle wrap shops, tattoo studios, swimming pool installers, artificial turf companies, and boat decking specialists.
+
+**The common thread:** Any business where the customer needs to *see the product on their specific thing* (home, car, body, yard, boat) before committing. If visualization bridges the uncertainty gap, Vizzion fits.
 
 **Decision-makers:**
 - Business owners (most common — they wear multiple hats)
@@ -40,6 +46,10 @@
 - Roofing contractor adds widget to landing page → homeowners compare shingle styles on their actual home → contractor gets exclusive leads with roof photos attached
 - Siding company deploys widget across service area pages → each page becomes an interactive lead gen machine instead of a static brochure
 - Multi-trade home improvement company uses widget across multiple product pages (roofing, siding, windows) → single tool serves entire business
+- Vehicle wrap shop embeds widget on gallery page → car owners upload a photo of their vehicle, see custom wrap designs applied → shop captures leads from browsers who were "just looking"
+- Tattoo studio adds widget to their website → clients upload a photo of their arm, back, or leg and preview tattoo designs on their actual skin → artist captures warm leads who've already committed mentally to the design
+- Swimming pool installer deploys widget on their homepage → homeowners upload a backyard photo and see pool shapes, decking, and landscaping rendered in place → installer gets leads from homeowners who can finally picture it
+- Artificial turf company uses widget on service area pages → homeowners see their patchy lawn replaced with lush turf → company captures leads from visitors who just wanted to "see what it would look like"
 
 ---
 
@@ -51,12 +61,14 @@
 | **Marketing Manager** | Manages digital marketing at a mid-size company | Conversion rates, cost per lead, campaign performance metrics | "We drive traffic with SEO and ads but our website converts at 2–3%. Leadership wants more leads without more ad spend." | Transform your website from a digital brochure into an interactive lead generation machine. Measurable lift in conversion rate. |
 | **Sales Manager** | Leads a team of sales reps | Lead quality, close rates, speed to lead, pipeline velocity | "My reps waste hours chasing garbage leads. We need warmer prospects who are actually ready to talk." | Every lead has already visualized the product on their home and opted in. These leads close at 2–3× the rate of bought leads. |
 | **Operations / GM** | Oversees P&L at a larger company | Customer acquisition cost, scalability, competitive advantage | "Our CAC keeps climbing. We need a scalable way to generate exclusive leads without hiring more reps." | Reduce CAC by generating self-qualified leads 24/7. Works while your team sleeps. Scales with traffic, not headcount. |
+| **Wrap Shop Owner** | Owns/operates a vehicle wrap or graphics shop | Standing out from competitors, showcasing design capability, reducing "just looking" browsers | "People browse our gallery but never reach out. They can't picture a wrap on *their* car so they leave." | Let customers see wraps on their actual vehicle before they call. Turns browsers into booked appointments. |
+| **Tattoo Studio Owner** | Owns/manages a tattoo studio or is a high-volume independent artist | Booking pipeline, reducing no-shows, attracting serious clients vs. tire-kickers | "Half my DM inquiries ghost me. They're not sure about placement or size and they bail." | Clients preview designs on their own body. By the time they book, they're committed — fewer ghosts, faster bookings. |
 
 ---
 
 ## Problems & Pain Points
 
-**Core problem:** 97%+ of home improvement website visitors leave without converting. Homeowners are curious about products but can't picture what they'd look like on their specific home — so they bounce. The "uncertainty gap" between interest and action is too wide for a static contact form to bridge.
+**Core problem:** 97%+ of website visitors in visual industries leave without converting. Customers are curious about products but can't picture what they'd look like on their specific property, vehicle, or body — so they bounce. The "uncertainty gap" between interest and action is too wide for a static contact form to bridge.
 
 **Why current solutions fall short:**
 - **Bought/shared leads** ($50–$150 each) are sold to 3–5 competitors simultaneously. It becomes a speed-to-lead foot race where the fastest dialer wins, not the best company. Close rates on bought leads average 5–10%.
@@ -111,7 +123,7 @@
 - **Exclusive, self-generated leads** — Every lead belongs solely to the company. No sharing, no bidding wars, no racing to the phone. The homeowner engaged with your brand, on your site.
 - **Zero marginal cost per lead** — Leads come from existing website traffic. No per-lead fees, no ad spend required.
 - **5-minute setup, no developer needed** — Single embed snippet. Works on any website (WordPress, Wix, Squarespace, custom). Fully white-label.
-- **Cross-industry** — Works for 12+ home improvement verticals. Same widget, different product visualizations. One platform serves solar, roofing, siding, and more.
+- **Cross-industry** — Works for 17+ verticals across home improvement and beyond. Same widget, different product visualizations. One platform serves solar, roofing, vehicle wraps, tattoo studios, and more.
 
 **How we solve it differently:** Instead of waiting for the homeowner to fill out a generic form or call, Vizzion gives them something genuinely valuable first — a realistic preview of the product on their actual home. The email capture is the exchange: they give contact info, they get to see the visualization. This flips the traditional lead gen model from "give us your info and we'll contact you" to "see your home transformed — just enter your email."
 
@@ -191,17 +203,18 @@
 - "Speed to lead is everything"
 
 **How they describe our solution (verbatim / near-verbatim):**
-- "See it on my house"
-- "What would it look like on my home"
+- "See it on my house" / "See it on my car" / "See it on me"
+- "What would it look like on my home" / "What would it look like on my car"
 - "Visualize before buying" / "try before you buy"
 - "See before you buy"
 - "Show them what their roof would look like"
+- "Show them the wrap on their actual car"
 - "An interactive tool on our website"
-- "It gives homeowners something valuable before asking for their info"
+- "It gives customers something valuable before asking for their info"
 
 **Words and phrases TO USE:**
 - Realistic visualization / digital preview / photo-realistic rendering
-- "See it on your actual home" / "see before you buy"
+- "See it on your actual home / car / body" / "see before you buy"
 - Interactive preview / product preview
 - Lead generation / lead capture / website conversion
 - Exclusive leads / self-generated leads
@@ -255,7 +268,7 @@
 - Content-forward — the content sells, the CTA converts. No aggressive sales pressure.
 
 **Personality:**
-- **Knowledgeable** — understands the home improvement industry deeply
+- **Knowledgeable** — understands home improvement and adjacent visual industries deeply
 - **Confident** — knows Vizzion fills a real gap that no one else addresses
 - **Practical** — focused on results, ROI, and implementation simplicity
 - **Honest** — doesn't oversell; says "complementary to Aurora" instead of "better than Aurora"
@@ -310,7 +323,7 @@
 
 ## Goals
 
-**Primary business goal:** Become the standard lead generation widget for home improvement websites — the tool every solar installer, roofer, and siding company embeds on their site to convert visitors into leads.
+**Primary business goal:** Become the standard lead generation widget for any business where customers need to visualize a product before buying — starting with home improvement and expanding into vehicle wraps, tattoos, pools, turf, and marine decking.
 
 **Key conversion action:** Get home improvement businesses to embed the Vizzion widget on their website. The journey: Visit vizzion.io → see the demo → sign up for free tier → embed widget → experience lead flow → upgrade to paid plan.
 
@@ -332,9 +345,9 @@
 
 ## Industry-Specific Notes
 
-Vizzion serves 12 home improvement verticals. While the core product and value proposition are consistent, messaging should be tailored to each industry's specific language, pain points, and competitive landscape.
+Vizzion serves 17 verticals across home improvement and adjacent visual industries. While the core product and value proposition are consistent, messaging should be tailored to each industry's specific language, pain points, and competitive landscape.
 
-**Current industries (by website):**
+**Home Improvement Industries (12):**
 1. Solar Energy
 2. Roofing
 3. Siding
@@ -346,10 +359,71 @@ Vizzion serves 12 home improvement verticals. While the core product and value p
 9. Gutters
 10. Garage Doors
 11. Outdoor Lighting
-12. Driveways & Pavement
+12. Flooring / Countertops
+
+**Beyond Home Improvement (5):**
+13. Car / Vehicle Wraps
+14. Tattoos
+15. Swimming Pools
+16. Artificial Turf
+17. Boat Decking
 
 **Solar is the lead vertical** — deepest research, most developed copy, strongest competitive positioning. Use solar as the template for expanding messaging to other industries.
 
 **Cross-industry tagline / positioning:** "If your customers need to see it to believe it, Vizzion is for you."
 
 **Industry-specific research files:** See `vizzion-solar-seo-research.md` for comprehensive solar keyword research, competitor analysis, and copy frameworks. Similar research should be developed for each vertical as pages are built.
+
+---
+
+### Beyond Home Improvement — Industry Notes
+
+**13. Car / Vehicle Wraps**
+- **Customer:** Wrap shops, graphics/sign companies that do fleet and personal vehicle wraps.
+- **End user:** Car enthusiasts, small business owners wanting fleet branding, people considering color-change wraps.
+- **Visualization:** Customer uploads a photo of their vehicle → sees wrap designs, colors, or branded graphics applied.
+- **Uncertainty gap:** Wraps are expensive ($2K–$5K+). Customers can't picture a design on *their* specific car — especially color changes or custom patterns. They browse gallery pages and leave.
+- **Pain points:** "People look at our portfolio but can't imagine it on their car." High quote-request abandonment. Hard to differentiate from other wrap shops online.
+- **Language:** Wrap, color change, partial wrap, full wrap, fleet graphics, PPF, matte, gloss, satin, chrome delete.
+- **Competitive landscape:** No direct competitor does pre-lead vehicle wrap visualization. Mock-up tools (like Boxshot, vehicle templates in Photoshop) are designer-facing, not consumer-facing website widgets.
+- **SEO terms:** "vehicle wrap preview tool," "car wrap visualizer," "see wraps on my car," "fleet wrap lead generation."
+
+**14. Tattoos**
+- **Customer:** Tattoo studios, independent tattoo artists with their own websites/booking pages.
+- **End user:** People considering a tattoo — especially first-timers or people adding to existing work.
+- **Visualization:** Client uploads a photo of the body area (arm, back, leg, etc.) → sees tattoo designs rendered on their actual skin.
+- **Uncertainty gap:** Tattoos are permanent. The #1 hesitation is "will it look right on me, in that spot, at that size?" Clients ghost artists after initial inquiries because they can't commit without seeing it.
+- **Pain points:** High no-show and ghost rates on consultations. DM inquiries that go nowhere. Artists spend hours on custom sketches for clients who never book.
+- **Language:** Flash, custom piece, sleeve, placement, line work, blackwork, realism, traditional, neo-trad, consultation, deposit.
+- **Competitive landscape:** Apps like InkHunter and TattooPreviewer exist but are consumer apps — not lead-gen tools for studios. No embeddable widget for tattoo studio websites.
+- **SEO terms:** "tattoo preview tool," "see tattoo on my body," "tattoo studio lead generation," "tattoo visualization widget."
+
+**15. Swimming Pools**
+- **Customer:** Pool builders, pool installation companies, companies that do full backyard renovations including pools.
+- **End user:** Homeowners considering an in-ground or above-ground pool installation.
+- **Visualization:** Homeowner uploads a photo of their backyard → sees pool shapes, decking, and landscaping rendered in their actual yard.
+- **Uncertainty gap:** Pools are a $30K–$100K+ purchase. Homeowners can't picture how a pool would fit in their specific yard, what shape works, or how it changes the space. They browse pool company websites but don't commit to a consultation.
+- **Pain points:** Long sales cycles (3–6 months). Homeowners get quotes from multiple builders and ghost. Hard to stand out — every pool company shows the same stock photos of finished pools.
+- **Language:** In-ground pool, fiberglass, gunite, vinyl liner, pool deck, coping, waterline tile, freeform, geometric, plunge pool, hot tub/spa.
+- **Competitive landscape:** Pool design software (Pool Studio, Vip3D) exists but is post-lead — used by designers during the sales process. Nothing captures leads on the website through visualization.
+- **SEO terms:** "pool visualization tool," "see a pool in my backyard," "pool builder lead generation," "backyard pool preview."
+
+**16. Artificial Turf**
+- **Customer:** Artificial turf / synthetic grass installation companies.
+- **End user:** Homeowners tired of lawn maintenance, pet owners wanting durable yards, commercial property managers.
+- **Visualization:** Homeowner uploads a photo of their lawn, patio, or pet area → sees it replaced with lush artificial turf.
+- **Uncertainty gap:** "Will it look fake?" and "Will it actually look good in *my* yard?" are the two biggest objections. Stock photos of turf don't answer these questions for a specific property.
+- **Pain points:** Homeowners are skeptical of the look/feel. High bounce rates on websites. Hard to convey the transformation from patchy real grass to finished turf without a visit.
+- **Language:** Synthetic turf, artificial grass, pet turf, putting green, infill, drainage, blade height, turf roll, seam, natural look.
+- **Competitive landscape:** No direct visualization competitors. Some companies offer before/after galleries but nothing interactive or personalized to the customer's yard.
+- **SEO terms:** "artificial turf visualizer," "see turf on my lawn," "synthetic grass preview tool," "turf company lead generation."
+
+**17. Boat Decking**
+- **Customer:** Marine decking companies, boat restoration shops, companies selling synthetic boat deck materials (SeaDek, Marine Mat, etc.).
+- **End user:** Boat owners considering re-decking or adding non-skid decking to their vessel.
+- **Visualization:** Boat owner uploads a photo of their boat deck → sees new decking material, color, and pattern applied.
+- **Uncertainty gap:** Boat decking is a significant investment. Owners want to see how a specific color/pattern looks on *their* boat before ordering. Color samples on a website don't capture the full picture.
+- **Pain points:** Long decision cycles — boat owners browse for months. Hard to convey the transformation from worn-out deck to finished product. Competitors all show the same stock boat photos.
+- **Language:** SeaDek, Marine Mat, EVA foam, helm pad, swim platform, non-skid, teak alternative, custom pattern, CNC-cut, adhesive-backed.
+- **Competitive landscape:** No consumer-facing visualization tools exist in marine decking. Custom mock-ups are done manually by sales reps — slow and labor-intensive.
+- **SEO terms:** "boat deck visualizer," "see decking on my boat," "marine decking preview tool," "boat decking lead generation."
