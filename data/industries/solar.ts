@@ -6,10 +6,10 @@ export const solarData: IndustryData = {
   shortName: "Solar",
   metaTitle: "Solar Lead Generation Tool — Turn Website Visitors Into Qualified Leads | Vizzion",
   metaDescription:
-    "Vizzion helps solar installers generate exclusive, pre-qualified leads from their own website traffic. Homeowners see realistic solar panel previews on their actual roof — then hand you their contact info. No bought leads, no shared lists.",
+    "Vizzion helps solar companies generate exclusive, pre-qualified leads from their own website traffic. Homeowners see realistic solar panel previews on their actual roof — then hand you their contact info. No bought leads, no shared lists.",
 
   header: {
-    badge: "Built for Solar Installers",
+    badge: "Solar Industry",
     headline: "Turn Every Website Visitor Into a Qualified Solar Lead",
     highlightWord: "Solar",
     intro:
@@ -20,7 +20,7 @@ export const solarData: IndustryData = {
   context: {
     headline: "Solar Lead Gen Is Broken — And Everyone Knows It",
     paragraphs: [
-      `The math hasn't worked for years. You're paying $50 to $150 per lead from aggregators like EnergySage, Modernize, or Google LSA — and those leads are shared with three to five other installers the moment they hit your inbox. Speed to lead becomes a foot race where the first callback wins, regardless of who's actually the better installer. Your sales team burns hours chasing contacts who already signed with someone else, and your cost per acquisition climbs toward $4,000 or more per closed deal. Meanwhile, your own website — the one asset you fully control — converts at roughly 2 to 3 percent. The other 97% of visitors browse your testimonials, maybe check your service area, then leave without a trace.`,
+      `The math hasn't worked for years. You're paying $50 to $150 per lead from aggregators like EnergySage, Modernize, or Google LSA — and those leads are shared with three to five other companies the moment they hit your inbox. Speed to lead becomes a foot race where the first callback wins, regardless of who's actually the better company. Your sales team burns hours chasing contacts who already signed with someone else, and your cost per acquisition climbs toward $4,000 or more per closed deal. Meanwhile, your own website — the one asset you fully control — converts at roughly 2 to 3 percent. The other 97% of visitors browse your testimonials, maybe check your service area, then leave without a trace.`,
       `The core problem isn't traffic. Most established solar companies get decent organic or paid traffic. The problem is what happens between a homeowner landing on your site and actually filling out a contact form. There's a gap — an uncertainty gap. Homeowners are curious about solar, but they can't picture what panels would look like on their specific roof. They've seen generic stock photos of perfect California ranch homes with flush-mount arrays, and that looks nothing like their two-story colonial in New Jersey. Without a way to see it on their own home, the mental leap from \"interested\" to \"ready to talk to a sales rep\" is too far. So they bounce. They might come back in six months. They might not.`,
       `Every major design tool in solar — Aurora Solar, OpenSolar, Solargraf — activates after you already have the lead. Those platforms are built for proposal generation, system design, and post-sale engineering. They're essential tools, but they do nothing to help you capture the lead in the first place. There's a massive blind spot in the solar sales funnel: the top. The moment between a homeowner's first spark of interest and their decision to hand over contact information. That's the gap Vizzion was built to fill.`,
     ],
@@ -135,7 +135,7 @@ export const solarData: IndustryData = {
       "Static contact forms that convert 2–3% of traffic",
       "Cold calls to homeowners who barely remember filling out a form",
       `Generic stock photos of solar on someone else's house`,
-      "Speed-to-lead races where the fastest dialer wins, not the best installer",
+      "Speed-to-lead races where the fastest dialer wins, not the best company",
       "No engagement data — just a name, email, and maybe a phone number",
     ],
     vizzionWay: [
@@ -181,7 +181,7 @@ export const solarData: IndustryData = {
     {
       question: "How much does Vizzion cost?",
       answer:
-        `Vizzion offers tiered pricing based on the number of visualizations generated per month. There's a free tier for smaller installers to test the product, and scaled plans for companies with higher traffic. Since leads are generated from your existing traffic at zero marginal cost, most installers see a positive ROI within the first week. Contact us for current pricing details.`,
+        `Vizzion offers tiered pricing based on the number of visualizations generated per month. There's a free tier for smaller companies to test the product, and scaled plans for companies with higher traffic. Since leads are generated from your existing traffic at zero marginal cost, most companies see a positive ROI within the first week. Contact us for current pricing details.`,
     },
     {
       question: "Does Vizzion work with my existing website and CMS?",
@@ -211,7 +211,7 @@ export const solarData: IndustryData = {
     {
       question: "Are the leads exclusive to my company?",
       answer:
-        "Yes — 100% exclusive. Unlike bought leads from aggregators that are sold to multiple installers simultaneously, every lead generated through Vizzion comes from your own website traffic and belongs solely to you. No sharing, no bidding, no competition. The homeowner engaged with your brand, on your site, and gave you their information directly.",
+        "Yes — 100% exclusive. Unlike bought leads from aggregators that are sold to multiple companies simultaneously, every lead generated through Vizzion comes from your own website traffic and belongs solely to you. No sharing, no bidding, no competition. The homeowner engaged with your brand, on your site, and gave you their information directly.",
     },
   ],
 
@@ -227,7 +227,7 @@ export const solarData: IndustryData = {
     keywords: [
       "solar lead generation",
       "solar leads",
-      "solar installer leads",
+      "solar company leads",
       "solar panel visualization",
       "solar website widget",
       "solar lead capture",
@@ -248,7 +248,7 @@ export const solarData: IndustryData = {
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
       description:
-        "Embeddable solar panel visualization tool that helps solar installers generate exclusive, pre-qualified leads from their own website traffic. Homeowners see a realistic preview of solar panels on their actual roof.",
+        "Embeddable solar panel visualization tool that helps solar companies generate exclusive, pre-qualified leads from their own website traffic. Homeowners see a realistic preview of solar panels on their actual roof.",
       offers: {
         "@type": "Offer",
         price: "0",

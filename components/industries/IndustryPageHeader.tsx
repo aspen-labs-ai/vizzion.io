@@ -1,27 +1,7 @@
 import Image from 'next/image';
 import { IndustryData } from '@/data/industries/types';
 import WidgetMockup from '@/components/WidgetMockup';
-
-function HighlightedHeadline({ text, highlight }: { text: string; highlight: string }) {
-  if (!highlight) return <>{text}</>;
-
-  const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
-
-  return (
-    <>
-      {parts.map((part, i) =>
-        part.toLowerCase() === highlight.toLowerCase() ? (
-          <span key={i} className="relative inline-block">
-            <span className="relative z-10 text-accent">{part}</span>
-            <span className="absolute -bottom-1 left-0 right-0 h-3 bg-accent/15 rounded-sm -skew-x-3" />
-          </span>
-        ) : (
-          <span key={i}>{part}</span>
-        )
-      )}
-    </>
-  );
-}
+import { HighlightedHeadline } from './HighlightedHeadline';
 
 export default function IndustryPageHeader({ data }: { data: IndustryData }) {
   return (
@@ -51,7 +31,10 @@ export default function IndustryPageHeader({ data }: { data: IndustryData }) {
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] text-text-primary mb-6">
-              <HighlightedHeadline text={data.header.headline} highlight={data.header.highlightWord} />
+              <HighlightedHeadline
+                text={data.header.headline}
+                highlight={data.header.highlightWord}
+              />
             </h1>
 
             <p className="text-xl text-text-secondary leading-relaxed max-w-2xl mb-8">
