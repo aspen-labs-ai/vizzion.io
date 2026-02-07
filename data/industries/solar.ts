@@ -11,8 +11,10 @@ export const solarData: IndustryData = {
   header: {
     badge: "Built for Solar Installers",
     headline: "Turn Every Website Visitor Into a Qualified Solar Lead",
+    highlightWord: "Solar",
     intro:
       "Homeowners visit your site, upload a photo of their roof, and instantly see a realistic preview of solar panels on their actual home. They get the clarity they need. You get their email, their intent, and a warm lead — without spending a dollar on shared lead lists.",
+    cta: { text: "See It in Action", href: "#how-it-works" },
   },
 
   context: {

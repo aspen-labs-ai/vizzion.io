@@ -8,7 +8,9 @@ export interface IndustryData {
   header: {
     badge: string;
     headline: string;
+    highlightWord: string;
     intro: string;
+    cta: { text: string; href: string };
   };
 
   context: {

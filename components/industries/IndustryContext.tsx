@@ -2,7 +2,7 @@ import { IndustryData } from '@/data/industries/types';
 
 export default function IndustryContext({ data }: { data: IndustryData }) {
   return (
-    <section className="py-16 px-6 bg-bg-primary">
+    <section className="py-16 px-6 bg-bg-secondary">
       <div className="max-w-[900px] mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold mb-8 text-text-primary">
           {data.context.headline}

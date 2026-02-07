@@ -24,7 +24,7 @@ export default function IndustryFAQ({ data }: { data: IndustryData }) {
   };
 
   return (
-    <section className="py-24 px-6 bg-bg-primary">
+    <section className="py-24 px-6 bg-bg-secondary">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
