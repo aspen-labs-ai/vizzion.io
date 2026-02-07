@@ -16,6 +16,7 @@ export interface IndustryData {
   context: {
     headline: string;
     paragraphs: string[];
+    highlights?: string[];
     callout?: {
       stat: string;
       text: string;

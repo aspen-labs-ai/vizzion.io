@@ -1,4 +1,5 @@
 import { IndustryData } from '@/data/industries/types';
+import { HighlightedParagraph } from './HighlightedParagraph';
 
 export default function IndustryContext({ data }: { data: IndustryData }) {
   return (
@@ -10,14 +11,16 @@ export default function IndustryContext({ data }: { data: IndustryData }) {
 
         <div className="space-y-6">
           {data.context.paragraphs.map((paragraph, index) => (
-            <p key={index} className="text-lg text-text-secondary leading-relaxed">
-              {paragraph}
-            </p>
+            <HighlightedParagraph
+              key={index}
+              text={paragraph}
+              highlights={data.context.highlights || []}
+            />
           ))}
         </div>
 
         {data.context.callout && (
-          <div className="mt-10 p-8 bg-bg-secondary rounded-2xl border border-border-default">
+          <div className="mt-10 p-8 bg-bg-primary rounded-2xl border border-border-default">
             <div className="flex items-baseline gap-4">
               <span className="text-5xl md:text-6xl font-bold text-accent">
                 {data.context.callout.stat}

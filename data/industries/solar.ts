@@ -24,6 +24,11 @@ export const solarData: IndustryData = {
       `The core problem isn't traffic. Most established solar companies get decent organic or paid traffic. The problem is what happens between a homeowner landing on your site and actually filling out a contact form. There's a gap — an uncertainty gap. Homeowners are curious about solar, but they can't picture what panels would look like on their specific roof. They've seen generic stock photos of perfect California ranch homes with flush-mount arrays, and that looks nothing like their two-story colonial in New Jersey. Without a way to see it on their own home, the mental leap from \"interested\" to \"ready to talk to a sales rep\" is too far. So they bounce. They might come back in six months. They might not.`,
       `Every major design tool in solar — Aurora Solar, OpenSolar, Solargraf — activates after you already have the lead. Those platforms are built for proposal generation, system design, and post-sale engineering. They're essential tools, but they do nothing to help you capture the lead in the first place. There's a massive blind spot in the solar sales funnel: the top. The moment between a homeowner's first spark of interest and their decision to hand over contact information. That's the gap Vizzion was built to fill.`,
     ],
+    highlights: [
+      "$50 to $150 per lead",
+      "uncertainty gap",
+      "the gap Vizzion was built to fill",
+    ],
     callout: {
       stat: "97%",
       text: "of solar website visitors leave without converting — taking their intent, their rooftop, and their utility bill with them.",
