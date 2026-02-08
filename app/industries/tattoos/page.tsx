@@ -11,11 +11,23 @@ import IndustryComparison from '@/components/industries/IndustryComparison';
 import IndustryTestimonials from '@/components/industries/IndustryTestimonials';
 import IndustryFAQ from '@/components/industries/IndustryFAQ';
 import IndustryCTA from '@/components/industries/IndustryCTA';
+import IndustryBreadcrumb from '@/components/industries/IndustryBreadcrumb';
+import IndustryMidCTA from '@/components/industries/IndustryMidCTA';
+import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { tattoosData } from '@/data/industries/tattoos';
 
 export const metadata: Metadata = {
   title: tattoosData.metaTitle,
   description: tattoosData.metaDescription,
+  openGraph: {
+    title: tattoosData.metaTitle,
+    description: tattoosData.metaDescription,
+    url: '/industries/tattoos',
+  },
+  twitter: {
+    title: tattoosData.metaTitle,
+    description: tattoosData.metaDescription,
+  },
 };
 
 export default function TattoosIndustryPage() {
@@ -23,15 +35,18 @@ export default function TattoosIndustryPage() {
     <>
       <Header />
       <main>
+        <IndustryBreadcrumb data={tattoosData} />
         <IndustryPageHeader data={tattoosData} />
         <IndustryContext data={tattoosData} />
         <IndustryShowcase data={tattoosData} />
         <IndustrySolution data={tattoosData} />
         <IndustryHowItWorks data={tattoosData} />
+        <IndustryMidCTA data={tattoosData} />
         <IndustryBenefits data={tattoosData} />
         <IndustryComparison data={tattoosData} />
         <IndustryTestimonials data={tattoosData} />
         <IndustryFAQ data={tattoosData} />
+        <IndustryRelatedPages data={tattoosData} />
         <IndustryCTA data={tattoosData} />
       </main>
       <Footer />

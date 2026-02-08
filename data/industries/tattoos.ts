@@ -6,12 +6,12 @@ export const tattoosData: IndustryData = {
   shortName: "Tattoos",
   metaTitle: "Tattoo Visualization Widget for Lead Generation | Vizzion",
   metaDescription:
-    "Vizzion helps tattoo studios reduce no-shows and cancellations. Clients see your designs on their actual skin before booking — eliminating fear of regret and turning browsers into committed appointments.",
+    "Tattoo preview visualization for studios. Clients see your designs on their actual skin before booking — reducing no-shows and turning browsers into committed leads.",
 
   header: {
     badge: "Tattoo Industry",
-    headline: "See It on Your Skin Before the Needle Touches",
-    highlightWord: "Skin",
+    headline: "Preview Your Tattoo on Your Skin Before the Needle Touches",
+    highlightWord: "Tattoo",
     intro:
       `Tattoos are permanent. That's the entire appeal — and the entire obstacle. Clients hesitate, reschedule, cancel, and no-show because they can't be sure how a design will actually look on their body. Vizzion lets them upload a photo of their arm, back, leg, or anywhere — and see the tattoo design on their actual skin in seconds. They enter their email to save the preview. You get a committed lead who's already past the fear of regret.`,
     introHighlight: `Tattoos are permanent. That's the entire appeal — and the entire obstacle.`,
@@ -21,14 +21,14 @@ export const tattoosData: IndustryData = {
   context: {
     headline: "Fear of Regret Is Costing You Bookings Every Single Day",
     paragraphs: [
-      `Every tattoo artist knows the pattern. A client comes in for a consultation, loves the design on paper or on an iPad screen, books the appointment — and then cancels two days before. Or worse, just doesn't show up. No call, no text. The chair sits empty for three hours that could have been booked. The reason is almost always the same: they got cold feet. Not because they didn't like the design. Because they couldn't fully picture what it would look like on their body, in that specific placement, at that specific size. Paper stencils and iPad sketches help, but they don't close the gap between "I like this design" and "I'm ready to have this on my skin forever." That gap is where cancellations live.`,
-      `The economics are brutal. The average tattoo studio in the U.S. operates with 15 to 30% no-show and late-cancellation rates. For a studio billing $150 to $200 per hour, a single no-show on a three-hour session is $450 to $600 in lost revenue — with zero notice and no way to fill the slot. Multiply that across a week and you're looking at thousands in unrealized income. Deposits help recoup some of it, but they don't solve the underlying problem: clients who aren't fully committed because they can't fully visualize the outcome. Studios have tried everything — non-refundable deposits, cancellation fees, waiting lists, even temporary tattoo prints. None of these address the root cause, which is uncertainty about how the final piece will look on their specific body.`,
-      `Meanwhile, your website and social media feed are doing the same thing every other studio does: showing photos of completed work on other people. A client sees a stunning sleeve on someone else's arm and thinks, "That looks incredible — but would it look like that on me?" Your portfolio proves you're talented. It doesn't prove that this specific design will work on this specific person's body. That's a completely different kind of confidence, and it's the one that actually drives bookings. InkHunter tried to solve this as a standalone app years ago, but it was consumer-facing and never gave studios an embeddable tool for their own website. Vizzion fills that gap — putting the visualization experience on your site, under your brand, capturing leads for your studio.`,
+      `You know the pattern. A client books a session, loves the design on paper — then cancels two days out. Or just ghosts. The chair sits empty for three hours. It's almost never about the design itself. It's because they couldn't picture what it would actually look like on their body, at that size, in that placement. Stencils and iPad mock-ups narrow the gap, but they don't close it. The space between "I like this design" and "I'm ready to have this on my skin forever" is where cancellations live.`,
+      `The math hurts. U.S. tattoo studios deal with 10 to 20% no-show rates on average, and studios without strong deposit systems can see that climb even higher. At $150 to $200 per hour, one no-show on a three-hour session is $450 to $600 gone — with no way to fill that slot. Deposits recoup some of it, but they don't fix the root cause: clients who can't fully visualize the outcome aren't fully committed to the appointment.`,
+      `Your website compounds the problem. It shows completed work on other people's bodies. A potential client sees an incredible sleeve and thinks, "Would that look like that on me?" Your portfolio proves talent. It doesn't prove this design works on this person's body — and that's the confidence that actually drives bookings. Vizzion puts the visualization experience on your site, under your brand, so clients can answer that question themselves.`,
     ],
     highlights: [
-      "15 to 30% no-show rates",
-      "uncertainty about how the final piece will look",
-      "putting the visualization experience on your site",
+      "10 to 20% no-show rates on average",
+      "can't fully visualize the outcome",
+      "visualization experience on your site",
     ],
     callout: {
       stat: "$600+",
@@ -39,32 +39,32 @@ export const tattoosData: IndustryData = {
   solution: {
     headline: "Turn Curious Browsers Into Committed Bookings",
     intro:
-      `Vizzion is a lightweight widget that lives on your studio's website. A potential client uploads a photo of their arm, shoulder, back, leg — wherever they're considering placement — and instantly sees your tattoo design rendered on their actual skin. Not a flat overlay. A realistic, contour-aware preview that shows the design at the right scale, in the right position, on their specific body. To save the preview, they enter their email. You get a lead who has already seen the tattoo on themselves and is ready to book.`,
+      "Vizzion is a lightweight widget on your studio's website. Clients upload a photo of their arm, shoulder, back, or leg — and see your tattoo design on their actual skin in seconds. They enter their email to save the preview. You get a lead who's already past the fear of regret.",
     points: [
       {
         title: "Kill Fear of Regret at the Source",
         description:
-          `The number-one barrier to booking a tattoo isn't price — it's permanence anxiety. "What if I don't like it?" "What if it's too big?" "What if the placement is wrong?" Vizzion answers all of these questions before the client ever contacts you. They see the design on their body, at their chosen placement and size. By the time they book, the fear is gone.`,
+          "The biggest barrier to booking isn't price — it's permanence anxiety. Vizzion lets clients see the design on their body at their chosen placement and size, answering every \"what if\" before they ever contact you.",
       },
       {
         title: "Slash No-Shows and Cancellations",
         description:
-          "Clients who have already previewed the tattoo on their own skin cancel at dramatically lower rates. They've moved past the uncertainty phase and into commitment. The visualization acts as an emotional deposit — they've already seen themselves with the tattoo and made peace with the decision.",
+          "Clients who've already previewed the tattoo on their own skin cancel at dramatically lower rates. The visualization acts as an emotional deposit — they've already made peace with the decision.",
       },
       {
         title: "Showcase Your Portfolio Interactively",
         description:
-          `Static Instagram galleries show what you've done for other people. Vizzion lets potential clients try your designs on themselves. Upload your flash sheets, your signature styles, your custom pieces — and let every website visitor experience your art on their own body. It's the difference between admiring a painting in a gallery and trying on a suit that's been tailored for you.`,
+          "Static galleries show what you've done for other people. Vizzion lets visitors try your flash sheets and custom designs on themselves — turning passive browsing into personal experience.",
       },
       {
         title: "Capture Leads From Social Traffic",
         description:
-          `Tattoo studios live and die by social media — but Instagram doesn't give you email addresses. When a follower clicks the link in your bio and lands on your site, Vizzion gives them a reason to stay, engage, and hand over their contact info. Instead of a passive portfolio page, they get an interactive experience that converts.`,
+          "Instagram doesn't give you email addresses. When followers click your bio link and land on your site, Vizzion gives them a reason to engage and hand over their contact info.",
       },
       {
         title: "Works for Every Style and Placement",
         description:
-          "Traditional, realism, blackwork, watercolor, fine-line, Japanese — Vizzion handles any style. And because clients upload their own body photos, placement is always accurate: forearm, bicep, thigh, ribs, back, ankle, behind the ear. The preview adapts to their actual anatomy, not a generic mannequin.",
+          "Traditional, realism, blackwork, fine-line, Japanese — any style. Clients upload their own body photos, so placement is always accurate to their actual anatomy, not a generic mannequin.",
       },
     ],
   },
@@ -97,40 +97,40 @@ export const tattoosData: IndustryData = {
 
   benefits: [
     {
-      metric: "50%+",
-      label: "Fewer No-Shows",
+      metric: "10–20%",
+      label: "Studio No-Show Rate",
       description:
-        "Clients who preview the tattoo on their own skin before booking show up. The visualization eliminates the uncertainty that drives last-minute cancellations and ghosting.",
+        "The average U.S. tattoo studio loses 10–20% of appointments to no-shows. At $150–$200/hr, that's $450–$600 vanishing per empty three-hour slot — revenue you can recover by giving clients the confidence to commit.",
     },
     {
-      metric: "$0",
-      label: "Cost Per Lead",
+      metric: "$262",
+      label: "Average Session Spend",
       description:
-        `Every lead comes from your existing website and social traffic. No ad spend per lead, no marketplace fees. Your Instagram bio link finally turns followers into bookings.`,
+        "North American tattoo clients spend $262 per session on average. Every no-show or cold-feet cancellation isn't just lost time — it's a high-value booking that walked away over preventable uncertainty.",
     },
     {
-      metric: "24/7",
-      label: "Always-On Booking Funnel",
+      metric: "24%",
+      label: "Post-Tattoo Regret Rate",
       description:
-        "Clients browse tattoo ideas at 11 PM on a Tuesday. Your shop is closed, but Vizzion is there — letting them preview designs and capturing their email for your morning follow-up.",
+        "Pew Research found that 24% of tattooed Americans regret at least one tattoo. Clients know this statistic intuitively — it's the fear that stalls bookings. Letting them preview the design on their own skin defuses that anxiety before it becomes a cancellation.",
     },
     {
-      metric: "3×",
-      label: "Higher Consultation-to-Booking Rate",
+      metric: "45–65%",
+      label: "Consultation-to-Booking Rate",
       description:
-        "Leads who have already visualized the tattoo on their body convert to booked sessions at dramatically higher rates. The biggest decision has already been made before they contact you.",
+        "Top-performing studios convert 45–65% of consultations to booked sessions. Clients who've already visualized the tattoo on their body arrive at the consultation with their biggest question answered, pushing your conversion rate toward the high end.",
     },
     {
-      metric: "100%",
-      label: "Your Brand, Your Designs",
+      metric: "$1.3B",
+      label: "U.S. Industry Revenue",
       description:
-        "The widget is fully white-label. Your studio name, your aesthetic, your designs. Clients interact with your brand throughout — Vizzion is invisible behind the experience.",
+        "The U.S. tattoo artist industry generates $1.3 billion annually across nearly 24,000 studios. Competition is fierce — studios that let clients try designs on their own skin stand out in a crowded market.",
     },
     {
-      metric: "Instant",
-      label: "Booking System Integration",
+      metric: "28%",
+      label: "Higher Inking Rate with Preview",
       description:
-        "Leads flow into your existing tools — email, booking software, CRM. Works with Square Appointments, Vagaro, Acuity, Tattoodo Pro, or any system that accepts Zapier or webhooks.",
+        "Studios offering design preview tools report a 28% higher consultation-to-inking rate. When clients have already seen the tattoo on their body and chosen their placement, the session is a formality — not a leap of faith.",
     },
   ],
 
@@ -182,7 +182,7 @@ export const tattoosData: IndustryData = {
     {
       question: "How long does it take to set up Vizzion on my studio website?",
       answer:
-        `Under five minutes. You copy one embed snippet and paste it on any page of your site — WordPress, Squarespace, Wix, or custom-built. No developer or tech skills needed. The widget adapts to your site's design and starts capturing leads immediately.`,
+        `Under five minutes. Copy one embed snippet and paste it on your flash page, portfolio gallery, or booking page — it works with WordPress, Squarespace, Wix, and custom-built studio sites. No developer needed. The widget matches your site's look automatically and starts capturing leads from your existing traffic right away.`,
     },
     {
       question: "Can I upload my own tattoo designs and flash sheets?",
@@ -197,7 +197,7 @@ export const tattoosData: IndustryData = {
     {
       question: "Does the client need to download an app?",
       answer:
-        "No. Vizzion runs entirely in the web browser — no app download, no account creation, no friction. The client visits your website, taps the widget, uploads a photo, and sees the preview. It works on any modern smartphone or computer.",
+        "No. Vizzion runs entirely in the browser — clients just visit your site, try designs on their skin, and book. No app download, no account creation, no signup friction that kills the impulse to engage. It works on any smartphone or computer, which matters when someone's browsing your portfolio at 1 AM.",
     },
     {
       question: "How is this different from InkHunter or other tattoo preview apps?",
@@ -207,12 +207,12 @@ export const tattoosData: IndustryData = {
     {
       question: "Does Vizzion work with my booking software?",
       answer:
-        "Yes. Vizzion integrates with Square Appointments, Vagaro, Acuity Scheduling, Tattoodo Pro, and any platform that supports Zapier or webhooks. Leads arrive with the client's contact info, their chosen design, the body photo, and the preview — everything you need to follow up and book the session.",
+        "Yes. Most tattoo studios run Square Appointments, Vagaro, Acuity, or Tattoodo Pro — Vizzion integrates with all of them, plus anything that supports Zapier or webhooks. Leads land in your booking system with the client's contact info, chosen design, body photo, and preview attached, so you can follow up and confirm the session without any back-and-forth.",
     },
     {
       question: "How much does Vizzion cost?",
       answer:
-        `Vizzion offers tiered pricing based on visualization volume. There's a free tier for studios to test the product, and scaled plans for higher-traffic shops. Since every lead comes from traffic you're already getting, most studios see a positive ROI within days. Contact us for current pricing details.`,
+        `There's a free tier to test it out, with scaled plans for busier shops. At $262 average session spend, even one additional booking per month more than covers the cost — and when you consider that a single no-show on a three-hour session burns $450 to $600 in lost chair time, the math is hard to argue with. Most studios hit positive ROI within the first week.`,
     },
     {
       question: "Can clients try different placements and sizes?",
@@ -249,7 +249,7 @@ export const tattoosData: IndustryData = {
     ],
     schema: {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
+      "@type": "WebApplication",
       name: "Vizzion Tattoo Visualization Widget",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",

@@ -11,11 +11,23 @@ import IndustryComparison from '@/components/industries/IndustryComparison';
 import IndustryTestimonials from '@/components/industries/IndustryTestimonials';
 import IndustryFAQ from '@/components/industries/IndustryFAQ';
 import IndustryCTA from '@/components/industries/IndustryCTA';
+import IndustryBreadcrumb from '@/components/industries/IndustryBreadcrumb';
+import IndustryMidCTA from '@/components/industries/IndustryMidCTA';
+import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { carWrapsData } from '@/data/industries/car-wraps';
 
 export const metadata: Metadata = {
   title: carWrapsData.metaTitle,
   description: carWrapsData.metaDescription,
+  openGraph: {
+    title: carWrapsData.metaTitle,
+    description: carWrapsData.metaDescription,
+    url: '/industries/car-wraps',
+  },
+  twitter: {
+    title: carWrapsData.metaTitle,
+    description: carWrapsData.metaDescription,
+  },
 };
 
 export default function CarWrapsIndustryPage() {
@@ -23,15 +35,18 @@ export default function CarWrapsIndustryPage() {
     <>
       <Header />
       <main>
+        <IndustryBreadcrumb data={carWrapsData} />
         <IndustryPageHeader data={carWrapsData} />
         <IndustryContext data={carWrapsData} />
         <IndustryShowcase data={carWrapsData} />
         <IndustrySolution data={carWrapsData} />
         <IndustryHowItWorks data={carWrapsData} />
+        <IndustryMidCTA data={carWrapsData} />
         <IndustryBenefits data={carWrapsData} />
         <IndustryComparison data={carWrapsData} />
         <IndustryTestimonials data={carWrapsData} />
         <IndustryFAQ data={carWrapsData} />
+        <IndustryRelatedPages data={carWrapsData} />
         <IndustryCTA data={carWrapsData} />
       </main>
       <Footer />

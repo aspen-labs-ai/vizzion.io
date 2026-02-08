@@ -6,12 +6,12 @@ export const swimmingPoolsData: IndustryData = {
   shortName: "Pools",
   metaTitle: "Swimming Pool Visualization Widget for Lead Generation | Vizzion",
   metaDescription:
-    "Vizzion helps pool builders generate exclusive, pre-qualified leads from their own website. Homeowners upload a photo of their backyard and see a pool installed in their actual yard — then hand you their contact info. Close the $50K imagination gap.",
+    "Swimming pool lead generation widget for pool builders. Homeowners see a pool in their actual backyard, then submit their email. Exclusive, pre-qualified leads.",
 
   header: {
     badge: "Pool Industry",
-    headline: "The $50K Decision No One Makes Without Seeing It First",
-    highlightWord: "Seeing",
+    headline: "No One Drops $50K on a Pool Without Seeing It First",
+    highlightWord: "Pool",
     intro:
       "Homeowners want a pool. They just can't picture it in their backyard. Vizzion lets them upload a photo of their yard and see a pool installed — in their space, with their landscaping, on their property. To see the full result, they enter their email. You get an exclusive, high-intent lead from your own website. No shared leads, no tire-kickers, no imagination gap.",
     introHighlight: "They just can't picture it in their backyard.",
@@ -21,14 +21,14 @@ export const swimmingPoolsData: IndustryData = {
   context: {
     headline: "Pool Sales Haven't Changed in 30 Years — But Buyer Expectations Have",
     paragraphs: [
-      `A swimming pool is one of the largest purchases a homeowner will ever make outside of the house itself. The average inground pool project runs $50,000 to $80,000 fully installed — gunite, plaster, decking, equipment, landscaping. That number can climb past six figures for freeform designs, vanishing edges, or attached spas. At those price points, the sales cycle is measured in months, not days. Homeowners research obsessively, request multiple bids, and agonize over the decision. And throughout all of that deliberation, the single biggest barrier to a signed contract is the same thing it's been for decades: the homeowner cannot picture what a pool will actually look like in their backyard.`,
-      `The tools most pool builders rely on haven't solved this. Some companies invest in 3D design software — Pool Studio, Structure Studios, PoolDraw — but those are post-lead design tools. They require a sales rep to visit the property, take measurements, and spend hours building a custom 3D rendering after the lead is already in the pipeline. They're essential for closing deals, but they do nothing to generate them. Meanwhile, your website — the first place most homeowners land when they start researching pool builders — converts at 2 to 4 percent with a static contact form. The other 96% of visitors look at your gallery photos of other people's pools, maybe read a few reviews, and leave without ever reaching out. They're interested, but not convinced. Not yet.`,
-      `The pool industry has a unique problem that most home improvement categories don't face: the sheer scale of the decision combined with the total inability to preview the result. A homeowner considering new countertops can visit a showroom. Someone shopping for windows can see samples. But a $60,000 pool in a specific backyard with specific grading, existing landscaping, and a particular house style? There's no showroom for that. There's no sample. There's only imagination — and imagination isn't enough to justify writing a five-figure deposit check. That gap between interest and commitment is where you're losing your best prospects, and it's the gap Vizzion was designed to close.`,
+      `The average inground pool runs $50,000 to $80,000 installed — and at that price, nobody signs a contract based on imagination. Homeowners spend months researching, requesting bids, and agonizing. The single biggest thing standing between you and a signed contract hasn't changed in decades: the homeowner can't picture what a pool will look like in their backyard. Not someone else's backyard. Theirs.`,
+      `Most pool builders have 3D design tools like Pool Studio or Structure Studios — but those kick in after you've already driven to the property, measured the yard, and spent hours on a custom rendering. They help close deals, not generate them. Meanwhile, your website converts at 2 to 4 percent with a static contact form. The other 96% browse your gallery of other people's pools, maybe read some reviews, and leave. They were interested. They just weren't convinced yet.`,
+      `Here's what makes pools different from every other home improvement sale: there's no showroom. A homeowner shopping for countertops can touch a sample. Someone buying windows can visit a display. But a $65,000 pool in a specific backyard with specific grading, trees, and a particular house? There's no sample for that. There's only imagination — and imagination doesn't get deposit checks signed. That gap between interest and commitment is exactly where Vizzion works.`,
     ],
     highlights: [
       "$50,000 to $80,000",
-      "the homeowner cannot picture what a pool will actually look like",
-      "imagination isn't enough",
+      "can't picture what a pool will look like",
+      "imagination doesn't get deposit checks signed",
     ],
     callout: {
       stat: "96%",
@@ -48,32 +48,32 @@ export const swimmingPoolsData: IndustryData = {
   solution: {
     headline: "Turn Browsers Into Buyers Before the First Site Visit",
     intro:
-      `Vizzion is a lightweight, embeddable widget that transforms your website into an interactive pool preview experience. A homeowner uploads a photo of their backyard — from their phone, a drone shot, whatever they have — and within seconds sees a photo-realistic rendering of a pool installed in their actual yard. Not a stock image from someone else's project. Their yard, their space, their future pool. To see the full result, they enter their email. You now have an exclusive lead who has already visualized owning a pool, generated entirely from your own website traffic.`,
+      "Vizzion embeds on your website and lets homeowners upload a backyard photo to see a realistic pool preview in their actual yard. To view the full result, they enter their email — and you get an exclusive, high-intent lead from your own traffic.",
     points: [
       {
         title: "Pre-Lead, Not Post-Lead",
         description:
-          "Pool Studio and Structure Studios are design tools — they activate after you've already booked a site visit and measured the yard. Vizzion works upstream, on your public website, converting anonymous visitors into named prospects before your sales team drives to the property. It fills the top of your funnel, not the middle.",
+          "Your 3D design software kicks in after the site visit. Vizzion works upstream — on your public website — converting anonymous visitors into named prospects before anyone drives to the property.",
       },
       {
         title: "Exclusive Leads From Your Own Traffic",
         description:
-          "Every lead Vizzion generates belongs to you alone. No lead aggregators, no shared lists, no competing with four other builders for the same homeowner. These are people who found your company, engaged with your brand, and chose to give you their information.",
+          "Every lead belongs to you alone. No aggregators, no shared lists, no competing with four other builders for the same homeowner.",
       },
       {
         title: "Close the Imagination Gap",
         description:
-          `A homeowner staring at their flat, empty backyard can't mentally project a 16×32 freeform gunite pool with a raised spa and travertine coping. Vizzion does it for them. A realistic digital preview of a pool in their specific yard bridges the gap between "someday" and "let's get a quote." That's the moment where leads are born.`,
+          `A homeowner staring at an empty backyard can't mentally project a freeform gunite pool with a raised spa. Vizzion shows them a realistic preview in their specific yard — bridging the gap between "someday" and "let's get a quote."`,
       },
       {
         title: "Higher Intent, Shorter Sales Cycles",
         description:
-          `A homeowner who uploads a photo of their backyard, sees a pool rendered in their space, and submits their email is not casually browsing. They've invested real attention. These leads enter your pipeline further down the funnel than any contact form submission — because they've already seen the result and want it.`,
+          "A homeowner who uploads a backyard photo, sees a pool in their space, and submits their email isn't casually browsing. These leads enter your pipeline further down the funnel than any form submission.",
       },
       {
         title: "Works 24/7, Generates Leads While You Build",
         description:
-          "Your crew is on a job site all day. Your office might close at 5. But homeowners research pools on Saturday mornings, Tuesday nights, and lunch breaks. Vizzion captures those prospects whenever curiosity strikes — no staff required, no callbacks missed.",
+          "Homeowners research pools on Saturday mornings and Tuesday nights. Vizzion captures those prospects whenever curiosity strikes — no staff required.",
       },
     ],
   },
@@ -106,40 +106,40 @@ export const swimmingPoolsData: IndustryData = {
 
   benefits: [
     {
-      metric: "24/7",
-      label: "Always-On Lead Capture",
+      metric: "$66K",
+      label: "Average Pool Project Value",
       description:
-        "Homeowners dream about pools at 10 PM on a Saturday. Vizzion is there when your office isn't — capturing high-intent prospects the moment curiosity strikes, every hour of every day.",
+        "The average inground pool costs homeowners $66,000 installed. Every qualified lead Vizzion captures represents a five-figure contract opportunity — one closed deal pays for a year of the widget.",
     },
     {
-      metric: "$0",
-      label: "Zero Marginal Cost Per Lead",
+      metric: "$25–$120",
+      label: "What Shared Leads Cost You",
       description:
-        "No pay-per-click, no lead-buying fees, no HomeAdvisor subscriptions. Every lead comes from traffic you already have. Your cost per lead drops toward zero as your website traffic grows.",
+        "That's what platforms like Angi charge per lead — shared with 3 to 8 competing builders. Vizzion generates exclusive leads from your own website traffic at a fraction of the cost.",
     },
     {
-      metric: "3×",
-      label: "Higher Close Rates vs. Form Leads",
+      metric: "5–15%",
+      label: "Shared Lead Close Rate",
       description:
-        `Leads who have visualized a pool in their own backyard close at dramatically higher rates than cold form submissions. They've self-qualified through engagement — they're not comparison shopping, they're ready to talk scope and budget.`,
+        "Industry data shows shared leads convert at just 5 to 15 percent. Exclusive leads from your own site convert 2 to 3 times higher because the homeowner already chose your company.",
     },
     {
-      metric: "5 min",
-      label: "From Install to Live",
+      metric: "70+ days",
+      label: "Average Pool Sales Cycle",
       description:
-        "One snippet of code. Paste it. Customize your brand colors. You're generating leads. No developer, no API keys, no waiting on anyone.",
+        "Pool projects average over 70 days from signed contract to first dig — and months more before that in the decision phase. Showing homeowners a preview in their yard compresses the front end.",
     },
     {
-      metric: "100%",
-      label: "White-Label — Your Brand, Not Ours",
+      metric: "#1",
+      label: "Builder Concern: Finding Quality Leads",
       description:
-        "The widget carries your company name, your logo, your colors. Homeowners interact with your brand throughout the entire experience. Vizzion stays invisible.",
+        "In a Q4 2024 survey of 500+ pool builders, finding enough quality leads was the top business concern for 2025 and beyond. Post-COVID demand is down while competition for leads is up.",
     },
     {
-      metric: "Instant",
-      label: "CRM Integration and Lead Routing",
+      metric: "96%",
+      label: "Website Visitors Who Leave",
       description:
-        "Leads flow directly into your CRM — Salesforce, HubSpot, Jobber, Housecall Pro, or anything that accepts webhooks or Zapier. No manual entry, no leads falling through the cracks.",
+        "Static contact forms convert 2 to 4 percent of your traffic. The other 96% browse your gallery of other people's pools and leave. Vizzion gives them a reason to engage — and a reason to hand over their email.",
     },
   ],
 
@@ -191,12 +191,12 @@ export const swimmingPoolsData: IndustryData = {
     {
       question: "How long does it take to set up Vizzion on my pool company website?",
       answer:
-        `Under five minutes. You copy a single embed snippet and paste it into any page on your site — your homepage, gallery page, or a dedicated "See a Pool in Your Backyard" page. No developer needed. The widget adapts to your site design automatically and starts capturing leads immediately.`,
+        `Under five minutes. Copy one embed snippet and drop it on your gallery of completed pools page, a dedicated "See a Pool in Your Backyard" landing page, or right on your homepage. No developer needed — the widget matches your site automatically and starts capturing leads the same day.`,
     },
     {
       question: "How much does Vizzion cost for pool builders?",
       answer:
-        "Vizzion offers tiered pricing based on monthly visualization volume. There's a free tier to get started and test the product with your real website traffic. Given that a single pool project runs $30K to $80K+, most builders see a positive ROI from the first lead Vizzion generates. Contact us for current pricing details.",
+        "There's a free tier so you can test it with real traffic before committing. At $50K to $80K per pool project, ONE closed deal from a Vizzion lead pays for years of the widget. Compare that to spending $80 to $200+ per shared Angi lead where you're competing against half a dozen other builders for the same homeowner.",
     },
     {
       question: "Does Vizzion work with different pool types — freeform, geometric, lap pools?",
@@ -216,17 +216,17 @@ export const swimmingPoolsData: IndustryData = {
     {
       question: "Can I customize the widget to match my company branding?",
       answer:
-        "Absolutely. Vizzion is fully white-label. You set your company name, logo, brand colors, and button text. The experience looks and feels like a native feature of your website. Homeowners interact with your brand, not ours.",
+        `Fully white-label. Set your pool company name, logo, brand colors, and custom CTA text like "See a Pool in Your Backyard" or "Design Your Dream Pool." It looks and feels like a built-in feature of your website — homeowners interact with your brand from start to finish.`,
     },
     {
       question: "Does Vizzion integrate with my CRM or project management software?",
       answer:
-        "Yes. Vizzion integrates directly with Salesforce, HubSpot, Jobber, Housecall Pro, and any platform that accepts webhooks or Zapier triggers. Leads arrive with the homeowner's contact info, backyard photo, and visualization data — ready for your sales team to follow up.",
+        "Yes. Vizzion connects with the tools pool builders actually use — Buildertrend, CoConstruct, Jobber, Housecall Pro, plus HubSpot and Salesforce. It also works with any platform that accepts webhooks or Zapier triggers. Leads arrive with contact info, backyard photo, and visualization data ready for follow-up.",
     },
     {
       question: "Are the leads exclusive to my company?",
       answer:
-        "100% exclusive. Unlike HomeAdvisor or Angi leads that get shared with three to five competing builders, every Vizzion lead comes from your own website. The homeowner visited your site, engaged with your brand, and gave you their information directly. No sharing, no bidding wars, no race to the phone.",
+        "100% exclusive. HomeAdvisor and Angi share every lead with 3 to 8 competing pool builders in your area — that's why close rates on those leads are so low. Vizzion leads come from your own website. The homeowner found you, saw a pool in their yard on your site, and gave you their email directly. No sharing, no bidding wars.",
     },
   ],
 
@@ -258,7 +258,7 @@ export const swimmingPoolsData: IndustryData = {
     ],
     schema: {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
+      "@type": "WebApplication",
       name: "Vizzion Pool Visualization Widget",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",

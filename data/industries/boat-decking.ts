@@ -6,7 +6,7 @@ export const boatDeckingData: IndustryData = {
   shortName: "Marine Decking",
   metaTitle: "Boat Decking Visualization Tool for Lead Generation | Vizzion",
   metaDescription:
-    "Vizzion helps marine dealers, re-decking shops, and decking manufacturers generate qualified leads from their own website traffic. Boat owners see new decking on their actual boat — then hand you their contact info. No cold leads, no wasted samples.",
+    "Boat owners see new decking on their actual boat and submit their info. Vizzion generates exclusive marine decking leads from your own website traffic.",
 
   header: {
     badge: "Marine Decking Industry",
@@ -21,14 +21,14 @@ export const boatDeckingData: IndustryData = {
   context: {
     headline: "Marine Decking Sales Still Run on Samples and Guesswork",
     paragraphs: [
-      `The marine decking industry has a visualization problem that nobody talks about. A boat owner notices their deck is fading, the non-skid is peeling, or the original carpet is holding mildew. They start researching options — SeaDek, Castaway Customs, Marine Mat, synthetic teak planking, closed-cell EVA foam — and they land on your website. They browse your gallery, maybe flip through a few stock photos of perfect center-console installs. But none of those boats look like theirs. They have a 2019 Mako 214 CC, not a 42-foot Yellowfin. So they bounce. Maybe they request a sample kit. Maybe they don't. Either way, you just lost a $4,000 to $8,000 re-deck job to indecision.`,
-      `The sample kit problem is real and expensive. Marine decking companies ship thousands of material swatches every year — color chips, foam squares, texture samples — and the conversion rate is brutal. Most sample kits cost $15 to $30 to assemble and ship, and fewer than 10% of recipients ever convert to a paid job. Boat owners hold the samples up against their helm pad, squint, try to imagine how "Storm Gray" would look across their entire swim platform and cockpit sole, and give up. The mental leap from a 4-inch swatch to a fully installed deck is too far. Samples tell you what the material feels like. They don't show you what your boat will look like.`,
-      `Meanwhile, your website does almost nothing to bridge that gap. Most marine dealer and decking installer sites are glorified portfolios — photo galleries of past jobs, a list of brands carried, maybe a contact form. The conversion rate on these sites hovers around 1 to 3 percent. Boat shows help fill the pipeline during season, but that leaves eight months of the year where your website is your primary storefront and it converts worse than a business card. Every marine decking company knows they need better web presence. None of them have a tool that actually engages visitors and converts curiosity into a real quote request.`,
+      `Marine decking has a visualization problem. A boat owner's deck is fading, the non-skid is shot, or the original carpet reeks of mildew. They Google options — SeaDek, Castaway Customs, Marine Mat, synthetic teak — and land on your site. They browse your gallery, but none of those boats look like theirs. They've got a 2019 Mako 214 CC, not a 42-foot Yellowfin. So they bounce, and you just lost a $1,500 to $6,000 re-deck job to indecision.`,
+      `Then there's the sample kit drain. You're spending $15 to $30 per kit — foam swatches, color chips, shipping — and fewer than 1 in 10 recipients ever convert. Owners hold a 4-inch square up to their helm pad and try to imagine "Storm Gray" across an entire cockpit sole. They can't. Samples show texture. They don't show what the finished boat looks like.`,
+      `Your website isn't helping either. Most decking installer sites are glorified portfolios — past-job galleries, brand logos, a contact form. They convert at 1 to 3 percent. Boat shows fill the pipeline during season, but up to 60% of marine sales happen in those few show weekends, leaving eight months where your site is the storefront and it's basically a brochure.`,
     ],
     highlights: [
-      "$4,000 to $8,000 re-deck job",
-      "fewer than 10% of recipients ever convert",
-      "converts worse than a business card",
+      "$1,500 to $6,000 re-deck job",
+      "fewer than 1 in 10 recipients ever convert",
+      "60% of marine sales happen in a few show weekends",
     ],
     callout: {
       stat: "90%+",
@@ -39,32 +39,32 @@ export const boatDeckingData: IndustryData = {
   solution: {
     headline: "Let Boat Owners See It Before They Buy It",
     intro:
-      `Vizzion is a lightweight widget you embed on your website that turns passive browsers into engaged, qualified leads. A boat owner uploads a photo of their deck — helm area, cockpit sole, swim platform, whatever they want to upgrade — and within seconds sees a photo-realistic rendering of new decking material installed on their specific boat. Not a stock photo. Not a swatch. Their boat, their layout, the exact material and color they're considering. To save or share the full result, they enter their email. You get an exclusive lead with real purchase intent.`,
+      "Vizzion is a lightweight widget for your website. A boat owner uploads a photo of their deck — helm area, cockpit sole, swim platform — and sees a realistic preview of new decking material on their specific boat. They enter their email to save the result. You get an exclusive, high-intent lead.",
     points: [
       {
         title: "Replaces the Sample Kit Guessing Game",
         description:
-          `Samples tell boat owners what a material feels like. Vizzion shows them what it looks like — on their actual boat, at full scale. The visualization does in seconds what a sample kit fails to do in weeks: it lets the owner see the finished product and feel confident enough to request a quote.`,
+          "Vizzion shows boat owners what new decking looks like on their actual boat, at full scale, in seconds. It does what a $25 sample kit fails to do in weeks: builds enough confidence to request a quote.",
       },
       {
         title: "Works for Every Decking Material and Brand",
         description:
-          "SeaDek, Marine Mat, Castaway Customs, synthetic teak planking, closed-cell EVA foam, marine vinyl — Vizzion handles any material type your shop installs. Boat owners can compare multiple options on their own vessel, which means by the time they contact you, they already know what they want.",
+          "SeaDek, Marine Mat, Castaway Customs, synthetic teak, EVA foam, marine vinyl — Vizzion handles any material your shop installs. Owners compare options on their own vessel and contact you already knowing what they want.",
       },
       {
         title: "Captures Leads Year-Round, Not Just at Boat Shows",
         description:
-          `Boat shows are four to six weekends a year. Your website runs 365 days. Vizzion turns your website into an interactive showroom that captures interested boat owners during the off-season, during winter storage planning, and during every random Tuesday night when someone decides it's time to re-deck their Grady-White.`,
+          "Boat shows are a few weekends a year. Your website runs 365 days. Vizzion turns it into an interactive showroom that captures owners during off-season, winter storage planning, and every random Tuesday night someone decides to re-deck.",
       },
       {
         title: "Exclusive Leads From Your Own Traffic",
         description:
-          "Every lead Vizzion generates belongs to you alone. No shared lists, no lead brokers, no competing with three other shops for the same boat owner. These visitors found your site, engaged with your brand, and handed you their contact info because they liked what they saw — literally.",
+          "Every lead belongs to you alone. No shared lists, no brokers, no competing with three other shops for the same boat owner.",
       },
       {
         title: "Intent That Goes Beyond a Form Fill",
         description:
-          `A boat owner who uploads a photo of their deck, previews a new material, and submits their email is not casually browsing. They've invested real time imagining their upgrade. These leads close at dramatically higher rates than cold inquiries because the owner has already made the emotional decision — they just need your quote to make it official.`,
+          "A boat owner who uploads a deck photo, previews a material, and submits their email has already made the emotional decision. These leads close at dramatically higher rates than cold inquiries.",
       },
     ],
   },
@@ -97,40 +97,40 @@ export const boatDeckingData: IndustryData = {
 
   benefits: [
     {
-      metric: "24/7",
-      label: "Year-Round Lead Generation",
+      metric: "$1.5K-$6K",
+      label: "Average Re-Deck Job Value",
       description:
-        "Boat shows end. Winter comes. But boat owners research upgrades year-round — especially during storage season when they're planning spring projects. Vizzion captures leads whenever curiosity strikes, not just during show weekends.",
+        "Professional SeaDek and marine decking installs range from $1,500 to $6,000 per boat. Every qualified lead Vizzion captures represents a high-value job opportunity, not a $50 impulse buy.",
     },
     {
-      metric: "$0",
-      label: "Zero Marginal Cost Per Lead",
+      metric: "<10%",
+      label: "Sample Kit Conversion Rate",
       description:
-        `No sample kit fulfillment costs, no lead-buying fees, no trade show booth rentals. Every lead Vizzion generates comes from traffic you already have. Your cost per lead drops toward zero as your site traffic grows.`,
+        "Marine decking companies spend $15 to $30 per sample kit, and fewer than 1 in 10 recipients ever convert to a paid job. Vizzion lets owners see the finished result on their boat — replacing guesswork with confidence before a kit ever ships.",
     },
     {
-      metric: "3-5×",
-      label: "Higher Conversion Than Static Galleries",
+      metric: "12M+",
+      label: "Registered Boats in the U.S.",
       description:
-        "Photo galleries of past jobs convert at 1-3%. An interactive visualization that shows the owner their own boat with new decking converts at rates that make galleries look like dead weight. Engagement changes everything.",
+        "Over 12 million recreational boats are registered in the United States, per USCG data. That is a massive addressable market of boat owners whose decks will eventually need replacing or upgrading.",
     },
     {
-      metric: "5 min",
-      label: "Setup Time, Start to Finish",
+      metric: "60%",
+      label: "Of Sales Tied to Boat Shows",
       description:
-        "One embed snippet. Paste it on your site. Match your brand colors. Go live. No developer, no API keys, no six-week onboarding process. If you can edit a webpage, you can run Vizzion.",
+        "Up to 60% of marine industry sales happen during a handful of boat show weekends. Vizzion fills the pipeline during the other eight months when your website is your only storefront.",
     },
     {
-      metric: "100%",
-      label: "White-Label, Your Brand Only",
+      metric: "$12.4B",
+      label: "Marine Aftermarket Spending",
       description:
-        `The widget carries your shop name, your colors, your logo. Boat owners interact with your brand throughout the entire experience. Vizzion stays invisible — the visualization feels like a native feature of your website.`,
+        "Boat owners spent $12.4 billion on aftermarket accessories in 2024, per NMMA. Decking is one of the most visible upgrades an owner can make — and the market is growing every year.",
     },
     {
-      metric: "Instant",
-      label: "CRM Integration and Lead Delivery",
+      metric: "6.5%",
+      label: "Annual Market Growth",
       description:
-        "Leads route directly to your existing systems — HubSpot, Salesforce, Jobber, Marine Manager, or any platform that accepts webhooks or Zapier triggers. No manual exports, no leads lost in spreadsheets.",
+        "The boat accessories market is growing at a 6.5% CAGR and is projected to nearly double by 2033. More boats, more upgrades, more owners searching online for decking options — and landing on your site.",
     },
   ],
 
@@ -187,7 +187,7 @@ export const boatDeckingData: IndustryData = {
     {
       question: "How long does it take to set up Vizzion on my website?",
       answer:
-        `Under five minutes. Copy a single embed snippet, paste it into any page on your site — homepage, decking services page, or a dedicated "Visualize Your New Deck" landing page. The widget matches your brand styling automatically. No developer or IT team required.`,
+        `Under five minutes. You copy one embed snippet and paste it on your decking services page, or create a dedicated "Visualize Your New Deck" page that captures leads year-round — even during the off-season when boat shows aren't running. The widget auto-matches your site's branding. No developer needed.`,
     },
     {
       question: "Will this replace our sample kit program?",
@@ -197,7 +197,7 @@ export const boatDeckingData: IndustryData = {
     {
       question: "Does Vizzion work with my existing website and CMS?",
       answer:
-        "Yes. Vizzion is a lightweight JavaScript widget that works on any website — WordPress, Wix, Squarespace, custom-built, or any platform that supports HTML embed codes. If your web provider lets you paste a snippet of code, you can run Vizzion.",
+        "Yes. Most marine decking shops run WordPress or Squarespace, and Vizzion works on both — along with Wix, custom-built sites, and any platform that supports HTML embeds. It sits right alongside your existing boat photo galleries and install portfolios without disrupting anything.",
     },
     {
       question: "How does Vizzion help during the off-season when boat shows aren't running?",
@@ -212,12 +212,12 @@ export const boatDeckingData: IndustryData = {
     {
       question: "Are the leads exclusive to my business?",
       answer:
-        "Yes — 100% exclusive. Every lead generated through Vizzion comes from your own website traffic and belongs solely to you. No shared lists, no lead brokers, no competing with other shops for the same boat owner. They engaged with your brand, on your site, and gave you their information directly.",
+        "100% exclusive. Unlike boat show leads that get passed around and go cold within two weeks, or sample kit requests where 90% never convert, every Vizzion lead comes from your own website and belongs solely to you. The boat owner engaged with your brand, visualized decking on their boat, and handed you their contact info directly.",
     },
     {
       question: "How does Vizzion integrate with my CRM or quoting software?",
       answer:
-        "Vizzion supports direct integrations with popular CRMs including HubSpot, Salesforce, and Jobber. We also support webhooks and Zapier, which means leads can route into virtually any system you already use — including marine-specific platforms. Each lead arrives with the owner's contact info, original deck photo, and the visualization they viewed.",
+        "Vizzion pushes leads directly into HubSpot, Salesforce, Jobber, or any system you use via webhooks and Zapier. Each lead includes the boat owner's contact info, their original deck photo, and the material they chose — so your quoting workflow starts with a clear picture of the job instead of a vague phone inquiry. That context cuts your estimate turnaround dramatically.",
     },
   ],
 
@@ -249,7 +249,7 @@ export const boatDeckingData: IndustryData = {
     ],
     schema: {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
+      "@type": "WebApplication",
       name: "Vizzion Marine Decking Visualization Widget",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",

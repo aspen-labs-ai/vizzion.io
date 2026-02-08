@@ -11,11 +11,23 @@ import IndustryComparison from '@/components/industries/IndustryComparison';
 import IndustryTestimonials from '@/components/industries/IndustryTestimonials';
 import IndustryFAQ from '@/components/industries/IndustryFAQ';
 import IndustryCTA from '@/components/industries/IndustryCTA';
+import IndustryBreadcrumb from '@/components/industries/IndustryBreadcrumb';
+import IndustryMidCTA from '@/components/industries/IndustryMidCTA';
+import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { swimmingPoolsData } from '@/data/industries/swimming-pools';
 
 export const metadata: Metadata = {
   title: swimmingPoolsData.metaTitle,
   description: swimmingPoolsData.metaDescription,
+  openGraph: {
+    title: swimmingPoolsData.metaTitle,
+    description: swimmingPoolsData.metaDescription,
+    url: '/industries/swimming-pools',
+  },
+  twitter: {
+    title: swimmingPoolsData.metaTitle,
+    description: swimmingPoolsData.metaDescription,
+  },
 };
 
 export default function SwimmingPoolsIndustryPage() {
@@ -23,15 +35,18 @@ export default function SwimmingPoolsIndustryPage() {
     <>
       <Header />
       <main>
+        <IndustryBreadcrumb data={swimmingPoolsData} />
         <IndustryPageHeader data={swimmingPoolsData} />
         <IndustryContext data={swimmingPoolsData} />
         <IndustryShowcase data={swimmingPoolsData} />
         <IndustrySolution data={swimmingPoolsData} />
         <IndustryHowItWorks data={swimmingPoolsData} />
+        <IndustryMidCTA data={swimmingPoolsData} />
         <IndustryBenefits data={swimmingPoolsData} />
         <IndustryComparison data={swimmingPoolsData} />
         <IndustryTestimonials data={swimmingPoolsData} />
         <IndustryFAQ data={swimmingPoolsData} />
+        <IndustryRelatedPages data={swimmingPoolsData} />
         <IndustryCTA data={swimmingPoolsData} />
       </main>
       <Footer />

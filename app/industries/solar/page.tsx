@@ -11,11 +11,23 @@ import IndustryComparison from '@/components/industries/IndustryComparison';
 import IndustryTestimonials from '@/components/industries/IndustryTestimonials';
 import IndustryFAQ from '@/components/industries/IndustryFAQ';
 import IndustryCTA from '@/components/industries/IndustryCTA';
+import IndustryBreadcrumb from '@/components/industries/IndustryBreadcrumb';
+import IndustryMidCTA from '@/components/industries/IndustryMidCTA';
+import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { solarData } from '@/data/industries/solar';
 
 export const metadata: Metadata = {
   title: solarData.metaTitle,
   description: solarData.metaDescription,
+  openGraph: {
+    title: solarData.metaTitle,
+    description: solarData.metaDescription,
+    url: '/industries/solar',
+  },
+  twitter: {
+    title: solarData.metaTitle,
+    description: solarData.metaDescription,
+  },
 };
 
 export default function SolarIndustryPage() {
@@ -23,15 +35,18 @@ export default function SolarIndustryPage() {
     <>
       <Header />
       <main>
+        <IndustryBreadcrumb data={solarData} />
         <IndustryPageHeader data={solarData} />
         <IndustryContext data={solarData} />
         <IndustryShowcase data={solarData} />
         <IndustrySolution data={solarData} />
         <IndustryHowItWorks data={solarData} />
+        <IndustryMidCTA data={solarData} />
         <IndustryBenefits data={solarData} />
         <IndustryComparison data={solarData} />
         <IndustryTestimonials data={solarData} />
         <IndustryFAQ data={solarData} />
+        <IndustryRelatedPages data={solarData} />
         <IndustryCTA data={solarData} />
       </main>
       <Footer />
