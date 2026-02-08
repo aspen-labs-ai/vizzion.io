@@ -1,5 +1,6 @@
 import { Home, Building2, DoorOpen, Boxes, Table2, PanelTop, Sun, Warehouse, Shield, CloudRain, Square, Route, Car, Pen, Waves, Sprout, Ship } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { type LucideIcon } from 'lucide-react';
 
 interface Industry {
@@ -153,7 +154,7 @@ export default function Industries() {
   const IndustryCard = ({ industry }: { industry: Industry }) => {
     const Icon = industry.icon;
     return (
-      <a
+      <Link
         href={industry.href}
         className={`group block bg-bg-secondary rounded-xl border border-border-default hover:border-accent transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer relative overflow-hidden ${industry.image ? 'p-0' : 'p-6'}`}
       >
@@ -204,7 +205,7 @@ export default function Industries() {
             </svg>
           </div>
         </div>
-      </a>
+      </Link>
     );
   };
 
