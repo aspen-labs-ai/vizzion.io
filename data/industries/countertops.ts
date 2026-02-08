@@ -6,7 +6,7 @@ export const countertopsData: IndustryData = {
   shortName: "Countertops",
   metaTitle: "Countertop Visualization & Lead Generation Tool — Turn Browsers Into Buyers | Vizzion",
   metaDescription:
-    "Let customers see granite, quartz, and marble countertops in their actual kitchen. Vizzion captures leads and eliminates material uncertainty for countertop shops.",
+    "Let customers see granite, quartz, and marble in their actual kitchen. Vizzion captures leads and eliminates material uncertainty for countertop shops.",
 
   header: {
     badge: "Countertops & Stone Industry",
