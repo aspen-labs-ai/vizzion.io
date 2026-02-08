@@ -3,6 +3,26 @@ import type { MetadataRoute } from 'next';
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://vizzion.io';
 
+  const industries = [
+    'roofing',
+    'siding',
+    'solar',
+    'windows-doors',
+    'decking',
+    'flooring',
+    'countertops',
+    'garage-doors',
+    'fencing',
+    'gutters',
+    'shutters',
+    'driveways',
+    'swimming-pools',
+    'artificial-turf',
+    'tattoos',
+    'car-wraps',
+    'boat-decking',
+  ];
+
   return [
     {
       url: baseUrl,
@@ -16,41 +36,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.9,
     },
-    {
-      url: `${baseUrl}/industries/solar`,
+    ...industries.map((slug) => ({
+      url: `${baseUrl}/industries/${slug}`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: 'monthly' as const,
       priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/industries/car-wraps`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/industries/tattoos`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/industries/swimming-pools`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/industries/artificial-turf`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/industries/boat-decking`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
+    })),
   ];
 }

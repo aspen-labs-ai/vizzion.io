@@ -12,16 +12,16 @@ import SignupSection from '@/components/SignupSection';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Vizzion — Turn Website Visitors Into Qualified Leads With Visual Product Previews',
-  description: 'Embed Vizzion on your website and let customers see your products on their actual property, vehicle, or body. Captures email before showing the preview. Works for solar, wraps, tattoos, pools, turf, and more.',
+  title: 'Vizzion — Visual Lead Generation for Any Industry',
+  description: 'Embed Vizzion on your site and let customers preview products on their property, vehicle, or body. Captures emails before showing the result.',
   openGraph: {
-    title: 'Vizzion — Turn Website Visitors Into Qualified Leads With Visual Product Previews',
-    description: 'Embed Vizzion on your website and let customers see your products on their actual property, vehicle, or body. Captures email before showing the preview.',
+    title: 'Vizzion — Visual Lead Generation for Any Industry',
+    description: 'Embed Vizzion on your site and let customers preview products on their property, vehicle, or body. Captures emails before showing the result.',
     url: '/',
   },
   twitter: {
-    title: 'Vizzion — Turn Website Visitors Into Qualified Leads With Visual Product Previews',
-    description: 'Embed Vizzion on your website and let customers see your products on their actual property, vehicle, or body. Captures email before showing the preview.',
+    title: 'Vizzion — Visual Lead Generation for Any Industry',
+    description: 'Embed Vizzion on your site and let customers preview products on their property, vehicle, or body. Captures emails before showing the result.',
   },
 };
 

@@ -17,16 +17,16 @@ import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { carWrapsData } from '@/data/industries/car-wraps';
 
 export const metadata: Metadata = {
-  title: carWrapsData.metaTitle,
-  description: carWrapsData.metaDescription,
+  title: 'Vehicle Wrap Visualization & Lead Gen | Vizzion',
+  description: 'Customers preview wrap colors on their actual car. Captures emails, qualifies leads, eliminates free mockups. Embed Vizzion on your wrap site.',
   openGraph: {
-    title: carWrapsData.metaTitle,
-    description: carWrapsData.metaDescription,
+    title: 'Vehicle Wrap Visualization & Lead Gen | Vizzion',
+    description: 'Customers preview wrap colors on their actual car. Captures emails, qualifies leads, eliminates free mockups. Embed Vizzion on your wrap site.',
     url: '/industries/car-wraps',
   },
   twitter: {
-    title: carWrapsData.metaTitle,
-    description: carWrapsData.metaDescription,
+    title: 'Vehicle Wrap Visualization & Lead Gen | Vizzion',
+    description: 'Customers preview wrap colors on their actual car. Captures emails, qualifies leads, eliminates free mockups. Embed Vizzion on your wrap site.',
   },
 };
 

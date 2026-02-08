@@ -17,16 +17,16 @@ import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { artificialTurfData } from '@/data/industries/artificial-turf';
 
 export const metadata: Metadata = {
-  title: artificialTurfData.metaTitle,
-  description: artificialTurfData.metaDescription,
+  title: 'Artificial Turf Visualization & Leads | Vizzion',
+  description: 'Homeowners see turf on their actual yard, enter their email — you get the lead. Vizzion generates exclusive artificial turf leads. No sharing.',
   openGraph: {
-    title: artificialTurfData.metaTitle,
-    description: artificialTurfData.metaDescription,
+    title: 'Artificial Turf Visualization & Leads | Vizzion',
+    description: 'Homeowners see turf on their actual yard, enter their email — you get the lead. Vizzion generates exclusive artificial turf leads. No sharing.',
     url: '/industries/artificial-turf',
   },
   twitter: {
-    title: artificialTurfData.metaTitle,
-    description: artificialTurfData.metaDescription,
+    title: 'Artificial Turf Visualization & Leads | Vizzion',
+    description: 'Homeowners see turf on their actual yard, enter their email — you get the lead. Vizzion generates exclusive artificial turf leads. No sharing.',
   },
 };
 

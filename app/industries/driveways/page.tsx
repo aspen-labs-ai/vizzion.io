@@ -17,16 +17,16 @@ import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { drivewaysData } from '@/data/industries/driveways';
 
 export const metadata: Metadata = {
-  title: drivewaysData.metaTitle,
-  description: drivewaysData.metaDescription,
+  title: 'Driveway Visualization & Lead Gen | Vizzion',
+  description: 'Homeowners preview pavers, stamped concrete, and stone on their actual driveway. Vizzion captures exclusive paving leads from your site.',
   openGraph: {
-    title: drivewaysData.metaTitle,
-    description: drivewaysData.metaDescription,
+    title: 'Driveway Visualization & Lead Gen | Vizzion',
+    description: 'Homeowners preview pavers, stamped concrete, and stone on their actual driveway. Vizzion captures exclusive paving leads from your site.',
     url: '/industries/driveways',
   },
   twitter: {
-    title: drivewaysData.metaTitle,
-    description: drivewaysData.metaDescription,
+    title: 'Driveway Visualization & Lead Gen | Vizzion',
+    description: 'Homeowners preview pavers, stamped concrete, and stone on their actual driveway. Vizzion captures exclusive paving leads from your site.',
   },
 };
 

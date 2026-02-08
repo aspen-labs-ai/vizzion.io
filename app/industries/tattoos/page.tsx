@@ -17,16 +17,16 @@ import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { tattoosData } from '@/data/industries/tattoos';
 
 export const metadata: Metadata = {
-  title: tattoosData.metaTitle,
-  description: tattoosData.metaDescription,
+  title: 'Tattoo Visualization & Lead Gen | Vizzion',
+  description: 'Clients see your tattoo designs on their actual skin before booking. Reduces no-shows and turns browsers into committed leads with Vizzion.',
   openGraph: {
-    title: tattoosData.metaTitle,
-    description: tattoosData.metaDescription,
+    title: 'Tattoo Visualization & Lead Gen | Vizzion',
+    description: 'Clients see your tattoo designs on their actual skin before booking. Reduces no-shows and turns browsers into committed leads with Vizzion.',
     url: '/industries/tattoos',
   },
   twitter: {
-    title: tattoosData.metaTitle,
-    description: tattoosData.metaDescription,
+    title: 'Tattoo Visualization & Lead Gen | Vizzion',
+    description: 'Clients see your tattoo designs on their actual skin before booking. Reduces no-shows and turns browsers into committed leads with Vizzion.',
   },
 };
 

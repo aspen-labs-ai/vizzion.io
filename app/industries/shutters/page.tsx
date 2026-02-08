@@ -17,16 +17,16 @@ import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { shuttersData } from '@/data/industries/shutters';
 
 export const metadata: Metadata = {
-  title: shuttersData.metaTitle,
-  description: shuttersData.metaDescription,
+  title: 'Shutter Visualization & Lead Gen | Vizzion',
+  description: 'Homeowners preview exterior shutters on their actual home before buying. Vizzion captures qualified shutter leads, not cold traffic.',
   openGraph: {
-    title: shuttersData.metaTitle,
-    description: shuttersData.metaDescription,
+    title: 'Shutter Visualization & Lead Gen | Vizzion',
+    description: 'Homeowners preview exterior shutters on their actual home before buying. Vizzion captures qualified shutter leads, not cold traffic.',
     url: '/industries/shutters',
   },
   twitter: {
-    title: shuttersData.metaTitle,
-    description: shuttersData.metaDescription,
+    title: 'Shutter Visualization & Lead Gen | Vizzion',
+    description: 'Homeowners preview exterior shutters on their actual home before buying. Vizzion captures qualified shutter leads, not cold traffic.',
   },
 };
 
