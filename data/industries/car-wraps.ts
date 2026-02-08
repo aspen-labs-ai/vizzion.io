@@ -226,7 +226,7 @@ export const carWrapsData: IndustryData = {
     subtext:
       "Five-minute setup. No credit card required. Let your website handle the mockups — so your designers can focus on the jobs that are already sold.",
     buttonText: "Get Started Free",
-    href: "/get-started",
+    href: "#signup",
   },
 
   seo: {

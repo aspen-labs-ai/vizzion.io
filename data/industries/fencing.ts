@@ -227,7 +227,7 @@ export const fencingData: IndustryData = {
     subtext:
       "Five-minute setup. No credit card required. Your visitors are already browsing fence styles — let them see it on their own yard and watch your leads grow.",
     buttonText: "Get Started Free",
-    href: "/get-started",
+    href: "#signup",
   },
 
   seo: {

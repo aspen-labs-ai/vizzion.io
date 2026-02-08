@@ -1,4 +1,5 @@
 import { IndustryData } from '@/data/industries/types';
+import SignupSection from '@/components/SignupSection';
 
 export default function IndustryCTA({ data }: { data: IndustryData }) {
   return (
@@ -10,18 +11,9 @@ export default function IndustryCTA({ data }: { data: IndustryData }) {
         <p className="text-text-secondary text-lg mb-8 leading-relaxed">
           {data.cta.subtext}
         </p>
-
-        <a
-          href={data.cta.href}
-          className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-lg bg-accent text-primary hover:bg-accent-hover transition-all duration-250 hover:-translate-y-0.5 hover:shadow-accent-glow"
-        >
-          {data.cta.buttonText}
-        </a>
-
-        <p className="text-text-tertiary text-sm mt-4">
-          No credit card required. Set up in under 5 minutes.
-        </p>
       </div>
+
+      <SignupSection defaultIndustry={data.shortName} />
     </section>
   );
 }

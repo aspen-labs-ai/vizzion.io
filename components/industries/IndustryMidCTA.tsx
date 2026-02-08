@@ -8,7 +8,7 @@ export default function IndustryMidCTA({ data }: { data: IndustryData }) {
           Ready to see how Vizzion works for {data.shortName} companies?
         </p>
         <a
-          href="/get-started"
+          href="#signup"
           className="inline-block bg-accent text-primary hover:bg-accent-hover transition-all duration-250 hover:-translate-y-0.5 hover:shadow-accent-glow rounded-lg px-8 py-4 font-semibold text-lg"
         >
           Get Started Free &rarr;

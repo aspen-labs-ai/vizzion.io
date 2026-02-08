@@ -200,7 +200,7 @@ export default function IndustriesHubPage() {
               Vizzion works with any business that sells visual transformations. Talk to us about your use case.
             </p>
             <Link
-              href="/get-started"
+              href="/#signup"
               className="inline-flex items-center gap-2 bg-accent text-primary hover:bg-accent-hover transition-all duration-250 hover:-translate-y-0.5 hover:shadow-accent-glow rounded-lg px-8 py-4 font-semibold text-lg"
             >
               Get Started Free

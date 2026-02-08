@@ -2,9 +2,32 @@
 
 import { useState } from 'react';
 
-export default function SignupSection() {
+const INDUSTRIES = [
+  'Roofing',
+  'Siding',
+  'Solar',
+  'Windows & Doors',
+  'Decking',
+  'Flooring',
+  'Countertops',
+  'Garage Doors',
+  'Fencing',
+  'Gutters',
+  'Shutters',
+  'Driveways',
+  'Swimming Pools',
+  'Artificial Turf',
+  'Tattoos',
+  'Car Wraps',
+  'Boat Decking',
+  'Other',
+];
+
+export default function SignupSection({ defaultIndustry }: { defaultIndustry?: string }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [industry, setIndustry] = useState(defaultIndustry ?? '');
+  const [details, setDetails] = useState('');
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -21,6 +44,8 @@ export default function SignupSection() {
         body: JSON.stringify({
           name,
           email,
+          industry,
+          details,
           _subject: 'New Vizzion Lead',
           _template: 'table',
           _captcha: 'false'
@@ -34,6 +59,8 @@ export default function SignupSection() {
           setStatus('idle');
           setName('');
           setEmail('');
+          setIndustry(defaultIndustry ?? '');
+          setDetails('');
         }, 5000);
       } else {
         setStatus('error');
@@ -108,6 +135,33 @@ export default function SignupSection() {
                   required
                   disabled={status === 'submitting'}
                   className="w-full px-6 py-4 bg-bg-tertiary border border-border-default rounded-lg text-text-primary placeholder:text-text-tertiary focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                />
+              </div>
+
+              <div>
+                <select
+                  value={industry}
+                  onChange={(e) => setIndustry(e.target.value)}
+                  required
+                  disabled={status === 'submitting'}
+                  className="w-full px-6 py-4 bg-bg-tertiary border border-border-default rounded-lg text-text-primary focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all text-lg disabled:opacity-50 disabled:cursor-not-allowed appearance-none"
+                  style={{ colorScheme: 'dark' }}
+                >
+                  <option value="" disabled>Select your industry</option>
+                  {INDUSTRIES.map((ind) => (
+                    <option key={ind} value={ind}>{ind}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <textarea
+                  value={details}
+                  onChange={(e) => setDetails(e.target.value)}
+                  placeholder="Tell us about your business..."
+                  disabled={status === 'submitting'}
+                  rows={3}
+                  className="w-full px-6 py-4 bg-bg-tertiary border border-border-default rounded-lg text-text-primary placeholder:text-text-tertiary focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all text-lg disabled:opacity-50 disabled:cursor-not-allowed resize-none"
                 />
               </div>
 

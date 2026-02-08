@@ -235,7 +235,7 @@ export const artificialTurfData: IndustryData = {
     subtext:
       "Five-minute setup. No credit card required. The demand is already there — homeowners just need to see what their yard could look like.",
     buttonText: "Get Started Free",
-    href: "/get-started",
+    href: "#signup",
   },
 
   seo: {

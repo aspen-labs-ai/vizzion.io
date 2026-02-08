@@ -252,7 +252,7 @@ export const drivewaysData: IndustryData = {
     subtext:
       "Five-minute setup. No credit card required. Your visitors are already browsing — give them a reason to stop shopping and start choosing.",
     buttonText: "Get Started Free",
-    href: "/get-started",
+    href: "#signup",
   },
 
   seo: {

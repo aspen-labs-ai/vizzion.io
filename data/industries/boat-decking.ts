@@ -226,7 +226,7 @@ export const boatDeckingData: IndustryData = {
     subtext:
       "Five-minute setup. No credit card required. See how many of your current visitors are ready to re-deck — they just need to see it on their boat first.",
     buttonText: "Get Started Free",
-    href: "/get-started",
+    href: "#signup",
   },
 
   seo: {

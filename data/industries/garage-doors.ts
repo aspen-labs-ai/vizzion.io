@@ -238,7 +238,7 @@ export const garageDoorsData: IndustryData = {
     subtext:
       "Five-minute setup. No credit card required. See how many of your current visitors are ready to buy a new garage door — they just need to see it on their home first.",
     buttonText: "Get Started Free",
-    href: "/get-started",
+    href: "#signup",
   },
 
   seo: {
