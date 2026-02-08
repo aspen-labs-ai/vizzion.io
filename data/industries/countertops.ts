@@ -235,7 +235,7 @@ export const countertopsData: IndustryData = {
     subtext:
       "Five-minute setup. No credit card required. See how many of your website visitors are ready to commit — they just need to see the stone in their kitchen first.",
     buttonText: "Get Started Free",
-    href: "/get-started",
+    href: "#signup",
   },
 
   seo: {

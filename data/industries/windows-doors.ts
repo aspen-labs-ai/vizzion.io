@@ -236,7 +236,7 @@ export const windowsDoorsData: IndustryData = {
     subtext:
       "Five-minute setup. No credit card required. Your website visitors are already researching windows and doors — give them a reason to hand you their info.",
     buttonText: "Get Started Free",
-    href: "/get-started",
+    href: "#signup",
   },
 
   seo: {

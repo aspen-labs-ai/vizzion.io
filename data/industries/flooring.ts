@@ -235,7 +235,7 @@ export const flooringData: IndustryData = {
     subtext:
       "Five-minute setup. No credit card required. See how many of your current visitors are ready to buy flooring — they just need to see it in their room first.",
     buttonText: "Get Started Free",
-    href: "/get-started",
+    href: "#signup",
   },
 
   seo: {

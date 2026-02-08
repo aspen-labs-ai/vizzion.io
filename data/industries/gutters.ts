@@ -254,7 +254,7 @@ export const guttersData: IndustryData = {
     subtext:
       "Five-minute setup. No credit card required. See how many of your current visitors would choose premium gutters — if they could actually see them on their home.",
     buttonText: "Get Started Free",
-    href: "/get-started",
+    href: "#signup",
   },
 
   seo: {

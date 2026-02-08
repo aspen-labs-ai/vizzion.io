@@ -226,7 +226,7 @@ export const tattoosData: IndustryData = {
     subtext:
       "Five-minute setup. No credit card required. Let clients see your designs on their own skin — and watch your no-show rate disappear.",
     buttonText: "Get Started Free",
-    href: "/get-started",
+    href: "#signup",
   },
 
   seo: {

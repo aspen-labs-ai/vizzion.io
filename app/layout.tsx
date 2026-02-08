@@ -37,7 +37,7 @@ export default function RootLayout({
               "contactPoint": {
                 "@type": "ContactPoint",
                 "contactType": "sales",
-                "url": "https://vizzion.io/get-started",
+                "url": "https://vizzion.io/#signup",
               },
               "offers": {
                 "@type": "Offer",

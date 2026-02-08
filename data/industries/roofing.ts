@@ -233,7 +233,7 @@ export const roofingData: IndustryData = {
     subtext:
       "Five-minute setup. No credit card required. See how many of your current website visitors are ready to book a roof — they just need to see it on their home first.",
     buttonText: "Get Started Free",
-    href: "/get-started",
+    href: "#signup",
   },
 
   seo: {

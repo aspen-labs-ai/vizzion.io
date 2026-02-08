@@ -235,7 +235,7 @@ export const solarData: IndustryData = {
     subtext:
       "Five-minute setup. No credit card required. See how many of your current visitors are ready to go solar — they just need to see it first.",
     buttonText: "Get Started Free",
-    href: "/get-started",
+    href: "#signup",
   },
 
   seo: {
