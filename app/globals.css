@@ -81,6 +81,20 @@
      ============================================== */
   --animate-orbit: orbit calc(var(--duration) * 1s) linear infinite;
 
+  /* MagicUI Marquee animations */
+  --animate-marquee: marquee var(--duration) infinite linear;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-100% - var(--gap))); }
+  }
+
+  @keyframes marquee-vertical {
+    from { transform: translateY(0); }
+    to { transform: translateY(calc(-100% - var(--gap))); }
+  }
+
   @keyframes orbit {
     0% {
       transform: rotate(calc(var(--angle) * 1deg))
@@ -203,6 +217,7 @@
       transform: translate(2px, -2px);
     }
   }
+
 }
 
 @layer base {
@@ -279,6 +294,35 @@
   .animate-impact {
     animation: impact 0.4s ease-out;
   }
+}
+
+/* 3D Industry Marquee */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee-scroll 45s linear infinite;
+  will-change: transform;
+}
+
+.marquee-viewport:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-card {
+  transform: translateZ(0) rotateY(-2deg);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.marquee-card:hover {
+  transform: translateZ(40px) rotateY(0deg) scale(1.08);
 }
 
 /* Prevent layout shift */

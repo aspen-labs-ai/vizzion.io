@@ -39,8 +39,8 @@ export const swimmingPoolsData: IndustryData = {
   showcase: {
     headline: "From Empty Backyard to Dream Pool in Seconds",
     subtext: "This is what your website visitors experience. They upload a photo of their backyard — and within seconds, they see a pool installed in their actual yard.",
-    beforeImage: "/images/demo-backyard-empty.png",
-    afterImage: "/images/demo-backyard-pool.png",
+    beforeImage: "/images/industries/swimming-pools-before.png",
+    afterImage: "/images/industries/swimming-pools.png",
     beforeLabel: "Their Backyard",
     afterLabel: "With Pool Installed",
   },

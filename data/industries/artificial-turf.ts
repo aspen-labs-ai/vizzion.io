@@ -39,8 +39,8 @@ export const artificialTurfData: IndustryData = {
   showcase: {
     headline: "From Patchy Lawn to Perfect Turf in Seconds",
     subtext: "This is exactly what your website visitors experience. They upload a photo of their yard — and within seconds, they see lush artificial turf replacing their existing lawn.",
-    beforeImage: "/images/demo-yard-grass.png",
-    afterImage: "/images/demo-yard-turf.png",
+    beforeImage: "/images/industries/artificial-turf-before.png",
+    afterImage: "/images/industries/artificial-turf.png",
     beforeLabel: "Their Current Lawn",
     afterLabel: "With Artificial Turf",
   },
