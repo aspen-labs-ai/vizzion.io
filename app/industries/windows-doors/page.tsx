@@ -17,16 +17,16 @@ import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { windowsDoorsData } from '@/data/industries/windows-doors';
 
 export const metadata: Metadata = {
-  title: windowsDoorsData.metaTitle,
-  description: windowsDoorsData.metaDescription,
+  title: 'Window & Door Visualization & Leads | Vizzion',
+  description: 'Homeowners preview new windows and doors on their actual home. Vizzion captures qualified leads from your website — no shared leads.',
   openGraph: {
-    title: windowsDoorsData.metaTitle,
-    description: windowsDoorsData.metaDescription,
+    title: 'Window & Door Visualization & Leads | Vizzion',
+    description: 'Homeowners preview new windows and doors on their actual home. Vizzion captures qualified leads from your website — no shared leads.',
     url: '/industries/windows-doors',
   },
   twitter: {
-    title: windowsDoorsData.metaTitle,
-    description: windowsDoorsData.metaDescription,
+    title: 'Window & Door Visualization & Leads | Vizzion',
+    description: 'Homeowners preview new windows and doors on their actual home. Vizzion captures qualified leads from your website — no shared leads.',
   },
 };
 

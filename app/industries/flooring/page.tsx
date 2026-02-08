@@ -17,16 +17,16 @@ import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { flooringData } from '@/data/industries/flooring';
 
 export const metadata: Metadata = {
-  title: flooringData.metaTitle,
-  description: flooringData.metaDescription,
+  title: 'Flooring Visualization & Lead Gen | Vizzion',
+  description: 'Customers see hardwood, LVP, or tile in their actual room before they commit. Vizzion captures leads and closes flooring sales faster.',
   openGraph: {
-    title: flooringData.metaTitle,
-    description: flooringData.metaDescription,
+    title: 'Flooring Visualization & Lead Gen | Vizzion',
+    description: 'Customers see hardwood, LVP, or tile in their actual room before they commit. Vizzion captures leads and closes flooring sales faster.',
     url: '/industries/flooring',
   },
   twitter: {
-    title: flooringData.metaTitle,
-    description: flooringData.metaDescription,
+    title: 'Flooring Visualization & Lead Gen | Vizzion',
+    description: 'Customers see hardwood, LVP, or tile in their actual room before they commit. Vizzion captures leads and closes flooring sales faster.',
   },
 };
 

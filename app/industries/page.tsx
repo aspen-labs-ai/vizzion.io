@@ -6,16 +6,16 @@ import { Sun, Car, Pen, Waves, Sprout, Ship } from 'lucide-react';
 import { type LucideIcon } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Industries We Serve — Visual Lead Generation for Any Business | Vizzion',
-  description: 'Vizzion helps businesses across 17+ industries turn website visitors into qualified leads. See how solar, vehicle wraps, tattoos, pools, turf, and marine companies use Vizzion.',
+  title: 'Industries We Serve | Vizzion Visual Lead Gen',
+  description: 'Vizzion helps 17+ industries turn website visitors into qualified leads. See how solar, wraps, tattoo, pool, turf, and marine companies use Vizzion.',
   openGraph: {
-    title: 'Industries We Serve — Visual Lead Generation for Any Business | Vizzion',
-    description: 'Vizzion helps businesses across 17+ industries turn website visitors into qualified leads. See how solar, vehicle wraps, tattoos, pools, turf, and marine companies use Vizzion.',
+    title: 'Industries We Serve | Vizzion Visual Lead Gen',
+    description: 'Vizzion helps 17+ industries turn website visitors into qualified leads. See how solar, wraps, tattoo, pool, turf, and marine companies use Vizzion.',
     url: '/industries',
   },
   twitter: {
-    title: 'Industries We Serve — Visual Lead Generation for Any Business | Vizzion',
-    description: 'Vizzion helps businesses across 17+ industries turn website visitors into qualified leads. See how solar, vehicle wraps, tattoos, pools, turf, and marine companies use Vizzion.',
+    title: 'Industries We Serve | Vizzion Visual Lead Gen',
+    description: 'Vizzion helps 17+ industries turn website visitors into qualified leads. See how solar, wraps, tattoo, pool, turf, and marine companies use Vizzion.',
   },
 };
 

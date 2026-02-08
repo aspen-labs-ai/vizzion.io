@@ -15,7 +15,7 @@ export default function IndustryBreadcrumb({ data }: { data: IndustryData }) {
         '@type': 'ListItem',
         position: 2,
         name: 'Industries',
-        item: 'https://vizzion.io/#industries',
+        item: 'https://vizzion.io/industries',
       },
       {
         '@type': 'ListItem',

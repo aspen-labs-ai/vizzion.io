@@ -9,10 +9,10 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="mb-4">
-              <Image 
-                src="/vizzion-logo.png" 
-                alt="Vizzion" 
-                width={120} 
+              <Image
+                src="/vizzion-logo.png"
+                alt="Vizzion"
+                width={120}
                 height={40}
                 className="h-8 w-auto"
               />
@@ -21,39 +21,36 @@ export default function Footer() {
               Transform how customers shop with visual customization.
             </p>
           </div>
-          
+
           {/* Product Links */}
           <div>
             <h4 className="font-semibold text-text-primary mb-4">Product</h4>
             <div className="space-y-3">
-              <Link href="#how-it-works" className="block text-text-secondary hover:text-accent transition-colors">
+              <Link href="/#how-it-works" className="block text-text-secondary hover:text-accent transition-colors">
                 How It Works
               </Link>
-              <Link href="#industries" className="block text-text-secondary hover:text-accent transition-colors">
+              <Link href="/#industries" className="block text-text-secondary hover:text-accent transition-colors">
                 Industries
               </Link>
-              <Link href="#pricing" className="block text-text-secondary hover:text-accent transition-colors">
+              <Link href="/#pricing" className="block text-text-secondary hover:text-accent transition-colors">
                 Pricing
               </Link>
             </div>
           </div>
-          
+
           {/* Company Links */}
           <div>
             <h4 className="font-semibold text-text-primary mb-4">Company</h4>
             <div className="space-y-3">
-              <Link href="#" className="block text-text-secondary hover:text-accent transition-colors">
+              <Link href="/#about" className="block text-text-secondary hover:text-accent transition-colors">
                 About
               </Link>
-              <Link href="#" className="block text-text-secondary hover:text-accent transition-colors">
-                Blog
-              </Link>
-              <Link href="#" className="block text-text-secondary hover:text-accent transition-colors">
+              <Link href="/#signup" className="block text-text-secondary hover:text-accent transition-colors">
                 Contact
               </Link>
             </div>
           </div>
-          
+
           {/* Legal Links */}
           <div>
             <h4 className="font-semibold text-text-primary mb-4">Legal</h4>
@@ -67,10 +64,10 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        
+
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-border-default text-center text-text-tertiary">
-          <p>&copy; 2025 Vizzion. All rights reserved.</p>
+          <p>&copy; 2026 Vizzion. All rights reserved.</p>
         </div>
       </div>
     </footer>

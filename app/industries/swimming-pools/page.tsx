@@ -17,16 +17,16 @@ import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { swimmingPoolsData } from '@/data/industries/swimming-pools';
 
 export const metadata: Metadata = {
-  title: swimmingPoolsData.metaTitle,
-  description: swimmingPoolsData.metaDescription,
+  title: 'Pool Visualization & Lead Generation | Vizzion',
+  description: 'Homeowners see a pool in their actual backyard, then submit their email. Vizzion generates exclusive, pre-qualified leads for pool builders.',
   openGraph: {
-    title: swimmingPoolsData.metaTitle,
-    description: swimmingPoolsData.metaDescription,
+    title: 'Pool Visualization & Lead Generation | Vizzion',
+    description: 'Homeowners see a pool in their actual backyard, then submit their email. Vizzion generates exclusive, pre-qualified leads for pool builders.',
     url: '/industries/swimming-pools',
   },
   twitter: {
-    title: swimmingPoolsData.metaTitle,
-    description: swimmingPoolsData.metaDescription,
+    title: 'Pool Visualization & Lead Generation | Vizzion',
+    description: 'Homeowners see a pool in their actual backyard, then submit their email. Vizzion generates exclusive, pre-qualified leads for pool builders.',
   },
 };
 

@@ -17,16 +17,16 @@ import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { countertopsData } from '@/data/industries/countertops';
 
 export const metadata: Metadata = {
-  title: countertopsData.metaTitle,
-  description: countertopsData.metaDescription,
+  title: 'Countertop Visualization & Lead Gen | Vizzion',
+  description: 'Customers see granite, quartz, and marble in their actual kitchen. Vizzion captures leads and eliminates material uncertainty.',
   openGraph: {
-    title: countertopsData.metaTitle,
-    description: countertopsData.metaDescription,
+    title: 'Countertop Visualization & Lead Gen | Vizzion',
+    description: 'Customers see granite, quartz, and marble in their actual kitchen. Vizzion captures leads and eliminates material uncertainty.',
     url: '/industries/countertops',
   },
   twitter: {
-    title: countertopsData.metaTitle,
-    description: countertopsData.metaDescription,
+    title: 'Countertop Visualization & Lead Gen | Vizzion',
+    description: 'Customers see granite, quartz, and marble in their actual kitchen. Vizzion captures leads and eliminates material uncertainty.',
   },
 };
 

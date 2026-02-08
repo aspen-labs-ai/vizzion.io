@@ -17,16 +17,16 @@ import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { roofingData } from '@/data/industries/roofing';
 
 export const metadata: Metadata = {
-  title: roofingData.metaTitle,
-  description: roofingData.metaDescription,
+  title: 'Roofing Visualization & Lead Generation | Vizzion',
+  description: 'Homeowners see new shingles, metal, or tile on their actual roof before calling. Vizzion captures exclusive roofing leads from your site.',
   openGraph: {
-    title: roofingData.metaTitle,
-    description: roofingData.metaDescription,
+    title: 'Roofing Visualization & Lead Generation | Vizzion',
+    description: 'Homeowners see new shingles, metal, or tile on their actual roof before calling. Vizzion captures exclusive roofing leads from your site.',
     url: '/industries/roofing',
   },
   twitter: {
-    title: roofingData.metaTitle,
-    description: roofingData.metaDescription,
+    title: 'Roofing Visualization & Lead Generation | Vizzion',
+    description: 'Homeowners see new shingles, metal, or tile on their actual roof before calling. Vizzion captures exclusive roofing leads from your site.',
   },
 };
 

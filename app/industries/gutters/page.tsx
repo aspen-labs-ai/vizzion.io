@@ -17,16 +17,16 @@ import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { guttersData } from '@/data/industries/gutters';
 
 export const metadata: Metadata = {
-  title: guttersData.metaTitle,
-  description: guttersData.metaDescription,
+  title: 'Gutter Visualization & Lead Gen | Vizzion',
+  description: 'Homeowners preview gutter profiles and colors on their actual home. Vizzion turns your website traffic into exclusive gutter leads.',
   openGraph: {
-    title: guttersData.metaTitle,
-    description: guttersData.metaDescription,
+    title: 'Gutter Visualization & Lead Gen | Vizzion',
+    description: 'Homeowners preview gutter profiles and colors on their actual home. Vizzion turns your website traffic into exclusive gutter leads.',
     url: '/industries/gutters',
   },
   twitter: {
-    title: guttersData.metaTitle,
-    description: guttersData.metaDescription,
+    title: 'Gutter Visualization & Lead Gen | Vizzion',
+    description: 'Homeowners preview gutter profiles and colors on their actual home. Vizzion turns your website traffic into exclusive gutter leads.',
   },
 };
 

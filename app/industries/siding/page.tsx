@@ -17,16 +17,16 @@ import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { sidingData } from '@/data/industries/siding';
 
 export const metadata: Metadata = {
-  title: sidingData.metaTitle,
-  description: sidingData.metaDescription,
+  title: 'Siding Visualization & Lead Generation | Vizzion',
+  description: 'Homeowners preview new siding on their actual home before committing. Vizzion captures qualified siding leads — no shared leads.',
   openGraph: {
-    title: sidingData.metaTitle,
-    description: sidingData.metaDescription,
+    title: 'Siding Visualization & Lead Generation | Vizzion',
+    description: 'Homeowners preview new siding on their actual home before committing. Vizzion captures qualified siding leads — no shared leads.',
     url: '/industries/siding',
   },
   twitter: {
-    title: sidingData.metaTitle,
-    description: sidingData.metaDescription,
+    title: 'Siding Visualization & Lead Generation | Vizzion',
+    description: 'Homeowners preview new siding on their actual home before committing. Vizzion captures qualified siding leads — no shared leads.',
   },
 };
 

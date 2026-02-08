@@ -17,16 +17,16 @@ import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { garageDoorsData } from '@/data/industries/garage-doors';
 
 export const metadata: Metadata = {
-  title: garageDoorsData.metaTitle,
-  description: garageDoorsData.metaDescription,
+  title: 'Garage Door Visualization & Leads | Vizzion',
+  description: 'Homeowners preview new garage doors on their actual home. Vizzion captures exclusive leads from your website traffic — no shared lists.',
   openGraph: {
-    title: garageDoorsData.metaTitle,
-    description: garageDoorsData.metaDescription,
+    title: 'Garage Door Visualization & Leads | Vizzion',
+    description: 'Homeowners preview new garage doors on their actual home. Vizzion captures exclusive leads from your website traffic — no shared lists.',
     url: '/industries/garage-doors',
   },
   twitter: {
-    title: garageDoorsData.metaTitle,
-    description: garageDoorsData.metaDescription,
+    title: 'Garage Door Visualization & Leads | Vizzion',
+    description: 'Homeowners preview new garage doors on their actual home. Vizzion captures exclusive leads from your website traffic — no shared lists.',
   },
 };
 

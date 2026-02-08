@@ -17,16 +17,16 @@ import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { solarData } from '@/data/industries/solar';
 
 export const metadata: Metadata = {
-  title: solarData.metaTitle,
-  description: solarData.metaDescription,
+  title: 'Solar Visualization & Lead Generation | Vizzion',
+  description: 'Homeowners preview solar panels on their actual roof, then hand you their email. Vizzion turns your website traffic into exclusive solar leads.',
   openGraph: {
-    title: solarData.metaTitle,
-    description: solarData.metaDescription,
+    title: 'Solar Visualization & Lead Generation | Vizzion',
+    description: 'Homeowners preview solar panels on their actual roof, then hand you their email. Vizzion turns your website traffic into exclusive solar leads.',
     url: '/industries/solar',
   },
   twitter: {
-    title: solarData.metaTitle,
-    description: solarData.metaDescription,
+    title: 'Solar Visualization & Lead Generation | Vizzion',
+    description: 'Homeowners preview solar panels on their actual roof, then hand you their email. Vizzion turns your website traffic into exclusive solar leads.',
   },
 };
 

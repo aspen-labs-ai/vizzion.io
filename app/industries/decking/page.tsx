@@ -17,16 +17,16 @@ import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { deckingData } from '@/data/industries/decking';
 
 export const metadata: Metadata = {
-  title: deckingData.metaTitle,
-  description: deckingData.metaDescription,
+  title: 'Deck Visualization & Lead Generation | Vizzion',
+  description: 'Homeowners see their dream deck before breaking ground. Vizzion captures exclusive decking leads from your website — they preview, you close.',
   openGraph: {
-    title: deckingData.metaTitle,
-    description: deckingData.metaDescription,
+    title: 'Deck Visualization & Lead Generation | Vizzion',
+    description: 'Homeowners see their dream deck before breaking ground. Vizzion captures exclusive decking leads from your website — they preview, you close.',
     url: '/industries/decking',
   },
   twitter: {
-    title: deckingData.metaTitle,
-    description: deckingData.metaDescription,
+    title: 'Deck Visualization & Lead Generation | Vizzion',
+    description: 'Homeowners see their dream deck before breaking ground. Vizzion captures exclusive decking leads from your website — they preview, you close.',
   },
 };
 

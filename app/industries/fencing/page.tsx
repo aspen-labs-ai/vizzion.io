@@ -17,16 +17,16 @@ import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { fencingData } from '@/data/industries/fencing';
 
 export const metadata: Metadata = {
-  title: fencingData.metaTitle,
-  description: fencingData.metaDescription,
+  title: 'Fencing Visualization & Lead Gen | Vizzion',
+  description: 'Homeowners preview fence styles on their actual yard. They see it, want it, and give you their info. Exclusive leads from your own site.',
   openGraph: {
-    title: fencingData.metaTitle,
-    description: fencingData.metaDescription,
+    title: 'Fencing Visualization & Lead Gen | Vizzion',
+    description: 'Homeowners preview fence styles on their actual yard. They see it, want it, and give you their info. Exclusive leads from your own site.',
     url: '/industries/fencing',
   },
   twitter: {
-    title: fencingData.metaTitle,
-    description: fencingData.metaDescription,
+    title: 'Fencing Visualization & Lead Gen | Vizzion',
+    description: 'Homeowners preview fence styles on their actual yard. They see it, want it, and give you their info. Exclusive leads from your own site.',
   },
 };
 
