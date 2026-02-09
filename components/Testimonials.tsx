@@ -10,10 +10,10 @@ export default function Testimonials() {
       image: "/images/testimonials/avatar-1.jpg"
     },
     {
-      quote: "The email capture before visualization is genius. Every customer who uses the widget becomes a lead. No more lost opportunities.",
+      quote: "Homeowners see a pool in their backyard and the conversation changes completely. We closed 31% of Vizzion leads vs. 12% on everything else.",
       author: "Sarah Chen",
       handle: "@sarahchen",
-      company: "Elite Exteriors",
+      company: "AquaVista Pools",
       image: "/images/testimonials/avatar-2.jpg"
     },
     {
@@ -24,31 +24,38 @@ export default function Testimonials() {
       image: "/images/testimonials/avatar-3.jpg"
     },
     {
-      quote: "Our customers love seeing products on their actual homes before making a decision. It builds trust instantly.",
+      quote: "Fleet owners see the wrap on their actual vehicle and commit on the spot. Our quote-to-close rate doubled since adding Vizzion.",
       author: "Emily Rodriguez",
       handle: "@emilyrodriguez",
-      company: "Premium Roofing Solutions",
+      company: "Precision Auto Wraps",
       image: "/images/testimonials/avatar-4.jpg"
     },
     {
-      quote: "We've tried contact forms, free visualizers, even AR apps. Nothing converts like Vizzion. It's not even close.",
+      quote: "In Phoenix, everyone is thinking about turf. Vizzion lets homeowners see it on their yard — we cut our Angi spend entirely.",
       author: "David Park",
       handle: "@davidpark",
-      company: "Modern Exteriors",
+      company: "Desert Green Turf",
       image: "/images/testimonials/avatar-5.jpg"
     },
     {
-      quote: "The dashboard shows exactly which products customers are interested in. Our sales team follows up with perfect context.",
+      quote: "The dashboard shows exactly which products customers are interested in. Our sales team follows up with perfect context every time.",
       author: "Lisa Anderson",
       handle: "@lisaanderson",
-      company: "Anderson Roofing Group",
+      company: "Heritage Floors & Design",
       image: "/images/testimonials/avatar-6.jpg"
     }
   ];
 
   return (
-    <section className="py-24 px-6 bg-bg-primary">
-      <div className="max-w-[1400px] mx-auto">
+    <section
+      className="py-24 px-6 relative overflow-hidden border-t border-accent/10"
+      style={{ background: 'linear-gradient(180deg, rgba(16, 185, 129, 0.06) 0%, var(--color-bg-primary) 40%, var(--color-bg-primary) 100%)' }}
+    >
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse 80% 50% at 50% 0%, rgba(16, 185, 129, 0.1) 0%, transparent 70%)' }}
+      />
+      <div className="max-w-[1400px] mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <div className="inline-block px-4 py-2 rounded-full bg-accent-light text-accent font-medium text-sm mb-4">

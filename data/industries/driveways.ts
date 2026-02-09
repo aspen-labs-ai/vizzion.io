@@ -275,7 +275,7 @@ export const drivewaysData: IndustryData = {
     ],
     schema: {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
+      "@type": "WebApplication",
       name: "Vizzion Driveway & Hardscape Visualization Widget",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",

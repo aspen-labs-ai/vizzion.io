@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import SocialProof from '@/components/SocialProof';
+import WidgetExperience from '@/components/WidgetExperience';
 import ThreeSteps from '@/components/ThreeSteps';
 import Platforms from '@/components/Platforms';
 import Industries from '@/components/Industries';
@@ -32,6 +33,7 @@ export default function Home() {
       <main>
         <Hero />
         <SocialProof />
+        <WidgetExperience />
         <ThreeSteps />
         <Platforms />
         <Industries />

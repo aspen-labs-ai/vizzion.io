@@ -3,7 +3,7 @@ import type { IndustryData } from "./types";
 export const artificialTurfData: IndustryData = {
   slug: "artificial-turf",
   name: "Artificial Turf",
-  shortName: "Turf",
+  shortName: "Artificial Turf",
   metaTitle: "Artificial Turf Visualization Widget for Lead Generation | Vizzion",
   metaDescription:
     "Generate exclusive artificial turf leads from your own website. Homeowners see turf on their actual yard, enter their email — you get the lead. No sharing.",

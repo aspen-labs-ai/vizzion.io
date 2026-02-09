@@ -7,7 +7,7 @@ export const guttersData: IndustryData = {
   metaTitle:
     "Gutter Visualization Widget for Lead Generation | Vizzion",
   metaDescription:
-    "Homeowners preview gutter profiles, colors, and guards on their actual home before calling you. Vizzion turns your website traffic into exclusive gutter leads — no shared leads, no cold calls.",
+    "Homeowners preview gutter profiles, colors, and guards on their actual home. Vizzion turns your website traffic into exclusive gutter leads — no sharing.",
 
   header: {
     badge: "Gutter Industry",
@@ -277,7 +277,7 @@ export const guttersData: IndustryData = {
     ],
     schema: {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
+      "@type": "WebApplication",
       name: "Vizzion Gutter Visualization Widget",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",

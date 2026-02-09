@@ -3,7 +3,7 @@ import type { IndustryData } from "./types";
 export const boatDeckingData: IndustryData = {
   slug: "boat-decking",
   name: "Boat Decking",
-  shortName: "Marine Decking",
+  shortName: "Boat Decking",
   metaTitle: "Boat Decking Visualization Tool for Lead Generation | Vizzion",
   metaDescription:
     "Boat owners see new decking on their actual boat and submit their info. Vizzion generates exclusive marine decking leads from your own website traffic.",

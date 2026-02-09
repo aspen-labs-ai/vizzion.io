@@ -261,7 +261,7 @@ export const garageDoorsData: IndustryData = {
     ],
     schema: {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
+      "@type": "WebApplication",
       name: "Vizzion Garage Doors Visualization Widget",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",

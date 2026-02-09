@@ -10,7 +10,7 @@ export const flooringData: IndustryData = {
 
   header: {
     badge: "Flooring Industry",
-    headline: "Stop Losing Flooring Sales to Decision Paralysis",
+    headline: "Flooring Visualization That Closes Sales Faster",
     highlightWord: "Flooring",
     intro:
       "Your customers are drowning in options — 47 shades of oak, 30 LVP patterns, endless tile formats. A 3-inch sample board tells them almost nothing about how a floor will look across 1,500 square feet of living space. Vizzion lets them upload a photo of their actual room and see any floor installed in seconds. They enter their email to save the preview. You get a qualified lead who already knows what they want.",

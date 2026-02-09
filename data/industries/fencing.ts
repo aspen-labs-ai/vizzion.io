@@ -250,7 +250,7 @@ export const fencingData: IndustryData = {
     ],
     schema: {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
+      "@type": "WebApplication",
       name: "Vizzion Fencing Visualization Widget",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",

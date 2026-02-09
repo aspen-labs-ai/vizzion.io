@@ -210,8 +210,16 @@ export default function Industries() {
   };
 
   return (
-    <section className="py-24 px-6 bg-bg-primary" id="industries">
-      <div className="max-w-[1400px] mx-auto">
+    <section
+      className="py-24 px-6 relative overflow-hidden border-t border-accent/10"
+      style={{ background: 'linear-gradient(180deg, rgba(16, 185, 129, 0.06) 0%, var(--color-bg-primary) 40%, var(--color-bg-primary) 100%)' }}
+      id="industries"
+    >
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse 80% 50% at 50% 0%, rgba(16, 185, 129, 0.1) 0%, transparent 70%)' }}
+      />
+      <div className="max-w-[1400px] mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <div className="inline-block px-4 py-2 rounded-full bg-accent-light text-accent font-medium text-sm mb-4">

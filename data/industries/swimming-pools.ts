@@ -3,7 +3,7 @@ import type { IndustryData } from "./types";
 export const swimmingPoolsData: IndustryData = {
   slug: "swimming-pools",
   name: "Swimming Pools",
-  shortName: "Pools",
+  shortName: "Swimming Pools",
   metaTitle: "Swimming Pool Visualization Widget for Lead Generation | Vizzion",
   metaDescription:
     "Swimming pool lead generation widget for pool builders. Homeowners see a pool in their actual backyard, then submit their email. Exclusive, pre-qualified leads.",

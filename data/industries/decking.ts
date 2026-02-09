@@ -261,7 +261,7 @@ export const deckingData: IndustryData = {
     ],
     schema: {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
+      "@type": "WebApplication",
       name: "Vizzion Decking Visualization Widget",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",

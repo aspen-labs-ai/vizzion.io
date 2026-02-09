@@ -259,7 +259,7 @@ export const roofingData: IndustryData = {
     ],
     schema: {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
+      "@type": "WebApplication",
       name: "Vizzion Roofing Visualization Widget",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",

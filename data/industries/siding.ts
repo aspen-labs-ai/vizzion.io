@@ -254,7 +254,7 @@ export const sidingData: IndustryData = {
     ],
     schema: {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
+      "@type": "WebApplication",
       name: "Vizzion Siding Visualization Widget",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",

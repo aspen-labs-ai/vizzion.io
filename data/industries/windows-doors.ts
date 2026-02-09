@@ -259,7 +259,7 @@ export const windowsDoorsData: IndustryData = {
     ],
     schema: {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
+      "@type": "WebApplication",
       name: "Vizzion Windows & Doors Visualization Widget",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
