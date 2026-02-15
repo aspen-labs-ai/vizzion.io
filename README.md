@@ -81,7 +81,43 @@ git push
 npm run dev       # Start dev server at http://localhost:3000
 npm run build     # Production build
 npm run lint      # ESLint
+npm run seo:indexing-check  # Search indexing health checks (redirects/canonical/sitemap)
 ```
+
+Search Console monitoring runbook:
+
+- `docs/operations/search-console-validation-monitoring.md`
+
+## Vizzion App Dashboard (Auth + Widget Management)
+
+This repo now includes an authenticated web app at `/dashboard` for:
+
+- Managing widget settings and embed key
+- Creating/updating/deleting materials
+- Viewing lead + event analytics
+- Exporting captured leads to CSV
+
+### Environment Variables
+
+Create `.env.local` using `.env.example`:
+
+```bash
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+NEXT_PUBLIC_SUPABASE_URL=...
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=...
+SUPABASE_SERVICE_ROLE_KEY=...
+RESEND_API_KEY=...            # optional
+RESEND_FROM_EMAIL=...         # optional
+WIDGET_IP_HASH_SALT=...       # optional
+```
+
+### Supabase Migrations
+
+Applied migrations are tracked in:
+
+- `supabase/migrations/20260209213022_widget_mvp_foundation_core_tables.sql`
+- `supabase/migrations/20260209213148_widget_mvp_foundation_security_and_bootstrap.sql`
+- `supabase/migrations/20260209214639_widget_mvp_hardening_indexes_and_search_path.sql`
 
 ## Key Files
 

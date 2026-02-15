@@ -4,18 +4,22 @@ export const garageDoorsData: IndustryData = {
   slug: "garage-doors",
   name: "Garage Doors",
   shortName: "Garage Doors",
-  metaTitle:
-    "Garage Door Visualization Widget for Lead Generation | Vizzion",
-  metaDescription:
-    "Let homeowners preview new garage doors on their actual home. Vizzion captures exclusive leads from your website traffic — no shared lists.",
+  metaTitle: "Garage Door Visualizer Widget for Garage Door Websites | Vizzion",
+  metaDescription: "Use a garage door visualizer widget on your garage door website. Let visitors preview options on their own photo and turn traffic into qualified leads.",
+
+  lastUpdated: "February 15, 2026",
+  evidenceNotes: [
+    "Garage Doors benchmark ranges shown here are directional and should be validated against your own pipeline data.",
+    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+  ],
 
   header: {
     badge: "Garage Door Industry",
     headline:
-      "Turn Your Website Into a Garage Door Lead Machine",
+      "Garage Door Visualizer Widget for Your Garage Door Website",
     highlightWord: "Garage Door",
     intro:
-      "Homeowners stare at garage door catalogs and can't picture the result. Vizzion lets them see a new garage door on their actual home — then captures their email before they see the full preview. You get a warm, exclusive lead from your own website. No bought lists, no shared leads, no catalog guesswork.",
+      "Add a garage door visualizer widget to your garage door website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Homeowners stare at garage door catalogs and can't picture the result. Vizzion lets them see a new garage door on their actual home — then captures their email before they see the full preview. You get a warm, exclusive lead from your own website. No bought lists, no shared leads, no catalog guesswork.",
     introHighlight:
       "Homeowners stare at garage door catalogs and can't picture the result.",
     cta: { text: "See It in Action", href: "#how-it-works" },
@@ -76,7 +80,7 @@ export const garageDoorsData: IndustryData = {
   },
 
   howItWorks: {
-    headline: "Three Steps. Five Minutes to Install. Leads Start Flowing.",
+    headline: "How to Add a Garage Door Visualizer Widget to Your Garage Door Website",
     intro:
       "Vizzion is designed to be dead simple for garage door dealers and installers. No IT department, no complex integrations, no waiting on a web developer. Embed a snippet, customize the look, and start generating leads from your existing website traffic.",
     steps: [
@@ -283,8 +287,7 @@ export const garageDoorsData: IndustryData = {
         "Lead capture with style preference data",
         "5-minute setup",
       ],
-      screenshot:
-        "https://vizzion.io/images/garage-doors-widget-preview.png",
+      screenshot: "https://vizzion.io/images/industries/garage-doors.png",
       url: "https://vizzion.io/industries/garage-doors",
     },
   },

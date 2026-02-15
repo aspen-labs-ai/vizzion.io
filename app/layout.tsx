@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -13,6 +14,14 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
   },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/vizzion-logo.png', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/vizzion-logo.png',
+  },
 };
 
 export default function RootLayout({
@@ -23,6 +32,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Script id="microsoft-clarity" strategy="afterInteractive">
+          {`(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","vhtqb8ecoj");`}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -33,7 +45,6 @@ export default function RootLayout({
               "url": "https://vizzion.io",
               "description":
                 "Product visualization widget for businesses that sell visual transformations. Customers upload a photo and see what products or services look like on their actual property, vehicle, or body.",
-              "sameAs": [],
               "contactPoint": {
                 "@type": "ContactPoint",
                 "contactType": "sales",

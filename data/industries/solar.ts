@@ -4,16 +4,21 @@ export const solarData: IndustryData = {
   slug: "solar",
   name: "Solar Energy",
   shortName: "Solar",
-  metaTitle: "Solar Lead Generation Tool — Turn Website Visitors Into Qualified Leads | Vizzion",
-  metaDescription:
-    "Vizzion turns your solar website traffic into exclusive, pre-qualified solar leads. Homeowners preview panels on their roof and hand you their info.",
+  metaTitle: "Solar Visualizer Widget for Solar Websites | Vizzion",
+  metaDescription: "Use a solar visualizer widget on your solar website. Let visitors preview options on their own photo and turn traffic into qualified leads.",
+
+  lastUpdated: "February 15, 2026",
+  evidenceNotes: [
+    "Solar benchmark ranges shown here are directional and should be validated against your own pipeline data.",
+    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+  ],
 
   header: {
     badge: "Solar Industry",
-    headline: "Turn Every Website Visitor Into a Qualified Solar Lead",
+    headline: "Solar Visualizer Widget for Your Solar Website",
     highlightWord: "Solar",
     intro:
-      "Homeowners don't buy what they can't picture. Vizzion lets them see solar panels on their actual roof — then captures their email before they see the result. You get a warm, exclusive lead from your own website traffic. No bought lists, no shared leads, no guesswork.",
+      "Add a solar visualizer widget to your solar website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Homeowners don't buy what they can't picture. Vizzion lets them see solar panels on their actual roof — then captures their email before they see the result. You get a warm, exclusive lead from your own website traffic. No bought lists, no shared leads, no guesswork.",
     introHighlight: "Homeowners don't buy what they can't picture.",
     cta: { text: "See It in Action", href: "#how-it-works" },
   },
@@ -79,7 +84,7 @@ export const solarData: IndustryData = {
   },
 
   howItWorks: {
-    headline: "Three Steps. Five Minutes to Install. Leads Start Flowing.",
+    headline: "How to Add a Solar Visualizer Widget to Your Solar Website",
     intro:
       "Vizzion is designed to be dead simple. No IT department needed, no complex integrations, no six-week onboarding. You embed a snippet, customize the look, and start generating leads from your existing website traffic.",
     steps: [
@@ -278,7 +283,7 @@ export const solarData: IndustryData = {
         "Lead capture and routing",
         "5-minute setup",
       ],
-      screenshot: "https://vizzion.io/images/solar-widget-preview.png",
+      screenshot: "https://vizzion.io/images/industries/solar.png",
       url: "https://vizzion.io/industries/solar",
     },
   },

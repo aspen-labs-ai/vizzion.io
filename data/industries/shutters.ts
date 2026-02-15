@@ -4,18 +4,22 @@ export const shuttersData: IndustryData = {
   slug: "shutters",
   name: "Exterior Shutters",
   shortName: "Shutters",
-  metaTitle:
-    "Shutter Visualization Widget for Lead Generation | Vizzion",
-  metaDescription:
-    "Let homeowners preview exterior shutters on their actual home before buying. Vizzion captures emails before showing the result — qualified shutter leads, not cold traffic.",
+  metaTitle: "Shutter Visualizer Widget for Shutter Websites | Vizzion",
+  metaDescription: "Use a shutter visualizer widget on your shutter website. Let visitors preview options on their own photo and turn traffic into qualified leads.",
+
+  lastUpdated: "February 15, 2026",
+  evidenceNotes: [
+    "Shutters benchmark ranges shown here are directional and should be validated against your own pipeline data.",
+    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+  ],
 
   header: {
     badge: "Shutters Industry",
     headline:
-      "Turn Every Window Into a Qualified Shutter Lead",
+      "Shutter Visualizer Widget for Your Shutter Website",
     highlightWord: "Shutter",
     intro:
-      "Exterior shutters are the fastest way to transform a home's curb appeal — but homeowners can't commit to a style, color, or material they've never seen on their own house. Vizzion lets them upload a photo and preview shutters on their actual facade in seconds. They enter their email to save the result. You get a warm, exclusive lead with their style preferences already attached.",
+      "Add a shutter visualizer widget to your shutter website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Exterior shutters are the fastest way to transform a home's curb appeal — but homeowners can't commit to a style, color, or material they've never seen on their own house. Vizzion lets them upload a photo and preview shutters on their actual facade in seconds. They enter their email to save the result. You get a warm, exclusive lead with their style preferences already attached.",
     introHighlight:
       "Homeowners can't commit to a style, color, or material they've never seen on their own house.",
     cta: { text: "See It in Action", href: "#how-it-works" },
@@ -86,7 +90,7 @@ export const shuttersData: IndustryData = {
   },
 
   howItWorks: {
-    headline: "Three Steps. Five Minutes to Install. Leads Start Flowing.",
+    headline: "How to Add a Shutter Visualizer Widget to Your Shutter Website",
     intro:
       "No developer needed, no six-week onboarding. Paste a snippet on your website, customize the look, and start converting your existing traffic into shutter leads today.",
     steps: [
@@ -290,7 +294,7 @@ export const shuttersData: IndustryData = {
         "CRM integration and lead routing",
         "Franchise-ready multi-location deployment",
       ],
-      screenshot: "https://vizzion.io/images/shutters-widget-preview.png",
+      screenshot: "https://vizzion.io/images/industries/shutters.png",
       url: "https://vizzion.io/industries/shutters",
     },
   },

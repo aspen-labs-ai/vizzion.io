@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { getIndustryMetadata } from '@/lib/seo/industry-metadata';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import IndustryPageHeader from '@/components/industries/IndustryPageHeader';
@@ -16,19 +17,8 @@ import IndustryMidCTA from '@/components/industries/IndustryMidCTA';
 import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { solarData } from '@/data/industries/solar';
 
-export const metadata: Metadata = {
-  title: 'Solar Visualization & Lead Generation | Vizzion',
-  description: 'Homeowners preview solar panels on their actual roof, then hand you their email. Vizzion turns your website traffic into exclusive solar leads.',
-  openGraph: {
-    title: 'Solar Visualization & Lead Generation | Vizzion',
-    description: 'Homeowners preview solar panels on their actual roof, then hand you their email. Vizzion turns your website traffic into exclusive solar leads.',
-    url: '/industries/solar',
-  },
-  twitter: {
-    title: 'Solar Visualization & Lead Generation | Vizzion',
-    description: 'Homeowners preview solar panels on their actual roof, then hand you their email. Vizzion turns your website traffic into exclusive solar leads.',
-  },
-};
+export const metadata: Metadata = getIndustryMetadata('solar');
+
 
 export default function SolarIndustryPage() {
   return (

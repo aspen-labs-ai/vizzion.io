@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { getIndustryMetadata } from '@/lib/seo/industry-metadata';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import IndustryPageHeader from '@/components/industries/IndustryPageHeader';
@@ -16,19 +17,8 @@ import IndustryMidCTA from '@/components/industries/IndustryMidCTA';
 import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { drivewaysData } from '@/data/industries/driveways';
 
-export const metadata: Metadata = {
-  title: 'Driveway Visualization & Lead Gen | Vizzion',
-  description: 'Homeowners preview pavers, stamped concrete, and stone on their actual driveway. Vizzion captures exclusive paving leads from your site.',
-  openGraph: {
-    title: 'Driveway Visualization & Lead Gen | Vizzion',
-    description: 'Homeowners preview pavers, stamped concrete, and stone on their actual driveway. Vizzion captures exclusive paving leads from your site.',
-    url: '/industries/driveways',
-  },
-  twitter: {
-    title: 'Driveway Visualization & Lead Gen | Vizzion',
-    description: 'Homeowners preview pavers, stamped concrete, and stone on their actual driveway. Vizzion captures exclusive paving leads from your site.',
-  },
-};
+export const metadata: Metadata = getIndustryMetadata('driveways');
+
 
 export default function DrivewaysIndustryPage() {
   return (

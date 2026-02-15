@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { getIndustryMetadata } from '@/lib/seo/industry-metadata';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import IndustryPageHeader from '@/components/industries/IndustryPageHeader';
@@ -16,19 +17,8 @@ import IndustryMidCTA from '@/components/industries/IndustryMidCTA';
 import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { fencingData } from '@/data/industries/fencing';
 
-export const metadata: Metadata = {
-  title: 'Fencing Visualization & Lead Gen | Vizzion',
-  description: 'Homeowners preview fence styles on their actual yard. They see it, want it, and give you their info. Exclusive leads from your own site.',
-  openGraph: {
-    title: 'Fencing Visualization & Lead Gen | Vizzion',
-    description: 'Homeowners preview fence styles on their actual yard. They see it, want it, and give you their info. Exclusive leads from your own site.',
-    url: '/industries/fencing',
-  },
-  twitter: {
-    title: 'Fencing Visualization & Lead Gen | Vizzion',
-    description: 'Homeowners preview fence styles on their actual yard. They see it, want it, and give you their info. Exclusive leads from your own site.',
-  },
-};
+export const metadata: Metadata = getIndustryMetadata('fencing');
+
 
 export default function FencingIndustryPage() {
   return (

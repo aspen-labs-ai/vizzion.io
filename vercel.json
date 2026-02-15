@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.vizzion.io"
+        }
+      ],
+      "destination": "https://vizzion.io/:path*",
+      "permanent": true
+    }
+  ]
+}

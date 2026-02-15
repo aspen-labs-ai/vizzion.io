@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { getIndustryMetadata } from '@/lib/seo/industry-metadata';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import IndustryPageHeader from '@/components/industries/IndustryPageHeader';
@@ -16,19 +17,8 @@ import IndustryMidCTA from '@/components/industries/IndustryMidCTA';
 import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { boatDeckingData } from '@/data/industries/boat-decking';
 
-export const metadata: Metadata = {
-  title: 'Boat Decking Visualization & Leads | Vizzion',
-  description: 'Boat owners see new decking on their actual boat and submit their info. Vizzion generates exclusive marine decking leads from your website.',
-  openGraph: {
-    title: 'Boat Decking Visualization & Leads | Vizzion',
-    description: 'Boat owners see new decking on their actual boat and submit their info. Vizzion generates exclusive marine decking leads from your website.',
-    url: '/industries/boat-decking',
-  },
-  twitter: {
-    title: 'Boat Decking Visualization & Leads | Vizzion',
-    description: 'Boat owners see new decking on their actual boat and submit their info. Vizzion generates exclusive marine decking leads from your website.',
-  },
-};
+export const metadata: Metadata = getIndustryMetadata('boat-decking');
+
 
 export default function BoatDeckingIndustryPage() {
   return (

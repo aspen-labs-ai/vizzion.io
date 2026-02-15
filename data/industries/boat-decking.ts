@@ -4,16 +4,21 @@ export const boatDeckingData: IndustryData = {
   slug: "boat-decking",
   name: "Boat Decking",
   shortName: "Boat Decking",
-  metaTitle: "Boat Decking Visualization Tool for Lead Generation | Vizzion",
-  metaDescription:
-    "Boat owners see new decking on their actual boat and submit their info. Vizzion generates exclusive marine decking leads from your own website traffic.",
+  metaTitle: "Boat Decking Visualizer Widget for Marine Decking Websites | Vizzion",
+  metaDescription: "Use a boat decking visualizer widget on your marine decking website. Let visitors preview options on their own photo and turn traffic into qualified leads.",
+
+  lastUpdated: "February 15, 2026",
+  evidenceNotes: [
+    "Boat Decking benchmark ranges shown here are directional and should be validated against your own pipeline data.",
+    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+  ],
 
   header: {
     badge: "Marine Decking Industry",
-    headline: "Turn Every Website Visitor Into a Qualified Decking Lead",
+    headline: "Boat Decking Visualizer Widget for Your Marine Decking Website",
     highlightWord: "Decking",
     intro:
-      `Boat owners spend $50K+ on a vessel but can't picture a $3K deck upgrade. Vizzion lets them see new decking material — SeaDek, synthetic teak, EVA foam, marine vinyl — on their actual boat. They upload a photo, see the transformation, and enter their email to get the full result. You get an exclusive, pre-qualified lead from your own website. No bought lists, no boat-show-only pipeline.`,
+      "Add a boat decking visualizer widget to your marine decking website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Boat owners spend $50K+ on a vessel but can't picture a $3K deck upgrade. Vizzion lets them see new decking material — SeaDek, synthetic teak, EVA foam, marine vinyl — on their actual boat. They upload a photo, see the transformation, and enter their email to get the full result. You get an exclusive, pre-qualified lead from your own website. No bought lists, no boat-show-only pipeline.",
     introHighlight: `Boat owners spend $50K+ on a vessel but can't picture a $3K deck upgrade.`,
     cta: { text: "See It in Action", href: "#how-it-works" },
   },
@@ -70,7 +75,7 @@ export const boatDeckingData: IndustryData = {
   },
 
   howItWorks: {
-    headline: "Three Steps. Five Minutes to Install. Leads Start Flowing.",
+    headline: "How to Add a Boat Decking Visualizer Widget to Your Marine Decking Website",
     intro:
       "No IT team, no complex integrations, no waiting on a vendor. Embed a snippet, match your brand, and start converting your existing website traffic into qualified decking leads.",
     steps: [
@@ -270,7 +275,7 @@ export const boatDeckingData: IndustryData = {
         "Lead capture and routing",
         "5-minute setup",
       ],
-      screenshot: "https://vizzion.io/images/boat-decking-widget-preview.png",
+      screenshot: "https://vizzion.io/images/industries/boat-decking.png",
       url: "https://vizzion.io/industries/boat-decking",
     },
   },

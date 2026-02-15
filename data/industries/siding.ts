@@ -4,17 +4,21 @@ export const sidingData: IndustryData = {
   slug: "siding",
   name: "Siding & Exterior Cladding",
   shortName: "Siding",
-  metaTitle:
-    "Siding Visualization Widget for Lead Generation | Vizzion",
-  metaDescription:
-    "Let homeowners preview new siding on their actual home before committing. Vizzion captures qualified leads from your website traffic — no shared leads.",
+  metaTitle: "Siding Visualizer Widget for Siding Websites | Vizzion",
+  metaDescription: "Use a siding visualizer widget on your siding website. Let visitors preview options on their own photo and turn traffic into qualified leads.",
+
+  lastUpdated: "February 15, 2026",
+  evidenceNotes: [
+    "Siding benchmark ranges shown here are directional and should be validated against your own pipeline data.",
+    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+  ],
 
   header: {
     badge: "Siding Industry",
-    headline: "Turn Your Siding Website Into a Lead Generation Machine",
+    headline: "Siding Visualizer Widget for Your Siding Website",
     highlightWord: "Siding",
     intro:
-      "Homeowners won't commit to a $15,000 siding replacement based on a 3-inch color swatch. Vizzion lets them see fiber cement, vinyl, or engineered wood on their actual home — then captures their email before showing the result. You get an exclusive, self-qualified lead from your own website. No aggregators, no shared leads, no swatch books that end up in a drawer.",
+      "Add a siding visualizer widget to your siding website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Homeowners won't commit to a $15,000 siding replacement based on a 3-inch color swatch. Vizzion lets them see fiber cement, vinyl, or engineered wood on their actual home — then captures their email before showing the result. You get an exclusive, self-qualified lead from your own website. No aggregators, no shared leads, no swatch books that end up in a drawer.",
     introHighlight:
       "Homeowners won't commit to a $15,000 siding replacement based on a 3-inch color swatch.",
     cta: { text: "See It in Action", href: "#how-it-works" },
@@ -75,7 +79,7 @@ export const sidingData: IndustryData = {
   },
 
   howItWorks: {
-    headline: "Three Steps. Five Minutes to Install. Leads Start Flowing.",
+    headline: "How to Add a Siding Visualizer Widget to Your Siding Website",
     intro:
       "No IT department, no six-week onboarding, no integration headaches. Embed one snippet on your website and start converting your existing siding traffic into qualified leads.",
     steps: [
@@ -275,7 +279,7 @@ export const sidingData: IndustryData = {
         "Lead capture with material preference and engagement data",
         "5-minute setup on any website platform",
       ],
-      screenshot: "https://vizzion.io/images/siding-widget-preview.png",
+      screenshot: "https://vizzion.io/images/industries/siding.png",
       url: "https://vizzion.io/industries/siding",
     },
   },

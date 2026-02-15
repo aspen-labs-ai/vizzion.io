@@ -231,6 +231,17 @@ export default function Industries() {
           <p className="text-xl text-text-secondary">
             If your customers need to see it before they buy it, Vizzion is for you.
           </p>
+          <div className="mt-6">
+            <Link
+              href="/industries"
+              className="inline-flex items-center gap-2 text-accent hover:text-accent-hover font-semibold transition-colors"
+            >
+              Explore all industry pages
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+          </div>
         </div>
 
         {/* Industry Groups */}
@@ -256,7 +267,7 @@ export default function Industries() {
         {/* Bottom CTA */}
         <div className="mt-12 text-center">
           <p className="text-text-secondary mb-4">
-            Don't see your industry? Vizzion works with any visual transformation.
+            Don&apos;t see your industry? Vizzion works with any visual transformation.
           </p>
           <a
             href="#signup"

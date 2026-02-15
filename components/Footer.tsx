@@ -29,7 +29,7 @@ export default function Footer() {
               <Link href="/#how-it-works" className="block text-text-secondary hover:text-accent transition-colors">
                 How It Works
               </Link>
-              <Link href="/#industries" className="block text-text-secondary hover:text-accent transition-colors">
+              <Link href="/industries" className="block text-text-secondary hover:text-accent transition-colors">
                 Industries
               </Link>
               <Link href="/#pricing" className="block text-text-secondary hover:text-accent transition-colors">
@@ -55,10 +55,10 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-text-primary mb-4">Legal</h4>
             <div className="space-y-3">
-              <Link href="#" className="block text-text-secondary hover:text-accent transition-colors">
+              <Link href="/privacy" className="block text-text-secondary hover:text-accent transition-colors">
                 Privacy
               </Link>
-              <Link href="#" className="block text-text-secondary hover:text-accent transition-colors">
+              <Link href="/terms" className="block text-text-secondary hover:text-accent transition-colors">
                 Terms
               </Link>
             </div>

@@ -4,18 +4,22 @@ export const windowsDoorsData: IndustryData = {
   slug: "windows-doors",
   name: "Windows & Doors",
   shortName: "Windows & Doors",
-  metaTitle:
-    "Window & Door Visualization Widget for Lead Generation | Vizzion",
-  metaDescription:
-    "Let homeowners preview new windows and doors on their actual home. Vizzion captures qualified leads from your website traffic — no shared leads, no guesswork.",
+  metaTitle: "Window and Door Visualizer Widget for Window and Door Websites | Vizzion",
+  metaDescription: "Use a window and door visualizer widget on your window and door website. Let visitors preview options on their own photo and turn traffic into qualified leads.",
+
+  lastUpdated: "February 15, 2026",
+  evidenceNotes: [
+    "Windows & Doors benchmark ranges shown here are directional and should be validated against your own pipeline data.",
+    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+  ],
 
   header: {
     badge: "Windows & Doors Industry",
     headline:
-      "Turn Window Shoppers Into Qualified Window and Door Leads",
+      "Window and Door Visualizer Widget for Your Window and Door Website",
     highlightWord: "Qualified",
     intro:
-      "Homeowners spend weeks agonizing over frame colors, grid patterns, and door styles — then stall because they can't picture the result on their own home. Vizzion lets them upload a photo and see new windows and doors on their actual house. They enter their email to save the preview. You get a warm, exclusive lead from your own website traffic.",
+      "Add a window and door visualizer widget to your window and door website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Homeowners spend weeks agonizing over frame colors, grid patterns, and door styles — then stall because they can't picture the result on their own home. Vizzion lets them upload a photo and see new windows and doors on their actual house. They enter their email to save the preview. You get a warm, exclusive lead from your own website traffic.",
     introHighlight:
       "Homeowners spend weeks agonizing over frame colors, grid patterns, and door styles — then stall because they can't picture the result.",
     cta: { text: "See It in Action", href: "#how-it-works" },
@@ -76,7 +80,7 @@ export const windowsDoorsData: IndustryData = {
   },
 
   howItWorks: {
-    headline: "Three Steps. Five Minutes to Install. Leads Start Flowing.",
+    headline: "How to Add a Window and Door Visualizer Widget to Your Window and Door Website",
     intro:
       "Vizzion drops into your existing website with a single code snippet. No IT department, no developer, no six-week integration project. Your website starts converting browsers into leads immediately.",
     steps: [
@@ -281,7 +285,7 @@ export const windowsDoorsData: IndustryData = {
         "Lead capture and routing",
         "5-minute setup",
       ],
-      screenshot: "https://vizzion.io/images/windows-doors-widget-preview.png",
+      screenshot: "https://vizzion.io/images/industries/windows-doors.png",
       url: "https://vizzion.io/industries/windows-doors",
     },
   },

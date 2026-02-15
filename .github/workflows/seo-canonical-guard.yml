@@ -1,0 +1,21 @@
+name: SEO Canonical Guard
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Block non-canonical host variants
+        run: |
+          if rg -n 'http://vizzion\.io|https://www\.vizzion\.io' app components data lib public; then
+            echo "Found non-canonical host references. Use https://vizzion.io only."
+            exit 1
+          fi

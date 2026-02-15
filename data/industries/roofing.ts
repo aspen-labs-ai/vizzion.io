@@ -4,18 +4,22 @@ export const roofingData: IndustryData = {
   slug: "roofing",
   name: "Roofing",
   shortName: "Roofing",
-  metaTitle:
-    "Roofing Lead Generation Widget — Turn Browsers Into Booked Jobs | Vizzion",
-  metaDescription:
-    "Homeowners see new shingles, metal, or tile on their actual roof before calling. Vizzion captures exclusive roofing leads from your website traffic.",
+  metaTitle: "Roofing Visualizer Widget for Roofing Websites | Vizzion",
+  metaDescription: "Use a roofing visualizer widget on your roofing website. Let visitors preview options on their own photo and turn traffic into qualified leads.",
+
+  lastUpdated: "February 15, 2026",
+  evidenceNotes: [
+    "Roofing benchmark ranges shown here are directional and should be validated against your own pipeline data.",
+    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+  ],
 
   header: {
     badge: "Roofing Industry",
     headline:
-      "Turn Your Roofing Website Into a Lead Generation Machine",
+      "Roofing Visualizer Widget for Your Roofing Website",
     highlightWord: "Roofing",
     intro:
-      "Homeowners can't tell the difference between Owens Corning Onyx Black and GAF Charcoal from a 3-inch sample. Vizzion lets them see the actual shingle, metal panel, or tile on their real roof — then captures their email before they see the result. You get an exclusive, warm lead from traffic you already have.",
+      "Add a roofing visualizer widget to your roofing website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Homeowners can't tell the difference between Owens Corning Onyx Black and GAF Charcoal from a 3-inch sample. Vizzion lets them see the actual shingle, metal panel, or tile on their real roof — then captures their email before they see the result. You get an exclusive, warm lead from traffic you already have.",
     introHighlight:
       "Homeowners can't tell the difference between Owens Corning Onyx Black and GAF Charcoal from a 3-inch sample.",
     cta: { text: "See It in Action", href: "#how-it-works" },
@@ -76,7 +80,7 @@ export const roofingData: IndustryData = {
   },
 
   howItWorks: {
-    headline: "Three Steps. Five Minutes to Install. Roofing Leads Start Flowing.",
+    headline: "How to Add a Roofing Visualizer Widget to Your Roofing Website",
     intro:
       "No IT team needed. No complex integrations. Paste one snippet on your site, and your website starts working as hard as your sales team.",
     steps: [
@@ -281,7 +285,7 @@ export const roofingData: IndustryData = {
         "Lead capture with roof photo and material preference",
         "5-minute setup",
       ],
-      screenshot: "https://vizzion.io/images/roofing-widget-preview.png",
+      screenshot: "https://vizzion.io/images/industries/roofing.png",
       url: "https://vizzion.io/industries/roofing",
     },
   },

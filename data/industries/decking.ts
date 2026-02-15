@@ -4,18 +4,22 @@ export const deckingData: IndustryData = {
   slug: "decking",
   name: "Decking",
   shortName: "Decking",
-  metaTitle:
-    "Deck Builder Lead Generation — Turn Browsers Into Booked Builds | Vizzion",
-  metaDescription:
-    "Help homeowners see their dream deck before breaking ground. Vizzion captures exclusive leads from your website — they preview, you close.",
+  metaTitle: "Deck Visualizer Widget for Decking Websites | Vizzion",
+  metaDescription: "Use a deck visualizer widget on your decking website. Let visitors preview options on their own photo and turn traffic into qualified leads.",
+
+  lastUpdated: "February 15, 2026",
+  evidenceNotes: [
+    "Decking benchmark ranges shown here are directional and should be validated against your own pipeline data.",
+    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+  ],
 
   header: {
     badge: "Decking Industry",
     headline:
-      "Stop Losing Deck Projects to Decision Paralysis — Close More Builds With Visual Proof",
+      "Deck Visualizer Widget for Your Decking Website",
     highlightWord: "Deck",
     intro:
-      "Homeowners want a new deck but can't decide between Trex Transcend in Havana Gold or TimberTech in Coastline. They stare at 3×3 color swatches for weeks, request samples from three builders, and eventually do nothing. Vizzion lets them upload a photo of their backyard and see the exact deck — material, color, railing — on their actual property. They enter their email to save the preview. You get a warm lead who already knows what they want.",
+      "Add a deck visualizer widget to your decking website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Homeowners want a new deck but can't decide between Trex Transcend in Havana Gold or TimberTech in Coastline. They stare at 3×3 color swatches for weeks, request samples from three builders, and eventually do nothing. Vizzion lets them upload a photo of their backyard and see the exact deck — material, color, railing — on their actual property. They enter their email to save the preview. You get a warm lead who already knows what they want.",
     introHighlight:
       "Homeowners want a new deck but can't decide between Trex Transcend in Havana Gold or TimberTech in Coastline.",
     cta: { text: "See It in Action", href: "#how-it-works" },
@@ -80,7 +84,7 @@ export const deckingData: IndustryData = {
   },
 
   howItWorks: {
-    headline: "Three Steps. Five Minutes to Install. Leads Start Flowing.",
+    headline: "How to Add a Deck Visualizer Widget to Your Decking Website",
     intro:
       "No IT department, no complex setup, no six-week onboarding. Embed a snippet on your site and start converting your existing traffic into qualified deck leads.",
     steps: [
@@ -284,7 +288,7 @@ export const deckingData: IndustryData = {
         "Lead capture with material preference data",
         "5-minute setup",
       ],
-      screenshot: "https://vizzion.io/images/decking-widget-preview.png",
+      screenshot: "https://vizzion.io/images/industries/decking.png",
       url: "https://vizzion.io/industries/decking",
     },
   },

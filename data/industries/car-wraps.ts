@@ -4,16 +4,21 @@ export const carWrapsData: IndustryData = {
   slug: "car-wraps",
   name: "Car & Vehicle Wraps",
   shortName: "Car Wraps",
-  metaTitle: "Vehicle Wrap Visualization Widget for Lead Generation | Vizzion",
-  metaDescription:
-    "Vehicle wrap visualization widget that lets customers preview wrap colors on their actual car. Captures emails, qualifies leads, eliminates free mockups.",
+  metaTitle: "Vehicle Wrap Visualizer Widget for Wrap Shop Websites | Vizzion",
+  metaDescription: "Use a vehicle wrap visualizer widget on your wrap shop website. Let visitors preview options on their own photo and turn traffic into qualified leads.",
+
+  lastUpdated: "February 15, 2026",
+  evidenceNotes: [
+    "Car Wraps benchmark ranges shown here are directional and should be validated against your own pipeline data.",
+    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+  ],
 
   header: {
     badge: "Vehicle Wrap Industry",
-    headline: "Stop Doing Free Wrap Mockups for People Who Never Buy",
+    headline: "Vehicle Wrap Visualizer Widget for Your Wrap Shop Website",
     highlightWord: "Wrap",
     intro:
-      "Your designers spend two hours mocking up a custom wrap for every walk-in and website inquiry. Half of them ghost after seeing the price. Vizzion lets customers upload a photo of their vehicle and see your wrap designs on it instantly — then captures their email before they get the full result. You get a qualified lead who already loves the look. No free design labor, no tire-kickers.",
+      "Add a vehicle wrap visualizer widget to your wrap shop website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Your designers spend two hours mocking up a custom wrap for every walk-in and website inquiry. Half of them ghost after seeing the price. Vizzion lets customers upload a photo of their vehicle and see your wrap designs on it instantly — then captures their email before they get the full result. You get a qualified lead who already loves the look. No free design labor, no tire-kickers.",
     introHighlight: "Half of them ghost after seeing the price.",
     cta: { text: "See It in Action", href: "#how-it-works" },
   },
@@ -70,7 +75,7 @@ export const carWrapsData: IndustryData = {
   },
 
   howItWorks: {
-    headline: "Three Steps. Five Minutes to Install. Mockups on Autopilot.",
+    headline: "How to Add a Vehicle Wrap Visualizer Widget to Your Wrap Shop Website",
     intro:
       "No design software to learn, no templates to manage, no developer needed. You paste a code snippet on your site, upload your color and finish options, and Vizzion handles the rest.",
     steps: [
@@ -270,7 +275,7 @@ export const carWrapsData: IndustryData = {
         "5-minute setup",
         "Full color and finish catalog support",
       ],
-      screenshot: "https://vizzion.io/images/car-wraps-widget-preview.png",
+      screenshot: "https://vizzion.io/images/industries/car-wraps.png",
       url: "https://vizzion.io/industries/car-wraps",
     },
   },

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { getIndustryMetadata } from '@/lib/seo/industry-metadata';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import IndustryPageHeader from '@/components/industries/IndustryPageHeader';
@@ -16,19 +17,8 @@ import IndustryMidCTA from '@/components/industries/IndustryMidCTA';
 import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { tattoosData } from '@/data/industries/tattoos';
 
-export const metadata: Metadata = {
-  title: 'Tattoo Visualization & Lead Gen | Vizzion',
-  description: 'Clients see your tattoo designs on their actual skin before booking. Reduces no-shows and turns browsers into committed leads with Vizzion.',
-  openGraph: {
-    title: 'Tattoo Visualization & Lead Gen | Vizzion',
-    description: 'Clients see your tattoo designs on their actual skin before booking. Reduces no-shows and turns browsers into committed leads with Vizzion.',
-    url: '/industries/tattoos',
-  },
-  twitter: {
-    title: 'Tattoo Visualization & Lead Gen | Vizzion',
-    description: 'Clients see your tattoo designs on their actual skin before booking. Reduces no-shows and turns browsers into committed leads with Vizzion.',
-  },
-};
+export const metadata: Metadata = getIndustryMetadata('tattoos');
+
 
 export default function TattoosIndustryPage() {
   return (

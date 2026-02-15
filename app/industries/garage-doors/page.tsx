@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { getIndustryMetadata } from '@/lib/seo/industry-metadata';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import IndustryPageHeader from '@/components/industries/IndustryPageHeader';
@@ -16,19 +17,8 @@ import IndustryMidCTA from '@/components/industries/IndustryMidCTA';
 import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { garageDoorsData } from '@/data/industries/garage-doors';
 
-export const metadata: Metadata = {
-  title: 'Garage Door Visualization & Leads | Vizzion',
-  description: 'Homeowners preview new garage doors on their actual home. Vizzion captures exclusive leads from your website traffic — no shared lists.',
-  openGraph: {
-    title: 'Garage Door Visualization & Leads | Vizzion',
-    description: 'Homeowners preview new garage doors on their actual home. Vizzion captures exclusive leads from your website traffic — no shared lists.',
-    url: '/industries/garage-doors',
-  },
-  twitter: {
-    title: 'Garage Door Visualization & Leads | Vizzion',
-    description: 'Homeowners preview new garage doors on their actual home. Vizzion captures exclusive leads from your website traffic — no shared lists.',
-  },
-};
+export const metadata: Metadata = getIndustryMetadata('garage-doors');
+
 
 export default function GarageDoorsIndustryPage() {
   return (

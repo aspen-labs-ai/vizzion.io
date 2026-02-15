@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { getIndustryMetadata } from '@/lib/seo/industry-metadata';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import IndustryPageHeader from '@/components/industries/IndustryPageHeader';
@@ -16,19 +17,8 @@ import IndustryMidCTA from '@/components/industries/IndustryMidCTA';
 import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { sidingData } from '@/data/industries/siding';
 
-export const metadata: Metadata = {
-  title: 'Siding Visualization & Lead Generation | Vizzion',
-  description: 'Homeowners preview new siding on their actual home before committing. Vizzion captures qualified siding leads — no shared leads.',
-  openGraph: {
-    title: 'Siding Visualization & Lead Generation | Vizzion',
-    description: 'Homeowners preview new siding on their actual home before committing. Vizzion captures qualified siding leads — no shared leads.',
-    url: '/industries/siding',
-  },
-  twitter: {
-    title: 'Siding Visualization & Lead Generation | Vizzion',
-    description: 'Homeowners preview new siding on their actual home before committing. Vizzion captures qualified siding leads — no shared leads.',
-  },
-};
+export const metadata: Metadata = getIndustryMetadata('siding');
+
 
 export default function SidingIndustryPage() {
   return (

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { getIndustryMetadata } from '@/lib/seo/industry-metadata';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import IndustryPageHeader from '@/components/industries/IndustryPageHeader';
@@ -16,19 +17,8 @@ import IndustryMidCTA from '@/components/industries/IndustryMidCTA';
 import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { deckingData } from '@/data/industries/decking';
 
-export const metadata: Metadata = {
-  title: 'Deck Visualization & Lead Generation | Vizzion',
-  description: 'Homeowners see their dream deck before breaking ground. Vizzion captures exclusive decking leads from your website — they preview, you close.',
-  openGraph: {
-    title: 'Deck Visualization & Lead Generation | Vizzion',
-    description: 'Homeowners see their dream deck before breaking ground. Vizzion captures exclusive decking leads from your website — they preview, you close.',
-    url: '/industries/decking',
-  },
-  twitter: {
-    title: 'Deck Visualization & Lead Generation | Vizzion',
-    description: 'Homeowners see their dream deck before breaking ground. Vizzion captures exclusive decking leads from your website — they preview, you close.',
-  },
-};
+export const metadata: Metadata = getIndustryMetadata('decking');
+
 
 export default function DeckingIndustryPage() {
   return (
