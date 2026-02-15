@@ -9,6 +9,12 @@ export const guttersData: IndustryData = {
   metaDescription:
     "Homeowners preview gutter profiles, colors, and guards on their actual home. Vizzion turns your website traffic into exclusive gutter leads — no sharing.",
 
+  lastUpdated: "February 15, 2026",
+  evidenceNotes: [
+    "Gutters benchmark ranges shown here are directional and should be validated against your own pipeline data.",
+    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+  ],
+
   header: {
     badge: "Gutter Industry",
     headline:
@@ -301,8 +307,7 @@ export const guttersData: IndustryData = {
         "Lead capture with engagement context",
         "5-minute setup on any website platform",
       ],
-      screenshot:
-        "https://vizzion.io/images/gutters-widget-preview.png",
+      screenshot: "https://vizzion.io/images/industries/gutters.png",
       url: "https://vizzion.io/industries/gutters",
     },
   },

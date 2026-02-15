@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { getCanonicalUrl } from '@/lib/seo/canonical';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import IndustryPageHeader from '@/components/industries/IndustryPageHeader';
@@ -19,6 +20,9 @@ import { boatDeckingData } from '@/data/industries/boat-decking';
 export const metadata: Metadata = {
   title: 'Boat Decking Visualization & Leads | Vizzion',
   description: 'Boat owners see new decking on their actual boat and submit their info. Vizzion generates exclusive marine decking leads from your website.',
+  alternates: {
+    canonical: getCanonicalUrl('/industries/boat-decking'),
+  },
   openGraph: {
     title: 'Boat Decking Visualization & Leads | Vizzion',
     description: 'Boat owners see new decking on their actual boat and submit their info. Vizzion generates exclusive marine decking leads from your website.',

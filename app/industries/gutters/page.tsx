@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { getCanonicalUrl } from '@/lib/seo/canonical';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import IndustryPageHeader from '@/components/industries/IndustryPageHeader';
@@ -19,6 +20,9 @@ import { guttersData } from '@/data/industries/gutters';
 export const metadata: Metadata = {
   title: 'Gutter Visualization & Lead Gen | Vizzion',
   description: 'Homeowners preview gutter profiles and colors on their actual home. Vizzion turns your website traffic into exclusive gutter leads.',
+  alternates: {
+    canonical: getCanonicalUrl('/industries/gutters'),
+  },
   openGraph: {
     title: 'Gutter Visualization & Lead Gen | Vizzion',
     description: 'Homeowners preview gutter profiles and colors on their actual home. Vizzion turns your website traffic into exclusive gutter leads.',

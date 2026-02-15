@@ -4,6 +4,8 @@ export interface IndustryData {
   shortName: string;
   metaTitle: string;
   metaDescription: string;
+  lastUpdated: string;
+  evidenceNotes: string[];
 
   header: {
     badge: string;

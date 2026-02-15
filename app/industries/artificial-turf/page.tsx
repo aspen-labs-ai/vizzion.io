@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { getCanonicalUrl } from '@/lib/seo/canonical';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import IndustryPageHeader from '@/components/industries/IndustryPageHeader';
@@ -19,6 +20,9 @@ import { artificialTurfData } from '@/data/industries/artificial-turf';
 export const metadata: Metadata = {
   title: 'Artificial Turf Visualization & Leads | Vizzion',
   description: 'Homeowners see turf on their actual yard, enter their email — you get the lead. Vizzion generates exclusive artificial turf leads. No sharing.',
+  alternates: {
+    canonical: getCanonicalUrl('/industries/artificial-turf'),
+  },
   openGraph: {
     title: 'Artificial Turf Visualization & Leads | Vizzion',
     description: 'Homeowners see turf on their actual yard, enter their email — you get the lead. Vizzion generates exclusive artificial turf leads. No sharing.',

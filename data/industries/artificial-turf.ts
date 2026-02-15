@@ -8,6 +8,12 @@ export const artificialTurfData: IndustryData = {
   metaDescription:
     "Generate exclusive artificial turf leads from your own website. Homeowners see turf on their actual yard, enter their email — you get the lead. No sharing.",
 
+  lastUpdated: "February 15, 2026",
+  evidenceNotes: [
+    "Artificial Turf benchmark ranges shown here are directional and should be validated against your own pipeline data.",
+    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+  ],
+
   header: {
     badge: "Turf Industry",
     headline: "Show Them a Turf Yard That Never Needs a Drop of Water",
@@ -278,7 +284,7 @@ export const artificialTurfData: IndustryData = {
         "Lead capture and routing",
         "5-minute setup",
       ],
-      screenshot: "https://vizzion.io/images/turf-widget-preview.png",
+      screenshot: "https://vizzion.io/images/industries/artificial-turf.png",
       url: "https://vizzion.io/industries/artificial-turf",
     },
   },

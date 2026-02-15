@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { getCanonicalUrl } from '@/lib/seo/canonical';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import IndustryPageHeader from '@/components/industries/IndustryPageHeader';
@@ -19,6 +20,9 @@ import { tattoosData } from '@/data/industries/tattoos';
 export const metadata: Metadata = {
   title: 'Tattoo Visualization & Lead Gen | Vizzion',
   description: 'Clients see your tattoo designs on their actual skin before booking. Reduces no-shows and turns browsers into committed leads with Vizzion.',
+  alternates: {
+    canonical: getCanonicalUrl('/industries/tattoos'),
+  },
   openGraph: {
     title: 'Tattoo Visualization & Lead Gen | Vizzion',
     description: 'Clients see your tattoo designs on their actual skin before booking. Reduces no-shows and turns browsers into committed leads with Vizzion.',

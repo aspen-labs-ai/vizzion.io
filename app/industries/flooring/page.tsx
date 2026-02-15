@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { getCanonicalUrl } from '@/lib/seo/canonical';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import IndustryPageHeader from '@/components/industries/IndustryPageHeader';
@@ -19,6 +20,9 @@ import { flooringData } from '@/data/industries/flooring';
 export const metadata: Metadata = {
   title: 'Flooring Visualization & Lead Gen | Vizzion',
   description: 'Customers see hardwood, LVP, or tile in their actual room before they commit. Vizzion captures leads and closes flooring sales faster.',
+  alternates: {
+    canonical: getCanonicalUrl('/industries/flooring'),
+  },
   openGraph: {
     title: 'Flooring Visualization & Lead Gen | Vizzion',
     description: 'Customers see hardwood, LVP, or tile in their actual room before they commit. Vizzion captures leads and closes flooring sales faster.',

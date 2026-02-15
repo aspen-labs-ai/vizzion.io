@@ -8,6 +8,12 @@ export const tattoosData: IndustryData = {
   metaDescription:
     "Tattoo preview visualization for studios. Clients see your designs on their actual skin before booking — reducing no-shows and turning browsers into committed leads.",
 
+  lastUpdated: "February 15, 2026",
+  evidenceNotes: [
+    "Tattoos benchmark ranges shown here are directional and should be validated against your own pipeline data.",
+    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+  ],
+
   header: {
     badge: "Tattoo Industry",
     headline: "Preview Your Tattoo on Your Skin Before the Needle Touches",
@@ -271,7 +277,7 @@ export const tattoosData: IndustryData = {
         "Custom design and flash sheet uploads",
         "Adjustable placement and sizing",
       ],
-      screenshot: "https://vizzion.io/images/tattoos-widget-preview.png",
+      screenshot: "https://vizzion.io/images/industries/tattoos.png",
       url: "https://vizzion.io/industries/tattoos",
     },
   },

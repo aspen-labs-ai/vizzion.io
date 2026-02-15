@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { getCanonicalUrl } from '@/lib/seo/canonical';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import IndustryPageHeader from '@/components/industries/IndustryPageHeader';
@@ -19,6 +20,9 @@ import { garageDoorsData } from '@/data/industries/garage-doors';
 export const metadata: Metadata = {
   title: 'Garage Door Visualization & Leads | Vizzion',
   description: 'Homeowners preview new garage doors on their actual home. Vizzion captures exclusive leads from your website traffic — no shared lists.',
+  alternates: {
+    canonical: getCanonicalUrl('/industries/garage-doors'),
+  },
   openGraph: {
     title: 'Garage Door Visualization & Leads | Vizzion',
     description: 'Homeowners preview new garage doors on their actual home. Vizzion captures exclusive leads from your website traffic — no shared lists.',

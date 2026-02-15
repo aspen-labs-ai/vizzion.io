@@ -8,6 +8,12 @@ export const fencingData: IndustryData = {
   metaDescription:
     "Vizzion lets homeowners preview fence styles on their actual yard. They see it, want it, and give you their info. Exclusive leads from your own site.",
 
+  lastUpdated: "February 15, 2026",
+  evidenceNotes: [
+    "Fencing benchmark ranges shown here are directional and should be validated against your own pipeline data.",
+    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+  ],
+
   header: {
     badge: "Fencing Industry",
     headline: "Turn Your Website Into a Fencing Lead Machine",
@@ -271,7 +277,7 @@ export const fencingData: IndustryData = {
         "Lead capture with fence style preference data",
         "5-minute setup",
       ],
-      screenshot: "https://vizzion.io/images/fencing-widget-preview.png",
+      screenshot: "https://vizzion.io/images/industries/fencing.png",
       url: "https://vizzion.io/industries/fencing",
     },
   },

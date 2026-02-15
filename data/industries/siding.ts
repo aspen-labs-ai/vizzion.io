@@ -9,6 +9,12 @@ export const sidingData: IndustryData = {
   metaDescription:
     "Let homeowners preview new siding on their actual home before committing. Vizzion captures qualified leads from your website traffic — no shared leads.",
 
+  lastUpdated: "February 15, 2026",
+  evidenceNotes: [
+    "Siding benchmark ranges shown here are directional and should be validated against your own pipeline data.",
+    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+  ],
+
   header: {
     badge: "Siding Industry",
     headline: "Turn Your Siding Website Into a Lead Generation Machine",
@@ -275,7 +281,7 @@ export const sidingData: IndustryData = {
         "Lead capture with material preference and engagement data",
         "5-minute setup on any website platform",
       ],
-      screenshot: "https://vizzion.io/images/siding-widget-preview.png",
+      screenshot: "https://vizzion.io/images/industries/siding.png",
       url: "https://vizzion.io/industries/siding",
     },
   },

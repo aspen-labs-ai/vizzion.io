@@ -33,7 +33,6 @@ export default function RootLayout({
               "url": "https://vizzion.io",
               "description":
                 "Product visualization widget for businesses that sell visual transformations. Customers upload a photo and see what products or services look like on their actual property, vehicle, or body.",
-              "sameAs": [],
               "contactPoint": {
                 "@type": "ContactPoint",
                 "contactType": "sales",

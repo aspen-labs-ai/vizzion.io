@@ -9,6 +9,12 @@ export const deckingData: IndustryData = {
   metaDescription:
     "Help homeowners see their dream deck before breaking ground. Vizzion captures exclusive leads from your website — they preview, you close.",
 
+  lastUpdated: "February 15, 2026",
+  evidenceNotes: [
+    "Decking benchmark ranges shown here are directional and should be validated against your own pipeline data.",
+    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+  ],
+
   header: {
     badge: "Decking Industry",
     headline:
@@ -284,7 +290,7 @@ export const deckingData: IndustryData = {
         "Lead capture with material preference data",
         "5-minute setup",
       ],
-      screenshot: "https://vizzion.io/images/decking-widget-preview.png",
+      screenshot: "https://vizzion.io/images/industries/decking.png",
       url: "https://vizzion.io/industries/decking",
     },
   },

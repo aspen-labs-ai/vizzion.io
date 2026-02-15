@@ -8,6 +8,12 @@ export const countertopsData: IndustryData = {
   metaDescription:
     "Let customers see granite, quartz, and marble in their actual kitchen. Vizzion captures leads and eliminates material uncertainty for countertop shops.",
 
+  lastUpdated: "February 15, 2026",
+  evidenceNotes: [
+    "Countertops benchmark ranges shown here are directional and should be validated against your own pipeline data.",
+    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+  ],
+
   header: {
     badge: "Countertops & Stone Industry",
     headline: "Countertop Visualization That Turns Browsers Into Buyers",
@@ -279,7 +285,7 @@ export const countertopsData: IndustryData = {
         "Lead capture and routing",
         "5-minute setup",
       ],
-      screenshot: "https://vizzion.io/images/countertop-widget-preview.png",
+      screenshot: "https://vizzion.io/images/industries/countertops.png",
       url: "https://vizzion.io/industries/countertops",
     },
   },

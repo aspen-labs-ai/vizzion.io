@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { getCanonicalUrl } from '@/lib/seo/canonical';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import IndustryPageHeader from '@/components/industries/IndustryPageHeader';
@@ -19,6 +20,9 @@ import { shuttersData } from '@/data/industries/shutters';
 export const metadata: Metadata = {
   title: 'Shutter Visualization & Lead Gen | Vizzion',
   description: 'Homeowners preview exterior shutters on their actual home before buying. Vizzion captures qualified shutter leads, not cold traffic.',
+  alternates: {
+    canonical: getCanonicalUrl('/industries/shutters'),
+  },
   openGraph: {
     title: 'Shutter Visualization & Lead Gen | Vizzion',
     description: 'Homeowners preview exterior shutters on their actual home before buying. Vizzion captures qualified shutter leads, not cold traffic.',

@@ -98,7 +98,7 @@ export default function Header() {
             onMouseLeave={handleMouseLeave}
           >
             <Link
-              href="/#industries"
+              href="/industries"
               className="text-text-secondary hover:text-accent transition-colors duration-250 font-medium inline-flex items-center gap-1"
             >
               Industries
@@ -152,7 +152,7 @@ export default function Header() {
 
                 <div className="border-t border-border-default px-4 py-3 bg-bg-tertiary/50">
                   <Link
-                    href="/#industries"
+                    href="/industries"
                     className="text-xs text-text-tertiary hover:text-accent transition-colors"
                     onClick={() => setIndustriesOpen(false)}
                   >

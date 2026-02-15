@@ -8,6 +8,12 @@ export const flooringData: IndustryData = {
   metaDescription:
     "Let customers see hardwood, LVP, or tile in their actual room before they commit. Vizzion captures leads, cuts showroom visits, and closes flooring sales faster",
 
+  lastUpdated: "February 15, 2026",
+  evidenceNotes: [
+    "Flooring benchmark ranges shown here are directional and should be validated against your own pipeline data.",
+    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+  ],
+
   header: {
     badge: "Flooring Industry",
     headline: "Flooring Visualization That Closes Sales Faster",
@@ -280,7 +286,7 @@ export const flooringData: IndustryData = {
         "Side-by-side floor comparison",
         "Multiple flooring type support",
       ],
-      screenshot: "https://vizzion.io/images/flooring-widget-preview.png",
+      screenshot: "https://vizzion.io/images/industries/flooring.png",
       url: "https://vizzion.io/industries/flooring",
     },
   },

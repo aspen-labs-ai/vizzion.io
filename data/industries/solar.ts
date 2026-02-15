@@ -8,6 +8,12 @@ export const solarData: IndustryData = {
   metaDescription:
     "Vizzion turns your solar website traffic into exclusive, pre-qualified solar leads. Homeowners preview panels on their roof and hand you their info.",
 
+  lastUpdated: "February 15, 2026",
+  evidenceNotes: [
+    "Solar benchmark ranges shown here are directional and should be validated against your own pipeline data.",
+    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+  ],
+
   header: {
     badge: "Solar Industry",
     headline: "Turn Every Website Visitor Into a Qualified Solar Lead",
@@ -278,7 +284,7 @@ export const solarData: IndustryData = {
         "Lead capture and routing",
         "5-minute setup",
       ],
-      screenshot: "https://vizzion.io/images/solar-widget-preview.png",
+      screenshot: "https://vizzion.io/images/industries/solar.png",
       url: "https://vizzion.io/industries/solar",
     },
   },

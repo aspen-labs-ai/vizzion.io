@@ -8,6 +8,12 @@ export const boatDeckingData: IndustryData = {
   metaDescription:
     "Boat owners see new decking on their actual boat and submit their info. Vizzion generates exclusive marine decking leads from your own website traffic.",
 
+  lastUpdated: "February 15, 2026",
+  evidenceNotes: [
+    "Boat Decking benchmark ranges shown here are directional and should be validated against your own pipeline data.",
+    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+  ],
+
   header: {
     badge: "Marine Decking Industry",
     headline: "Turn Every Website Visitor Into a Qualified Decking Lead",
@@ -270,7 +276,7 @@ export const boatDeckingData: IndustryData = {
         "Lead capture and routing",
         "5-minute setup",
       ],
-      screenshot: "https://vizzion.io/images/boat-decking-widget-preview.png",
+      screenshot: "https://vizzion.io/images/industries/boat-decking.png",
       url: "https://vizzion.io/industries/boat-decking",
     },
   },

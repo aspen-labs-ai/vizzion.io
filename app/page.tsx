@@ -11,10 +11,14 @@ import Testimonials from '@/components/Testimonials';
 import Pricing from '@/components/Pricing';
 import SignupSection from '@/components/SignupSection';
 import Footer from '@/components/Footer';
+import { getCanonicalUrl } from '@/lib/seo/canonical';
 
 export const metadata: Metadata = {
   title: 'Vizzion — Visual Lead Generation for Any Industry',
   description: 'Embed Vizzion on your site and let customers preview products on their property, vehicle, or body. Captures emails before showing the result.',
+  alternates: {
+    canonical: getCanonicalUrl('/'),
+  },
   openGraph: {
     title: 'Vizzion — Visual Lead Generation for Any Industry',
     description: 'Embed Vizzion on your site and let customers preview products on their property, vehicle, or body. Captures emails before showing the result.',

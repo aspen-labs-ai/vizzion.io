@@ -8,6 +8,12 @@ export const swimmingPoolsData: IndustryData = {
   metaDescription:
     "Swimming pool lead generation widget for pool builders. Homeowners see a pool in their actual backyard, then submit their email. Exclusive, pre-qualified leads.",
 
+  lastUpdated: "February 15, 2026",
+  evidenceNotes: [
+    "Swimming Pools benchmark ranges shown here are directional and should be validated against your own pipeline data.",
+    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+  ],
+
   header: {
     badge: "Pool Industry",
     headline: "No One Drops $50K on a Pool Without Seeing It First",
@@ -278,7 +284,7 @@ export const swimmingPoolsData: IndustryData = {
         "Lead capture and routing",
         "5-minute setup",
       ],
-      screenshot: "https://vizzion.io/images/pool-widget-preview.png",
+      screenshot: "https://vizzion.io/images/industries/swimming-pools.png",
       url: "https://vizzion.io/industries/swimming-pools",
     },
   },

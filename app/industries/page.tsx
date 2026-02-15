@@ -2,96 +2,147 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { Sun, Car, Pen, Waves, Sprout, Ship } from 'lucide-react';
-import { type LucideIcon } from 'lucide-react';
+import { getCanonicalUrl } from '@/lib/seo/canonical';
 
 export const metadata: Metadata = {
   title: 'Industries We Serve | Vizzion Visual Lead Gen',
-  description: 'Vizzion helps 17+ industries turn website visitors into qualified leads. See how solar, wraps, tattoo, pool, turf, and marine companies use Vizzion.',
+  description: 'Vizzion helps 17+ industries turn website visitors into qualified leads. See how home improvement, wraps, tattoo, pool, turf, and marine companies use Vizzion.',
+  alternates: {
+    canonical: getCanonicalUrl('/industries'),
+  },
   openGraph: {
     title: 'Industries We Serve | Vizzion Visual Lead Gen',
-    description: 'Vizzion helps 17+ industries turn website visitors into qualified leads. See how solar, wraps, tattoo, pool, turf, and marine companies use Vizzion.',
+    description: 'Vizzion helps 17+ industries turn website visitors into qualified leads. See how home improvement, wraps, tattoo, pool, turf, and marine companies use Vizzion.',
     url: '/industries',
   },
   twitter: {
     title: 'Industries We Serve | Vizzion Visual Lead Gen',
-    description: 'Vizzion helps 17+ industries turn website visitors into qualified leads. See how solar, wraps, tattoo, pool, turf, and marine companies use Vizzion.',
+    description: 'Vizzion helps 17+ industries turn website visitors into qualified leads. See how home improvement, wraps, tattoo, pool, turf, and marine companies use Vizzion.',
   },
 };
 
-interface LiveIndustry {
+interface IndustryLink {
   name: string;
   slug: string;
-  icon: LucideIcon;
   description: string;
 }
 
-const liveIndustries: LiveIndustry[] = [
+interface IndustryGroup {
+  label: string;
+  industries: IndustryLink[];
+}
+
+const industryGroups: IndustryGroup[] = [
   {
-    name: 'Solar Energy',
-    slug: 'solar',
-    icon: Sun,
-    description: 'Homeowners preview solar panels on their actual roof before committing to an installation.',
+    label: 'Home Improvement',
+    industries: [
+      {
+        name: 'Roofing',
+        slug: 'roofing',
+        description: 'Show homeowners new shingles, metal, or tile on their actual roof before they request an estimate.',
+      },
+      {
+        name: 'Siding',
+        slug: 'siding',
+        description: 'Help customers compare siding options on their own home before committing to a project.',
+      },
+      {
+        name: 'Solar Energy',
+        slug: 'solar',
+        description: 'Turn solar research traffic into qualified leads by showing panel previews on real rooftops.',
+      },
+      {
+        name: 'Windows & Doors',
+        slug: 'windows-doors',
+        description: 'Let homeowners preview frame styles and color combinations on their existing facade.',
+      },
+      {
+        name: 'Decking',
+        slug: 'decking',
+        description: 'Visualize deck materials and finishes in the exact outdoor space the customer already has.',
+      },
+      {
+        name: 'Flooring',
+        slug: 'flooring',
+        description: 'Replace sample-board guesswork with room-level previews to speed up flooring decisions.',
+      },
+      {
+        name: 'Countertops',
+        slug: 'countertops',
+        description: 'Show countertop materials in context on existing cabinets before a consultation call.',
+      },
+      {
+        name: 'Garage Doors',
+        slug: 'garage-doors',
+        description: 'Preview garage door styles and colors on the customer\'s actual home exterior.',
+      },
+      {
+        name: 'Fencing',
+        slug: 'fencing',
+        description: 'Visualize fence styles around the customer\'s real property layout before quoting.',
+      },
+      {
+        name: 'Gutters',
+        slug: 'gutters',
+        description: 'Capture urgent repair and replacement leads with on-home gutter style previews.',
+      },
+      {
+        name: 'Shutters',
+        slug: 'shutters',
+        description: 'Help homeowners compare shutter styles and colors directly on their facade.',
+      },
+      {
+        name: 'Driveways & Pavement',
+        slug: 'driveways',
+        description: 'Turn visual driveway design decisions into qualified paving leads from site traffic.',
+      },
+      {
+        name: 'Swimming Pools',
+        slug: 'swimming-pools',
+        description: 'Show backyard pool layouts in real context so shoppers move from browsing to booking.',
+      },
+      {
+        name: 'Artificial Turf',
+        slug: 'artificial-turf',
+        description: 'Let homeowners see turf transformation on their current yard before speaking with sales.',
+      },
+    ],
   },
   {
-    name: 'Car & Vehicle Wraps',
-    slug: 'car-wraps',
-    icon: Car,
-    description: 'Customers preview wrap colors and designs on their actual vehicle before booking.',
-  },
-  {
-    name: 'Tattoo Studios',
-    slug: 'tattoos',
-    icon: Pen,
-    description: 'Clients see tattoo designs on their actual skin before sitting in the chair.',
-  },
-  {
-    name: 'Swimming Pools',
-    slug: 'swimming-pools',
-    icon: Waves,
-    description: 'Homeowners see a pool installed in their actual backyard before signing a contract.',
-  },
-  {
-    name: 'Artificial Turf',
-    slug: 'artificial-turf',
-    icon: Sprout,
-    description: 'Homeowners see lush turf replacing their existing lawn without a single sprinkler.',
-  },
-  {
-    name: 'Boat Decking',
-    slug: 'boat-decking',
-    icon: Ship,
-    description: 'Boat owners preview new decking materials on their actual vessel before the install.',
+    label: 'Beyond the Home',
+    industries: [
+      {
+        name: 'Car & Vehicle Wraps',
+        slug: 'car-wraps',
+        description: 'Help customers preview wrap concepts on their own vehicle before requesting design support.',
+      },
+      {
+        name: 'Tattoos',
+        slug: 'tattoos',
+        description: 'Reduce hesitation by letting clients preview tattoo designs on their own body placement.',
+      },
+      {
+        name: 'Boat Decking',
+        slug: 'boat-decking',
+        description: 'Show marine decking options on the owner\'s vessel before they contact your shop.',
+      },
+    ],
   },
 ];
 
-const comingSoonIndustries = [
-  'Roofing',
-  'Siding',
-  'Windows & Doors',
-  'Decking',
-  'Fencing',
-  'Landscaping',
-  'Painting',
-  'Gutters',
-  'Garage Doors',
-  'Outdoor Lighting',
-  'Flooring & Countertops',
-];
+const allIndustries = industryGroups.flatMap((group) => group.industries);
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
   name: 'Industries Served by Vizzion',
-  numberOfItems: 6,
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Solar Energy', url: 'https://vizzion.io/industries/solar' },
-    { '@type': 'ListItem', position: 2, name: 'Car & Vehicle Wraps', url: 'https://vizzion.io/industries/car-wraps' },
-    { '@type': 'ListItem', position: 3, name: 'Tattoo Studios', url: 'https://vizzion.io/industries/tattoos' },
-    { '@type': 'ListItem', position: 4, name: 'Swimming Pools', url: 'https://vizzion.io/industries/swimming-pools' },
-    { '@type': 'ListItem', position: 5, name: 'Artificial Turf', url: 'https://vizzion.io/industries/artificial-turf' },
-    { '@type': 'ListItem', position: 6, name: 'Boat Decking', url: 'https://vizzion.io/industries/boat-decking' },
-  ],
+  numberOfItems: allIndustries.length,
+  itemListElement: allIndustries.map((industry, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: industry.name,
+    url: `https://vizzion.io/industries/${industry.slug}`,
+  })),
 };
 
 export default function IndustriesHubPage() {
@@ -99,13 +150,11 @@ export default function IndustriesHubPage() {
     <>
       <Header />
       <main>
-        {/* JSON-LD Structured Data */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
 
-        {/* Hero Section */}
         <section className="py-24 px-6 bg-bg-primary">
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-block px-4 py-2 rounded-full bg-accent-light text-accent font-medium text-sm mb-4">
@@ -115,82 +164,50 @@ export default function IndustriesHubPage() {
               One Widget. Every Industry That Sells Visual Transformations.
             </h1>
             <p className="text-xl text-text-secondary leading-relaxed">
-              If your customers need to <em>see it</em> before they buy it, Vizzion is built for you.
-              Embed our visualization widget on your website, capture leads before showing the preview,
-              and turn browsers into qualified buyers — no matter what you sell.
+              Explore every live Vizzion industry page. If your customers need to see the end result before they buy,
+              these playbooks show how to turn your existing website traffic into qualified leads.
             </p>
           </div>
         </section>
 
-        {/* Live Industries Section */}
         <section className="py-24 px-6 bg-bg-primary">
           <div className="max-w-[1400px] mx-auto">
-            {/* Section Label with Separator */}
-            <div className="flex items-center gap-4 mb-10">
-              <h2 className="text-sm font-semibold uppercase tracking-wider text-text-tertiary whitespace-nowrap">
-                Live Industries
-              </h2>
-              <div className="h-px flex-1 bg-border-default"></div>
-            </div>
+            {industryGroups.map((group) => (
+              <div key={group.label} className="mb-16 last:mb-0">
+                <div className="flex items-center gap-4 mb-8">
+                  <h2 className="text-sm font-semibold uppercase tracking-wider text-text-tertiary whitespace-nowrap">
+                    {group.label}
+                  </h2>
+                  <div className="h-px flex-1 bg-border-default" />
+                </div>
 
-            {/* Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {liveIndustries.map((industry) => {
-                const Icon = industry.icon;
-                return (
-                  <Link
-                    key={industry.slug}
-                    href={`/industries/${industry.slug}`}
-                    className="group block bg-bg-secondary rounded-xl border border-border-default hover:border-accent transition-all duration-300 hover:-translate-y-1 hover:shadow-lg p-6"
-                  >
-                    <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
-                      <Icon className="w-6 h-6 text-accent" />
-                    </div>
-                    <h3 className="text-xl font-bold mb-2 text-text-primary">
-                      {industry.name}
-                    </h3>
-                    <p className="text-text-secondary text-sm leading-relaxed mb-4">
-                      {industry.description}
-                    </p>
-                    <div className="flex items-center text-sm text-accent opacity-0 group-hover:opacity-100 transition-opacity">
-                      Learn more
-                      <svg className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {group.industries.map((industry) => (
+                    <Link
+                      key={industry.slug}
+                      href={`/industries/${industry.slug}`}
+                      className="group block bg-bg-secondary rounded-xl border border-border-default hover:border-accent transition-all duration-300 hover:-translate-y-1 hover:shadow-lg p-6"
+                    >
+                      <h3 className="text-xl font-bold mb-2 text-text-primary">
+                        {industry.name}
+                      </h3>
+                      <p className="text-text-secondary text-sm leading-relaxed mb-4">
+                        {industry.description}
+                      </p>
+                      <div className="flex items-center text-sm text-accent opacity-0 group-hover:opacity-100 transition-opacity">
+                        Learn more
+                        <svg className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
-        {/* Coming Soon Section */}
-        <section className="py-24 px-6 bg-bg-primary">
-          <div className="max-w-[1400px] mx-auto">
-            {/* Section Label with Separator */}
-            <div className="flex items-center gap-4 mb-10">
-              <h2 className="text-sm font-semibold uppercase tracking-wider text-text-tertiary whitespace-nowrap">
-                Coming Soon
-              </h2>
-              <div className="h-px flex-1 bg-border-default"></div>
-            </div>
-
-            {/* Pill Tags */}
-            <div className="flex flex-wrap gap-3">
-              {comingSoonIndustries.map((industry) => (
-                <span
-                  key={industry}
-                  className="px-5 py-2.5 rounded-full bg-bg-secondary border border-border-default text-text-secondary text-sm font-medium"
-                >
-                  {industry}
-                </span>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Bottom CTA Section */}
         <section className="py-24 px-6 bg-bg-secondary">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-text-primary">

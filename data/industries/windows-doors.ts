@@ -9,6 +9,12 @@ export const windowsDoorsData: IndustryData = {
   metaDescription:
     "Let homeowners preview new windows and doors on their actual home. Vizzion captures qualified leads from your website traffic — no shared leads, no guesswork.",
 
+  lastUpdated: "February 15, 2026",
+  evidenceNotes: [
+    "Windows & Doors benchmark ranges shown here are directional and should be validated against your own pipeline data.",
+    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+  ],
+
   header: {
     badge: "Windows & Doors Industry",
     headline:
@@ -281,7 +287,7 @@ export const windowsDoorsData: IndustryData = {
         "Lead capture and routing",
         "5-minute setup",
       ],
-      screenshot: "https://vizzion.io/images/windows-doors-widget-preview.png",
+      screenshot: "https://vizzion.io/images/industries/windows-doors.png",
       url: "https://vizzion.io/industries/windows-doors",
     },
   },

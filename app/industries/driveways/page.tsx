@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { getCanonicalUrl } from '@/lib/seo/canonical';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import IndustryPageHeader from '@/components/industries/IndustryPageHeader';
@@ -19,6 +20,9 @@ import { drivewaysData } from '@/data/industries/driveways';
 export const metadata: Metadata = {
   title: 'Driveway Visualization & Lead Gen | Vizzion',
   description: 'Homeowners preview pavers, stamped concrete, and stone on their actual driveway. Vizzion captures exclusive paving leads from your site.',
+  alternates: {
+    canonical: getCanonicalUrl('/industries/driveways'),
+  },
   openGraph: {
     title: 'Driveway Visualization & Lead Gen | Vizzion',
     description: 'Homeowners preview pavers, stamped concrete, and stone on their actual driveway. Vizzion captures exclusive paving leads from your site.',

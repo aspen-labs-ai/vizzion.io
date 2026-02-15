@@ -9,6 +9,12 @@ export const garageDoorsData: IndustryData = {
   metaDescription:
     "Let homeowners preview new garage doors on their actual home. Vizzion captures exclusive leads from your website traffic — no shared lists.",
 
+  lastUpdated: "February 15, 2026",
+  evidenceNotes: [
+    "Garage Doors benchmark ranges shown here are directional and should be validated against your own pipeline data.",
+    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+  ],
+
   header: {
     badge: "Garage Door Industry",
     headline:
@@ -283,8 +289,7 @@ export const garageDoorsData: IndustryData = {
         "Lead capture with style preference data",
         "5-minute setup",
       ],
-      screenshot:
-        "https://vizzion.io/images/garage-doors-widget-preview.png",
+      screenshot: "https://vizzion.io/images/industries/garage-doors.png",
       url: "https://vizzion.io/industries/garage-doors",
     },
   },

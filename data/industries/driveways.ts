@@ -9,6 +9,12 @@ export const drivewaysData: IndustryData = {
   metaDescription:
     "Homeowners preview pavers, stamped concrete, and natural stone on their actual driveway before contacting you. Vizzion captures exclusive paving leads from your own website traffic.",
 
+  lastUpdated: "February 15, 2026",
+  evidenceNotes: [
+    "Driveways benchmark ranges shown here are directional and should be validated against your own pipeline data.",
+    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+  ],
+
   header: {
     badge: "Driveways & Hardscaping",
     headline:
@@ -298,7 +304,7 @@ export const drivewaysData: IndustryData = {
         "Lead capture with material and pattern preference data",
         "Manufacturer catalog support — Belgard, Techo-Bloc, Unilock, and more",
       ],
-      screenshot: "https://vizzion.io/images/driveways-widget-preview.png",
+      screenshot: "https://vizzion.io/images/industries/driveways.png",
       url: "https://vizzion.io/industries/driveways",
     },
   },

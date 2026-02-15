@@ -8,6 +8,12 @@ export const carWrapsData: IndustryData = {
   metaDescription:
     "Vehicle wrap visualization widget that lets customers preview wrap colors on their actual car. Captures emails, qualifies leads, eliminates free mockups.",
 
+  lastUpdated: "February 15, 2026",
+  evidenceNotes: [
+    "Car Wraps benchmark ranges shown here are directional and should be validated against your own pipeline data.",
+    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+  ],
+
   header: {
     badge: "Vehicle Wrap Industry",
     headline: "Stop Doing Free Wrap Mockups for People Who Never Buy",
@@ -270,7 +276,7 @@ export const carWrapsData: IndustryData = {
         "5-minute setup",
         "Full color and finish catalog support",
       ],
-      screenshot: "https://vizzion.io/images/car-wraps-widget-preview.png",
+      screenshot: "https://vizzion.io/images/industries/car-wraps.png",
       url: "https://vizzion.io/industries/car-wraps",
     },
   },

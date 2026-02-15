@@ -9,6 +9,12 @@ export const roofingData: IndustryData = {
   metaDescription:
     "Homeowners see new shingles, metal, or tile on their actual roof before calling. Vizzion captures exclusive roofing leads from your website traffic.",
 
+  lastUpdated: "February 15, 2026",
+  evidenceNotes: [
+    "Roofing benchmark ranges shown here are directional and should be validated against your own pipeline data.",
+    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+  ],
+
   header: {
     badge: "Roofing Industry",
     headline:
@@ -281,7 +287,7 @@ export const roofingData: IndustryData = {
         "Lead capture with roof photo and material preference",
         "5-minute setup",
       ],
-      screenshot: "https://vizzion.io/images/roofing-widget-preview.png",
+      screenshot: "https://vizzion.io/images/industries/roofing.png",
       url: "https://vizzion.io/industries/roofing",
     },
   },

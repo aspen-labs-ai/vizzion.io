@@ -31,6 +31,22 @@ export default function IndustryContext({ data }: { data: IndustryData }) {
             </div>
           </div>
         )}
+
+        <div className="mt-8 p-6 bg-bg-primary rounded-2xl border border-border-default">
+          <p className="text-xs uppercase tracking-wider text-text-tertiary font-semibold">
+            Evidence Notes
+          </p>
+          <p className="mt-1 text-sm text-text-tertiary">
+            Last updated: {data.lastUpdated}
+          </p>
+          <ul className="mt-4 space-y-2 list-disc pl-5">
+            {data.evidenceNotes.map((note, index) => (
+              <li key={index} className="text-sm text-text-secondary leading-relaxed">
+                {note}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );
