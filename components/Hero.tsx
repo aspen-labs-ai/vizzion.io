@@ -17,7 +17,7 @@ export default function Hero() {
               </div>
 
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] text-text-primary">
-                Embeddable Visualizer Widget for Your Website
+                Turn Your Website Into an Interactive Showroom
               </h1>
 
               <div className="space-y-3 max-w-2xl">
