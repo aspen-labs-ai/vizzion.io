@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getCanonicalUrl } from '@/lib/seo/canonical';
+import { getIndustryMetadata } from '@/lib/seo/industry-metadata';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import IndustryPageHeader from '@/components/industries/IndustryPageHeader';
@@ -17,22 +17,8 @@ import IndustryMidCTA from '@/components/industries/IndustryMidCTA';
 import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { countertopsData } from '@/data/industries/countertops';
 
-export const metadata: Metadata = {
-  title: 'Countertop Visualization & Lead Gen | Vizzion',
-  description: 'Customers see granite, quartz, and marble in their actual kitchen. Vizzion captures leads and eliminates material uncertainty.',
-  alternates: {
-    canonical: getCanonicalUrl('/industries/countertops'),
-  },
-  openGraph: {
-    title: 'Countertop Visualization & Lead Gen | Vizzion',
-    description: 'Customers see granite, quartz, and marble in their actual kitchen. Vizzion captures leads and eliminates material uncertainty.',
-    url: '/industries/countertops',
-  },
-  twitter: {
-    title: 'Countertop Visualization & Lead Gen | Vizzion',
-    description: 'Customers see granite, quartz, and marble in their actual kitchen. Vizzion captures leads and eliminates material uncertainty.',
-  },
-};
+export const metadata: Metadata = getIndustryMetadata('countertops');
+
 
 export default function CountertopsIndustryPage() {
   return (

@@ -4,9 +4,8 @@ export const flooringData: IndustryData = {
   slug: "flooring",
   name: "Flooring",
   shortName: "Flooring",
-  metaTitle: "Flooring Visualization & Lead Generation Tool — Turn Browsers Into Buyers | Vizzion",
-  metaDescription:
-    "Let customers see hardwood, LVP, or tile in their actual room before they commit. Vizzion captures leads, cuts showroom visits, and closes flooring sales faster",
+  metaTitle: "Flooring Visualizer Widget for Flooring Websites | Vizzion",
+  metaDescription: "Use a flooring visualizer widget on your flooring website. Let visitors preview options on their own photo and turn traffic into qualified leads.",
 
   lastUpdated: "February 15, 2026",
   evidenceNotes: [
@@ -16,10 +15,10 @@ export const flooringData: IndustryData = {
 
   header: {
     badge: "Flooring Industry",
-    headline: "Flooring Visualization That Closes Sales Faster",
+    headline: "Flooring Visualizer Widget for Your Flooring Website",
     highlightWord: "Flooring",
     intro:
-      "Your customers are drowning in options — 47 shades of oak, 30 LVP patterns, endless tile formats. A 3-inch sample board tells them almost nothing about how a floor will look across 1,500 square feet of living space. Vizzion lets them upload a photo of their actual room and see any floor installed in seconds. They enter their email to save the preview. You get a qualified lead who already knows what they want.",
+      "Add a flooring visualizer widget to your flooring website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Your customers are drowning in options — 47 shades of oak, 30 LVP patterns, endless tile formats. A 3-inch sample board tells them almost nothing about how a floor will look across 1,500 square feet of living space. Vizzion lets them upload a photo of their actual room and see any floor installed in seconds. They enter their email to save the preview. You get a qualified lead who already knows what they want.",
     introHighlight: "A 3-inch sample board tells them almost nothing.",
     cta: { text: "See It in Action", href: "#how-it-works" },
   },
@@ -85,7 +84,7 @@ export const flooringData: IndustryData = {
   },
 
   howItWorks: {
-    headline: "Three Steps. Five Minutes to Install. Leads Start Flowing.",
+    headline: "How to Add a Flooring Visualizer Widget to Your Flooring Website",
     intro:
       "Vizzion is designed to be dead simple. No IT department needed, no complex integrations, no six-week onboarding. You embed a snippet, customize the look, and start generating leads from your existing website traffic.",
     steps: [

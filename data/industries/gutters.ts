@@ -4,10 +4,8 @@ export const guttersData: IndustryData = {
   slug: "gutters",
   name: "Gutters",
   shortName: "Gutters",
-  metaTitle:
-    "Gutter Visualization Widget for Lead Generation | Vizzion",
-  metaDescription:
-    "Homeowners preview gutter profiles, colors, and guards on their actual home. Vizzion turns your website traffic into exclusive gutter leads — no sharing.",
+  metaTitle: "Gutter Visualizer Widget for Gutter Websites | Vizzion",
+  metaDescription: "Use a gutter visualizer widget on your gutter website. Let visitors preview options on their own photo and turn traffic into qualified leads.",
 
   lastUpdated: "February 15, 2026",
   evidenceNotes: [
@@ -18,10 +16,10 @@ export const guttersData: IndustryData = {
   header: {
     badge: "Gutter Industry",
     headline:
-      "Stop Losing Gutter Leads to the Cheapest Bid on Google",
+      "Gutter Visualizer Widget for Your Gutter Website",
     highlightWord: "Gutter",
     intro:
-      "Gutters are a grudge purchase — homeowners don't care until water is pouring over the fascia. When they finally search, they grab three quotes and pick the lowest number. Vizzion breaks that pattern. Visitors upload a photo of their home, preview gutter profiles and colors on their actual roofline, and enter their email to keep the result. You get an exclusive lead who already knows what they want. They get a reason to choose you over the cheapest guy on page one.",
+      "Add a gutter visualizer widget to your gutter website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Gutters are a grudge purchase — homeowners don't care until water is pouring over the fascia. When they finally search, they grab three quotes and pick the lowest number. Vizzion breaks that pattern. Visitors upload a photo of their home, preview gutter profiles and colors on their actual roofline, and enter their email to keep the result. You get an exclusive lead who already knows what they want. They get a reason to choose you over the cheapest guy on page one.",
     introHighlight:
       "Gutters are a grudge purchase — homeowners don't care until water is pouring over the fascia.",
     cta: { text: "See It in Action", href: "#how-it-works" },
@@ -92,7 +90,7 @@ export const guttersData: IndustryData = {
 
   howItWorks: {
     headline:
-      "Three Steps. Five Minutes to Install. Leads Start Flowing.",
+      "How to Add a Gutter Visualizer Widget to Your Gutter Website",
     intro:
       "No developer, no design team, no six-week implementation. Paste a snippet on your website, and homeowners start previewing gutters on their home today.",
     steps: [

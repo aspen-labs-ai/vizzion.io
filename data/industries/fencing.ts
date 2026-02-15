@@ -4,9 +4,8 @@ export const fencingData: IndustryData = {
   slug: "fencing",
   name: "Fencing",
   shortName: "Fencing",
-  metaTitle: "Fencing Lead Generation Tool — Convert Website Visitors Into Fence Buyers | Vizzion",
-  metaDescription:
-    "Vizzion lets homeowners preview fence styles on their actual yard. They see it, want it, and give you their info. Exclusive leads from your own site.",
+  metaTitle: "Fencing Visualizer Widget for Fencing Websites | Vizzion",
+  metaDescription: "Use a fencing visualizer widget on your fencing website. Let visitors preview options on their own photo and turn traffic into qualified leads.",
 
   lastUpdated: "February 15, 2026",
   evidenceNotes: [
@@ -16,10 +15,10 @@ export const fencingData: IndustryData = {
 
   header: {
     badge: "Fencing Industry",
-    headline: "Turn Your Website Into a Fencing Lead Machine",
+    headline: "Fencing Visualizer Widget for Your Fencing Website",
     highlightWord: "Fencing",
     intro:
-      "A 6-inch sample panel doesn't sell 200 linear feet of fence. Vizzion lets homeowners upload a photo of their yard and see exactly what a new fence looks like on their actual property — wood, vinyl, aluminum, or iron. They enter their email to save the preview. You get an exclusive, pre-qualified lead without paying a dime to a lead aggregator.",
+      "Add a fencing visualizer widget to your fencing website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. A 6-inch sample panel doesn't sell 200 linear feet of fence. Vizzion lets homeowners upload a photo of their yard and see exactly what a new fence looks like on their actual property — wood, vinyl, aluminum, or iron. They enter their email to save the preview. You get an exclusive, pre-qualified lead without paying a dime to a lead aggregator.",
     introHighlight: "A 6-inch sample panel doesn't sell 200 linear feet of fence.",
     cta: { text: "See It in Action", href: "#how-it-works" },
   },
@@ -77,7 +76,7 @@ export const fencingData: IndustryData = {
   },
 
   howItWorks: {
-    headline: "Three Steps. Five Minutes to Install. Leads Start Flowing.",
+    headline: "How to Add a Fencing Visualizer Widget to Your Fencing Website",
     intro:
       "No IT department, no design skills, no complex setup. Embed a code snippet on your website, and your visitors can start previewing fences on their property today.",
     steps: [

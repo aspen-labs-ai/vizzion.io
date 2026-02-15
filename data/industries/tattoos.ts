@@ -4,9 +4,8 @@ export const tattoosData: IndustryData = {
   slug: "tattoos",
   name: "Tattoo Studios",
   shortName: "Tattoos",
-  metaTitle: "Tattoo Visualization Widget for Lead Generation | Vizzion",
-  metaDescription:
-    "Tattoo preview visualization for studios. Clients see your designs on their actual skin before booking — reducing no-shows and turning browsers into committed leads.",
+  metaTitle: "Tattoo Visualizer Widget for Tattoo Studio Websites | Vizzion",
+  metaDescription: "Use a tattoo visualizer widget on your tattoo studio website. Let visitors preview options on their own photo and turn traffic into qualified leads.",
 
   lastUpdated: "February 15, 2026",
   evidenceNotes: [
@@ -16,10 +15,10 @@ export const tattoosData: IndustryData = {
 
   header: {
     badge: "Tattoo Industry",
-    headline: "Preview Your Tattoo on Your Skin Before the Needle Touches",
+    headline: "Tattoo Visualizer Widget for Your Tattoo Studio Website",
     highlightWord: "Tattoo",
     intro:
-      `Tattoos are permanent. That's the entire appeal — and the entire obstacle. Clients hesitate, reschedule, cancel, and no-show because they can't be sure how a design will actually look on their body. Vizzion lets them upload a photo of their arm, back, leg, or anywhere — and see the tattoo design on their actual skin in seconds. They enter their email to save the preview. You get a committed lead who's already past the fear of regret.`,
+      "Add a tattoo visualizer widget to your tattoo studio website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Tattoos are permanent. That's the entire appeal — and the entire obstacle. Clients hesitate, reschedule, cancel, and no-show because they can't be sure how a design will actually look on their body. Vizzion lets them upload a photo of their arm, back, leg, or anywhere — and see the tattoo design on their actual skin in seconds. They enter their email to save the preview. You get a committed lead who's already past the fear of regret.",
     introHighlight: `Tattoos are permanent. That's the entire appeal — and the entire obstacle.`,
     cta: { text: "See It in Action", href: "#how-it-works" },
   },
@@ -76,7 +75,7 @@ export const tattoosData: IndustryData = {
   },
 
   howItWorks: {
-    headline: "Three Steps. Five Minutes to Install. Bookings Start Flowing.",
+    headline: "How to Add a Tattoo Visualizer Widget to Your Tattoo Studio Website",
     intro:
       "No app for clients to download, no complex software to learn. You embed a snippet on your site, upload your designs, and Vizzion handles the rest.",
     steps: [

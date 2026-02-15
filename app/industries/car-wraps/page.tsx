@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getCanonicalUrl } from '@/lib/seo/canonical';
+import { getIndustryMetadata } from '@/lib/seo/industry-metadata';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import IndustryPageHeader from '@/components/industries/IndustryPageHeader';
@@ -17,22 +17,8 @@ import IndustryMidCTA from '@/components/industries/IndustryMidCTA';
 import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { carWrapsData } from '@/data/industries/car-wraps';
 
-export const metadata: Metadata = {
-  title: 'Vehicle Wrap Visualization & Lead Gen | Vizzion',
-  description: 'Customers preview wrap colors on their actual car. Captures emails, qualifies leads, eliminates free mockups. Embed Vizzion on your wrap site.',
-  alternates: {
-    canonical: getCanonicalUrl('/industries/car-wraps'),
-  },
-  openGraph: {
-    title: 'Vehicle Wrap Visualization & Lead Gen | Vizzion',
-    description: 'Customers preview wrap colors on their actual car. Captures emails, qualifies leads, eliminates free mockups. Embed Vizzion on your wrap site.',
-    url: '/industries/car-wraps',
-  },
-  twitter: {
-    title: 'Vehicle Wrap Visualization & Lead Gen | Vizzion',
-    description: 'Customers preview wrap colors on their actual car. Captures emails, qualifies leads, eliminates free mockups. Embed Vizzion on your wrap site.',
-  },
-};
+export const metadata: Metadata = getIndustryMetadata('car-wraps');
+
 
 export default function CarWrapsIndustryPage() {
   return (

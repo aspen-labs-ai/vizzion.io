@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getCanonicalUrl } from '@/lib/seo/canonical';
+import { getIndustryMetadata } from '@/lib/seo/industry-metadata';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import IndustryPageHeader from '@/components/industries/IndustryPageHeader';
@@ -17,22 +17,8 @@ import IndustryMidCTA from '@/components/industries/IndustryMidCTA';
 import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { roofingData } from '@/data/industries/roofing';
 
-export const metadata: Metadata = {
-  title: 'Roofing Visualization & Lead Generation | Vizzion',
-  description: 'Homeowners see new shingles, metal, or tile on their actual roof before calling. Vizzion captures exclusive roofing leads from your site.',
-  alternates: {
-    canonical: getCanonicalUrl('/industries/roofing'),
-  },
-  openGraph: {
-    title: 'Roofing Visualization & Lead Generation | Vizzion',
-    description: 'Homeowners see new shingles, metal, or tile on their actual roof before calling. Vizzion captures exclusive roofing leads from your site.',
-    url: '/industries/roofing',
-  },
-  twitter: {
-    title: 'Roofing Visualization & Lead Generation | Vizzion',
-    description: 'Homeowners see new shingles, metal, or tile on their actual roof before calling. Vizzion captures exclusive roofing leads from your site.',
-  },
-};
+export const metadata: Metadata = getIndustryMetadata('roofing');
+
 
 export default function RoofingIndustryPage() {
   return (

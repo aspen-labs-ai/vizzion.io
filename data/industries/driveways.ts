@@ -4,10 +4,8 @@ export const drivewaysData: IndustryData = {
   slug: "driveways",
   name: "Driveways & Hardscaping",
   shortName: "Driveways",
-  metaTitle:
-    "Driveway Visualization Tool for Paving Companies — Generate Exclusive Leads | Vizzion",
-  metaDescription:
-    "Homeowners preview pavers, stamped concrete, and natural stone on their actual driveway before contacting you. Vizzion captures exclusive paving leads from your own website traffic.",
+  metaTitle: "Driveway Visualizer Widget for Paving Websites | Vizzion",
+  metaDescription: "Use a driveway visualizer widget on your paving website. Let visitors preview options on their own photo and turn traffic into qualified leads.",
 
   lastUpdated: "February 15, 2026",
   evidenceNotes: [
@@ -18,10 +16,10 @@ export const drivewaysData: IndustryData = {
   header: {
     badge: "Driveways & Hardscaping",
     headline:
-      "Stop Losing Driveway Jobs to a Binder Full of Samples Nobody Can Picture",
+      "Driveway Visualizer Widget for Your Paving Website",
     highlightWord: "Driveway",
     intro:
-      "Your prospect stood in your showroom for forty minutes, touched every Belgard and Techo-Bloc sample on the wall, asked about herringbone versus running bond, took four chips home in a zip-lock bag — and hasn't returned your calls in three weeks. That's not a bad lead. That's a homeowner paralyzed by too many choices and zero ability to see the finished result on their own property. Vizzion lets them upload a photo of their driveway and preview exact materials, patterns, and colors on their actual home in seconds. They enter their email to keep the preview. You get a lead who already knows what they want.",
+      "Add a driveway visualizer widget to your paving website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Your prospect stood in your showroom for forty minutes, touched every Belgard and Techo-Bloc sample on the wall, asked about herringbone versus running bond, took four chips home in a zip-lock bag — and hasn't returned your calls in three weeks. That's not a bad lead. That's a homeowner paralyzed by too many choices and zero ability to see the finished result on their own property. Vizzion lets them upload a photo of their driveway and preview exact materials, patterns, and colors on their actual home in seconds. They enter their email to keep the preview. You get a lead who already knows what they want.",
     introHighlight:
       "That's not a bad lead. That's a homeowner paralyzed by too many choices and zero ability to see the finished result.",
     cta: { text: "See It in Action", href: "#how-it-works" },
@@ -94,7 +92,7 @@ export const drivewaysData: IndustryData = {
 
   howItWorks: {
     headline:
-      "Three Steps. Five Minutes to Install. Qualified Leads With Material Preferences.",
+      "How to Add a Driveway Visualizer Widget to Your Paving Website",
     intro:
       "No IT department. No developer. No six-week integration project. Paste one embed snippet onto your paving website, configure your product catalog, and start converting your existing traffic into leads who already know what they want.",
     steps: [

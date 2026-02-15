@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getCanonicalUrl } from '@/lib/seo/canonical';
+import { getIndustryMetadata } from '@/lib/seo/industry-metadata';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import IndustryPageHeader from '@/components/industries/IndustryPageHeader';
@@ -17,22 +17,8 @@ import IndustryMidCTA from '@/components/industries/IndustryMidCTA';
 import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { shuttersData } from '@/data/industries/shutters';
 
-export const metadata: Metadata = {
-  title: 'Shutter Visualization & Lead Gen | Vizzion',
-  description: 'Homeowners preview exterior shutters on their actual home before buying. Vizzion captures qualified shutter leads, not cold traffic.',
-  alternates: {
-    canonical: getCanonicalUrl('/industries/shutters'),
-  },
-  openGraph: {
-    title: 'Shutter Visualization & Lead Gen | Vizzion',
-    description: 'Homeowners preview exterior shutters on their actual home before buying. Vizzion captures qualified shutter leads, not cold traffic.',
-    url: '/industries/shutters',
-  },
-  twitter: {
-    title: 'Shutter Visualization & Lead Gen | Vizzion',
-    description: 'Homeowners preview exterior shutters on their actual home before buying. Vizzion captures qualified shutter leads, not cold traffic.',
-  },
-};
+export const metadata: Metadata = getIndustryMetadata('shutters');
+
 
 export default function ShuttersIndustryPage() {
   return (

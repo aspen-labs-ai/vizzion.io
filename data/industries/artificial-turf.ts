@@ -4,9 +4,8 @@ export const artificialTurfData: IndustryData = {
   slug: "artificial-turf",
   name: "Artificial Turf",
   shortName: "Artificial Turf",
-  metaTitle: "Artificial Turf Visualization Widget for Lead Generation | Vizzion",
-  metaDescription:
-    "Generate exclusive artificial turf leads from your own website. Homeowners see turf on their actual yard, enter their email — you get the lead. No sharing.",
+  metaTitle: "Artificial Turf Visualizer Widget for Turf Websites | Vizzion",
+  metaDescription: "Use an artificial turf visualizer widget on your turf website. Let visitors preview options on their own photo and turn traffic into qualified leads.",
 
   lastUpdated: "February 15, 2026",
   evidenceNotes: [
@@ -16,10 +15,10 @@ export const artificialTurfData: IndustryData = {
 
   header: {
     badge: "Turf Industry",
-    headline: "Show Them a Turf Yard That Never Needs a Drop of Water",
+    headline: "Artificial Turf Visualizer Widget for Your Turf Website",
     highlightWord: "Turf",
     intro:
-      "Homeowners are curious about turf but worried it won't look natural on their yard. Vizzion lets them upload a photo and see synthetic turf replacing their actual lawn — their lot, their landscaping, their house. To see the full result, they enter their email. You get an exclusive, high-intent lead from your own website. No shared lists, no cold calls, no convincing required.",
+      "Add an artificial turf visualizer widget to your turf website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Homeowners are curious about turf but worried it won't look natural on their yard. Vizzion lets them upload a photo and see synthetic turf replacing their actual lawn — their lot, their landscaping, their house. To see the full result, they enter their email. You get an exclusive, high-intent lead from your own website. No shared lists, no cold calls, no convincing required.",
     introHighlight: "Worried it won't look natural on their yard.",
     cta: { text: "See It in Action", href: "#how-it-works" },
   },
@@ -85,7 +84,7 @@ export const artificialTurfData: IndustryData = {
   },
 
   howItWorks: {
-    headline: "Three Steps. Five Minutes to Install. Leads Start Flowing.",
+    headline: "How to Add an Artificial Turf Visualizer Widget to Your Turf Website",
     intro:
       "No developers, no complex integrations, no onboarding calls. Embed a snippet on your site, customize it to match your brand, and start generating leads from the traffic you already have.",
     steps: [

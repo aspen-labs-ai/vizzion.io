@@ -5,19 +5,19 @@ import Footer from '@/components/Footer';
 import { getCanonicalUrl } from '@/lib/seo/canonical';
 
 export const metadata: Metadata = {
-  title: 'Industries We Serve | Vizzion Visual Lead Gen',
-  description: 'Vizzion helps 17+ industries turn website visitors into qualified leads. See how home improvement, wraps, tattoo, pool, turf, and marine companies use Vizzion.',
+  title: 'Industry Visualizer Widgets for Business Websites | Vizzion',
+  description: 'Explore visualizer widgets by industry and see how contractors and local businesses turn website traffic into qualified leads.',
   alternates: {
     canonical: getCanonicalUrl('/industries'),
   },
   openGraph: {
-    title: 'Industries We Serve | Vizzion Visual Lead Gen',
-    description: 'Vizzion helps 17+ industries turn website visitors into qualified leads. See how home improvement, wraps, tattoo, pool, turf, and marine companies use Vizzion.',
+    title: 'Industry Visualizer Widgets for Business Websites | Vizzion',
+    description: 'Explore visualizer widgets by industry and see how contractors and local businesses turn website traffic into qualified leads.',
     url: '/industries',
   },
   twitter: {
-    title: 'Industries We Serve | Vizzion Visual Lead Gen',
-    description: 'Vizzion helps 17+ industries turn website visitors into qualified leads. See how home improvement, wraps, tattoo, pool, turf, and marine companies use Vizzion.',
+    title: 'Industry Visualizer Widgets for Business Websites | Vizzion',
+    description: 'Explore visualizer widgets by industry and see how contractors and local businesses turn website traffic into qualified leads.',
   },
 };
 
@@ -161,7 +161,7 @@ export default function IndustriesHubPage() {
               Industries
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-text-primary">
-              One Widget. Every Industry That Sells Visual Transformations.
+              Visualizer Widgets for Industries That Sell Visual Transformations
             </h1>
             <p className="text-xl text-text-secondary leading-relaxed">
               Explore every live Vizzion industry page. If your customers need to see the end result before they buy,

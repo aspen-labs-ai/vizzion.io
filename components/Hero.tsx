@@ -17,12 +17,12 @@ export default function Hero() {
               </div>
 
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] text-text-primary">
-                Turn Your Website Into an Interactive Showroom
+                Embeddable Visualizer Widget for Your Website
               </h1>
 
               <div className="space-y-3 max-w-2xl">
                 <p className="text-lg md:text-xl text-text-secondary">
-                  Your customers are already wondering:
+                  Add a visualizer widget to your website in minutes so visitors can preview options on their own photo.
                 </p>
                 <RotatingIndustry />
                 <p className="text-lg md:text-xl text-text-secondary leading-relaxed pt-2">

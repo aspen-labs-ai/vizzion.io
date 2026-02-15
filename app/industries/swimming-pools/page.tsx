@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getCanonicalUrl } from '@/lib/seo/canonical';
+import { getIndustryMetadata } from '@/lib/seo/industry-metadata';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import IndustryPageHeader from '@/components/industries/IndustryPageHeader';
@@ -17,22 +17,8 @@ import IndustryMidCTA from '@/components/industries/IndustryMidCTA';
 import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { swimmingPoolsData } from '@/data/industries/swimming-pools';
 
-export const metadata: Metadata = {
-  title: 'Pool Visualization & Lead Generation | Vizzion',
-  description: 'Homeowners see a pool in their actual backyard, then submit their email. Vizzion generates exclusive, pre-qualified leads for pool builders.',
-  alternates: {
-    canonical: getCanonicalUrl('/industries/swimming-pools'),
-  },
-  openGraph: {
-    title: 'Pool Visualization & Lead Generation | Vizzion',
-    description: 'Homeowners see a pool in their actual backyard, then submit their email. Vizzion generates exclusive, pre-qualified leads for pool builders.',
-    url: '/industries/swimming-pools',
-  },
-  twitter: {
-    title: 'Pool Visualization & Lead Generation | Vizzion',
-    description: 'Homeowners see a pool in their actual backyard, then submit their email. Vizzion generates exclusive, pre-qualified leads for pool builders.',
-  },
-};
+export const metadata: Metadata = getIndustryMetadata('swimming-pools');
+
 
 export default function SwimmingPoolsIndustryPage() {
   return (

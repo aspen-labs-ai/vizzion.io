@@ -4,9 +4,8 @@ export const countertopsData: IndustryData = {
   slug: "countertops",
   name: "Countertops & Stone",
   shortName: "Countertops",
-  metaTitle: "Countertop Visualization & Lead Generation Tool — Turn Browsers Into Buyers | Vizzion",
-  metaDescription:
-    "Let customers see granite, quartz, and marble in their actual kitchen. Vizzion captures leads and eliminates material uncertainty for countertop shops.",
+  metaTitle: "Countertop Visualizer Widget for Countertop Websites | Vizzion",
+  metaDescription: "Use a countertop visualizer widget on your countertop website. Let visitors preview options on their own photo and turn traffic into qualified leads.",
 
   lastUpdated: "February 15, 2026",
   evidenceNotes: [
@@ -16,10 +15,10 @@ export const countertopsData: IndustryData = {
 
   header: {
     badge: "Countertops & Stone Industry",
-    headline: "Countertop Visualization That Turns Browsers Into Buyers",
+    headline: "Countertop Visualizer Widget for Your Countertop Website",
     highlightWord: "Countertop",
     intro:
-      "Homeowners don't commit to a $6,000 countertop based on a 4-inch sample chip. Vizzion lets them see granite, quartz, or marble in their actual kitchen — then captures their email before they see the result. You get a warm, qualified lead from a customer who already knows what they want. No more slab yard no-shows, no more ghosted quotes.",
+      "Add a countertop visualizer widget to your countertop website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Homeowners don't commit to a $6,000 countertop based on a 4-inch sample chip. Vizzion lets them see granite, quartz, or marble in their actual kitchen — then captures their email before they see the result. You get a warm, qualified lead from a customer who already knows what they want. No more slab yard no-shows, no more ghosted quotes.",
     introHighlight: "Homeowners don't commit to a $6,000 countertop based on a 4-inch sample chip.",
     cta: { text: "See It in Action", href: "#how-it-works" },
   },
@@ -85,7 +84,7 @@ export const countertopsData: IndustryData = {
   },
 
   howItWorks: {
-    headline: "Three Steps. Five Minutes to Install. Leads Start Flowing.",
+    headline: "How to Add a Countertop Visualizer Widget to Your Countertop Website",
     intro:
       "Vizzion is designed to be dead simple. No IT department needed, no complex integrations, no six-week onboarding. You embed a snippet, customize the look, and start generating leads from your existing website traffic.",
     steps: [

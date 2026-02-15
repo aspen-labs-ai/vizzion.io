@@ -4,9 +4,8 @@ export const swimmingPoolsData: IndustryData = {
   slug: "swimming-pools",
   name: "Swimming Pools",
   shortName: "Swimming Pools",
-  metaTitle: "Swimming Pool Visualization Widget for Lead Generation | Vizzion",
-  metaDescription:
-    "Swimming pool lead generation widget for pool builders. Homeowners see a pool in their actual backyard, then submit their email. Exclusive, pre-qualified leads.",
+  metaTitle: "Pool Visualizer Widget for Pool Builder Websites | Vizzion",
+  metaDescription: "Use a pool visualizer widget on your pool builder website. Let visitors preview options on their own photo and turn traffic into qualified leads.",
 
   lastUpdated: "February 15, 2026",
   evidenceNotes: [
@@ -16,10 +15,10 @@ export const swimmingPoolsData: IndustryData = {
 
   header: {
     badge: "Pool Industry",
-    headline: "No One Drops $50K on a Pool Without Seeing It First",
+    headline: "Pool Visualizer Widget for Your Pool Builder Website",
     highlightWord: "Pool",
     intro:
-      "Homeowners want a pool. They just can't picture it in their backyard. Vizzion lets them upload a photo of their yard and see a pool installed — in their space, with their landscaping, on their property. To see the full result, they enter their email. You get an exclusive, high-intent lead from your own website. No shared leads, no tire-kickers, no imagination gap.",
+      "Add a pool visualizer widget to your pool builder website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Homeowners want a pool. They just can't picture it in their backyard. Vizzion lets them upload a photo of their yard and see a pool installed — in their space, with their landscaping, on their property. To see the full result, they enter their email. You get an exclusive, high-intent lead from your own website. No shared leads, no tire-kickers, no imagination gap.",
     introHighlight: "They just can't picture it in their backyard.",
     cta: { text: "See It in Action", href: "#how-it-works" },
   },
@@ -85,7 +84,7 @@ export const swimmingPoolsData: IndustryData = {
   },
 
   howItWorks: {
-    headline: "Three Steps. Five Minutes to Install. Leads Start Flowing.",
+    headline: "How to Add a Pool Visualizer Widget to Your Pool Builder Website",
     intro:
       "No IT department. No complex integrations. No six-week setup. Embed a snippet, customize to match your brand, and start generating leads from the website traffic you already have.",
     steps: [

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getCanonicalUrl } from '@/lib/seo/canonical';
+import { getIndustryMetadata } from '@/lib/seo/industry-metadata';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import IndustryPageHeader from '@/components/industries/IndustryPageHeader';
@@ -17,22 +17,8 @@ import IndustryMidCTA from '@/components/industries/IndustryMidCTA';
 import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { artificialTurfData } from '@/data/industries/artificial-turf';
 
-export const metadata: Metadata = {
-  title: 'Artificial Turf Visualization & Leads | Vizzion',
-  description: 'Homeowners see turf on their actual yard, enter their email — you get the lead. Vizzion generates exclusive artificial turf leads. No sharing.',
-  alternates: {
-    canonical: getCanonicalUrl('/industries/artificial-turf'),
-  },
-  openGraph: {
-    title: 'Artificial Turf Visualization & Leads | Vizzion',
-    description: 'Homeowners see turf on their actual yard, enter their email — you get the lead. Vizzion generates exclusive artificial turf leads. No sharing.',
-    url: '/industries/artificial-turf',
-  },
-  twitter: {
-    title: 'Artificial Turf Visualization & Leads | Vizzion',
-    description: 'Homeowners see turf on their actual yard, enter their email — you get the lead. Vizzion generates exclusive artificial turf leads. No sharing.',
-  },
-};
+export const metadata: Metadata = getIndustryMetadata('artificial-turf');
+
 
 export default function ArtificialTurfIndustryPage() {
   return (

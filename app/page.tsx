@@ -14,19 +14,19 @@ import Footer from '@/components/Footer';
 import { getCanonicalUrl } from '@/lib/seo/canonical';
 
 export const metadata: Metadata = {
-  title: 'Vizzion — Visual Lead Generation for Any Industry',
-  description: 'Embed Vizzion on your site and let customers preview products on their property, vehicle, or body. Captures emails before showing the result.',
+  title: 'Embeddable Visualizer Widget for Business Websites | Vizzion',
+  description: 'Add a visualizer widget to your website so visitors can preview products on their own photo and become qualified leads.',
   alternates: {
     canonical: getCanonicalUrl('/'),
   },
   openGraph: {
-    title: 'Vizzion — Visual Lead Generation for Any Industry',
-    description: 'Embed Vizzion on your site and let customers preview products on their property, vehicle, or body. Captures emails before showing the result.',
+    title: 'Embeddable Visualizer Widget for Business Websites | Vizzion',
+    description: 'Add a visualizer widget to your website so visitors can preview products on their own photo and become qualified leads.',
     url: '/',
   },
   twitter: {
-    title: 'Vizzion — Visual Lead Generation for Any Industry',
-    description: 'Embed Vizzion on your site and let customers preview products on their property, vehicle, or body. Captures emails before showing the result.',
+    title: 'Embeddable Visualizer Widget for Business Websites | Vizzion',
+    description: 'Add a visualizer widget to your website so visitors can preview products on their own photo and become qualified leads.',
   },
 };
 

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getCanonicalUrl } from '@/lib/seo/canonical';
+import { getIndustryMetadata } from '@/lib/seo/industry-metadata';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import IndustryPageHeader from '@/components/industries/IndustryPageHeader';
@@ -17,22 +17,8 @@ import IndustryMidCTA from '@/components/industries/IndustryMidCTA';
 import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { windowsDoorsData } from '@/data/industries/windows-doors';
 
-export const metadata: Metadata = {
-  title: 'Window & Door Visualization & Leads | Vizzion',
-  description: 'Homeowners preview new windows and doors on their actual home. Vizzion captures qualified leads from your website — no shared leads.',
-  alternates: {
-    canonical: getCanonicalUrl('/industries/windows-doors'),
-  },
-  openGraph: {
-    title: 'Window & Door Visualization & Leads | Vizzion',
-    description: 'Homeowners preview new windows and doors on their actual home. Vizzion captures qualified leads from your website — no shared leads.',
-    url: '/industries/windows-doors',
-  },
-  twitter: {
-    title: 'Window & Door Visualization & Leads | Vizzion',
-    description: 'Homeowners preview new windows and doors on their actual home. Vizzion captures qualified leads from your website — no shared leads.',
-  },
-};
+export const metadata: Metadata = getIndustryMetadata('windows-doors');
+
 
 export default function WindowsDoorsIndustryPage() {
   return (

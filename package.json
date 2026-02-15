@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "seo:indexing-check": "node scripts/seo-indexing-check.mjs",
+    "seo:keyword-coverage-check": "node scripts/seo-keyword-coverage-check.mjs"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.414",
