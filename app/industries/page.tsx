@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { getCanonicalUrl } from '@/lib/seo/canonical';
@@ -186,19 +187,38 @@ export default function IndustriesHubPage() {
                     <Link
                       key={industry.slug}
                       href={`/industries/${industry.slug}`}
-                      className="group block bg-bg-secondary rounded-xl border border-border-default hover:border-accent transition-all duration-300 hover:-translate-y-1 hover:shadow-lg p-6"
+                      className="group block bg-bg-secondary rounded-xl border border-border-default hover:border-accent transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer relative overflow-hidden p-0"
                     >
-                      <h3 className="text-xl font-bold mb-2 text-text-primary">
-                        {industry.name}
-                      </h3>
-                      <p className="text-text-secondary text-sm leading-relaxed mb-4">
-                        {industry.description}
-                      </p>
-                      <div className="flex items-center text-sm text-accent opacity-0 group-hover:opacity-100 transition-opacity">
-                        Learn more
-                        <svg className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
+                      {industry.slug === 'roofing' && (
+                        <div className="absolute top-4 right-4 px-2 py-1 rounded-full bg-accent text-primary text-xs font-semibold z-10">
+                          Popular
+                        </div>
+                      )}
+
+                      <div className="relative w-full h-40 overflow-hidden">
+                        <Image
+                          src={`/images/industries/${industry.slug}.png`}
+                          alt={`${industry.name} example`}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          className="object-cover"
+                        />
+                        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-bg-secondary to-transparent pointer-events-none" />
+                      </div>
+
+                      <div className="p-6 pt-0">
+                        <h3 className="text-xl font-bold mb-2 text-text-primary">
+                          {industry.name}
+                        </h3>
+                        <p className="text-text-secondary text-sm leading-relaxed mb-4">
+                          {industry.description}
+                        </p>
+                        <div className="flex items-center text-sm text-accent opacity-0 group-hover:opacity-100 transition-opacity">
+                          Learn more
+                          <svg className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </div>
                       </div>
                     </Link>
                   ))}
