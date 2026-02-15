@@ -1,13 +1,9 @@
-function getRequiredEnv(name: string): string {
-  const value = process.env[name];
+export function getSupabaseUrl(): string {
+  const value = process.env.NEXT_PUBLIC_SUPABASE_URL;
   if (!value) {
-    throw new Error(`Missing required environment variable: ${name}`);
+    throw new Error('Missing NEXT_PUBLIC_SUPABASE_URL in client environment.');
   }
   return value;
-}
-
-export function getSupabaseUrl(): string {
-  return getRequiredEnv('NEXT_PUBLIC_SUPABASE_URL');
 }
 
 export function getSupabasePublishableKey(): string {
@@ -23,7 +19,11 @@ export function getSupabasePublishableKey(): string {
 }
 
 export function getSupabaseServiceRoleKey(): string {
-  return getRequiredEnv('SUPABASE_SERVICE_ROLE_KEY');
+  const value = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!value) {
+    throw new Error('Missing required environment variable: SUPABASE_SERVICE_ROLE_KEY');
+  }
+  return value;
 }
 
 export function getSiteUrl(): string {
