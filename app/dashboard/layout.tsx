@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { redirect } from 'next/navigation';
+import Link from 'next/link';
 import { signOutAction } from '@/app/auth/actions';
 import AppNav from '@/components/dashboard/AppNav';
 import { createClient } from '@/lib/supabase/server';
@@ -37,7 +37,23 @@ export default async function DashboardLayout({
   const context = await getWorkspaceContext(supabase);
 
   if (!context) {
-    redirect('/auth/sign-in');
+    return (
+      <main className="flex min-h-screen items-center justify-center bg-bg-primary px-6 py-12">
+        <div className="w-full max-w-md rounded-2xl border border-border-default bg-bg-secondary p-7 shadow-xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-accent">Vizzion App</p>
+          <h1 className="mt-3 text-2xl font-bold text-text-primary">Sign in required</h1>
+          <p className="mt-2 text-sm text-text-secondary">
+            You need an active dashboard session to view this page.
+          </p>
+          <Link
+            href="/auth/sign-in"
+            className="mt-5 inline-flex rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-bg-primary transition hover:bg-accent-hover"
+          >
+            Go to sign in
+          </Link>
+        </div>
+      </main>
+    );
   }
 
   const hasSettingsAttention = getMissingSetupRequirements(context.widget).some(
