@@ -2,9 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { CreditCard, LayoutGrid, PaintbrushVertical, Settings, Users } from 'lucide-react';
+import { BarChart3, CreditCard, LayoutGrid, PaintbrushVertical, Settings, Users } from 'lucide-react';
 
-type NavIcon = 'dashboard' | 'materials' | 'settings' | 'billing' | 'leads';
+type NavIcon = 'dashboard' | 'portfolio' | 'materials' | 'settings' | 'billing' | 'leads';
 
 interface NavItem {
   href: string;
@@ -20,6 +20,7 @@ interface AppNavProps {
 
 const iconMap: Record<NavIcon, React.ComponentType<{ className?: string }>> = {
   dashboard: LayoutGrid,
+  portfolio: BarChart3,
   materials: PaintbrushVertical,
   settings: Settings,
   billing: CreditCard,

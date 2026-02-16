@@ -60,7 +60,7 @@ export default async function LeadsPage() {
           </div>
 
           <Link
-            href="/api/dashboard/leads/export"
+            href={`/api/dashboard/leads/export?widgetId=${encodeURIComponent(context.widget.id)}`}
             className="rounded-lg border border-border-default bg-bg-primary px-4 py-2 text-sm font-semibold text-text-secondary transition hover:border-accent/40 hover:text-text-primary"
           >
             Export CSV
