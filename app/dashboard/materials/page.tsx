@@ -30,7 +30,7 @@ export default async function MaterialsPage({
   const context = await getWorkspaceContext(supabase);
 
   if (!context) {
-    redirect('/auth/sign-in?next=/dashboard/materials');
+    redirect('/auth/sign-in');
   }
 
   const materials = await getWidgetMaterials(supabase, context.widget.id);

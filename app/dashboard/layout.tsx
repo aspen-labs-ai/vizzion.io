@@ -37,7 +37,7 @@ export default async function DashboardLayout({
   const context = await getWorkspaceContext(supabase);
 
   if (!context) {
-    redirect('/auth/sign-in?next=/dashboard');
+    redirect('/auth/sign-in');
   }
 
   const hasSettingsAttention = getMissingSetupRequirements(context.widget).some(
