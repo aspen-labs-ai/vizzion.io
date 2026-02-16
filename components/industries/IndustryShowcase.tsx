@@ -1,9 +1,8 @@
-// Temporarily hidden — before/after images not ready yet. Re-enable when showcase images are prepared.
-
 import { IndustryData } from '@/data/industries/types';
+import IndustryLiveWidget from './IndustryLiveWidget';
 
 export default function IndustryShowcase({ data }: { data: IndustryData }) {
-  return null;
+  return <IndustryLiveWidget data={data} />;
 
   // import BeforeAfterSlider from './BeforeAfterSlider';
   //
