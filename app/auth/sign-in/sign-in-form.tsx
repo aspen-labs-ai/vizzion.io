@@ -42,8 +42,7 @@ export function SignInForm({
 
     setIsSubmitting(true);
 
-    const callbackPath = `/auth/callback?next=${encodeURIComponent(nextPath)}`;
-    const emailRedirectTo = `${window.location.origin}${callbackPath}`;
+    const emailRedirectTo = `${window.location.origin}/auth/callback`;
 
     const { error: signInError } = await supabase.auth.signInWithOtp({
       email: normalizedEmail,
