@@ -7,6 +7,7 @@ import {
   getMaterialPerformance,
   getRecentLeads,
   getWorkspaceContext,
+  type WidgetRecord,
 } from '@/lib/vizzion/workspace';
 
 type SearchParams = Promise<Record<string, string | string[] | undefined>>;
@@ -48,16 +49,45 @@ export default async function DashboardOverviewPage({
 
   const resolvedParams = await searchParams;
   const error = getSingleParam(resolvedParams.error);
+  const requestedWidgetId = getSingleParam(resolvedParams.widgetId);
+  let selectedWidget: WidgetRecord = context.widget;
+
+  if (requestedWidgetId && requestedWidgetId !== context.widget.id) {
+    const widgetResult = await supabase
+      .from('widgets')
+      .select(
+        'id, workspace_id, name, embed_key, mode, theme, is_active, require_email, auto_open_widget, show_product_names, domain_allowlist, max_generations_per_session, max_generations_per_email_lifetime, limit_reached_cta_url, is_primary',
+      )
+      .eq('workspace_id', context.workspace.id)
+      .eq('id', requestedWidgetId)
+      .maybeSingle();
+
+    if (!widgetResult.error && widgetResult.data) {
+      const widget = widgetResult.data as WidgetRecord;
+      widget.domain_allowlist = Array.isArray(widget.domain_allowlist) ? widget.domain_allowlist : [];
+      selectedWidget = widget;
+    }
+  }
 
   const [metrics, eventBreakdown, materialPerformance, recentLeads] = await Promise.all([
-    getDashboardMetrics(supabase, context.workspace.id, context.widget.id),
-    getEventBreakdown(supabase, context.widget.id),
-    getMaterialPerformance(supabase, context.widget.id),
-    getRecentLeads(supabase, context.widget.id, 6),
+    getDashboardMetrics(supabase, context.workspace.id, selectedWidget.id),
+    getEventBreakdown(supabase, selectedWidget.id),
+    getMaterialPerformance(supabase, selectedWidget.id),
+    getRecentLeads(supabase, selectedWidget.id, 6),
   ]);
 
   return (
     <div className="space-y-8">
+      {selectedWidget.id !== context.widget.id ? (
+        <div className="rounded-lg border border-accent/40 bg-accent/10 px-4 py-3 text-sm text-accent">
+          Viewing metrics for <strong>{selectedWidget.name}</strong>.{' '}
+          <Link href="/dashboard" className="font-semibold underline hover:text-accent-hover">
+            Return to primary widget
+          </Link>
+          .
+        </div>
+      ) : null}
+
       {error ? (
         <p className="rounded-lg border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm text-red-200">
           {error}

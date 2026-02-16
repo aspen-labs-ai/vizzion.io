@@ -2,12 +2,13 @@ import Image from 'next/image';
 import { signOutAction } from '@/app/auth/actions';
 import AppNav from '@/components/dashboard/AppNav';
 import { createClient } from '@/lib/supabase/server';
+import { getWorkspaceWidgets } from '@/lib/vizzion/portfolio';
 import { getMissingSetupRequirements } from '@/lib/vizzion/setup-requirements';
 import { getWorkspaceContext } from '@/lib/vizzion/workspace';
 
 export const dynamic = 'force-dynamic';
 
-const navItems = [
+const baseNavItems = [
   { href: '/dashboard', label: 'Dashboard', icon: 'dashboard' as const },
   { href: '/dashboard/materials', label: 'Materials', icon: 'materials' as const },
   { href: '/dashboard/settings', label: 'Settings', icon: 'settings' as const },
@@ -65,6 +66,15 @@ export default async function DashboardLayout({
   };
   const showEditorRoleChip = context.role === 'editor';
   const workspaceDisplayName = context.workspace.company_name ?? context.workspace.name;
+  const workspaceWidgets = await getWorkspaceWidgets(supabase, context.workspace.id);
+  const showPortfolioNav = workspaceWidgets.length > 1;
+  const navItems = showPortfolioNav
+    ? [
+        baseNavItems[0],
+        { href: '/dashboard/portfolio', label: 'Portfolio', icon: 'portfolio' as const },
+        ...baseNavItems.slice(1),
+      ]
+    : baseNavItems;
 
   return (
     <div className="h-screen overflow-hidden bg-bg-primary text-text-primary">
