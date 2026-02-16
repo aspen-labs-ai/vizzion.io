@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { signOutAction } from '@/app/auth/actions';
 import AppNav from '@/components/dashboard/AppNav';
 import { createClient } from '@/lib/supabase/server';
@@ -45,12 +44,14 @@ export default async function DashboardLayout({
           <p className="mt-2 text-sm text-text-secondary">
             You need an active dashboard session to view this page.
           </p>
-          <Link
-            href="/auth/sign-in"
-            className="mt-5 inline-flex rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-bg-primary transition hover:bg-accent-hover"
-          >
-            Go to sign in
-          </Link>
+          <form action="/auth/sign-in" method="get" className="mt-5">
+            <button
+              type="submit"
+              className="inline-flex rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-bg-primary transition hover:bg-accent-hover"
+            >
+              Go to sign in
+            </button>
+          </form>
         </div>
       </main>
     );
