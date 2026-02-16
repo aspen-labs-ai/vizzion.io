@@ -45,7 +45,7 @@ export default async function BillingPage({
   const context = await getWorkspaceContext(supabase);
 
   if (!context) {
-    redirect('/auth/sign-in?next=/dashboard/billing');
+    redirect('/auth/sign-in');
   }
 
   const billingSummary = await getWorkspaceBillingSummary(supabase, context.workspace.id);

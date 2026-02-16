@@ -18,7 +18,7 @@ export default async function LeadsPage() {
   const context = await getWorkspaceContext(supabase);
 
   if (!context) {
-    redirect('/auth/sign-in?next=/dashboard/leads');
+    redirect('/auth/sign-in');
   }
 
   const now = new Date();

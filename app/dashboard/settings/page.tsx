@@ -31,7 +31,7 @@ export default async function SettingsPage({
   const context = await getWorkspaceContext(supabase);
 
   if (!context) {
-    redirect('/auth/sign-in?next=/dashboard/settings');
+    redirect('/auth/sign-in');
   }
 
   const resolvedParams = await searchParams;
