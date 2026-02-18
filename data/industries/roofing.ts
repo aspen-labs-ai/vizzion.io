@@ -19,9 +19,9 @@ export const roofingData: IndustryData = {
       "Let Homeowners See Their New Roof Before You Quote",
     highlightWord: "Roof",
     intro:
-      "Add a roofing visualizer widget to your roofing website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Homeowners can't tell the difference between Owens Corning Onyx Black and GAF Charcoal from a 3-inch sample. Vizzion lets them see the actual shingle, metal panel, or tile on their real roof — then captures their email before they see the result. You get an exclusive, warm lead from traffic you already have.",
+      "Add a roofing visualizer widget to your roofing website in minutes. Visitors upload a photo, preview different shingle, metal, or tile options on their actual roof, and submit their email to see the result. Homeowners struggle to picture a new roof from small color swatches. Vizzion shows them the transformation on their property — then captures their email before they see the final preview. You get an exclusive, warm lead from traffic you already have.",
     introHighlight:
-      "Homeowners can't tell the difference between Owens Corning Onyx Black and GAF Charcoal from a 3-inch sample.",
+      "Homeowners struggle to picture a new roof from small color swatches.",
     cta: { text: "See It in Action", href: "#how-it-works" },
   },
 
