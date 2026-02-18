@@ -15,7 +15,7 @@ export const artificialTurfData: IndustryData = {
 
   header: {
     badge: "Turf Industry",
-    headline: "Artificial Turf Visualizer Widget for Your Turf Website",
+    headline: "Let Homeowners See Turf Transformation on Their Actual Yard",
     highlightWord: "Turf",
     intro:
       "Add an artificial turf visualizer widget to your turf website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Homeowners are curious about turf but worried it won't look natural on their yard. Vizzion lets them upload a photo and see synthetic turf replacing their actual lawn — their lot, their landscaping, their house. To see the full result, they enter their email. You get an exclusive, high-intent lead from your own website. No shared lists, no cold calls, no convincing required.",

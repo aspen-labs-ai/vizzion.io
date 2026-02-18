@@ -16,8 +16,8 @@ export const guttersData: IndustryData = {
   header: {
     badge: "Gutter Industry",
     headline:
-      "Gutter Visualizer Widget for Your Gutter Website",
-    highlightWord: "Gutter",
+      "Let Homeowners Visualize New Gutters on Their Home",
+    highlightWord: "Gutters",
     intro:
       "Add a gutter visualizer widget to your gutter website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Gutters are a grudge purchase — homeowners don't care until water is pouring over the fascia. When they finally search, they grab three quotes and pick the lowest number. Vizzion breaks that pattern. Visitors upload a photo of their home, preview gutter profiles and colors on their actual roofline, and enter their email to keep the result. You get an exclusive lead who already knows what they want. They get a reason to choose you over the cheapest guy on page one.",
     introHighlight:

@@ -16,8 +16,8 @@ export const roofingData: IndustryData = {
   header: {
     badge: "Roofing Industry",
     headline:
-      "Roofing Visualizer Widget for Your Roofing Website",
-    highlightWord: "Roofing",
+      "Let Homeowners See Their New Roof Before You Quote",
+    highlightWord: "Roof",
     intro:
       "Add a roofing visualizer widget to your roofing website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Homeowners can't tell the difference between Owens Corning Onyx Black and GAF Charcoal from a 3-inch sample. Vizzion lets them see the actual shingle, metal panel, or tile on their real roof — then captures their email before they see the result. You get an exclusive, warm lead from traffic you already have.",
     introHighlight:

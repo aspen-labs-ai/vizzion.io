@@ -15,7 +15,7 @@ export const countertopsData: IndustryData = {
 
   header: {
     badge: "Countertops & Stone Industry",
-    headline: "Countertop Visualizer Widget for Your Countertop Website",
+    headline: "Add a Countertop Visualizer to Your Site — Generate Qualified Leads",
     highlightWord: "Countertop",
     intro:
       "Add a countertop visualizer widget to your countertop website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Homeowners don't commit to a $6,000 countertop based on a 4-inch sample chip. Vizzion lets them see granite, quartz, or marble in their actual kitchen — then captures their email before they see the result. You get a warm, qualified lead from a customer who already knows what they want. No more slab yard no-shows, no more ghosted quotes.",

@@ -15,8 +15,8 @@ export const carWrapsData: IndustryData = {
 
   header: {
     badge: "Vehicle Wrap Industry",
-    headline: "Vehicle Wrap Visualizer Widget for Your Wrap Shop Website",
-    highlightWord: "Wrap",
+    headline: "Add a Vehicle Wrap Visualizer — Let Customers Preview Color Options",
+    highlightWord: "Color",
     intro:
       "Add a vehicle wrap visualizer widget to your wrap shop website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Your designers spend two hours mocking up a custom wrap for every walk-in and website inquiry. Half of them ghost after seeing the price. Vizzion lets customers upload a photo of their vehicle and see your wrap designs on it instantly — then captures their email before they get the full result. You get a qualified lead who already loves the look. No free design labor, no tire-kickers.",
     introHighlight: "Half of them ghost after seeing the price.",

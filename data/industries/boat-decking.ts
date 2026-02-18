@@ -15,7 +15,7 @@ export const boatDeckingData: IndustryData = {
 
   header: {
     badge: "Marine Decking Industry",
-    headline: "Boat Decking Visualizer Widget for Your Marine Decking Website",
+    headline: "Let Boat Owners Visualize Decking Options on Their Vessel",
     highlightWord: "Decking",
     intro:
       "Add a boat decking visualizer widget to your marine decking website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Boat owners spend $50K+ on a vessel but can't picture a $3K deck upgrade. Vizzion lets them see new decking material — SeaDek, synthetic teak, EVA foam, marine vinyl — on their actual boat. They upload a photo, see the transformation, and enter their email to get the full result. You get an exclusive, pre-qualified lead from your own website. No bought lists, no boat-show-only pipeline.",

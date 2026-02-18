@@ -15,7 +15,7 @@ export const sidingData: IndustryData = {
 
   header: {
     badge: "Siding Industry",
-    headline: "Siding Visualizer Widget for Your Siding Website",
+    headline: "Add a Siding Visualizer to Your Website — Capture More Leads",
     highlightWord: "Siding",
     intro:
       "Add a siding visualizer widget to your siding website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Homeowners won't commit to a $15,000 siding replacement based on a 3-inch color swatch. Vizzion lets them see fiber cement, vinyl, or engineered wood on their actual home — then captures their email before showing the result. You get an exclusive, self-qualified lead from your own website. No aggregators, no shared leads, no swatch books that end up in a drawer.",

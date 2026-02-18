@@ -15,8 +15,8 @@ export const fencingData: IndustryData = {
 
   header: {
     badge: "Fencing Industry",
-    headline: "Fencing Visualizer Widget for Your Fencing Website",
-    highlightWord: "Fencing",
+    headline: "Add a Fence Visualizer to Your Website — Boost Conversions",
+    highlightWord: "Fence",
     intro:
       "Add a fencing visualizer widget to your fencing website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. A 6-inch sample panel doesn't sell 200 linear feet of fence. Vizzion lets homeowners upload a photo of their yard and see exactly what a new fence looks like on their actual property — wood, vinyl, aluminum, or iron. They enter their email to save the preview. You get an exclusive, pre-qualified lead without paying a dime to a lead aggregator.",
     introHighlight: "A 6-inch sample panel doesn't sell 200 linear feet of fence.",

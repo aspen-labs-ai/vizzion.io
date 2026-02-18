@@ -16,8 +16,8 @@ export const garageDoorsData: IndustryData = {
   header: {
     badge: "Garage Door Industry",
     headline:
-      "Garage Door Visualizer Widget for Your Garage Door Website",
-    highlightWord: "Garage Door",
+      "Let Homeowners Preview Garage Doors on Their Actual Home",
+    highlightWord: "Garage",
     intro:
       "Add a garage door visualizer widget to your garage door website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Homeowners stare at garage door catalogs and can't picture the result. Vizzion lets them see a new garage door on their actual home — then captures their email before they see the full preview. You get a warm, exclusive lead from your own website. No bought lists, no shared leads, no catalog guesswork.",
     introHighlight:

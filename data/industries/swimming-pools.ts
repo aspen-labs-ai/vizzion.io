@@ -15,7 +15,7 @@ export const swimmingPoolsData: IndustryData = {
 
   header: {
     badge: "Pool Industry",
-    headline: "Pool Visualizer Widget for Your Pool Builder Website",
+    headline: "Add a Pool Visualizer to Your Website — Turn Dreamers Into Buyers",
     highlightWord: "Pool",
     intro:
       "Add a pool visualizer widget to your pool builder website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Homeowners want a pool. They just can't picture it in their backyard. Vizzion lets them upload a photo of their yard and see a pool installed — in their space, with their landscaping, on their property. To see the full result, they enter their email. You get an exclusive, high-intent lead from your own website. No shared leads, no tire-kickers, no imagination gap.",

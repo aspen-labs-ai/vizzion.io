@@ -15,7 +15,7 @@ export const solarData: IndustryData = {
 
   header: {
     badge: "Solar Industry",
-    headline: "Solar Visualizer Widget for Your Solar Website",
+    headline: "Help Buyers Picture Solar Panels on Their Roof",
     highlightWord: "Solar",
     intro:
       "Add a solar visualizer widget to your solar website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Homeowners don't buy what they can't picture. Vizzion lets them see solar panels on their actual roof — then captures their email before they see the result. You get a warm, exclusive lead from your own website traffic. No bought lists, no shared leads, no guesswork.",

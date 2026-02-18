@@ -16,7 +16,7 @@ export const shuttersData: IndustryData = {
   header: {
     badge: "Shutters Industry",
     headline:
-      "Shutter Visualizer Widget for Your Shutter Website",
+      "Add a Shutter Visualizer to Your Website — Generate More Leads",
     highlightWord: "Shutter",
     intro:
       "Add a shutter visualizer widget to your shutter website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Exterior shutters are the fastest way to transform a home's curb appeal — but homeowners can't commit to a style, color, or material they've never seen on their own house. Vizzion lets them upload a photo and preview shutters on their actual facade in seconds. They enter their email to save the result. You get a warm, exclusive lead with their style preferences already attached.",
