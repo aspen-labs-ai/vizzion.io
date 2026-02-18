@@ -10,7 +10,7 @@ const STEPS = [
     bullets: [
       'Works with any photo from their phone or computer',
       'Instant upload — no waiting, no processing delays',
-      'Supports every industry from roofing to tattoos',
+      'Supports every industry from roofing to boat decking',
     ],
     icon: Upload,
     mockup: 'upload',

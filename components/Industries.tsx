@@ -1,4 +1,4 @@
-import { Home, Building2, DoorOpen, Boxes, Table2, PanelTop, Sun, Warehouse, Shield, CloudRain, Square, Route, Car, Pen, Waves, Sprout, Ship } from 'lucide-react';
+import { Home, Building2, DoorOpen, Boxes, Table2, PanelTop, Sun, Warehouse, Shield, CloudRain, Square, Route, Car, Waves, Sprout, Ship } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { type LucideIcon } from 'lucide-react';
@@ -132,13 +132,6 @@ export default function Industries() {
           description: 'See your vehicle wrapped before committing. Customers upload a photo of their car, truck, or van and see custom wrap designs on their actual vehicle — turning browsers into booked appointments.',
           href: '/industries/car-wraps',
           image: '/images/industries/car-wraps.png'
-        },
-        {
-          icon: Pen,
-          name: 'Tattoos',
-          description: 'End the guesswork on permanent decisions. Clients see tattoo designs on their actual skin before booking — reducing no-shows, eliminating regret anxiety, and filling your chair with committed customers.',
-          href: '/industries/tattoos',
-          image: '/images/industries/tattoos.png'
         },
         {
           icon: Ship,
