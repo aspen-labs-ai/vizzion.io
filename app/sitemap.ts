@@ -18,7 +18,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'driveways',
     'swimming-pools',
     'artificial-turf',
-    'tattoos',
     'car-wraps',
     'boat-decking',
   ];

@@ -13,7 +13,6 @@ export type IndustrySlug =
   | 'driveways'
   | 'swimming-pools'
   | 'artificial-turf'
-  | 'tattoos'
   | 'car-wraps'
   | 'boat-decking';
 
@@ -29,7 +28,7 @@ export interface IndustryKeywordConfig {
 export const industryKeywordConfigs: Record<IndustrySlug, IndustryKeywordConfig> = {
   roofing: {
     title: 'Roofing Visualizer Widget — Preview Before You Buy | Vizzion',
-    h1: 'Roofing Visualizer Widget for Your Roofing Website',
+    h1: 'Let Homeowners See Their New Roof Before You Quote',
     howToH2: 'How to Add a Roofing Visualizer Widget to Your Roofing Website',
     industryTerm: 'roofing',
     audienceTerm: 'roofing',
@@ -37,7 +36,7 @@ export const industryKeywordConfigs: Record<IndustrySlug, IndustryKeywordConfig>
   },
   siding: {
     title: 'Siding Visualization Tool — Show Options on Real Homes | Vizzion',
-    h1: 'Siding Visualizer Widget for Your Siding Website',
+    h1: 'Add a Siding Visualizer to Your Website — Capture More Leads',
     howToH2: 'How to Add a Siding Visualizer Widget to Your Siding Website',
     industryTerm: 'siding',
     audienceTerm: 'siding',
@@ -45,7 +44,7 @@ export const industryKeywordConfigs: Record<IndustrySlug, IndustryKeywordConfig>
   },
   solar: {
     title: 'Solar Panel Visualizer — Convert More Website Visitors | Vizzion',
-    h1: 'Solar Visualizer Widget for Your Solar Website',
+    h1: 'Help Buyers Picture Solar Panels on Their Roof',
     howToH2: 'How to Add a Solar Visualizer Widget to Your Solar Website',
     industryTerm: 'solar',
     audienceTerm: 'solar',
@@ -53,7 +52,7 @@ export const industryKeywordConfigs: Record<IndustrySlug, IndustryKeywordConfig>
   },
   'windows-doors': {
     title: 'Window & Door Visualizer Widget — Instant Lead Generation | Vizzion',
-    h1: 'Window and Door Visualizer Widget for Your Window and Door Website',
+    h1: 'Let Website Visitors Preview Windows & Doors on Their Home',
     howToH2: 'How to Add a Window and Door Visualizer Widget to Your Window and Door Website',
     industryTerm: 'window and door',
     audienceTerm: 'window and door',
@@ -61,7 +60,7 @@ export const industryKeywordConfigs: Record<IndustrySlug, IndustryKeywordConfig>
   },
   decking: {
     title: 'Deck Design Visualizer — Help Homeowners See the Result | Vizzion',
-    h1: 'Deck Visualizer Widget for Your Decking Website',
+    h1: 'Add a Deck Visualizer to Your Website — Turn Visitors Into Leads',
     howToH2: 'How to Add a Deck Visualizer Widget to Your Decking Website',
     industryTerm: 'deck',
     audienceTerm: 'decking',
@@ -69,7 +68,7 @@ export const industryKeywordConfigs: Record<IndustrySlug, IndustryKeywordConfig>
   },
   flooring: {
     title: 'Flooring Preview Widget — Visualize Before Installation | Vizzion',
-    h1: 'Flooring Visualizer Widget for Your Flooring Website',
+    h1: 'Let Customers See Flooring Options in Their Own Space',
     howToH2: 'How to Add a Flooring Visualizer Widget to Your Flooring Website',
     industryTerm: 'flooring',
     audienceTerm: 'flooring',
@@ -77,7 +76,7 @@ export const industryKeywordConfigs: Record<IndustrySlug, IndustryKeywordConfig>
   },
   countertops: {
     title: 'Countertop Visualizer — See Materials in Their Kitchen | Vizzion',
-    h1: 'Countertop Visualizer Widget for Your Countertop Website',
+    h1: 'Add a Countertop Visualizer to Your Site — Generate Qualified Leads',
     howToH2: 'How to Add a Countertop Visualizer Widget to Your Countertop Website',
     industryTerm: 'countertop',
     audienceTerm: 'countertop',
@@ -85,7 +84,7 @@ export const industryKeywordConfigs: Record<IndustrySlug, IndustryKeywordConfig>
   },
   'garage-doors': {
     title: 'Garage Door Preview Tool — Boost Website Conversions | Vizzion',
-    h1: 'Garage Door Visualizer Widget for Your Garage Door Website',
+    h1: 'Let Homeowners Preview Garage Doors on Their Actual Home',
     howToH2: 'How to Add a Garage Door Visualizer Widget to Your Garage Door Website',
     industryTerm: 'garage door',
     audienceTerm: 'garage door',
@@ -93,7 +92,7 @@ export const industryKeywordConfigs: Record<IndustrySlug, IndustryKeywordConfig>
   },
   fencing: {
     title: 'Fence Visualizer Widget — Show Options on Real Property | Vizzion',
-    h1: 'Fencing Visualizer Widget for Your Fencing Website',
+    h1: 'Add a Fence Visualizer to Your Website — Boost Conversions',
     howToH2: 'How to Add a Fencing Visualizer Widget to Your Fencing Website',
     industryTerm: 'fencing',
     audienceTerm: 'fencing',
@@ -101,7 +100,7 @@ export const industryKeywordConfigs: Record<IndustrySlug, IndustryKeywordConfig>
   },
   gutters: {
     title: 'Gutter System Visualizer — Convert Browsers to Buyers | Vizzion',
-    h1: 'Gutter Visualizer Widget for Your Gutter Website',
+    h1: 'Let Homeowners Visualize New Gutters on Their Home',
     howToH2: 'How to Add a Gutter Visualizer Widget to Your Gutter Website',
     industryTerm: 'gutter',
     audienceTerm: 'gutter',
@@ -109,7 +108,7 @@ export const industryKeywordConfigs: Record<IndustrySlug, IndustryKeywordConfig>
   },
   shutters: {
     title: 'Shutter Preview Widget — See Styles on Actual Homes | Vizzion',
-    h1: 'Shutter Visualizer Widget for Your Shutter Website',
+    h1: 'Add a Shutter Visualizer to Your Website — Generate More Leads',
     howToH2: 'How to Add a Shutter Visualizer Widget to Your Shutter Website',
     industryTerm: 'shutter',
     audienceTerm: 'shutter',
@@ -117,7 +116,7 @@ export const industryKeywordConfigs: Record<IndustrySlug, IndustryKeywordConfig>
   },
   driveways: {
     title: 'Driveway Design Tool — Visualize Paving Options Instantly | Vizzion',
-    h1: 'Driveway Visualizer Widget for Your Paving Website',
+    h1: 'Let Property Owners Preview Paving Options on Their Driveway',
     howToH2: 'How to Add a Driveway Visualizer Widget to Your Paving Website',
     industryTerm: 'driveway',
     audienceTerm: 'paving',
@@ -125,7 +124,7 @@ export const industryKeywordConfigs: Record<IndustrySlug, IndustryKeywordConfig>
   },
   'swimming-pools': {
     title: 'Pool Visualizer — Show Dream Pools in Real Backyards | Vizzion',
-    h1: 'Pool Visualizer Widget for Your Pool Builder Website',
+    h1: 'Add a Pool Visualizer to Your Website — Turn Dreamers Into Buyers',
     howToH2: 'How to Add a Pool Visualizer Widget to Your Pool Builder Website',
     industryTerm: 'pool',
     audienceTerm: 'pool builder',
@@ -133,23 +132,15 @@ export const industryKeywordConfigs: Record<IndustrySlug, IndustryKeywordConfig>
   },
   'artificial-turf': {
     title: 'Artificial Turf Preview — Transform Yards Virtually | Vizzion',
-    h1: 'Artificial Turf Visualizer Widget for Your Turf Website',
+    h1: 'Let Homeowners See Turf Transformation on Their Actual Yard',
     howToH2: 'How to Add an Artificial Turf Visualizer Widget to Your Turf Website',
     industryTerm: 'artificial turf',
     audienceTerm: 'turf',
     article: 'an',
   },
-  tattoos: {
-    title: 'Tattoo Preview Widget — Let Clients Visualize First | Vizzion',
-    h1: 'Tattoo Visualizer Widget for Your Tattoo Studio Website',
-    howToH2: 'How to Add a Tattoo Visualizer Widget to Your Tattoo Studio Website',
-    industryTerm: 'tattoo',
-    audienceTerm: 'tattoo studio',
-    article: 'a',
-  },
   'car-wraps': {
     title: 'Vehicle Wrap Visualizer — Preview Designs on Any Car | Vizzion',
-    h1: 'Vehicle Wrap Visualizer Widget for Your Wrap Shop Website',
+    h1: 'Add a Vehicle Wrap Visualizer — Let Customers Preview Color Options',
     howToH2: 'How to Add a Vehicle Wrap Visualizer Widget to Your Wrap Shop Website',
     industryTerm: 'vehicle wrap',
     audienceTerm: 'wrap shop',
@@ -157,7 +148,7 @@ export const industryKeywordConfigs: Record<IndustrySlug, IndustryKeywordConfig>
   },
   'boat-decking': {
     title: 'Marine Decking Visualizer — Show Options on Real Boats | Vizzion',
-    h1: 'Boat Decking Visualizer Widget for Your Marine Decking Website',
+    h1: 'Let Boat Owners Visualize Decking Options on Their Vessel',
     howToH2: 'How to Add a Boat Decking Visualizer Widget to Your Marine Decking Website',
     industryTerm: 'boat decking',
     audienceTerm: 'marine decking',
@@ -184,8 +175,7 @@ export function buildIndustryMetaDescription(config: IndustryKeywordConfig): str
     driveway: `Visualize new driveways before breaking ground. Show concrete, asphalt, or paver options on their actual property, capturing leads who are ready to move forward with confidence.`,
     pool: `Turn pool dreams into pool leads. Let visitors see their backyard transformed with your pool designs, capturing contact info from excited buyers who can finally picture the result.`,
     'artificial turf': `Show the green without the maintenance. Visitors upload their yard, see realistic turf transformation instantly, then provide contact info — converting lawn frustration into sales opportunities.`,
-    tattoo: `Preview before permanent. Let clients see tattoo designs on their actual body placement, building confidence and capturing bookings from visitors ready to commit to your artistry.`,
-    'vehicle wrap': `See the wrap before the wrap. Vehicle owners preview custom designs on their exact car or truck model, turning tire kickers into committed customers ready for your quote.`,
+    'vehicle wrap': `Add a vehicle wrap visualizer to your website. Customers preview different wrap colors and styles on their car or truck, generating qualified leads ready for your quote.`,
     'boat decking': `Visualize marine makeovers instantly. Boat owners see teak, synthetic, or custom decking options on their vessel, capturing leads from buyers ready to upgrade their investment.`,
   };
 
