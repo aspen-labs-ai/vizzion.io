@@ -17,6 +17,10 @@ const industries = [
   { name: 'Gutters', slug: 'gutters', image: '/images/industries/gutters.png' },
   { name: 'Shutters', slug: 'shutters', image: '/images/industries/shutters.png' },
   { name: 'Driveways & Pavement', slug: 'driveways', image: '/images/industries/driveways.png' },
+  { name: 'Swimming Pools', slug: 'swimming-pools', image: '/images/industries/swimming-pools.png' },
+  { name: 'Artificial Turf', slug: 'artificial-turf', image: '/images/industries/artificial-turf.png' },
+  { name: 'Car Wraps', slug: 'car-wraps', image: '/images/industries/car-wraps.png' },
+  { name: 'Boat Decking', slug: 'boat-decking', image: '/images/industries/boat-decking.png' },
 ];
 
 export default function Header() {
