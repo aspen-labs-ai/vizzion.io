@@ -68,8 +68,9 @@ export default function Header() {
   }, [mobileMenuOpen]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-bg-secondary/95 backdrop-blur-sm border-b border-border-default">
-      <div className="max-w-[1400px] mx-auto px-6 py-5 flex items-center justify-between">
+    <>
+      <header className="fixed top-0 left-0 right-0 z-50 bg-bg-secondary/95 backdrop-blur-sm border-b border-border-default">
+        <div className="max-w-[1400px] mx-auto px-6 py-5 flex items-center justify-between">
         {/* Logo & Brand */}
         <Link href="/" className="flex items-center gap-4 group">
           <Image
@@ -198,11 +199,12 @@ export default function Header() {
           <span className={`w-6 h-0.5 bg-text-primary transition-all duration-300 ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
           <span className={`w-6 h-0.5 bg-text-primary transition-all duration-300 ${mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
         </button>
-      </div>
+        </div>
+      </header>
 
       {/* Mobile Navigation Drawer */}
       <div
-        className={`md:hidden fixed top-[81px] right-0 bottom-0 w-72 bg-bg-secondary border-l border-border-default shadow-xl transform transition-transform duration-300 overflow-y-auto ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`md:hidden fixed top-[81px] right-0 bottom-0 z-[60] w-72 bg-bg-secondary border-l border-border-default shadow-xl transform transition-transform duration-300 overflow-y-auto ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
         <nav className="flex flex-col p-6 gap-1">
           <Link
@@ -279,10 +281,10 @@ export default function Header() {
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
         <div
-          className="md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm top-[81px]"
+          className="md:hidden fixed inset-0 top-[81px] z-[55] bg-black/50 backdrop-blur-sm"
           onClick={closeMobileMenu}
         />
       )}
-    </header>
+    </>
   );
 }
