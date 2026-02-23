@@ -202,7 +202,7 @@ export default function Header() {
 
       {/* Mobile Navigation Drawer */}
       <div
-        className={`md:hidden fixed top-[81px] right-0 bottom-0 w-72 bg-bg-secondary border-l border-border-default shadow-xl transform transition-transform duration-300 overflow-y-auto ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`md:hidden fixed top-[81px] right-0 bottom-0 z-[60] w-72 bg-bg-secondary border-l border-border-default shadow-xl transform transition-transform duration-300 overflow-y-auto ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
         <nav className="flex flex-col p-6 gap-1">
           <Link
@@ -279,7 +279,7 @@ export default function Header() {
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
         <div
-          className="md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm top-[81px]"
+          className="md:hidden fixed inset-0 top-[81px] z-[55] bg-black/50 backdrop-blur-sm"
           onClick={closeMobileMenu}
         />
       )}
