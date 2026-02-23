@@ -68,8 +68,9 @@ export default function Header() {
   }, [mobileMenuOpen]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-bg-secondary/95 backdrop-blur-sm border-b border-border-default">
-      <div className="max-w-[1400px] mx-auto px-6 py-5 flex items-center justify-between">
+    <>
+      <header className="fixed top-0 left-0 right-0 z-50 bg-bg-secondary/95 backdrop-blur-sm border-b border-border-default">
+        <div className="max-w-[1400px] mx-auto px-6 py-5 flex items-center justify-between">
         {/* Logo & Brand */}
         <Link href="/" className="flex items-center gap-4 group">
           <Image
@@ -198,7 +199,8 @@ export default function Header() {
           <span className={`w-6 h-0.5 bg-text-primary transition-all duration-300 ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
           <span className={`w-6 h-0.5 bg-text-primary transition-all duration-300 ${mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
         </button>
-      </div>
+        </div>
+      </header>
 
       {/* Mobile Navigation Drawer */}
       <div
@@ -283,6 +285,6 @@ export default function Header() {
           onClick={closeMobileMenu}
         />
       )}
-    </header>
+    </>
   );
 }
