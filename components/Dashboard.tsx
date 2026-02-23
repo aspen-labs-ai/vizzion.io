@@ -1,12 +1,13 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 
 /* ── constants ─────────────────────────────────────────── */
 const TABS = ['dashboard', 'materials', 'settings'] as const;
 type Tab = (typeof TABS)[number];
 const TAB_MS = 5000; // 5 s per tab → 15 s full cycle
+const MOBILE_PANEL_BASE_HEIGHT = 520;
 
 const TAB_LABELS: Record<Tab, string> = {
   dashboard: 'Dashboard',
@@ -104,6 +105,8 @@ export default function Dashboard() {
   const [tab, setTab] = useState<Tab>('dashboard');
   const [auto, setAuto] = useState(true);
   const [cycle, setCycle] = useState(0);
+  const [mobilePanelMinHeight, setMobilePanelMinHeight] = useState(MOBILE_PANEL_BASE_HEIGHT);
+  const panelMeasureRef = useRef<HTMLDivElement>(null);
 
   /* auto-rotation */
   useEffect(() => {
@@ -127,6 +130,31 @@ export default function Dashboard() {
     setAuto(false);
     setCycle(c => c + 1);
   }, []);
+
+  useEffect(() => {
+    const panelEl = panelMeasureRef.current;
+    if (!panelEl) return;
+
+    const syncHeight = () => {
+      const nextHeight = Math.ceil(panelEl.getBoundingClientRect().height);
+      if (nextHeight > 0) {
+        setMobilePanelMinHeight(prev => Math.max(prev, nextHeight));
+      }
+    };
+
+    const frame = requestAnimationFrame(syncHeight);
+    let observer: ResizeObserver | null = null;
+
+    if (typeof ResizeObserver !== 'undefined') {
+      observer = new ResizeObserver(syncHeight);
+      observer.observe(panelEl);
+    }
+
+    return () => {
+      cancelAnimationFrame(frame);
+      observer?.disconnect();
+    };
+  }, [tab]);
 
   /* count-up values (only animate when dashboard visible) */
   const isDash = tab === 'dashboard';
@@ -190,33 +218,41 @@ export default function Dashboard() {
               </div>
 
               {/* ── Main Content ── */}
-              <div className="flex-1 min-h-[520px] bg-bg-primary relative overflow-hidden">
-                {/* Mobile tab strip */}
-                <div className="md:hidden flex border-b border-border-subtle">
-                  {TABS.map(t => (
-                    <button
-                      key={t}
-                      onClick={() => click(t)}
-                      className={`flex-1 py-3 text-sm font-semibold transition-colors ${
-                        tab === t
-                          ? 'text-accent border-b-2 border-accent'
-                          : 'text-text-tertiary'
-                      }`}
-                    >
-                      {TAB_LABELS[t]}
-                    </button>
-                  ))}
-                </div>
+              <div
+                className="flex-1 min-h-[var(--dashboard-mobile-panel-height)] md:min-h-[520px] bg-bg-primary relative overflow-hidden"
+                style={
+                  {
+                    '--dashboard-mobile-panel-height': `${mobilePanelMinHeight}px`,
+                  } as React.CSSProperties
+                }
+              >
+                <div ref={panelMeasureRef}>
+                  {/* Mobile tab strip */}
+                  <div className="md:hidden flex border-b border-border-subtle">
+                    {TABS.map(t => (
+                      <button
+                        key={t}
+                        onClick={() => click(t)}
+                        className={`flex-1 py-3 text-sm font-semibold transition-colors ${
+                          tab === t
+                            ? 'text-accent border-b-2 border-accent'
+                            : 'text-text-tertiary'
+                        }`}
+                      >
+                        {TAB_LABELS[t]}
+                      </button>
+                    ))}
+                  </div>
 
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={tab}
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -12 }}
-                    transition={{ duration: 0.25 }}
-                    className="p-4 md:p-8"
-                  >
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={tab}
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -12 }}
+                      transition={{ duration: 0.25 }}
+                      className="p-4 md:p-8"
+                    >
                     {/* ═══════════ DASHBOARD TAB ═══════════ */}
                     {tab === 'dashboard' && (
                       <>
@@ -532,8 +568,9 @@ export default function Dashboard() {
                         </div>
                       </>
                     )}
-                  </motion.div>
-                </AnimatePresence>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
               </div>
             </div>
           </div>
