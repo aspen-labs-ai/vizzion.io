@@ -13,7 +13,6 @@ import IndustryTestimonials from '@/components/industries/IndustryTestimonials';
 import IndustryFAQ from '@/components/industries/IndustryFAQ';
 import IndustryCTA from '@/components/industries/IndustryCTA';
 import IndustryBreadcrumb from '@/components/industries/IndustryBreadcrumb';
-import IndustryMidCTA from '@/components/industries/IndustryMidCTA';
 import IndustryRelatedPages from '@/components/industries/IndustryRelatedPages';
 import { solarData } from '@/data/industries/solar';
 
@@ -31,13 +30,12 @@ export default function SolarIndustryPage() {
         <IndustryShowcase data={solarData} />
         <IndustrySolution data={solarData} />
         <IndustryHowItWorks data={solarData} />
-        <IndustryMidCTA data={solarData} />
         <IndustryBenefits data={solarData} />
         <IndustryComparison data={solarData} />
         <IndustryTestimonials data={solarData} />
         <IndustryFAQ data={solarData} />
-        <IndustryRelatedPages data={solarData} />
         <IndustryCTA data={solarData} />
+        <IndustryRelatedPages data={solarData} />
       </main>
       <Footer />
     </>
