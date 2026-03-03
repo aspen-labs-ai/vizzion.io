@@ -17,7 +17,6 @@ const INDUSTRIES = [
   'Driveways',
   'Swimming Pools',
   'Artificial Turf',
-  'Tattoos',
   'Car Wraps',
   'Boat Decking',
   'Other',
