@@ -5,39 +5,22 @@ export async function POST(request: Request) {
     // Get FormSubmit's payload
     const body = await request.json();
     
-    // Log the full payload to understand its structure
     console.log('FormSubmit webhook payload:', JSON.stringify(body, null, 2));
     
-    // Try multiple ways to extract the data
-    // FormSubmit might send it as nested object or different structure
-    let name, email, industry, details;
-    
-    // Option 1: Direct properties
-    if (body.name) {
-      name = body.name;
-      email = body.email;
-      industry = body.industry;
-      details = body.details;
-    }
-    // Option 2: Nested in 'data' or 'form_data'
-    else if (body.data) {
-      name = body.data.name;
-      email = body.data.email;
-      industry = body.data.industry;
-      details = body.data.details;
-    }
-    else if (body.form_data) {
-      name = body.form_data.name;
-      email = body.form_data.email;
-      industry = body.form_data.industry;
-      details = body.form_data.details;
+    // FormSubmit sends form_data as a JSON string, not an object!
+    let formData;
+    if (body.form_data) {
+      // Parse the JSON string
+      formData = JSON.parse(body.form_data);
+    } else {
+      formData = body;
     }
     
-    // Default to N/A if not found
-    name = name || 'N/A';
-    email = email || 'N/A';
-    industry = industry || 'N/A';
-    details = details || 'N/A';
+    // Extract fields from the parsed data
+    const name = formData.name || 'N/A';
+    const email = formData.email || 'N/A';
+    const industry = formData.industry || 'N/A';
+    const details = formData.details || 'N/A';
     
     console.log('Extracted fields:', { name, email, industry, details });
     
