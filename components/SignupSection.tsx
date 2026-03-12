@@ -78,6 +78,7 @@ export default function SignupSection({
             <input type="hidden" name="_template" value="table" />
             <input type="hidden" name="_captcha" value="false" />
             <input type="hidden" name="_next" value="https://vizzion.io/?submitted=true#signup" />
+            <input type="hidden" name="_webhook" value="https://vizzion.io/api/webhook/formsubmit" />
 
             <div>
               <input
