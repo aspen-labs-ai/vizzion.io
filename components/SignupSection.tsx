@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
 
 const INDUSTRIES = [
   'Roofing',
@@ -28,20 +27,22 @@ export default function SignupSection({
 }: { 
   defaultIndustry?: string;
 }) {
-  const searchParams = useSearchParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
-    if (searchParams.get('submitted') === 'true') {
+    // Check URL for submitted parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('submitted') === 'true') {
       setShowSuccess(true);
       // Clear URL parameter after 5 seconds
       const timer = setTimeout(() => {
-        window.history.replaceState({}, '', '/#signup');
+        setShowSuccess(false);
+        window.history.replaceState({}, '', window.location.pathname + '#signup');
       }, 5000);
       return () => clearTimeout(timer);
     }
-  }, [searchParams]);
+  }, []);
 
   const handleSubmit = () => {
     setIsSubmitting(true);
@@ -76,7 +77,7 @@ export default function SignupSection({
             <input type="hidden" name="_subject" value="New Vizzion Lead" />
             <input type="hidden" name="_template" value="table" />
             <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_next" value="https://vizzion.io/#signup?submitted=true" />
+            <input type="hidden" name="_next" value="https://vizzion.io/?submitted=true#signup" />
 
             <div>
               <input
