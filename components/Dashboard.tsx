@@ -219,7 +219,7 @@ export default function Dashboard() {
 
               {/* ── Main Content ── */}
               <div
-                className="flex-1 min-h-[var(--dashboard-mobile-panel-height)] md:min-h-[520px] bg-bg-primary relative overflow-hidden"
+                className="flex-1 min-h-[var(--dashboard-mobile-panel-height)] md:h-[640px] bg-bg-primary relative md:overflow-y-auto overflow-hidden"
                 style={
                   {
                     '--dashboard-mobile-panel-height': `${mobilePanelMinHeight}px`,
