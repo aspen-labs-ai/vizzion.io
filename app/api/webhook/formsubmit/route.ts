@@ -3,13 +3,43 @@ import { NextResponse } from 'next/server';
 export async function POST(request: Request) {
   try {
     // Get FormSubmit's payload
-    const formData = await request.json();
+    const body = await request.json();
     
-    // Extract form fields from FormSubmit's format
-    const name = formData.name || 'N/A';
-    const email = formData.email || 'N/A';
-    const industry = formData.industry || 'N/A';
-    const details = formData.details || 'N/A';
+    // Log the full payload to understand its structure
+    console.log('FormSubmit webhook payload:', JSON.stringify(body, null, 2));
+    
+    // Try multiple ways to extract the data
+    // FormSubmit might send it as nested object or different structure
+    let name, email, industry, details;
+    
+    // Option 1: Direct properties
+    if (body.name) {
+      name = body.name;
+      email = body.email;
+      industry = body.industry;
+      details = body.details;
+    }
+    // Option 2: Nested in 'data' or 'form_data'
+    else if (body.data) {
+      name = body.data.name;
+      email = body.data.email;
+      industry = body.data.industry;
+      details = body.data.details;
+    }
+    else if (body.form_data) {
+      name = body.form_data.name;
+      email = body.form_data.email;
+      industry = body.form_data.industry;
+      details = body.form_data.details;
+    }
+    
+    // Default to N/A if not found
+    name = name || 'N/A';
+    email = email || 'N/A';
+    industry = industry || 'N/A';
+    details = details || 'N/A';
+    
+    console.log('Extracted fields:', { name, email, industry, details });
     
     // Format for Slack (with @mention for Jak)
     const slackPayload = {
@@ -43,6 +73,7 @@ export async function POST(request: Request) {
       );
     }
     
+    console.log('Successfully posted to Slack');
     return NextResponse.json({ success: true });
     
   } catch (error) {
