@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 
 const INDUSTRIES = [
   'Roofing',
@@ -23,36 +22,17 @@ const INDUSTRIES = [
   'Other',
 ];
 
-export default function SignupSection({ defaultIndustry }: { defaultIndustry?: string }) {
-  const router = useRouter();
+export default function SignupSection({ 
+  defaultIndustry,
+  webhookUrl 
+}: { 
+  defaultIndustry?: string;
+  webhookUrl?: string;
+}) {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     setIsSubmitting(true);
-    setError(null);
-
-    try {
-      const form = e.currentTarget;
-      const formData = new FormData(form);
-
-      const response = await fetch('/api/submit-form', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to submit form');
-      }
-
-      // Redirect to thank you page
-      router.push('/thanks');
-    } catch (err) {
-      console.error('Form submission error:', err);
-      setError('Something went wrong. Please try again.');
-      setIsSubmitting(false);
-    }
   };
 
   return (
@@ -67,9 +47,20 @@ export default function SignupSection({ defaultIndustry }: { defaultIndustry?: s
 
         <div className="max-w-md mx-auto">
           <form 
+            action="https://formsubmit.co/trey@aspenlabs.ai"
+            method="POST"
             onSubmit={handleSubmit}
             className="space-y-4"
           >
+            {/* Hidden fields for FormSubmit configuration */}
+            <input type="hidden" name="_subject" value="New Vizzion Lead" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_next" value="https://vizzion.io/thanks" />
+            {webhookUrl && (
+              <input type="hidden" name="_webhook" value={webhookUrl} />
+            )}
+
             <div>
               <input
                 type="text"
@@ -117,10 +108,6 @@ export default function SignupSection({ defaultIndustry }: { defaultIndustry?: s
                 className="w-full px-6 py-4 bg-bg-tertiary border border-border-default rounded-lg text-text-primary placeholder:text-text-tertiary focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all text-lg disabled:opacity-50 disabled:cursor-not-allowed resize-none"
               />
             </div>
-
-            {error && (
-              <div className="text-red-500 text-sm">{error}</div>
-            )}
 
             <button
               type="submit"
