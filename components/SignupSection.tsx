@@ -23,11 +23,9 @@ const INDUSTRIES = [
 ];
 
 export default function SignupSection({ 
-  defaultIndustry,
-  webhookUrl 
+  defaultIndustry
 }: { 
   defaultIndustry?: string;
-  webhookUrl?: string;
 }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -47,7 +45,7 @@ export default function SignupSection({
 
         <div className="max-w-md mx-auto">
           <form 
-            action="https://formsubmit.co/trey@aspenlabs.ai"
+            action="https://formsubmit.co/trey@vizzion.io"
             method="POST"
             onSubmit={handleSubmit}
             className="space-y-4"
@@ -56,10 +54,6 @@ export default function SignupSection({
             <input type="hidden" name="_subject" value="New Vizzion Lead" />
             <input type="hidden" name="_template" value="table" />
             <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_next" value="https://vizzion.io/thanks" />
-            {webhookUrl && (
-              <input type="hidden" name="_webhook" value={webhookUrl} />
-            )}
 
             <div>
               <input
