@@ -69,7 +69,6 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
 
   const pricingPlans = await getPublicPricingPlans();
   const pricingFeatureGroups = buildPricingFeatureGroups(pricingPlans);
-  const webhookUrl = process.env.SLACK_WEBHOOK_URL;
 
   return (
     <>
@@ -84,7 +83,7 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
         <Dashboard />
         <Testimonials />
         <Pricing plans={pricingPlans} featureGroups={pricingFeatureGroups} />
-        <SignupSection webhookUrl={webhookUrl} />
+        <SignupSection />
       </main>
       <Footer />
     </>
