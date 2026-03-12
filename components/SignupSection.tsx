@@ -85,8 +85,7 @@ export default function SignupSection({
                 name="name"
                 placeholder="Your Name"
                 required
-                disabled={isSubmitting}
-                className="w-full px-6 py-4 bg-bg-tertiary border border-border-default rounded-lg text-text-primary placeholder:text-text-tertiary focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full px-6 py-4 bg-bg-tertiary border border-border-default rounded-lg text-text-primary placeholder:text-text-tertiary focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all text-lg"
               />
             </div>
 
@@ -96,8 +95,7 @@ export default function SignupSection({
                 name="email"
                 placeholder="you@company.com"
                 required
-                disabled={isSubmitting}
-                className="w-full px-6 py-4 bg-bg-tertiary border border-border-default rounded-lg text-text-primary placeholder:text-text-tertiary focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full px-6 py-4 bg-bg-tertiary border border-border-default rounded-lg text-text-primary placeholder:text-text-tertiary focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all text-lg"
               />
             </div>
 
@@ -106,8 +104,7 @@ export default function SignupSection({
                 name="industry"
                 defaultValue={defaultIndustry || ''}
                 required
-                disabled={isSubmitting}
-                className="w-full px-6 py-4 bg-bg-tertiary border border-border-default rounded-lg text-text-primary focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all text-lg disabled:opacity-50 disabled:cursor-not-allowed appearance-none"
+                className="w-full px-6 py-4 bg-bg-tertiary border border-border-default rounded-lg text-text-primary focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all text-lg appearance-none"
                 style={{ colorScheme: 'dark' }}
               >
                 <option value="" disabled>Select your industry</option>
@@ -121,9 +118,8 @@ export default function SignupSection({
               <textarea
                 name="details"
                 placeholder="Tell us about your business..."
-                disabled={isSubmitting}
                 rows={3}
-                className="w-full px-6 py-4 bg-bg-tertiary border border-border-default rounded-lg text-text-primary placeholder:text-text-tertiary focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all text-lg disabled:opacity-50 disabled:cursor-not-allowed resize-none"
+                className="w-full px-6 py-4 bg-bg-tertiary border border-border-default rounded-lg text-text-primary placeholder:text-text-tertiary focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all text-lg resize-none"
               />
             </div>
 
