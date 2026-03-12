@@ -1,0 +1,955 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Vizzion VIZZION.IO" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "Vizzion" [ref=e5]
+        - generic [ref=e6]: VIZZION.IO
+      - navigation [ref=e7]:
+        - link "How It Works" [ref=e8] [cursor=pointer]:
+          - /url: /#how-it-works
+        - generic [ref=e9]:
+          - link "Industries" [ref=e10] [cursor=pointer]:
+            - /url: /industries
+            - text: Industries
+            - img [ref=e11]
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - link "Roofing Roofing":
+                    - /url: /industries/roofing
+                    - generic:
+                      - img "Roofing"
+                    - generic: Roofing
+                  - link "Siding Siding":
+                    - /url: /industries/siding
+                    - generic:
+                      - img "Siding"
+                    - generic: Siding
+                  - link "Solar Panels Solar Panels":
+                    - /url: /industries/solar
+                    - generic:
+                      - img "Solar Panels"
+                    - generic: Solar Panels
+                  - link "Windows & Doors Windows & Doors":
+                    - /url: /industries/windows-doors
+                    - generic:
+                      - img "Windows & Doors"
+                    - generic: Windows & Doors
+                  - link "Decking Decking":
+                    - /url: /industries/decking
+                    - generic:
+                      - img "Decking"
+                    - generic: Decking
+                  - link "Flooring Flooring":
+                    - /url: /industries/flooring
+                    - generic:
+                      - img "Flooring"
+                    - generic: Flooring
+                  - link "Countertops Countertops":
+                    - /url: /industries/countertops
+                    - generic:
+                      - img "Countertops"
+                    - generic: Countertops
+                  - link "Garage Doors Garage Doors":
+                    - /url: /industries/garage-doors
+                    - generic:
+                      - img "Garage Doors"
+                    - generic: Garage Doors
+                  - link "Fencing Fencing":
+                    - /url: /industries/fencing
+                    - generic:
+                      - img "Fencing"
+                    - generic: Fencing
+                  - link "Gutters Gutters":
+                    - /url: /industries/gutters
+                    - generic:
+                      - img "Gutters"
+                    - generic: Gutters
+                  - link "Shutters Shutters":
+                    - /url: /industries/shutters
+                    - generic:
+                      - img "Shutters"
+                    - generic: Shutters
+                  - link "Driveways & Pavement Driveways & Pavement":
+                    - /url: /industries/driveways
+                    - generic:
+                      - img "Driveways & Pavement"
+                    - generic: Driveways & Pavement
+                  - link "Swimming Pools Swimming Pools":
+                    - /url: /industries/swimming-pools
+                    - generic:
+                      - img "Swimming Pools"
+                    - generic: Swimming Pools
+                  - link "Artificial Turf Artificial Turf":
+                    - /url: /industries/artificial-turf
+                    - generic:
+                      - img "Artificial Turf"
+                    - generic: Artificial Turf
+                  - link "Car Wraps Car Wraps":
+                    - /url: /industries/car-wraps
+                    - generic:
+                      - img "Car Wraps"
+                    - generic: Car Wraps
+                  - link "Boat Decking Boat Decking":
+                    - /url: /industries/boat-decking
+                    - generic:
+                      - img "Boat Decking"
+                    - generic: Boat Decking
+              - generic:
+                - link "View all industries →":
+                  - /url: /industries
+        - link "Dashboard" [ref=e13] [cursor=pointer]:
+          - /url: /#dashboard
+        - link "Pricing" [ref=e14] [cursor=pointer]:
+          - /url: /#pricing
+        - link "Get Started" [ref=e15] [cursor=pointer]:
+          - /url: /#signup
+  - main [ref=e16]:
+    - generic [ref=e20]:
+      - generic [ref=e21]:
+        - generic [ref=e22]: Embeddable Visualization Widget
+        - heading "Turn Your Website Into an Interactive Showroom" [level=1] [ref=e23]
+        - generic [ref=e24]:
+          - paragraph [ref=e25]: Add a visualizer widget to your website in minutes so visitors can preview options on their own photo.
+          - paragraph [ref=e26]:
+            - generic [ref=e27]: “What would new siding look like on my home?”
+          - paragraph [ref=e28]: Now your website answers them. Vizzion lets visitors upload a photo and see a realistic preview of your products in their actual space. They get the answer they're looking for — you get an exclusive, qualified lead.
+        - generic [ref=e29]:
+          - link "Get Your First Lead in 24 Hours →" [ref=e30] [cursor=pointer]:
+            - /url: "#signup"
+          - link "See How It Works" [ref=e31] [cursor=pointer]:
+            - /url: "#how-it-works"
+      - generic [ref=e32]:
+        - generic:
+          - generic:
+            - generic:
+              - paragraph: They choose from your product catalog
+              - img
+          - generic:
+            - generic:
+              - generic:
+                - img
+                - generic: summitroofing.com
+            - generic:
+              - generic: Summit Roofing
+              - generic:
+                - generic: Services
+                - generic: Gallery
+                - generic: Contact
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - img
+                    - generic: Upload
+                - generic:
+                  - generic:
+                    - generic: "2"
+                    - generic: Select
+                - generic:
+                  - generic:
+                    - generic: "3"
+                    - generic: Reveal
+              - generic:
+                - generic:
+                  - heading "Choose Your Material" [level=5]
+                  - generic:
+                    - generic:
+                      - generic:
+                        - img "Metal"
+                      - generic:
+                        - img
+                      - generic: Metal
+                    - generic:
+                      - generic:
+                        - img "Shingles"
+                      - generic: Shingles
+                    - generic:
+                      - generic:
+                        - img "Spanish Tile"
+                      - generic: Spanish Tile
+                    - generic:
+                      - generic:
+                        - img "Wood"
+                      - generic: Wood
+                  - generic:
+                    - generic: Continue →
+    - generic [ref=e35]:
+      - generic [ref=e36]:
+        - generic [ref=e37]: 3x
+        - generic [ref=e38]: More Qualified Leads
+      - generic [ref=e39]:
+        - generic [ref=e40]: 60%
+        - generic [ref=e41]: Higher Close Rate
+      - generic [ref=e42]:
+        - generic [ref=e43]: 247%
+        - generic [ref=e44]: Average ROI
+    - generic [ref=e46]:
+      - generic [ref=e47]:
+        - generic [ref=e48]: The Customer Experience
+        - heading "What Your Customers See" [level=2] [ref=e49]
+        - paragraph [ref=e50]: Four steps. One qualified lead. Here's exactly how the widget works on your website.
+      - generic [ref=e51]:
+        - generic [ref=e52]:
+          - generic [ref=e54]:
+            - generic [ref=e55]:
+              - img [ref=e56]
+              - paragraph [ref=e59]: Upload your home photo
+              - paragraph [ref=e60]: Drag & drop or click to browse
+            - generic [ref=e61]:
+              - img "Uploaded house" [ref=e63]
+              - paragraph [ref=e65]: my-house.jpg
+              - img [ref=e69]
+          - generic [ref=e71]:
+            - generic [ref=e72]:
+              - generic [ref=e73]: "1"
+              - heading "Upload a Photo" [level=3] [ref=e74]
+            - paragraph [ref=e75]: Your customer uploads a photo of their home, vehicle, or body — whatever surface your product transforms. Drag-and-drop or click to browse. Takes seconds.
+            - list [ref=e76]:
+              - listitem [ref=e77]:
+                - img [ref=e78]
+                - generic [ref=e80]: Works with any photo from their phone or computer
+              - listitem [ref=e81]:
+                - img [ref=e82]
+                - generic [ref=e84]: Instant upload — no waiting, no processing delays
+              - listitem [ref=e85]:
+                - img [ref=e86]
+                - generic [ref=e88]: Supports every industry from roofing to boat decking
+        - generic [ref=e89]:
+          - generic [ref=e91]:
+            - heading "Choose Your Material" [level=5] [ref=e92]
+            - generic [ref=e93]:
+              - generic [ref=e94]:
+                - img "Metal" [ref=e96]
+                - img [ref=e98]
+                - generic [ref=e100]: Metal
+              - generic [ref=e101]:
+                - img "Shingles" [ref=e103]
+                - generic [ref=e104]: Shingles
+              - generic [ref=e105]:
+                - img "Spanish Tile" [ref=e107]
+                - generic [ref=e108]: Spanish Tile
+              - generic [ref=e109]:
+                - img "Wood" [ref=e111]
+                - generic [ref=e112]: Wood
+          - generic [ref=e113]:
+            - generic [ref=e114]:
+              - generic [ref=e115]: "2"
+              - heading "Browse Your Catalog" [level=3] [ref=e116]
+            - paragraph [ref=e117]: They pick from your product options — roofing materials, wrap colors, pool designs, whatever you sell. Your catalog, your brand, their choice.
+            - list [ref=e118]:
+              - listitem [ref=e119]:
+                - img [ref=e120]
+                - generic [ref=e122]: Showcase your full product line visually
+              - listitem [ref=e123]:
+                - img [ref=e124]
+                - generic [ref=e126]: Customers self-qualify by choosing what they want
+              - listitem [ref=e127]:
+                - img [ref=e128]
+                - generic [ref=e130]: Fully customizable to match your brand
+        - generic [ref=e131]:
+          - generic [ref=e133]:
+            - generic [ref=e134]:
+              - img [ref=e136]
+              - generic [ref=e139]:
+                - heading "Almost there!" [level=5] [ref=e140]
+                - paragraph [ref=e141]: Enter your email to see your visualization
+            - generic [ref=e142]:
+              - generic [ref=e143]: Email Address
+              - generic [ref=e144]: sarah@example.com
+            - generic [ref=e145]: Reveal Visualization →
+          - generic [ref=e146]:
+            - generic [ref=e147]:
+              - generic [ref=e148]: "3"
+              - heading "Enter Their Email" [level=3] [ref=e149]
+            - paragraph [ref=e150]: Before seeing the visualization, they provide their email. This is the magic — every single interaction becomes a qualified lead delivered straight to your inbox.
+            - list [ref=e151]:
+              - listitem [ref=e152]:
+                - img [ref=e153]
+                - generic [ref=e155]: Email gate before the reveal drives 100% capture rate
+              - listitem [ref=e156]:
+                - img [ref=e157]
+                - generic [ref=e159]: Leads arrive pre-qualified and motivated
+              - listitem [ref=e160]:
+                - img [ref=e161]
+                - generic [ref=e163]: Syncs automatically with your CRM
+        - generic [ref=e164]:
+          - generic [ref=e166]:
+            - generic [ref=e167]:
+              - img "After" [ref=e169]
+              - img "Before" [ref=e172]
+              - img [ref=e175]
+              - generic [ref=e177]: Before
+              - generic [ref=e178]: After
+            - generic [ref=e179]:
+              - generic [ref=e182]: New Lead Captured
+              - generic [ref=e183]: sarah@example.com
+          - generic [ref=e184]:
+            - generic [ref=e185]:
+              - generic [ref=e186]: "4"
+              - heading "See the Result" [level=3] [ref=e187]
+            - paragraph [ref=e188]: They see your product on their actual photo — a before-and-after they can compare side by side. You get a lead who's already excited about the result.
+            - list [ref=e189]:
+              - listitem [ref=e190]:
+                - img [ref=e191]
+                - generic [ref=e193]: Realistic visualization on their own property
+              - listitem [ref=e194]:
+                - img [ref=e195]
+                - generic [ref=e197]: Before/after comparison builds confidence
+              - listitem [ref=e198]:
+                - img [ref=e199]
+                - generic [ref=e201]: Leads close faster because they've already seen the outcome
+    - generic [ref=e203]:
+      - generic [ref=e204]:
+        - generic [ref=e205]: How It Works
+        - heading "Three Steps to Capturing More Leads" [level=2] [ref=e206]
+        - paragraph [ref=e207]: Get up and running in 5 minutes. No developers needed. No complicated setup. Just results.
+      - generic [ref=e208]:
+        - generic [ref=e209]:
+          - img [ref=e211]
+          - heading "Embed the Widget" [level=3] [ref=e214]
+          - paragraph [ref=e215]: Copy-paste our embed code into your website. Works with Shopify, WordPress, Wix, or any platform. No developer needed.
+          - list [ref=e216]:
+            - listitem [ref=e217]:
+              - img [ref=e218]
+              - generic [ref=e220]: 5-minute setup
+            - listitem [ref=e221]:
+              - img [ref=e222]
+              - generic [ref=e224]: Works on any website platform
+            - listitem [ref=e225]:
+              - img [ref=e226]
+              - generic [ref=e228]: Customizable to your brand
+          - generic [ref=e230]:
+            - generic [ref=e235]: embed.html
+            - code [ref=e238]: <script src="https://cdn.vizzion.io/widget.js"></script> <div data-vizzion-widget data-industry="roofing" data-products="shingles,metal,tile"> </div>
+        - generic [ref=e240]:
+          - img [ref=e242]
+          - heading "Capture Every Lead Automatically" [level=3] [ref=e245]
+          - paragraph [ref=e246]: Before customers see their visualization, they enter their email. Every interaction becomes a qualified lead. Emails sync automatically to your CRM or inbox.
+          - list [ref=e247]:
+            - listitem [ref=e248]:
+              - img [ref=e249]
+              - generic [ref=e251]: Email required before visualization
+            - listitem [ref=e252]:
+              - img [ref=e253]
+              - generic [ref=e255]: Automatic lead capture
+            - listitem [ref=e256]:
+              - img [ref=e257]
+              - generic [ref=e259]: CRM integration (Salesforce, HubSpot)
+          - generic [ref=e262]:
+            - generic [ref=e265]: New Lead Captured
+            - generic [ref=e266]: john.smith@email.com
+        - generic [ref=e267]:
+          - img [ref=e269]
+          - heading "Close Deals Faster" [level=3] [ref=e272]
+          - paragraph [ref=e273]: Your leads have already visualized what they want. They're pre-qualified and ready to buy. No cold calls—they came to you excited. Follow up while they're engaged.
+          - list [ref=e274]:
+            - listitem [ref=e275]:
+              - img [ref=e276]
+              - generic [ref=e278]: Leads arrive pre-qualified and excited
+            - listitem [ref=e279]:
+              - img [ref=e280]
+              - generic [ref=e282]: They've already seen the product on their property
+            - listitem [ref=e283]:
+              - img [ref=e284]
+              - generic [ref=e286]: Skip the convincing—they're ready to buy
+            - listitem [ref=e287]:
+              - img [ref=e288]
+              - generic [ref=e290]: Strike while the iron is hot
+          - generic [ref=e294]:
+            - generic [ref=e295]:
+              - img [ref=e297]
+              - generic [ref=e299]:
+                - generic [ref=e300]: Deal Closed
+                - generic [ref=e301]: Summit Roofing Project
+            - generic [ref=e302]:
+              - generic [ref=e303]: $12,500
+              - generic [ref=e304]: 2 days
+    - generic [ref=e306]:
+      - generic [ref=e307]:
+        - generic [ref=e308]: Integrations
+        - heading "Works seamlessly with every platform" [level=2] [ref=e309]
+        - paragraph [ref=e310]: Embed in minutes. No developers needed.
+      - generic [ref=e311]:
+        - generic [ref=e313]:
+          - img "Vizzion" [ref=e314]
+          - generic [ref=e315]: VIZZION.IO
+        - img
+        - img "Shopify" [ref=e318]
+        - img "WordPress" [ref=e321]
+        - img "Wix" [ref=e324]
+        - img
+        - img "Squarespace" [ref=e327]
+        - img "Custom" [ref=e330]
+        - generic [ref=e333]: Custom
+    - generic [ref=e335]:
+      - generic [ref=e336]:
+        - generic [ref=e337]: Industries
+        - heading "Built for businesses that sell visual transformations" [level=2] [ref=e338]
+        - paragraph [ref=e339]: If your customers need to see it before they buy it, Vizzion is for you.
+        - link "Explore all industry pages" [ref=e341] [cursor=pointer]:
+          - /url: /industries
+          - text: Explore all industry pages
+          - img [ref=e342]
+      - generic [ref=e344]:
+        - heading "Home Improvement" [level=3] [ref=e346]
+        - generic [ref=e348]:
+          - link "Popular Roofing example Roofing Help homeowners make confident roofing decisions by showing exactly how different materials and colors look on their actual home. From traditional asphalt shingles to premium metal roofing, customers can compare options side-by-side before committing to a major investment. Learn more" [ref=e349] [cursor=pointer]:
+            - /url: /industries/roofing
+            - generic [ref=e350]: Popular
+            - img "Roofing example" [ref=e352]
+            - generic [ref=e353]:
+              - heading "Roofing" [level=3] [ref=e354]
+              - paragraph [ref=e355]: Help homeowners make confident roofing decisions by showing exactly how different materials and colors look on their actual home. From traditional asphalt shingles to premium metal roofing, customers can compare options side-by-side before committing to a major investment.
+              - generic [ref=e356]:
+                - text: Learn more
+                - img [ref=e357]
+          - link "Siding example Siding Transform exterior design decisions from guesswork to certainty. Customers visualize vinyl, fiber cement, wood, and stone siding options on their actual home, comparing styles and colors before the first panel is installed. Learn more" [ref=e359] [cursor=pointer]:
+            - /url: /industries/siding
+            - img "Siding example" [ref=e361]
+            - generic [ref=e362]:
+              - heading "Siding" [level=3] [ref=e363]
+              - paragraph [ref=e364]: Transform exterior design decisions from guesswork to certainty. Customers visualize vinyl, fiber cement, wood, and stone siding options on their actual home, comparing styles and colors before the first panel is installed.
+              - generic [ref=e365]:
+                - text: Learn more
+                - img [ref=e366]
+          - link "Windows & Doors example Windows & Doors Help customers choose window styles, door colors, and hardware finishes with confidence. Visualize how new windows transform a home's character—from modern black frames to classic white trim—on their actual property. Learn more" [ref=e368] [cursor=pointer]:
+            - /url: /industries/windows-doors
+            - img "Windows & Doors example" [ref=e370]
+            - generic [ref=e371]:
+              - heading "Windows & Doors" [level=3] [ref=e372]
+              - paragraph [ref=e373]: Help customers choose window styles, door colors, and hardware finishes with confidence. Visualize how new windows transform a home's character—from modern black frames to classic white trim—on their actual property.
+              - generic [ref=e374]:
+                - text: Learn more
+                - img [ref=e375]
+          - link "Decking example Decking Let customers design their dream outdoor living space by visualizing composite, wood, and PVC decking materials. See how different board widths, colors, and railing styles come together before construction begins. Learn more" [ref=e377] [cursor=pointer]:
+            - /url: /industries/decking
+            - img "Decking example" [ref=e379]
+            - generic [ref=e380]:
+              - heading "Decking" [level=3] [ref=e381]
+              - paragraph [ref=e382]: Let customers design their dream outdoor living space by visualizing composite, wood, and PVC decking materials. See how different board widths, colors, and railing styles come together before construction begins.
+              - generic [ref=e383]:
+                - text: Learn more
+                - img [ref=e384]
+          - link "Flooring example Flooring Eliminate flooring showroom overwhelm by letting customers see hardwood, LVP, tile, and carpet in their actual rooms. Upload a photo, select materials, and instantly compare options in their real lighting and space. Learn more" [ref=e386] [cursor=pointer]:
+            - /url: /industries/flooring
+            - img "Flooring example" [ref=e388]
+            - generic [ref=e389]:
+              - heading "Flooring" [level=3] [ref=e390]
+              - paragraph [ref=e391]: Eliminate flooring showroom overwhelm by letting customers see hardwood, LVP, tile, and carpet in their actual rooms. Upload a photo, select materials, and instantly compare options in their real lighting and space.
+              - generic [ref=e392]:
+                - text: Learn more
+                - img [ref=e393]
+          - link "Countertops example Countertops Transform kitchen and bathroom decisions with instant countertop visualization. Customers compare granite, quartz, marble, and butcher block on their actual cabinets—no samples or imagination required. Learn more" [ref=e395] [cursor=pointer]:
+            - /url: /industries/countertops
+            - img "Countertops example" [ref=e397]
+            - generic [ref=e398]:
+              - heading "Countertops" [level=3] [ref=e399]
+              - paragraph [ref=e400]: Transform kitchen and bathroom decisions with instant countertop visualization. Customers compare granite, quartz, marble, and butcher block on their actual cabinets—no samples or imagination required.
+              - generic [ref=e401]:
+                - text: Learn more
+                - img [ref=e402]
+          - link "Solar Panels example Solar Panels Help homeowners visualize solar panel installations on their actual roof before making the investment. Show different panel layouts, quantities, and configurations to demonstrate potential energy savings and aesthetic impact. Learn more" [ref=e404] [cursor=pointer]:
+            - /url: /industries/solar
+            - img "Solar Panels example" [ref=e406]
+            - generic [ref=e407]:
+              - heading "Solar Panels" [level=3] [ref=e408]
+              - paragraph [ref=e409]: Help homeowners visualize solar panel installations on their actual roof before making the investment. Show different panel layouts, quantities, and configurations to demonstrate potential energy savings and aesthetic impact.
+              - generic [ref=e410]:
+                - text: Learn more
+                - img [ref=e411]
+          - link "Garage Doors example Garage Doors Let customers see how different garage door styles, colors, and window configurations transform their home's curb appeal. From traditional raised panel to modern flush designs, visualize the perfect match for their property. Learn more" [ref=e413] [cursor=pointer]:
+            - /url: /industries/garage-doors
+            - img "Garage Doors example" [ref=e415]
+            - generic [ref=e416]:
+              - heading "Garage Doors" [level=3] [ref=e417]
+              - paragraph [ref=e418]: Let customers see how different garage door styles, colors, and window configurations transform their home's curb appeal. From traditional raised panel to modern flush designs, visualize the perfect match for their property.
+              - generic [ref=e419]:
+                - text: Learn more
+                - img [ref=e420]
+          - link "Fencing example Fencing Enable customers to visualize privacy fences, picket styles, composite materials, and metal options on their actual property. Compare heights, colors, and designs to find the perfect balance of security and aesthetics. Learn more" [ref=e422] [cursor=pointer]:
+            - /url: /industries/fencing
+            - img "Fencing example" [ref=e424]
+            - generic [ref=e425]:
+              - heading "Fencing" [level=3] [ref=e426]
+              - paragraph [ref=e427]: Enable customers to visualize privacy fences, picket styles, composite materials, and metal options on their actual property. Compare heights, colors, and designs to find the perfect balance of security and aesthetics.
+              - generic [ref=e428]:
+                - text: Learn more
+                - img [ref=e429]
+          - link "Gutters example Gutters Show homeowners how different gutter styles and colors complement their roof and trim. Visualize seamless gutters, downspout placements, and color options that blend perfectly with existing exteriors. Learn more" [ref=e431] [cursor=pointer]:
+            - /url: /industries/gutters
+            - img "Gutters example" [ref=e433]
+            - generic [ref=e434]:
+              - heading "Gutters" [level=3] [ref=e435]
+              - paragraph [ref=e436]: Show homeowners how different gutter styles and colors complement their roof and trim. Visualize seamless gutters, downspout placements, and color options that blend perfectly with existing exteriors.
+              - generic [ref=e437]:
+                - text: Learn more
+                - img [ref=e438]
+          - link "Shutters example Shutters Help customers choose the perfect exterior shutters by visualizing different styles, colors, and hardware on their actual windows. From classic raised panel to modern board-and-batten, see the transformation before installation. Learn more" [ref=e440] [cursor=pointer]:
+            - /url: /industries/shutters
+            - img "Shutters example" [ref=e442]
+            - generic [ref=e443]:
+              - heading "Shutters" [level=3] [ref=e444]
+              - paragraph [ref=e445]: Help customers choose the perfect exterior shutters by visualizing different styles, colors, and hardware on their actual windows. From classic raised panel to modern board-and-batten, see the transformation before installation.
+              - generic [ref=e446]:
+                - text: Learn more
+                - img [ref=e447]
+          - link "Driveways & Pavement example Driveways & Pavement Transform driveway and patio decisions with instant visualization of brick pavers, stamped concrete, and asphalt options. Show customers how different patterns, colors, and materials enhance their property's entrance. Learn more" [ref=e449] [cursor=pointer]:
+            - /url: /industries/driveways
+            - img "Driveways & Pavement example" [ref=e451]
+            - generic [ref=e452]:
+              - heading "Driveways & Pavement" [level=3] [ref=e453]
+              - paragraph [ref=e454]: Transform driveway and patio decisions with instant visualization of brick pavers, stamped concrete, and asphalt options. Show customers how different patterns, colors, and materials enhance their property's entrance.
+              - generic [ref=e455]:
+                - text: Learn more
+                - img [ref=e456]
+          - link "Swimming Pools example Swimming Pools Help homeowners visualize their dream pool in their actual backyard. From freeform lagoons to geometric lap pools, customers see the finished result before signing a $50K contract. Learn more" [ref=e458] [cursor=pointer]:
+            - /url: /industries/swimming-pools
+            - img "Swimming Pools example" [ref=e460]
+            - generic [ref=e461]:
+              - heading "Swimming Pools" [level=3] [ref=e462]
+              - paragraph [ref=e463]: Help homeowners visualize their dream pool in their actual backyard. From freeform lagoons to geometric lap pools, customers see the finished result before signing a $50K contract.
+              - generic [ref=e464]:
+                - text: Learn more
+                - img [ref=e465]
+          - link "Artificial Turf example Artificial Turf Show drought-conscious homeowners exactly how artificial turf transforms their yard. Upload a photo of patchy grass, see a lush green lawn — without a single sprinkler. Learn more" [ref=e467] [cursor=pointer]:
+            - /url: /industries/artificial-turf
+            - img "Artificial Turf example" [ref=e469]
+            - generic [ref=e470]:
+              - heading "Artificial Turf" [level=3] [ref=e471]
+              - paragraph [ref=e472]: Show drought-conscious homeowners exactly how artificial turf transforms their yard. Upload a photo of patchy grass, see a lush green lawn — without a single sprinkler.
+              - generic [ref=e473]:
+                - text: Learn more
+                - img [ref=e474]
+      - generic [ref=e476]:
+        - heading "Beyond the Home" [level=3] [ref=e478]
+        - generic [ref=e480]:
+          - link "Car/Vehicle Wraps example Car/Vehicle Wraps See your vehicle wrapped before committing. Customers upload a photo of their car, truck, or van and see custom wrap designs on their actual vehicle — turning browsers into booked appointments. Learn more" [ref=e481] [cursor=pointer]:
+            - /url: /industries/car-wraps
+            - img "Car/Vehicle Wraps example" [ref=e483]
+            - generic [ref=e484]:
+              - heading "Car/Vehicle Wraps" [level=3] [ref=e485]
+              - paragraph [ref=e486]: See your vehicle wrapped before committing. Customers upload a photo of their car, truck, or van and see custom wrap designs on their actual vehicle — turning browsers into booked appointments.
+              - generic [ref=e487]:
+                - text: Learn more
+                - img [ref=e488]
+          - 'link "Boat Decking example Boat Decking Marine dealers and refurbishment shops: let boat owners see premium decking materials on their actual vessel. From SeaDek foam to synthetic teak, visualize the upgrade before the install. Learn more" [ref=e490] [cursor=pointer]':
+            - /url: /industries/boat-decking
+            - img "Boat Decking example" [ref=e492]
+            - generic [ref=e493]:
+              - heading "Boat Decking" [level=3] [ref=e494]
+              - paragraph [ref=e495]: "Marine dealers and refurbishment shops: let boat owners see premium decking materials on their actual vessel. From SeaDek foam to synthetic teak, visualize the upgrade before the install."
+              - generic [ref=e496]:
+                - text: Learn more
+                - img [ref=e497]
+      - generic [ref=e499]:
+        - paragraph [ref=e500]: Don't see your industry? Vizzion works with any visual transformation.
+        - link "Talk to our team" [ref=e501] [cursor=pointer]:
+          - /url: "#signup"
+          - text: Talk to our team
+          - img [ref=e502]
+    - generic [ref=e505]:
+      - generic [ref=e506]:
+        - heading "Powerful dashboard to track what matters" [level=2] [ref=e507]
+        - paragraph [ref=e508]: Monitor conversions, manage your product catalog, and white-label everything—all from one interface.
+      - generic [ref=e510]:
+        - generic [ref=e515]: Vizzion Dashboard
+        - generic [ref=e516]:
+          - navigation [ref=e518]:
+            - button "Dashboard" [ref=e519]:
+              - img [ref=e520]
+              - generic [ref=e525]: Dashboard
+            - button "Materials" [ref=e526]:
+              - img [ref=e527]
+              - generic [ref=e530]: Materials
+            - button "Settings" [ref=e532]:
+              - img [ref=e533]
+              - generic [ref=e536]: Settings
+          - generic [ref=e538]:
+            - generic [ref=e539]:
+              - heading "Product Library" [level=3] [ref=e540]
+              - generic [ref=e541]: + Upload Material
+            - generic [ref=e542]:
+              - img [ref=e543]
+              - paragraph [ref=e546]: Drag & drop product images or click to browse
+              - paragraph [ref=e547]: PNG, JPG up to 10MB each
+            - generic [ref=e548]:
+              - generic [ref=e552]:
+                - generic [ref=e553]:
+                  - generic [ref=e554]:
+                    - heading "Midnight Black" [level=4] [ref=e555]
+                    - paragraph [ref=e556]: 8 variants
+                  - generic [ref=e557]: Active
+                - generic [ref=e558]:
+                  - generic [ref=e559]: 1,247 views
+                  - generic [ref=e560]: 31% conv.
+              - generic [ref=e564]:
+                - generic [ref=e565]:
+                  - generic [ref=e566]:
+                    - heading "Arctic White" [level=4] [ref=e567]
+                    - paragraph [ref=e568]: 6 variants
+                  - generic [ref=e569]: Active
+                - generic [ref=e570]:
+                  - generic [ref=e571]: 992 views
+                  - generic [ref=e572]: 28% conv.
+              - generic [ref=e576]:
+                - generic [ref=e577]:
+                  - generic [ref=e578]:
+                    - heading "Coastal Gray" [level=4] [ref=e579]
+                    - paragraph [ref=e580]: 5 variants
+                  - generic [ref=e581]: Active
+                - generic [ref=e582]:
+                  - generic [ref=e583]: 608 views
+                  - generic [ref=e584]: 24% conv.
+              - generic [ref=e588]:
+                - generic [ref=e589]:
+                  - generic [ref=e590]:
+                    - heading "Warm Bronze" [level=4] [ref=e591]
+                    - paragraph [ref=e592]: 4 variants
+                  - generic [ref=e593]: Active
+                - generic [ref=e594]:
+                  - generic [ref=e595]: 445 views
+                  - generic [ref=e596]: 22% conv.
+      - generic [ref=e597]:
+        - generic [ref=e598]:
+          - img [ref=e600]
+          - heading "Real-Time Analytics" [level=3] [ref=e601]
+          - paragraph [ref=e602]: Monitor visualizations, conversions, and lead quality as they happen.
+        - generic [ref=e603]:
+          - img [ref=e605]
+          - heading "Product Management" [level=3] [ref=e608]
+          - paragraph [ref=e609]: Upload materials, organize variants, and track which products convert best.
+        - generic [ref=e610]:
+          - img [ref=e612]
+          - heading "White-Label Everything" [level=3] [ref=e615]
+          - paragraph [ref=e616]: Your brand, your colors, your domain. Customers never see Vizzion.
+    - generic [ref=e618]:
+      - generic [ref=e619]:
+        - generic [ref=e620]: Testimonials
+        - heading "What our customers are saying" [level=2] [ref=e621]
+        - paragraph [ref=e622]: Join hundreds of businesses capturing more qualified leads with visual customization
+      - generic [ref=e623]:
+        - generic [ref=e624]:
+          - paragraph [ref=e625]: "\"Vizzion transformed how we capture leads. We went from 12 qualified leads per month to 47 in just 60 days. Our close rate jumped from 22% to 41%.\""
+          - generic [ref=e626]:
+            - generic [ref=e627]: MT
+            - generic [ref=e628]:
+              - generic [ref=e629]: Mike Thompson
+              - generic [ref=e630]: "@mikethompson"
+        - generic [ref=e631]:
+          - paragraph [ref=e632]: "\"Homeowners see a pool in their backyard and the conversation changes completely. We closed 31% of Vizzion leads vs. 12% on everything else.\""
+          - generic [ref=e633]:
+            - generic [ref=e634]: SC
+            - generic [ref=e635]:
+              - generic [ref=e636]: Sarah Chen
+              - generic [ref=e637]: "@sarahchen"
+        - generic [ref=e638]:
+          - paragraph [ref=e639]: "\"Setup took 5 minutes. First lead came in 3 hours later. Best ROI of any tool we've ever implemented.\""
+          - generic [ref=e640]:
+            - generic [ref=e641]: JM
+            - generic [ref=e642]:
+              - generic [ref=e643]: James Martinez
+              - generic [ref=e644]: "@jamesmartinez"
+        - generic [ref=e645]:
+          - paragraph [ref=e646]: "\"Fleet owners see the wrap on their actual vehicle and commit on the spot. Our quote-to-close rate doubled since adding Vizzion.\""
+          - generic [ref=e647]:
+            - generic [ref=e648]: ER
+            - generic [ref=e649]:
+              - generic [ref=e650]: Emily Rodriguez
+              - generic [ref=e651]: "@emilyrodriguez"
+        - generic [ref=e652]:
+          - paragraph [ref=e653]: "\"In Phoenix, everyone is thinking about turf. Vizzion lets homeowners see it on their yard — we cut our Angi spend entirely.\""
+          - generic [ref=e654]:
+            - generic [ref=e655]: DP
+            - generic [ref=e656]:
+              - generic [ref=e657]: David Park
+              - generic [ref=e658]: "@davidpark"
+        - generic [ref=e659]:
+          - paragraph [ref=e660]: "\"The dashboard shows exactly which products customers are interested in. Our sales team follows up with perfect context every time.\""
+          - generic [ref=e661]:
+            - generic [ref=e662]: LA
+            - generic [ref=e663]:
+              - generic [ref=e664]: Lisa Anderson
+              - generic [ref=e665]: "@lisaanderson"
+    - generic [ref=e667]:
+      - generic [ref=e668]:
+        - heading "Simple, transparent pricing" [level=2] [ref=e669]
+        - paragraph [ref=e670]: Start free. Upgrade when Vizzion is filling your pipeline.
+        - generic [ref=e671]:
+          - button "Monthly" [ref=e672]
+          - button "Annual Save 20%" [ref=e673]:
+            - text: Annual
+            - generic [ref=e674]: Save 20%
+      - generic [ref=e675]:
+        - generic [ref=e676]:
+          - generic [ref=e677]: Free
+          - paragraph [ref=e678]: Everything you need to prove it works.
+          - generic [ref=e680]:
+            - generic [ref=e681]: $0
+            - generic [ref=e682]: per month
+          - link "Get Started" [ref=e684] [cursor=pointer]:
+            - /url: "#signup"
+          - generic [ref=e685]: "Includes:"
+          - list [ref=e686]:
+            - listitem [ref=e687]:
+              - img [ref=e688]
+              - generic [ref=e690]: 25 visualizations / month
+            - listitem [ref=e691]:
+              - img [ref=e692]
+              - generic [ref=e694]: 4 materials
+            - listitem [ref=e695]:
+              - img [ref=e696]
+              - generic [ref=e698]: 1 website embed
+            - listitem [ref=e699]:
+              - img [ref=e700]
+              - generic [ref=e702]: Lead capture (email gate)
+            - listitem [ref=e703]:
+              - img [ref=e704]
+              - generic [ref=e706]: Email support
+        - generic [ref=e707]:
+          - generic [ref=e708]: Growth
+          - paragraph [ref=e709]: For businesses ready to generate real pipeline.
+          - generic [ref=e711]:
+            - generic [ref=e712]: $149
+            - generic [ref=e713]: per month
+          - link "Start Free Trial" [ref=e715] [cursor=pointer]:
+            - /url: "#signup"
+          - generic [ref=e716]: "Includes:"
+          - list [ref=e717]:
+            - listitem [ref=e718]:
+              - img [ref=e719]
+              - generic [ref=e721]: 200 visualizations / month
+            - listitem [ref=e722]:
+              - img [ref=e723]
+              - generic [ref=e725]: 10 materials
+            - listitem [ref=e726]:
+              - img [ref=e727]
+              - generic [ref=e729]: 1 website embed
+            - listitem [ref=e730]:
+              - img [ref=e731]
+              - generic [ref=e733]: Custom branding
+            - listitem [ref=e734]:
+              - img [ref=e735]
+              - generic [ref=e737]: Lead dashboard + export
+        - generic [ref=e738]:
+          - generic [ref=e739]: Most Popular
+          - generic [ref=e740]: Pro
+          - paragraph [ref=e741]: For serious lead generation at scale.
+          - generic [ref=e743]:
+            - generic [ref=e744]: $349
+            - generic [ref=e745]: per month
+          - link "Start Free Trial" [ref=e747] [cursor=pointer]:
+            - /url: "#signup"
+          - generic [ref=e748]: "Includes:"
+          - list [ref=e749]:
+            - listitem [ref=e750]:
+              - img [ref=e751]
+              - generic [ref=e753]: 1,000 visualizations / month
+            - listitem [ref=e754]:
+              - img [ref=e755]
+              - generic [ref=e757]: 50 materials
+            - listitem [ref=e758]:
+              - img [ref=e759]
+              - generic [ref=e761]: 3 website embeds
+            - listitem [ref=e762]:
+              - img [ref=e763]
+              - generic [ref=e765]: CRM integration
+            - listitem [ref=e766]:
+              - img [ref=e767]
+              - generic [ref=e769]: Priority support
+        - generic [ref=e770]:
+          - generic [ref=e771]: Enterprise
+          - paragraph [ref=e772]: For multi-location and high-volume operations.
+          - generic [ref=e773]: Custom
+          - generic [ref=e774]: Tailored to your needs
+          - link "Contact Sales" [ref=e775] [cursor=pointer]:
+            - /url: "#signup"
+          - generic [ref=e776]: "Includes:"
+          - list [ref=e777]:
+            - listitem [ref=e778]:
+              - img [ref=e779]
+              - generic [ref=e781]: Unlimited visualizations
+            - listitem [ref=e782]:
+              - img [ref=e783]
+              - generic [ref=e785]: Unlimited materials
+            - listitem [ref=e786]:
+              - img [ref=e787]
+              - generic [ref=e789]: Unlimited website embeds
+            - listitem [ref=e790]:
+              - img [ref=e791]
+              - generic [ref=e793]: API access + multi-location
+            - listitem [ref=e794]:
+              - img [ref=e795]
+              - generic [ref=e797]: Dedicated account manager
+      - generic [ref=e798]:
+        - heading "Compare plans in detail" [level=3] [ref=e799]
+        - generic [ref=e801]:
+          - generic [ref=e802]:
+            - generic [ref=e803]:
+              - generic [ref=e804]: Free
+              - link "Get Started" [ref=e805] [cursor=pointer]:
+                - /url: "#signup"
+            - generic [ref=e806]:
+              - generic [ref=e807]: Growth
+              - link "Start Free Trial" [ref=e808] [cursor=pointer]:
+                - /url: "#signup"
+            - generic [ref=e809]:
+              - generic [ref=e810]: Pro
+              - link "Start Free Trial" [ref=e811] [cursor=pointer]:
+                - /url: "#signup"
+            - generic [ref=e812]:
+              - generic [ref=e813]: Enterprise
+              - link "Contact Sales" [ref=e814] [cursor=pointer]:
+                - /url: "#signup"
+          - generic [ref=e815]:
+            - generic [ref=e816]: Usage
+            - generic [ref=e817]:
+              - generic [ref=e818]: Visualizations / month
+              - generic [ref=e819]: "25"
+              - generic [ref=e820]: "200"
+              - generic [ref=e821]: 1,000
+              - generic [ref=e822]: Unlimited
+            - generic [ref=e823]:
+              - generic [ref=e824]: Materials
+              - generic [ref=e825]: "4"
+              - generic [ref=e826]: "10"
+              - generic [ref=e827]: "50"
+              - generic [ref=e828]: Unlimited
+            - generic [ref=e829]:
+              - generic [ref=e830]: Website embeds
+              - generic [ref=e831]: "1"
+              - generic [ref=e832]: "1"
+              - generic [ref=e833]: "3"
+              - generic [ref=e834]: Unlimited
+          - generic [ref=e835]:
+            - generic [ref=e836]: Features
+            - generic [ref=e837]:
+              - generic [ref=e838]: Lead capture (email gate)
+              - generic [ref=e839]: "Yes"
+              - generic [ref=e840]: "Yes"
+              - generic [ref=e841]: "Yes"
+              - generic [ref=e842]: "Yes"
+            - generic [ref=e843]:
+              - generic [ref=e844]: Custom branding
+              - generic [ref=e845]: "No"
+              - generic [ref=e846]: "Yes"
+              - generic [ref=e847]: "Yes"
+              - generic [ref=e848]: "Yes"
+            - generic [ref=e849]:
+              - generic [ref=e850]: Lead dashboard
+              - generic [ref=e851]: "Yes"
+              - generic [ref=e852]: "Yes"
+              - generic [ref=e853]: "Yes"
+              - generic [ref=e854]: "Yes"
+            - generic [ref=e855]:
+              - generic [ref=e856]: Analytics export
+              - generic [ref=e857]: "No"
+              - generic [ref=e858]: "Yes"
+              - generic [ref=e859]: "Yes"
+              - generic [ref=e860]: "Yes"
+            - generic [ref=e861]:
+              - generic [ref=e862]: CRM integration
+              - generic [ref=e863]: "No"
+              - generic [ref=e864]: "No"
+              - generic [ref=e865]: "Yes"
+              - generic [ref=e866]: "Yes"
+            - generic [ref=e867]:
+              - generic [ref=e868]: API access
+              - generic [ref=e869]: "No"
+              - generic [ref=e870]: "No"
+              - generic [ref=e871]: "No"
+              - generic [ref=e872]: "Yes"
+            - generic [ref=e873]:
+              - generic [ref=e874]: Multi-location support
+              - generic [ref=e875]: "No"
+              - generic [ref=e876]: "No"
+              - generic [ref=e877]: "No"
+              - generic [ref=e878]: "Yes"
+          - generic [ref=e879]:
+            - generic [ref=e880]: Support
+            - generic [ref=e881]:
+              - generic [ref=e882]: Email support
+              - generic [ref=e883]: "Yes"
+              - generic [ref=e884]: "Yes"
+              - generic [ref=e885]: "Yes"
+              - generic [ref=e886]: "Yes"
+            - generic [ref=e887]:
+              - generic [ref=e888]: Priority support
+              - generic [ref=e889]: "No"
+              - generic [ref=e890]: "No"
+              - generic [ref=e891]: "Yes"
+              - generic [ref=e892]: "Yes"
+            - generic [ref=e893]:
+              - generic [ref=e894]: Dedicated account manager
+              - generic [ref=e895]: "No"
+              - generic [ref=e896]: "No"
+              - generic [ref=e897]: "No"
+              - generic [ref=e898]: "Yes"
+      - paragraph [ref=e900]: 14-day free trial on paid plans • No credit card required • Cancel anytime
+    - generic [ref=e902]:
+      - heading "Ready to capture more leads?" [level=2] [ref=e903]
+      - paragraph [ref=e904]: Join hundreds of businesses using Vizzion to turn website visitors into qualified leads.
+      - generic [ref=e906]:
+        - textbox "Your Name" [ref=e908]
+        - textbox "you@company.com" [ref=e910]
+        - combobox [ref=e912]:
+          - option "Select your industry" [disabled] [selected]
+          - option "Roofing"
+          - option "Siding"
+          - option "Solar"
+          - option "Windows & Doors"
+          - option "Decking"
+          - option "Flooring"
+          - option "Countertops"
+          - option "Garage Doors"
+          - option "Fencing"
+          - option "Gutters"
+          - option "Shutters"
+          - option "Driveways"
+          - option "Swimming Pools"
+          - option "Artificial Turf"
+          - option "Tattoos"
+          - option "Car Wraps"
+          - option "Boat Decking"
+          - option "Other"
+        - textbox "Tell us about your business..." [ref=e914]
+        - button "Get Started Free →" [ref=e915]
+        - paragraph [ref=e916]: No credit card required • Cancel anytime • 14-day free trial
+  - contentinfo [ref=e917]:
+    - generic [ref=e918]:
+      - generic [ref=e919]:
+        - generic [ref=e920]:
+          - img "Vizzion" [ref=e922]
+          - paragraph [ref=e923]: Transform how customers shop with visual customization.
+        - generic [ref=e924]:
+          - heading "Product" [level=4] [ref=e925]
+          - generic [ref=e926]:
+            - link "How It Works" [ref=e927] [cursor=pointer]:
+              - /url: /#how-it-works
+            - link "Industries" [ref=e928] [cursor=pointer]:
+              - /url: /industries
+            - link "Pricing" [ref=e929] [cursor=pointer]:
+              - /url: /#pricing
+        - generic [ref=e930]:
+          - heading "Company" [level=4] [ref=e931]
+          - generic [ref=e932]:
+            - link "About" [ref=e933] [cursor=pointer]:
+              - /url: /#about
+            - link "Contact" [ref=e934] [cursor=pointer]:
+              - /url: /#signup
+        - generic [ref=e935]:
+          - heading "Legal" [level=4] [ref=e936]
+          - generic [ref=e937]:
+            - link "Privacy" [ref=e938] [cursor=pointer]:
+              - /url: /privacy
+            - link "Terms" [ref=e939] [cursor=pointer]:
+              - /url: /terms
+      - paragraph [ref=e941]: © 2026 Vizzion. All rights reserved.
+  - alert [ref=e942]
+```

@@ -1,0 +1,670 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Vizzion VIZZION.IO" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "Vizzion" [ref=e5]
+        - generic [ref=e6]: VIZZION.IO
+      - button "Open mobile menu" [ref=e7]
+    - navigation [ref=e11]:
+      - link "How It Works" [ref=e12] [cursor=pointer]:
+        - /url: /#how-it-works
+      - button "Industries" [ref=e13]:
+        - text: Industries
+        - img [ref=e14]
+      - link "Dashboard" [ref=e16] [cursor=pointer]:
+        - /url: /#dashboard
+      - link "Pricing" [ref=e17] [cursor=pointer]:
+        - /url: /#pricing
+      - link "Get Started" [ref=e18] [cursor=pointer]:
+        - /url: /#signup
+  - main [ref=e19]:
+    - generic [ref=e24]:
+      - generic [ref=e25]: Solar Industry
+      - heading "Help Buyers Picture Solar Panels on Their Roof" [level=1] [ref=e26]:
+        - text: Help Buyers Picture
+        - generic [ref=e27]: Solar
+        - img
+        - text: Panels on Their Roof
+      - paragraph [ref=e29]:
+        - text: Add a solar visualizer widget to your solar website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up.
+        - img
+        - generic [ref=e30]: Homeowners don't buy what they can't picture.
+        - text: Vizzion lets them see solar panels on their actual roof — then captures their email before they see the result. You get a warm, exclusive lead from your own website traffic. No bought lists, no shared leads, no guesswork.
+      - link "See It in Action →" [ref=e31] [cursor=pointer]:
+        - /url: "#how-it-works"
+    - generic [ref=e33]:
+      - heading "Solar Lead Gen Is Broken — And Everyone Knows It" [level=2] [ref=e34]
+      - generic [ref=e35]:
+        - paragraph [ref=e36]:
+          - text: You're paying
+          - generic [ref=e37]: $50 to $150 per lead
+          - text: from aggregators — and those leads are shared with three to five other installers the instant they arrive. It becomes a foot race where the fastest callback wins, not the best company. Your cost per acquisition climbs past $4,000 per closed deal, while your own website converts at roughly 2 to 3 percent. The other 97% of visitors browse your testimonials, check your service area, and leave without a trace.
+        - paragraph [ref=e38]:
+          - text: The real problem isn't traffic — most established solar companies get decent visitors. It's the
+          - generic [ref=e39]: uncertainty gap
+          - text: between landing on your site and filling out a form. Homeowners are curious about solar but can't picture panels on their specific roof. They've seen stock photos of perfect California ranches, and that looks nothing like their two-story colonial in New Jersey. Without seeing it on their own home, the leap from "interested" to "ready to talk" is too far. So they bounce.
+        - paragraph [ref=e40]:
+          - text: "And every major design tool — Aurora, OpenSolar, Solargraf — only activates after you already have the lead. They're proposal and engineering platforms, essential but useless for capturing leads in the first place. There's a blind spot at the very top of the solar funnel: the moment between first interest and handing over contact info. That's exactly"
+          - generic [ref=e41]: what Vizzion fills
+          - text: .
+      - generic [ref=e43]:
+        - generic [ref=e44]: 97%
+        - generic [ref=e45]: of solar website visitors leave without converting — taking their intent, their rooftop, and their utility bill with them.
+      - generic [ref=e46]:
+        - paragraph [ref=e47]: Evidence Notes
+        - paragraph [ref=e48]: "Last updated: February 15, 2026"
+        - list [ref=e49]:
+          - listitem [ref=e50]: Solar benchmark ranges shown here are directional and should be validated against your own pipeline data.
+          - listitem [ref=e51]: Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.
+    - generic [ref=e53]:
+      - generic [ref=e54]:
+        - paragraph [ref=e55]: Live Demo
+        - heading "Try the Solar Visualizer Widget" [level=2] [ref=e56]
+        - paragraph [ref=e57]: "Upload intent starts here: visitors enter an email, pick an option, and request a preview in under a minute."
+      - generic [ref=e60]:
+        - generic [ref=e61]:
+          - paragraph [ref=e62]: Try this visualizer on your project
+          - paragraph [ref=e63]: Enter your email to request a preview. Demo requests are limited to prevent spam.
+        - generic [ref=e64]:
+          - generic [ref=e65]:
+            - generic [ref=e66]: Material
+            - combobox "Material" [ref=e67]:
+              - option "wood" [selected]
+              - option "metal"
+              - option "test"
+              - option "Trey"
+          - generic [ref=e68]:
+            - generic [ref=e69]: Email
+            - textbox "Email" [ref=e70]:
+              - /placeholder: you@company.com
+          - button "Generate preview" [ref=e71] [cursor=pointer]
+    - generic [ref=e74]:
+      - heading "Capture Leads Before They Ever Hit Your Pipeline" [level=2] [ref=e75]
+      - paragraph [ref=e76]: Vizzion embeds on your website and lets homeowners see solar panels on their actual roof in seconds. They upload a photo, see a realistic preview on their home, and enter their email to save it. You get an exclusive, self-qualified lead at zero marginal cost.
+      - generic [ref=e77]:
+        - generic [ref=e78]:
+          - img [ref=e80]
+          - generic [ref=e82]:
+            - heading "Pre-Lead, Not Post-Lead" [level=3] [ref=e83]
+            - paragraph [ref=e84]: Aurora, OpenSolar, and Solargraf activate after a lead is in your CRM. Vizzion works upstream on your public website, converting anonymous visitors into named prospects before your sales team gets involved.
+        - generic [ref=e85]:
+          - img [ref=e87]
+          - generic [ref=e89]:
+            - heading "Exclusive Leads From Your Own Traffic" [level=3] [ref=e90]
+            - paragraph [ref=e91]: Every lead belongs to you alone. No shared lists, no bidding wars. These are homeowners who found your company, engaged with your brand, and chose to hand you their info.
+        - generic [ref=e92]:
+          - img [ref=e94]
+          - generic [ref=e96]:
+            - heading "The Visualization That Closes the Uncertainty Gap" [level=3] [ref=e97]
+            - paragraph [ref=e98]: Homeowners see a realistic preview of panels on their specific rooftop — the most effective way to move a curious browser into a confident buyer.
+        - generic [ref=e99]:
+          - img [ref=e101]
+          - generic [ref=e103]:
+            - heading "Intent Signals That Actually Mean Something" [level=3] [ref=e104]
+            - paragraph [ref=e105]: A homeowner who uploads a roof photo, views a solar preview, and submits their email is not a tire-kicker. They've self-qualified through real engagement, not just a form fill.
+        - generic [ref=e106]:
+          - img [ref=e108]
+          - generic [ref=e110]:
+            - heading "Works While You Sleep" [level=3] [ref=e111]
+            - paragraph [ref=e112]: The widget runs 24/7 on your site. Whenever a homeowner gets curious — Saturday morning, Tuesday at midnight — Vizzion engages them and captures their information for your team.
+    - generic [ref=e114]:
+      - heading "How to Add a Solar Visualizer Widget to Your Solar Website" [level=2] [ref=e115]
+      - paragraph [ref=e116]: Vizzion is designed to be dead simple. No IT department needed, no complex integrations, no six-week onboarding. You embed a snippet, customize the look, and start generating leads from your existing website traffic.
+      - generic [ref=e117]:
+        - generic [ref=e118]:
+          - generic [ref=e119]: "1"
+          - generic [ref=e120]:
+            - heading "Embed the Widget on Your Site" [level=3] [ref=e121]
+            - paragraph [ref=e122]: "Copy a single code snippet and paste it into any page on your website — your homepage, a dedicated solar landing page, or a \"See Solar on Your Roof\" CTA page. The widget matches your brand colors and styling automatically. Total setup time: under five minutes."
+        - generic [ref=e123]:
+          - generic [ref=e124]: "2"
+          - generic [ref=e125]:
+            - heading "Homeowner Uploads a Roof Photo and Sees the Preview" [level=3] [ref=e126]
+            - paragraph [ref=e127]: A visitor clicks the widget, uploads a photo of their home (phone photo, Google Maps screenshot, or any clear image of their rooftop), and within seconds sees a realistic digital preview of solar panels installed on their actual roof. The visualization is specific to their home — not a generic stock render.
+        - generic [ref=e128]:
+          - generic [ref=e129]: "3"
+          - generic [ref=e130]:
+            - heading "You Get a Qualified Lead, They Get Peace of Mind" [level=3] [ref=e131]
+            - paragraph [ref=e132]: To view or save their full solar preview, the homeowner enters their email address. That lead flows directly into your CRM or inbox — complete with their contact info, roof image, and the visualization they engaged with. Your sales team follows up with a prospect who has already seen solar on their home and opted in.
+    - generic [ref=e134]:
+      - paragraph [ref=e135]: Ready to see how Vizzion works for Solar companies?
+      - link "Get Started Free →" [ref=e136] [cursor=pointer]:
+        - /url: "#signup"
+    - generic [ref=e138]:
+      - heading "The Results" [level=2] [ref=e140]
+      - generic [ref=e141]:
+        - generic [ref=e142]:
+          - generic [ref=e143]: $150+
+          - generic [ref=e144]: Saved Per Lead vs. Aggregators
+          - paragraph [ref=e145]: Solar leads from aggregators like EnergySage and Modernize cost $50 to $150 each — and they're shared with up to five competitors. Vizzion generates leads from your existing traffic at zero marginal cost per lead.
+        - generic [ref=e146]:
+          - generic [ref=e147]: 30%
+          - generic [ref=e148]: Close Rate on Engaged Leads
+          - paragraph [ref=e149]: Industry data shows self-generated, high-intent leads close at around 30%, compared to just 5 to 8% for purchased third-party leads. Homeowners who visualize panels on their own roof arrive pre-sold.
+        - generic [ref=e150]:
+          - generic [ref=e151]: $25K+
+          - generic [ref=e152]: Average Residential Solar Deal
+          - paragraph [ref=e153]: With average residential systems costing $20,000 to $30,000 before incentives, every qualified lead is worth serious money. Even a small lift in conversion rate translates to significant revenue.
+        - generic [ref=e154]:
+          - generic [ref=e155]: 391%
+          - generic [ref=e156]: Conversion Boost From Instant Engagement
+          - paragraph [ref=e157]: Studies show contacting a lead within the first minute increases conversion by 391%. Vizzion engages homeowners instantly on your site — no delay, no waiting for a callback.
+        - generic [ref=e158]:
+          - generic [ref=e159]: ~$4,000
+          - generic [ref=e160]: Typical Solar Customer Acquisition Cost
+          - paragraph [ref=e161]: The average solar installer spends around $4,000 to acquire a single customer through traditional channels. Vizzion dramatically lowers that number by converting traffic you already have.
+        - generic [ref=e162]:
+          - generic [ref=e163]: 1 in 4
+          - generic [ref=e164]: Homeowners Cite Appearance as Top Concern
+          - paragraph [ref=e165]: Research shows roughly 25% of homeowners list roof aesthetics as a major hesitation about going solar. Showing them a realistic preview on their own home eliminates that objection before the first call.
+    - generic [ref=e167]:
+      - heading "The Old Way vs. The Vizzion Way" [level=2] [ref=e168]
+      - generic [ref=e169]:
+        - generic [ref=e170]:
+          - heading "The Old Way" [level=3] [ref=e171]
+          - list [ref=e172]:
+            - listitem [ref=e173]:
+              - img [ref=e174]
+              - generic [ref=e176]: Pay $50–$150 per lead from aggregators — shared with 3–5 competitors
+            - listitem [ref=e177]:
+              - img [ref=e178]
+              - generic [ref=e180]: Static contact forms that convert 2–3% of traffic
+            - listitem [ref=e181]:
+              - img [ref=e182]
+              - generic [ref=e184]: Cold calls to homeowners who barely remember filling out a form
+            - listitem [ref=e185]:
+              - img [ref=e186]
+              - generic [ref=e188]: Generic stock photos of solar on someone else's house
+            - listitem [ref=e189]:
+              - img [ref=e190]
+              - generic [ref=e192]: Speed-to-lead races where the fastest dialer wins, not the best company
+            - listitem [ref=e193]:
+              - img [ref=e194]
+              - generic [ref=e196]: No engagement data — just a name, email, and maybe a phone number
+        - generic [ref=e197]:
+          - heading "With Vizzion" [level=3] [ref=e198]
+          - list [ref=e199]:
+            - listitem [ref=e200]:
+              - img [ref=e201]
+              - generic [ref=e203]: Exclusive leads from your own website at zero marginal cost
+            - listitem [ref=e204]:
+              - img [ref=e205]
+              - generic [ref=e207]: Interactive visualization experience that converts at 5–10× static forms
+            - listitem [ref=e208]:
+              - img [ref=e209]
+              - generic [ref=e211]: Warm follow-ups with homeowners who just saw panels on their actual roof
+            - listitem [ref=e212]:
+              - img [ref=e213]
+              - generic [ref=e215]: Photo-realistic previews personalized to each homeowner's specific home
+            - listitem [ref=e216]:
+              - img [ref=e217]
+              - generic [ref=e219]: Leads come pre-qualified — they've invested time and attention before submitting
+            - listitem [ref=e220]:
+              - img [ref=e221]
+              - generic [ref=e223]: "Rich engagement data: roof photo, visualization viewed, time spent, email captured"
+    - generic [ref=e225]:
+      - heading "What Solar Energy Companies Are Saying" [level=2] [ref=e226]
+      - generic [ref=e227]:
+        - generic [ref=e228]:
+          - paragraph [ref=e229]: “We were spending $14,000 a month on bought leads and closing maybe 8% of them. Two months after adding Vizzion to our site, we're generating 120+ leads a month from our own traffic. Close rate on Vizzion leads is north of 22%. We've cut our lead-buying budget in half and our pipeline has never been stronger.”
+          - generic [ref=e230]:
+            - generic [ref=e231]: MR
+            - generic [ref=e232]:
+              - generic [ref=e233]: Marcus Rivera
+              - generic [ref=e234]: SunPath Energy, Phoenix AZ
+          - generic [ref=e235]: 22% close rate on Vizzion leads vs. 8% on bought leads
+        - generic [ref=e236]:
+          - paragraph [ref=e237]: “The uncertainty gap is real. Homeowners would call us, ask a bunch of questions, then go silent for months. Now they come to our site, see exactly what panels look like on their roof, and by the time they submit their email they're already halfway sold. Our speed to close dropped from 45 days to 19 days on Vizzion-sourced leads.”
+          - generic [ref=e238]:
+            - generic [ref=e239]: JO
+            - generic [ref=e240]:
+              - generic [ref=e241]: Jennifer Okafor
+              - generic [ref=e242]: Bright Horizon Solar, Raleigh NC
+          - generic [ref=e243]: Sales cycle shortened from 45 days to 19 days
+        - generic [ref=e244]:
+          - paragraph [ref=e245]: “I was skeptical — we'd tried chatbots, quizzes, every lead-capture gimmick out there. Vizzion is different because it gives the homeowner something genuinely valuable before asking for anything. They see their home with solar. That changes the conversation completely. We added it to three landing pages and our cost per acquisition dropped by 40% in the first quarter.”
+          - generic [ref=e246]:
+            - generic [ref=e247]: DC
+            - generic [ref=e248]:
+              - generic [ref=e249]: David Chamberlain
+              - generic [ref=e250]: Apex Solar Solutions, Denver CO
+          - generic [ref=e251]: 40% reduction in cost per acquisition within 90 days
+    - generic [ref=e253]:
+      - generic [ref=e254]:
+        - generic [ref=e255]: FAQ
+        - heading "Frequently Asked Questions" [level=2] [ref=e256]
+      - generic [ref=e257]:
+        - generic [ref=e258]:
+          - button "How long does it take to set up Vizzion on my website? +" [ref=e259] [cursor=pointer]:
+            - generic [ref=e260]: How long does it take to set up Vizzion on my website?
+            - generic [ref=e261]: +
+          - generic [ref=e262]: Under five minutes. Copy one embed snippet onto your solar landing page, homepage, or a dedicated "See Panels on Your Roof" page. Rooftop visualizations start working the moment you publish — no staging environment or developer needed. Works with the platforms most solar companies already use, including WordPress, Wix, and custom-built sites.
+        - generic [ref=e263]:
+          - button "How much does Vizzion cost? +" [ref=e264] [cursor=pointer]:
+            - generic [ref=e265]: How much does Vizzion cost?
+            - generic [ref=e266]: +
+          - generic [ref=e267]: "There's a free tier to test the product and scaled plans based on monthly visualization volume. Compare it to what you're spending now: aggregator leads run $50 to $150 each and are shared with multiple installers. One closed residential deal at $25K or more pays for years of Vizzion. Most solar companies hit positive ROI within the first week."
+        - generic [ref=e268]:
+          - button "Does Vizzion work with my existing website and CMS? +" [ref=e269] [cursor=pointer]:
+            - generic [ref=e270]: Does Vizzion work with my existing website and CMS?
+            - generic [ref=e271]: +
+          - generic [ref=e272]: Yes. Vizzion runs on any website that supports an HTML embed — WordPress, Wix, Squarespace, or custom-built sites. Most solar companies drop it onto their main site or a dedicated landing page tied to Google Ads and SolarReviews traffic. If you can paste a code snippet, you're good to go.
+        - generic [ref=e273]:
+          - button "How does Vizzion integrate with my CRM? +" [ref=e274] [cursor=pointer]:
+            - generic [ref=e275]: How does Vizzion integrate with my CRM?
+            - generic [ref=e276]: +
+          - generic [ref=e277]: Direct integrations with Salesforce, HubSpot, Enerflo, and JobNimbus — the CRMs solar companies actually use. We also support webhooks and Zapier, so you can push leads into Solar CRM, PandaDoc for proposals, or any other tool in your stack. Each lead arrives with the homeowner's email, roof photo, and engagement data attached.
+        - generic [ref=e278]:
+          - button "How is Vizzion different from Aurora Solar or OpenSolar? +" [ref=e279] [cursor=pointer]:
+            - generic [ref=e280]: How is Vizzion different from Aurora Solar or OpenSolar?
+            - generic [ref=e281]: +
+          - generic [ref=e282]: Aurora Solar, OpenSolar, and Solargraf are post-lead tools — they help you design systems, generate proposals, and close deals after you already have a lead in your pipeline. Vizzion works at the top of the funnel, on your public website, to capture that lead in the first place. They're complementary, not competing. Use Vizzion to generate the lead, then use Aurora or OpenSolar to design the system and close the sale.
+        - generic [ref=e283]:
+          - button "What if a homeowner uploads a low-quality or unclear photo? +" [ref=e284] [cursor=pointer]:
+            - generic [ref=e285]: What if a homeowner uploads a low-quality or unclear photo?
+            - generic [ref=e286]: +
+          - generic [ref=e287]: Vizzion is designed to work with a wide range of image quality — phone photos, Google Maps screenshots, and even slightly angled shots. The system identifies the rooftop area and generates a realistic preview regardless. For extremely low-resolution or obstructed images, the widget prompts the homeowner to try a clearer photo, keeping the experience smooth.
+        - generic [ref=e288]:
+          - button "Can I customize the widget to match my company branding? +" [ref=e289] [cursor=pointer]:
+            - generic [ref=e290]: Can I customize the widget to match my company branding?
+            - generic [ref=e291]: +
+          - generic [ref=e292]: Fully white-label. Match your solar brand's colors and logo, set custom CTA text like "See Panels on Your Roof," and control the messaging end to end. Homeowners experience it as a built-in feature of your site, not a third-party tool.
+        - generic [ref=e293]:
+          - button "Are the leads exclusive to my company? +" [ref=e294] [cursor=pointer]:
+            - generic [ref=e295]: Are the leads exclusive to my company?
+            - generic [ref=e296]: +
+          - generic [ref=e297]: 100% exclusive. Unlike EnergySage, Modernize, or SolarReviews — where your lead is instantly shared with three to five competing installers — Vizzion leads come from your own website traffic. The homeowner engaged with your brand, saw panels on their roof through your site, and gave you their info directly. No sharing, no bidding wars.
+    - generic [ref=e298]:
+      - generic [ref=e299]:
+        - heading "Vizzion Works Across Industries" [level=2] [ref=e300]
+        - paragraph [ref=e301]: See how businesses in other industries use Vizzion to turn website visitors into qualified leads.
+      - generic [ref=e303]:
+        - generic [ref=e304]:
+          - generic [ref=e305]:
+            - link "Roofing Roofing →" [ref=e306] [cursor=pointer]:
+              - /url: /industries/roofing
+              - img "Roofing" [ref=e308]
+              - generic [ref=e311]: Roofing
+              - generic [ref=e312]: →
+            - link "Siding Siding →" [ref=e313] [cursor=pointer]:
+              - /url: /industries/siding
+              - img "Siding" [ref=e315]
+              - generic [ref=e318]: Siding
+              - generic [ref=e319]: →
+            - link "Windows & Doors Windows & Doors →" [ref=e320] [cursor=pointer]:
+              - /url: /industries/windows-doors
+              - img "Windows & Doors" [ref=e322]
+              - generic [ref=e325]: Windows & Doors
+              - generic [ref=e326]: →
+            - link "Decking Decking →" [ref=e327] [cursor=pointer]:
+              - /url: /industries/decking
+              - img "Decking" [ref=e329]
+              - generic [ref=e332]: Decking
+              - generic [ref=e333]: →
+          - generic [ref=e334]:
+            - link "Roofing Roofing →" [ref=e335] [cursor=pointer]:
+              - /url: /industries/roofing
+              - img "Roofing" [ref=e337]
+              - generic [ref=e340]: Roofing
+              - generic [ref=e341]: →
+            - link "Siding Siding →" [ref=e342] [cursor=pointer]:
+              - /url: /industries/siding
+              - img "Siding" [ref=e344]
+              - generic [ref=e347]: Siding
+              - generic [ref=e348]: →
+            - link "Windows & Doors Windows & Doors →" [ref=e349] [cursor=pointer]:
+              - /url: /industries/windows-doors
+              - img "Windows & Doors" [ref=e351]
+              - generic [ref=e354]: Windows & Doors
+              - generic [ref=e355]: →
+            - link "Decking Decking →" [ref=e356] [cursor=pointer]:
+              - /url: /industries/decking
+              - img "Decking" [ref=e358]
+              - generic [ref=e361]: Decking
+              - generic [ref=e362]: →
+          - generic [ref=e363]:
+            - link "Roofing Roofing →" [ref=e364] [cursor=pointer]:
+              - /url: /industries/roofing
+              - img "Roofing" [ref=e366]
+              - generic [ref=e369]: Roofing
+              - generic [ref=e370]: →
+            - link "Siding Siding →" [ref=e371] [cursor=pointer]:
+              - /url: /industries/siding
+              - img "Siding" [ref=e373]
+              - generic [ref=e376]: Siding
+              - generic [ref=e377]: →
+            - link "Windows & Doors Windows & Doors →" [ref=e378] [cursor=pointer]:
+              - /url: /industries/windows-doors
+              - img "Windows & Doors" [ref=e380]
+              - generic [ref=e383]: Windows & Doors
+              - generic [ref=e384]: →
+            - link "Decking Decking →" [ref=e385] [cursor=pointer]:
+              - /url: /industries/decking
+              - img "Decking" [ref=e387]
+              - generic [ref=e390]: Decking
+              - generic [ref=e391]: →
+          - generic [ref=e392]:
+            - link "Roofing Roofing →" [ref=e393] [cursor=pointer]:
+              - /url: /industries/roofing
+              - img "Roofing" [ref=e395]
+              - generic [ref=e398]: Roofing
+              - generic [ref=e399]: →
+            - link "Siding Siding →" [ref=e400] [cursor=pointer]:
+              - /url: /industries/siding
+              - img "Siding" [ref=e402]
+              - generic [ref=e405]: Siding
+              - generic [ref=e406]: →
+            - link "Windows & Doors Windows & Doors →" [ref=e407] [cursor=pointer]:
+              - /url: /industries/windows-doors
+              - img "Windows & Doors" [ref=e409]
+              - generic [ref=e412]: Windows & Doors
+              - generic [ref=e413]: →
+            - link "Decking Decking →" [ref=e414] [cursor=pointer]:
+              - /url: /industries/decking
+              - img "Decking" [ref=e416]
+              - generic [ref=e419]: Decking
+              - generic [ref=e420]: →
+        - generic [ref=e421]:
+          - generic [ref=e422]:
+            - link "Flooring Flooring →" [ref=e423] [cursor=pointer]:
+              - /url: /industries/flooring
+              - img "Flooring" [ref=e425]
+              - generic [ref=e428]: Flooring
+              - generic [ref=e429]: →
+            - link "Countertops Countertops →" [ref=e430] [cursor=pointer]:
+              - /url: /industries/countertops
+              - img "Countertops" [ref=e432]
+              - generic [ref=e435]: Countertops
+              - generic [ref=e436]: →
+            - link "Garage Doors Garage Doors →" [ref=e437] [cursor=pointer]:
+              - /url: /industries/garage-doors
+              - img "Garage Doors" [ref=e439]
+              - generic [ref=e442]: Garage Doors
+              - generic [ref=e443]: →
+            - link "Fencing Fencing →" [ref=e444] [cursor=pointer]:
+              - /url: /industries/fencing
+              - img "Fencing" [ref=e446]
+              - generic [ref=e449]: Fencing
+              - generic [ref=e450]: →
+          - generic [ref=e451]:
+            - link "Flooring Flooring →" [ref=e452] [cursor=pointer]:
+              - /url: /industries/flooring
+              - img "Flooring" [ref=e454]
+              - generic [ref=e457]: Flooring
+              - generic [ref=e458]: →
+            - link "Countertops Countertops →" [ref=e459] [cursor=pointer]:
+              - /url: /industries/countertops
+              - img "Countertops" [ref=e461]
+              - generic [ref=e464]: Countertops
+              - generic [ref=e465]: →
+            - link "Garage Doors Garage Doors →" [ref=e466] [cursor=pointer]:
+              - /url: /industries/garage-doors
+              - img "Garage Doors" [ref=e468]
+              - generic [ref=e471]: Garage Doors
+              - generic [ref=e472]: →
+            - link "Fencing Fencing →" [ref=e473] [cursor=pointer]:
+              - /url: /industries/fencing
+              - img "Fencing" [ref=e475]
+              - generic [ref=e478]: Fencing
+              - generic [ref=e479]: →
+          - generic [ref=e480]:
+            - link "Flooring Flooring →" [ref=e481] [cursor=pointer]:
+              - /url: /industries/flooring
+              - img "Flooring" [ref=e483]
+              - generic [ref=e486]: Flooring
+              - generic [ref=e487]: →
+            - link "Countertops Countertops →" [ref=e488] [cursor=pointer]:
+              - /url: /industries/countertops
+              - img "Countertops" [ref=e490]
+              - generic [ref=e493]: Countertops
+              - generic [ref=e494]: →
+            - link "Garage Doors Garage Doors →" [ref=e495] [cursor=pointer]:
+              - /url: /industries/garage-doors
+              - img "Garage Doors" [ref=e497]
+              - generic [ref=e500]: Garage Doors
+              - generic [ref=e501]: →
+            - link "Fencing Fencing →" [ref=e502] [cursor=pointer]:
+              - /url: /industries/fencing
+              - img "Fencing" [ref=e504]
+              - generic [ref=e507]: Fencing
+              - generic [ref=e508]: →
+          - generic [ref=e509]:
+            - link "Flooring Flooring →" [ref=e510] [cursor=pointer]:
+              - /url: /industries/flooring
+              - img "Flooring" [ref=e512]
+              - generic [ref=e515]: Flooring
+              - generic [ref=e516]: →
+            - link "Countertops Countertops →" [ref=e517] [cursor=pointer]:
+              - /url: /industries/countertops
+              - img "Countertops" [ref=e519]
+              - generic [ref=e522]: Countertops
+              - generic [ref=e523]: →
+            - link "Garage Doors Garage Doors →" [ref=e524] [cursor=pointer]:
+              - /url: /industries/garage-doors
+              - img "Garage Doors" [ref=e526]
+              - generic [ref=e529]: Garage Doors
+              - generic [ref=e530]: →
+            - link "Fencing Fencing →" [ref=e531] [cursor=pointer]:
+              - /url: /industries/fencing
+              - img "Fencing" [ref=e533]
+              - generic [ref=e536]: Fencing
+              - generic [ref=e537]: →
+        - generic [ref=e538]:
+          - generic [ref=e539]:
+            - link "Gutters Gutters →" [ref=e540] [cursor=pointer]:
+              - /url: /industries/gutters
+              - img "Gutters" [ref=e542]
+              - generic [ref=e545]: Gutters
+              - generic [ref=e546]: →
+            - link "Shutters Shutters →" [ref=e547] [cursor=pointer]:
+              - /url: /industries/shutters
+              - img "Shutters" [ref=e549]
+              - generic [ref=e552]: Shutters
+              - generic [ref=e553]: →
+            - link "Driveways Driveways →" [ref=e554] [cursor=pointer]:
+              - /url: /industries/driveways
+              - img "Driveways" [ref=e556]
+              - generic [ref=e559]: Driveways
+              - generic [ref=e560]: →
+            - link "Swimming Pools Swimming Pools →" [ref=e561] [cursor=pointer]:
+              - /url: /industries/swimming-pools
+              - img "Swimming Pools" [ref=e563]
+              - generic [ref=e566]: Swimming Pools
+              - generic [ref=e567]: →
+          - generic [ref=e568]:
+            - link "Gutters Gutters →" [ref=e569] [cursor=pointer]:
+              - /url: /industries/gutters
+              - img "Gutters" [ref=e571]
+              - generic [ref=e574]: Gutters
+              - generic [ref=e575]: →
+            - link "Shutters Shutters →" [ref=e576] [cursor=pointer]:
+              - /url: /industries/shutters
+              - img "Shutters" [ref=e578]
+              - generic [ref=e581]: Shutters
+              - generic [ref=e582]: →
+            - link "Driveways Driveways →" [ref=e583] [cursor=pointer]:
+              - /url: /industries/driveways
+              - img "Driveways" [ref=e585]
+              - generic [ref=e588]: Driveways
+              - generic [ref=e589]: →
+            - link "Swimming Pools Swimming Pools →" [ref=e590] [cursor=pointer]:
+              - /url: /industries/swimming-pools
+              - img "Swimming Pools" [ref=e592]
+              - generic [ref=e595]: Swimming Pools
+              - generic [ref=e596]: →
+          - generic [ref=e597]:
+            - link "Gutters Gutters →" [ref=e598] [cursor=pointer]:
+              - /url: /industries/gutters
+              - img "Gutters" [ref=e600]
+              - generic [ref=e603]: Gutters
+              - generic [ref=e604]: →
+            - link "Shutters Shutters →" [ref=e605] [cursor=pointer]:
+              - /url: /industries/shutters
+              - img "Shutters" [ref=e607]
+              - generic [ref=e610]: Shutters
+              - generic [ref=e611]: →
+            - link "Driveways Driveways →" [ref=e612] [cursor=pointer]:
+              - /url: /industries/driveways
+              - img "Driveways" [ref=e614]
+              - generic [ref=e617]: Driveways
+              - generic [ref=e618]: →
+            - link "Swimming Pools Swimming Pools →" [ref=e619] [cursor=pointer]:
+              - /url: /industries/swimming-pools
+              - img "Swimming Pools" [ref=e621]
+              - generic [ref=e624]: Swimming Pools
+              - generic [ref=e625]: →
+          - generic [ref=e626]:
+            - link "Gutters Gutters →" [ref=e627] [cursor=pointer]:
+              - /url: /industries/gutters
+              - img "Gutters" [ref=e629]
+              - generic [ref=e632]: Gutters
+              - generic [ref=e633]: →
+            - link "Shutters Shutters →" [ref=e634] [cursor=pointer]:
+              - /url: /industries/shutters
+              - img "Shutters" [ref=e636]
+              - generic [ref=e639]: Shutters
+              - generic [ref=e640]: →
+            - link "Driveways Driveways →" [ref=e641] [cursor=pointer]:
+              - /url: /industries/driveways
+              - img "Driveways" [ref=e643]
+              - generic [ref=e646]: Driveways
+              - generic [ref=e647]: →
+            - link "Swimming Pools Swimming Pools →" [ref=e648] [cursor=pointer]:
+              - /url: /industries/swimming-pools
+              - img "Swimming Pools" [ref=e650]
+              - generic [ref=e653]: Swimming Pools
+              - generic [ref=e654]: →
+        - generic [ref=e655]:
+          - generic [ref=e656]:
+            - link "Artificial Turf Artificial Turf →" [ref=e657] [cursor=pointer]:
+              - /url: /industries/artificial-turf
+              - img "Artificial Turf" [ref=e659]
+              - generic [ref=e662]: Artificial Turf
+              - generic [ref=e663]: →
+            - link "Car Wraps Car Wraps →" [ref=e664] [cursor=pointer]:
+              - /url: /industries/car-wraps
+              - img "Car Wraps" [ref=e666]
+              - generic [ref=e669]: Car Wraps
+              - generic [ref=e670]: →
+            - link "Boat Decking Boat Decking →" [ref=e671] [cursor=pointer]:
+              - /url: /industries/boat-decking
+              - img "Boat Decking" [ref=e673]
+              - generic [ref=e676]: Boat Decking
+              - generic [ref=e677]: →
+          - generic [ref=e678]:
+            - link "Artificial Turf Artificial Turf →" [ref=e679] [cursor=pointer]:
+              - /url: /industries/artificial-turf
+              - img "Artificial Turf" [ref=e681]
+              - generic [ref=e684]: Artificial Turf
+              - generic [ref=e685]: →
+            - link "Car Wraps Car Wraps →" [ref=e686] [cursor=pointer]:
+              - /url: /industries/car-wraps
+              - img "Car Wraps" [ref=e688]
+              - generic [ref=e691]: Car Wraps
+              - generic [ref=e692]: →
+            - link "Boat Decking Boat Decking →" [ref=e693] [cursor=pointer]:
+              - /url: /industries/boat-decking
+              - img "Boat Decking" [ref=e695]
+              - generic [ref=e698]: Boat Decking
+              - generic [ref=e699]: →
+          - generic [ref=e700]:
+            - link "Artificial Turf Artificial Turf →" [ref=e701] [cursor=pointer]:
+              - /url: /industries/artificial-turf
+              - img "Artificial Turf" [ref=e703]
+              - generic [ref=e706]: Artificial Turf
+              - generic [ref=e707]: →
+            - link "Car Wraps Car Wraps →" [ref=e708] [cursor=pointer]:
+              - /url: /industries/car-wraps
+              - img "Car Wraps" [ref=e710]
+              - generic [ref=e713]: Car Wraps
+              - generic [ref=e714]: →
+            - link "Boat Decking Boat Decking →" [ref=e715] [cursor=pointer]:
+              - /url: /industries/boat-decking
+              - img "Boat Decking" [ref=e717]
+              - generic [ref=e720]: Boat Decking
+              - generic [ref=e721]: →
+          - generic [ref=e722]:
+            - link "Artificial Turf Artificial Turf →" [ref=e723] [cursor=pointer]:
+              - /url: /industries/artificial-turf
+              - img "Artificial Turf" [ref=e725]
+              - generic [ref=e728]: Artificial Turf
+              - generic [ref=e729]: →
+            - link "Car Wraps Car Wraps →" [ref=e730] [cursor=pointer]:
+              - /url: /industries/car-wraps
+              - img "Car Wraps" [ref=e732]
+              - generic [ref=e735]: Car Wraps
+              - generic [ref=e736]: →
+            - link "Boat Decking Boat Decking →" [ref=e737] [cursor=pointer]:
+              - /url: /industries/boat-decking
+              - img "Boat Decking" [ref=e739]
+              - generic [ref=e742]: Boat Decking
+              - generic [ref=e743]: →
+    - generic [ref=e744]:
+      - generic [ref=e745]:
+        - heading "Start Generating Leads From Your Own Website Today" [level=2] [ref=e746]
+        - paragraph [ref=e747]: Five-minute setup. No credit card required. See how many of your current visitors are ready to go solar — they just need to see it first.
+      - generic [ref=e749]:
+        - heading "Ready to capture more leads?" [level=2] [ref=e750]
+        - paragraph [ref=e751]: Join hundreds of businesses using Vizzion to turn website visitors into qualified leads.
+        - generic [ref=e753]:
+          - textbox "Your Name" [ref=e755]
+          - textbox "you@company.com" [ref=e757]
+          - combobox [ref=e759]:
+            - option "Select your industry" [disabled]
+            - option "Roofing"
+            - option "Siding"
+            - option "Solar" [selected]
+            - option "Windows & Doors"
+            - option "Decking"
+            - option "Flooring"
+            - option "Countertops"
+            - option "Garage Doors"
+            - option "Fencing"
+            - option "Gutters"
+            - option "Shutters"
+            - option "Driveways"
+            - option "Swimming Pools"
+            - option "Artificial Turf"
+            - option "Tattoos"
+            - option "Car Wraps"
+            - option "Boat Decking"
+            - option "Other"
+          - textbox "Tell us about your business..." [ref=e761]
+          - button "Get Started Free →" [ref=e762]
+          - paragraph [ref=e763]: No credit card required • Cancel anytime • 14-day free trial
+  - contentinfo [ref=e764]:
+    - generic [ref=e765]:
+      - generic [ref=e766]:
+        - generic [ref=e767]:
+          - img "Vizzion" [ref=e769]
+          - paragraph [ref=e770]: Transform how customers shop with visual customization.
+        - generic [ref=e771]:
+          - heading "Product" [level=4] [ref=e772]
+          - generic [ref=e773]:
+            - link "How It Works" [ref=e774] [cursor=pointer]:
+              - /url: /#how-it-works
+            - link "Industries" [ref=e775] [cursor=pointer]:
+              - /url: /industries
+            - link "Pricing" [ref=e776] [cursor=pointer]:
+              - /url: /#pricing
+        - generic [ref=e777]:
+          - heading "Company" [level=4] [ref=e778]
+          - generic [ref=e779]:
+            - link "About" [ref=e780] [cursor=pointer]:
+              - /url: /#about
+            - link "Contact" [ref=e781] [cursor=pointer]:
+              - /url: /#signup
+        - generic [ref=e782]:
+          - heading "Legal" [level=4] [ref=e783]
+          - generic [ref=e784]:
+            - link "Privacy" [ref=e785] [cursor=pointer]:
+              - /url: /privacy
+            - link "Terms" [ref=e786] [cursor=pointer]:
+              - /url: /terms
+      - paragraph [ref=e788]: © 2026 Vizzion. All rights reserved.
+  - alert [ref=e789]
+```

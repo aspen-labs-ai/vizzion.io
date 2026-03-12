@@ -17,7 +17,6 @@ const INDUSTRIES = [
   'Driveways',
   'Swimming Pools',
   'Artificial Turf',
-  'Tattoos',
   'Car Wraps',
   'Boat Decking',
   'Other',
@@ -48,7 +47,10 @@ export default function SignupSection({ defaultIndustry }: { defaultIndustry?: s
           details,
           _subject: 'New Vizzion Lead',
           _template: 'table',
-          _captcha: 'false'
+          _captcha: 'false',
+          ...(process.env.NEXT_PUBLIC_SLACK_WEBHOOK && {
+            _webhook: process.env.NEXT_PUBLIC_SLACK_WEBHOOK
+          })
         })
       });
 

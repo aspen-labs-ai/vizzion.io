@@ -2,10 +2,19 @@ import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import { getCanonicalUrl } from '@/lib/seo/canonical';
 
 export const metadata: Metadata = {
   title: 'Thank You — Vizzion',
   description: "Thanks for your interest in Vizzion. We'll be in touch soon.",
+  alternates: {
+    canonical: getCanonicalUrl('/thanks'),
+  },
+  openGraph: {
+    title: 'Thank You — Vizzion',
+    description: "Thanks for your interest in Vizzion. We'll be in touch soon.",
+    url: '/thanks',
+  },
 };
 
 export default function ThanksPage() {
