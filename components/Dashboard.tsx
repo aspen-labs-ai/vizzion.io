@@ -107,6 +107,15 @@ export default function Dashboard() {
   const [cycle, setCycle] = useState(0);
   const [mobilePanelMinHeight, setMobilePanelMinHeight] = useState(MOBILE_PANEL_BASE_HEIGHT);
   const panelMeasureRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  /* detect mobile on mount */
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   /* auto-rotation */
   useEffect(() => {
@@ -131,7 +140,10 @@ export default function Dashboard() {
     setCycle(c => c + 1);
   }, []);
 
+  /* measure height only on mobile */
   useEffect(() => {
+    if (!isMobile) return;
+    
     const panelEl = panelMeasureRef.current;
     if (!panelEl) return;
 
@@ -154,7 +166,7 @@ export default function Dashboard() {
       cancelAnimationFrame(frame);
       observer?.disconnect();
     };
-  }, [tab]);
+  }, [tab, isMobile]);
 
   /* count-up values (only animate when dashboard visible) */
   const isDash = tab === 'dashboard';
@@ -219,7 +231,7 @@ export default function Dashboard() {
 
               {/* ── Main Content ── */}
               <div
-                className="flex-1 min-h-[var(--dashboard-mobile-panel-height)] md:min-h-[520px] bg-bg-primary relative overflow-hidden"
+                className="flex-1 min-h-[var(--dashboard-mobile-panel-height)] md:h-[640px] bg-bg-primary relative md:overflow-y-auto overflow-hidden"
                 style={
                   {
                     '--dashboard-mobile-panel-height': `${mobilePanelMinHeight}px`,
