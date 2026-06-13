@@ -1,4 +1,5 @@
 import CopySnippet from '@/components/dashboard/CopySnippet';
+import WidgetAppearance from '@/components/dashboard/WidgetAppearance';
 import {
   regenerateEmbedKeyAction,
   updateWorkspaceProfileAction,
@@ -158,18 +159,11 @@ export default async function SettingsPage({
             </select>
           </label>
 
-          <label className="block space-y-2">
-            <span className="text-sm font-medium text-text-secondary">Theme</span>
-            <select
-              name="theme"
-              defaultValue={context.widget.theme}
-              disabled={!isOwner}
-              className="w-full rounded-lg border border-border-default bg-bg-primary px-3 py-2.5 text-sm text-text-primary outline-none transition focus:border-accent/60"
-            >
-              <option value="dark">Dark</option>
-              <option value="light">Light</option>
-            </select>
-          </label>
+          <WidgetAppearance
+            defaultTheme={context.widget.theme}
+            defaultColor={context.widget.brand_color || '#10B981'}
+            disabled={!isOwner}
+          />
 
           <label className="block space-y-2">
             <span className="text-sm font-medium text-text-secondary">Subject Type</span>

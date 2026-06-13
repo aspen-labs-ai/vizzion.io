@@ -16,6 +16,7 @@ export interface WidgetRecord {
   embed_key: string;
   mode: 'inline' | 'popup' | string;
   theme: 'dark' | 'light' | string;
+  brand_color: string;
   is_active: boolean;
   require_email: boolean;
   auto_open_widget: boolean;
@@ -135,7 +136,7 @@ export async function getWorkspaceContext(supabase: SupabaseClient): Promise<Wor
   const widgetResult = await supabase
     .from('widgets')
     .select(
-      'id, workspace_id, name, embed_key, mode, theme, is_active, require_email, auto_open_widget, show_product_names, subject_type, domain_allowlist, max_generations_per_session, max_generations_per_email_lifetime, limit_reached_cta_url, is_primary',
+      'id, workspace_id, name, embed_key, mode, theme, brand_color, is_active, require_email, auto_open_widget, show_product_names, subject_type, domain_allowlist, max_generations_per_session, max_generations_per_email_lifetime, limit_reached_cta_url, is_primary',
     )
     .eq('workspace_id', workspace.id)
     .order('is_primary', { ascending: false })
@@ -160,7 +161,7 @@ export async function getWorkspaceContext(supabase: SupabaseClient): Promise<Wor
         theme: 'dark',
       })
       .select(
-        'id, workspace_id, name, embed_key, mode, theme, is_active, require_email, auto_open_widget, show_product_names, subject_type, domain_allowlist, max_generations_per_session, max_generations_per_email_lifetime, limit_reached_cta_url, is_primary',
+        'id, workspace_id, name, embed_key, mode, theme, brand_color, is_active, require_email, auto_open_widget, show_product_names, subject_type, domain_allowlist, max_generations_per_session, max_generations_per_email_lifetime, limit_reached_cta_url, is_primary',
       )
       .single();
 

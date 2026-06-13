@@ -111,6 +111,10 @@ export async function updateWidgetSettingsAction(formData: FormData) {
   const name = getFormValue(formData, 'name') || context.widget.name;
   const mode = getFormValue(formData, 'mode') === 'popup' ? 'popup' : 'inline';
   const theme = getFormValue(formData, 'theme') === 'light' ? 'light' : 'dark';
+  const brandColorRaw = (getFormValue(formData, 'brand_color') || '').trim();
+  const brandColor = /^#[0-9a-fA-F]{6}$/.test(brandColorRaw)
+    ? brandColorRaw.toUpperCase()
+    : context.widget.brand_color || '#10B981';
   const domainAllowlist = sanitizeDomainAllowlist(getFormValue(formData, 'domain_allowlist'));
   const maxGenerationsPerSession = parseOptionalPositiveInteger(
     getFormValue(formData, 'max_generations_per_session'),
@@ -163,6 +167,7 @@ export async function updateWidgetSettingsAction(formData: FormData) {
       name,
       mode,
       theme,
+      brand_color: brandColor,
       domain_allowlist: domainAllowlist,
       require_email: parseCheckbox(formData, 'require_email'),
       auto_open_widget: parseCheckbox(formData, 'auto_open_widget'),
