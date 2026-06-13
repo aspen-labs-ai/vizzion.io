@@ -20,7 +20,6 @@ const allIndustries = [
   { slug: 'driveways', name: 'Driveways' },
   { slug: 'swimming-pools', name: 'Swimming Pools' },
   { slug: 'artificial-turf', name: 'Artificial Turf' },
-  { slug: 'tattoos', name: 'Tattoo Studios' },
   { slug: 'car-wraps', name: 'Car Wraps' },
   { slug: 'boat-decking', name: 'Boat Decking' },
 ];

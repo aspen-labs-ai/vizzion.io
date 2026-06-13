@@ -10,6 +10,14 @@ export const metadata: Metadata = {
     type: 'website',
     siteName: 'Vizzion',
     locale: 'en_US',
+    images: [
+      {
+        url: '/images/vizzion-og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Vizzion — Product Visualization Widget for Lead Generation',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',

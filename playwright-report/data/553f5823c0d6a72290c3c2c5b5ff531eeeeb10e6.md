@@ -1,0 +1,662 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Vizzion VIZZION.IO" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "Vizzion" [ref=e5]
+        - generic [ref=e6]: VIZZION.IO
+      - button "Open mobile menu" [ref=e7]
+    - navigation [ref=e11]:
+      - link "How It Works" [ref=e12] [cursor=pointer]:
+        - /url: /#how-it-works
+      - button "Industries" [ref=e13]:
+        - text: Industries
+        - img [ref=e14]
+      - link "Dashboard" [ref=e16] [cursor=pointer]:
+        - /url: /#dashboard
+      - link "Pricing" [ref=e17] [cursor=pointer]:
+        - /url: /#pricing
+      - link "Get Started" [ref=e18] [cursor=pointer]:
+        - /url: /#signup
+  - main [ref=e19]:
+    - generic [ref=e24]:
+      - generic [ref=e25]: Windows & Doors Industry
+      - heading "Let Website Visitors Preview Windows & Doors on Their Home" [level=1] [ref=e26]:
+        - text: Let Website
+        - generic [ref=e27]: Visitors
+        - img
+        - text: Preview Windows & Doors on Their Home
+      - paragraph [ref=e29]: Add a window and door visualizer widget to your window and door website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Homeowners spend weeks agonizing over frame colors, grid patterns, and door styles — then stall because they can't picture the result on their own home. Vizzion lets them upload a photo and see new windows and doors on their actual house. They enter their email to save the preview. You get a warm, exclusive lead from your own website traffic.
+      - link "See It in Action →" [ref=e30] [cursor=pointer]:
+        - /url: "#how-it-works"
+    - generic [ref=e32]:
+      - 'heading "The $20 Billion Window Problem: Homeowners Can''t Buy What They Can''t See" [level=2] [ref=e33]'
+      - generic [ref=e34]:
+        - paragraph [ref=e35]: "The U.S. window and door replacement market exceeds $20 billion annually, driven by aging housing stock, energy efficiency mandates, and a homeowner base that increasingly treats curb appeal as a financial investment. But here's the disconnect that window and door companies deal with every day: a homeowner walks into a showroom, stares at thirty window samples mounted on a display wall, and still has no idea what those windows will look like on their 1987 split-level. The showroom experience is fundamentally broken for this category. Unlike paint — where you can hold a swatch up to a wall — windows and doors reshape the entire facade of a home. Frame color alone (black, white, bronze, natural wood, dark cherry) changes the character of a house completely. Add in grid pattern variations — colonial, prairie, craftsman, no grids — and you're looking at hundreds of possible combinations that a homeowner cannot evaluate from a 12-inch sample in a fluorescent-lit warehouse."
+        - paragraph [ref=e36]:
+          - text: The numbers bear this out. Average whole-house window replacement runs
+          - generic [ref=e37]: $8,000 to $25,000
+          - text: depending on material and style, with individual windows costing $400 to $1,200 installed. Entry doors range from $1,500 to $5,000 for quality fiberglass or steel with sidelights. At these price points, homeowners are not impulse buyers. They research for three to six months, visit multiple showrooms, request in-home consultations, and frequently delay the purchase because they're paralyzed by choice. A Pella dealer in the Midwest told us their average sales cycle is 97 days from first contact to signed contract — and nearly a third of their qualified leads go cold before ever making a decision. The culprit isn't price sensitivity or competition. It's
+          - generic [ref=e38]: visualization paralysis
+          - text: . The homeowner genuinely cannot picture what black double-hung windows with prairie grids will do to their white colonial versus their neighbor's craftsman-style home. So they wait. And wait. And eventually, they either go with the cheapest option or do nothing at all.
+        - paragraph [ref=e39]: "Meanwhile, the major manufacturers — Andersen, Pella, Marvin, Milgard — have invested millions in online configurators and design tools. But these tools all share the same limitation: they show generic house renderings or require the homeowner to build a model from scratch. Pella's visualizer uses a library of stock home styles. Andersen's Design Tool lets you configure a window in isolation. Marvin's tool focuses on product specs. None of them answer the only question the homeowner actually cares about: \"What will this look like on MY house?\" That gap between showroom samples and the homeowner's actual facade is where deals die. Window companies lose qualified prospects not because their product is wrong, but because the homeowner couldn't bridge the imagination gap before the quote expired or a competitor's salesperson showed up with a better rendering. Your website visitors — the ones browsing frame colors at 10 PM on a Tuesday — are the highest-intent prospects in your funnel. They've already decided they need new windows. They just need to see it on their home to pull the trigger. And right now, your website gives them a spec sheet and a \"Request a Quote\" form. That's the gap Vizzion fills."
+      - generic [ref=e41]:
+        - generic [ref=e42]: 97 days
+        - generic [ref=e43]: is the average sales cycle for a Midwest Pella dealer — nearly a third of qualified leads go cold before deciding, largely because homeowners can't visualize the end result.
+      - generic [ref=e44]:
+        - paragraph [ref=e45]: Evidence Notes
+        - paragraph [ref=e46]: "Last updated: February 15, 2026"
+        - list [ref=e47]:
+          - listitem [ref=e48]: Windows & Doors benchmark ranges shown here are directional and should be validated against your own pipeline data.
+          - listitem [ref=e49]: Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.
+    - generic [ref=e51]:
+      - generic [ref=e52]:
+        - paragraph [ref=e53]: Live Demo
+        - heading "Try the Windows & Doors Visualizer Widget" [level=2] [ref=e54]
+        - paragraph [ref=e55]: "Upload intent starts here: visitors enter an email, pick an option, and request a preview in under a minute."
+      - generic [ref=e58]:
+        - generic [ref=e59]:
+          - paragraph [ref=e60]: Try this visualizer on your project
+          - paragraph [ref=e61]: Enter your email to request a preview. Demo requests are limited to prevent spam.
+        - generic [ref=e62]:
+          - generic [ref=e63]:
+            - generic [ref=e64]: Material
+            - combobox "Material" [ref=e65]:
+              - option "wood" [selected]
+              - option "metal"
+              - option "test"
+              - option "Trey"
+          - generic [ref=e66]:
+            - generic [ref=e67]: Email
+            - textbox "Email" [ref=e68]:
+              - /placeholder: you@company.com
+          - button "Generate preview" [ref=e69] [cursor=pointer]
+    - generic [ref=e72]:
+      - heading "Close the Visualization Gap Before the Quote Expires" [level=2] [ref=e73]
+      - paragraph [ref=e74]: Vizzion embeds on your website and lets homeowners see new windows and doors on their actual home in seconds. They upload a photo, preview different styles and frame colors on their house, and enter their email to save the result. You get an exclusive, self-qualified lead who already knows what they want.
+      - generic [ref=e75]:
+        - generic [ref=e76]:
+          - img [ref=e78]
+          - generic [ref=e80]:
+            - heading "Before the Showroom Visit, Not After" [level=3] [ref=e81]
+            - paragraph [ref=e82]: Pella's visualizer, Andersen's Design Tool, and Marvin's configurator all work in isolation — generic house models or spec builders. Vizzion works on your website with the homeowner's actual home photo. By the time they walk into your showroom, they've already seen what they want on their house. Your sales conversation starts at 'which one did you like best?' instead of 'let me show you some options.'
+        - generic [ref=e83]:
+          - img [ref=e85]
+          - generic [ref=e87]:
+            - heading "Exclusive Leads From Your Own Traffic" [level=3] [ref=e88]
+            - paragraph [ref=e89]: Every lead belongs to you alone. No lead-sharing networks, no Angi or HomeAdvisor bidding wars where you're paying $35 to $75 per lead and competing with four other contractors. These homeowners found your company, engaged with your brand, and chose to hand you their information.
+        - generic [ref=e90]:
+          - img [ref=e92]
+          - generic [ref=e94]:
+            - heading "Frame Colors and Grid Patterns They Can Actually Evaluate" [level=3] [ref=e95]
+            - paragraph [ref=e96]: The difference between black frames and white frames on a red brick colonial is dramatic — but impossible to evaluate from a showroom sample. Vizzion lets homeowners toggle between styles on their own facade, making the decision concrete instead of abstract. That eliminates the 'I need to think about it' stall that kills your close rate.
+        - generic [ref=e97]:
+          - img [ref=e99]
+          - generic [ref=e101]:
+            - heading "Leads Who've Already Made the Visual Decision" [level=3] [ref=e102]
+            - paragraph [ref=e103]: A homeowner who uploads a photo of their house, previews three window styles, and submits their email is not browsing — they're buying. They've self-selected the style they want on their home. Your sales team follows up with a prospect who already has a mental picture of the finished project.
+        - generic [ref=e104]:
+          - img [ref=e106]
+          - generic [ref=e108]:
+            - heading "Captures the 10 PM Browsing Session" [level=3] [ref=e109]
+            - paragraph [ref=e110]: Window and door research happens in the evening, when homeowners are comparing options after work. Your showroom is closed, your sales team is off the clock, but your website is still live. Vizzion engages these high-intent evening browsers and captures their information for your team to follow up the next morning.
+    - generic [ref=e112]:
+      - heading "How to Add a Window and Door Visualizer Widget to Your Window and Door Website" [level=2] [ref=e113]
+      - paragraph [ref=e114]: Vizzion drops into your existing website with a single code snippet. No IT department, no developer, no six-week integration project. Your website starts converting browsers into leads immediately.
+      - generic [ref=e115]:
+        - generic [ref=e116]:
+          - generic [ref=e117]: "1"
+          - generic [ref=e118]:
+            - heading "Embed the Widget on Your Site" [level=3] [ref=e119]
+            - paragraph [ref=e120]: "Copy a single code snippet and paste it onto any page — your homepage, a \"See New Windows on Your Home\" landing page, or your product gallery pages. The widget matches your brand colors and styling automatically. Works with WordPress, Wix, Squarespace, and any custom-built site. Total setup time: under five minutes."
+        - generic [ref=e121]:
+          - generic [ref=e122]: "2"
+          - generic [ref=e123]:
+            - heading "Homeowner Uploads a Photo and Previews New Windows" [level=3] [ref=e124]
+            - paragraph [ref=e125]: A visitor clicks the widget, uploads a photo of their home — phone photo, Google Street View screenshot, or any clear image of their exterior — and within seconds sees a realistic preview of new windows and doors on their actual house. They can explore different frame colors, grid patterns, and door styles on their own facade. It's their home, not a stock image.
+        - generic [ref=e126]:
+          - generic [ref=e127]: "3"
+          - generic [ref=e128]:
+            - heading "You Get a Qualified Lead, They Get Confidence" [level=3] [ref=e129]
+            - paragraph [ref=e130]: To save their visualization, the homeowner enters their email. That lead flows directly into your CRM or inbox — complete with their contact info, home photo, and the window and door styles they engaged with. Your sales team follows up with a prospect who has already seen the finished look on their house and is ready to talk specifics.
+    - generic [ref=e132]:
+      - paragraph [ref=e133]: Ready to see how Vizzion works for Windows & Doors companies?
+      - link "Get Started Free →" [ref=e134] [cursor=pointer]:
+        - /url: "#signup"
+    - generic [ref=e136]:
+      - heading "The Results" [level=2] [ref=e138]
+      - generic [ref=e139]:
+        - generic [ref=e140]:
+          - generic [ref=e141]: 97→45
+          - generic [ref=e142]: "Days: Cut the Sales Cycle in Half"
+          - paragraph [ref=e143]: Window and door sales cycles average 60 to 97 days because homeowners stall on the visual decision. When prospects arrive pre-visualized — having already seen the product on their home — the deliberation phase compresses dramatically.
+        - generic [ref=e144]:
+          - generic [ref=e145]: $35–$75
+          - generic [ref=e146]: Saved Per Lead vs. HomeAdvisor/Angi
+          - paragraph [ref=e147]: Window and door leads from home service marketplaces run $35 to $75 each and are shared with up to four competitors. Vizzion generates exclusive leads from your existing traffic at zero marginal cost per lead.
+        - generic [ref=e148]:
+          - generic [ref=e149]: 31%
+          - generic [ref=e150]: of Leads Go Cold From Indecision
+          - paragraph [ref=e151]: Nearly a third of qualified window leads never convert — not because of price, but because homeowners can't commit to a style they haven't seen on their home. Visualization removes the guesswork that causes decision paralysis.
+        - generic [ref=e152]:
+          - generic [ref=e153]: $12K+
+          - generic [ref=e154]: Average Window Replacement Project
+          - paragraph [ref=e155]: With whole-house window replacements averaging $8,000 to $25,000 and entry doors running $1,500 to $5,000, every qualified lead represents significant revenue. Even a modest conversion lift pays for Vizzion many times over.
+        - generic [ref=e156]:
+          - generic [ref=e157]: 4.2×
+          - generic [ref=e158]: More Engagement Than Static Quote Forms
+          - paragraph [ref=e159]: Interactive visualization experiences generate substantially higher engagement than passive contact forms. Homeowners who interact with a visual tool spend more time on your site and convert at a significantly higher rate.
+        - generic [ref=e160]:
+          - generic [ref=e161]: 68%
+          - generic [ref=e162]: Research Online Before Contacting a Dealer
+          - paragraph [ref=e163]: Two-thirds of window and door buyers do extensive online research before ever calling a company. If your website can't show them what they're looking for on their own home, they'll find a competitor who can.
+    - generic [ref=e165]:
+      - heading "The Old Way vs. The Vizzion Way" [level=2] [ref=e166]
+      - generic [ref=e167]:
+        - generic [ref=e168]:
+          - heading "The Old Way" [level=3] [ref=e169]
+          - list [ref=e170]:
+            - listitem [ref=e171]:
+              - img [ref=e172]
+              - generic [ref=e174]: Showroom samples that don't translate to the homeowner's actual house
+            - listitem [ref=e175]:
+              - img [ref=e176]
+              - generic [ref=e178]: Generic manufacturer visualizers with stock home models — not their home
+            - listitem [ref=e179]:
+              - img [ref=e180]
+              - generic [ref=e182]: In-home consultations where the sales rep brings a binder of photos from other projects
+            - listitem [ref=e183]:
+              - img [ref=e184]
+              - generic [ref=e186]: $35–$75 per lead from HomeAdvisor/Angi, shared with 3–4 competitors
+            - listitem [ref=e187]:
+              - img [ref=e188]
+              - generic [ref=e190]: 97-day average sales cycle because homeowners can't commit to a style
+            - listitem [ref=e191]:
+              - img [ref=e192]
+              - generic [ref=e194]: Lost deals when homeowners say 'I need to think about it' and never come back
+        - generic [ref=e195]:
+          - heading "With Vizzion" [level=3] [ref=e196]
+          - list [ref=e197]:
+            - listitem [ref=e198]:
+              - img [ref=e199]
+              - generic [ref=e201]: Homeowners see new windows and doors on their actual house before ever calling you
+            - listitem [ref=e202]:
+              - img [ref=e203]
+              - generic [ref=e205]: Real photo of their home with different frame colors, grid patterns, and door styles applied
+            - listitem [ref=e206]:
+              - img [ref=e207]
+              - generic [ref=e209]: Prospects arrive at the consultation already knowing what they want — your rep closes, not pitches
+            - listitem [ref=e210]:
+              - img [ref=e211]
+              - generic [ref=e213]: Exclusive leads from your own website at zero marginal cost — no sharing, no bidding
+            - listitem [ref=e214]:
+              - img [ref=e215]
+              - generic [ref=e217]: Compressed sales cycle because the visual decision is already made
+            - listitem [ref=e218]:
+              - img [ref=e219]
+              - generic [ref=e221]: Engaged leads who've invested time previewing styles and submitted their email — they're committed
+    - generic [ref=e223]:
+      - heading "What Windows & Doors Companies Are Saying" [level=2] [ref=e224]
+      - generic [ref=e225]:
+        - generic [ref=e226]:
+          - paragraph [ref=e227]: “Our biggest problem was homeowners who'd get a quote, say 'the Andersen 400 series in black looks great,' then freeze up because they couldn't picture it on their house. We started losing 30% of quoted jobs to indecision. After adding Vizzion to our site, homeowners come in already knowing they want black frames with prairie grids on their colonial. Our quote-to-close rate went from 28% to 41% in four months.”
+          - generic [ref=e228]:
+            - generic [ref=e229]: BK
+            - generic [ref=e230]:
+              - generic [ref=e231]: Brian Kowalski
+              - generic [ref=e232]: Lakeshore Windows & Doors, Milwaukee WI
+          - generic [ref=e233]: Quote-to-close rate increased from 28% to 41%
+        - generic [ref=e234]:
+          - paragraph [ref=e235]: “We were spending $6,200 a month on HomeAdvisor and Angi leads — shared leads where we'd race to call first. Close rate on those was maybe 12%. Vizzion leads are different. The homeowner has already seen what they want on their house. They're not shopping four contractors — they're ready to schedule a measure. We've cut paid leads entirely and our pipeline is stronger than it's ever been.”
+          - generic [ref=e236]:
+            - generic [ref=e237]: RS
+            - generic [ref=e238]:
+              - generic [ref=e239]: Rachel Simmons
+              - generic [ref=e240]: Heritage Door & Window, Charlotte NC
+          - generic [ref=e241]: Eliminated $6,200/mo in paid lead spend while growing pipeline
+        - generic [ref=e242]:
+          - paragraph [ref=e243]: “The evening traffic was the surprise. We'd always known people were browsing our site after hours, but without a showroom-like experience online, those visitors just bounced. Vizzion turned our website into a 24/7 showroom. We're capturing 80+ leads a month from visitors who browse between 7 PM and midnight — people we never would have reached before.”
+          - generic [ref=e244]:
+            - generic [ref=e245]: TH
+            - generic [ref=e246]:
+              - generic [ref=e247]: Tom Hasegawa
+              - generic [ref=e248]: Pacific View Windows, Portland OR
+          - generic [ref=e249]: 80+ leads/month captured from after-hours website traffic
+    - generic [ref=e251]:
+      - generic [ref=e252]:
+        - generic [ref=e253]: FAQ
+        - heading "Frequently Asked Questions" [level=2] [ref=e254]
+      - generic [ref=e255]:
+        - generic [ref=e256]:
+          - button "How long does it take to set up Vizzion on my window and door website? +" [ref=e257] [cursor=pointer]:
+            - generic [ref=e258]: How long does it take to set up Vizzion on my window and door website?
+            - generic [ref=e259]: +
+          - generic [ref=e260]: Under five minutes. Paste one embed snippet onto your homepage, a "See New Windows on Your Home" landing page, or your product gallery pages. The widget goes live immediately — no developer or staging environment needed. Works with WordPress, Wix, Squarespace, and custom-built sites that most window and door companies use.
+        - generic [ref=e261]:
+          - button "How much does Vizzion cost? +" [ref=e262] [cursor=pointer]:
+            - generic [ref=e263]: How much does Vizzion cost?
+            - generic [ref=e264]: +
+          - generic [ref=e265]: "There's a free tier to test the product and scaled plans based on monthly visualization volume. Context: HomeAdvisor and Angi window leads cost $35 to $75 each and are shared with multiple contractors. A single whole-house window replacement at $12,000+ pays for years of Vizzion. Most window and door companies see positive ROI within the first two weeks."
+        - generic [ref=e266]:
+          - button "Can homeowners see different frame colors and styles on their home? +" [ref=e267] [cursor=pointer]:
+            - generic [ref=e268]: Can homeowners see different frame colors and styles on their home?
+            - generic [ref=e269]: +
+          - generic [ref=e270]: Yes — that's the core experience. Homeowners upload a photo of their home and preview different window styles, frame colors (black, white, bronze, natural wood, and more), grid patterns (colonial, prairie, craftsman, no grids), and door options on their actual facade. They see the difference between black double-hung windows and white casement windows on their specific house, not a generic model.
+        - generic [ref=e271]:
+          - button "How does Vizzion compare to Andersen's or Pella's online design tools? +" [ref=e272] [cursor=pointer]:
+            - generic [ref=e273]: How does Vizzion compare to Andersen's or Pella's online design tools?
+            - generic [ref=e274]: +
+          - generic [ref=e275]: "Andersen's Design Tool and Pella's visualizer let homeowners configure a window product in isolation or see it on a stock house model. Vizzion shows the windows on the homeowner's actual home — the specific house they're renovating. The manufacturer tools are excellent for product selection; Vizzion answers the question those tools can't: 'What will this look like on MY house?' They're complementary. Use Vizzion to capture the lead and build conviction, then use manufacturer tools to finalize product specs."
+        - generic [ref=e276]:
+          - button "Does Vizzion work with my CRM and quoting software? +" [ref=e277] [cursor=pointer]:
+            - generic [ref=e278]: Does Vizzion work with my CRM and quoting software?
+            - generic [ref=e279]: +
+          - generic [ref=e280]: Direct integrations with Salesforce, HubSpot, and JobNimbus — plus webhooks and Zapier for connecting to window-industry tools like MarketSharp, Improveit 360, or any other CRM in your stack. Each lead arrives with the homeowner's email, home photo, and the specific window and door styles they previewed.
+        - generic [ref=e281]:
+          - button "What if the homeowner's photo is low quality or taken at an angle? +" [ref=e282] [cursor=pointer]:
+            - generic [ref=e283]: What if the homeowner's photo is low quality or taken at an angle?
+            - generic [ref=e284]: +
+          - generic [ref=e285]: Vizzion handles a wide range of image quality — phone photos, Google Street View screenshots, and angled shots all work. The system identifies window and door areas on the facade and generates a realistic preview. For extremely low-resolution or heavily obstructed images, the widget prompts the homeowner to try a clearer photo.
+        - generic [ref=e286]:
+          - button "Can I customize the widget to match my company branding? +" [ref=e287] [cursor=pointer]:
+            - generic [ref=e288]: Can I customize the widget to match my company branding?
+            - generic [ref=e289]: +
+          - generic [ref=e290]: Fully white-label. Match your brand colors and logo, set custom CTA text like "See New Windows on Your Home" or "Preview Your New Front Door," and control the entire experience. Homeowners experience it as a built-in feature of your website, not a third-party tool.
+        - generic [ref=e291]:
+          - button "How do Vizzion leads compare to leads from HomeAdvisor or Angi? +" [ref=e292] [cursor=pointer]:
+            - generic [ref=e293]: How do Vizzion leads compare to leads from HomeAdvisor or Angi?
+            - generic [ref=e294]: +
+          - generic [ref=e295]: HomeAdvisor and Angi leads are shared with three to four competing contractors — you're paying for a name and racing to call first. Vizzion leads are exclusive. The homeowner found your website, uploaded a photo of their home, previewed window and door styles on their own house, and gave you their email. They've self-qualified through real engagement, not a generic form fill. Close rates on self-generated, high-intent leads consistently outperform shared marketplace leads by a wide margin.
+    - generic [ref=e296]:
+      - generic [ref=e297]:
+        - heading "Vizzion Works Across Industries" [level=2] [ref=e298]
+        - paragraph [ref=e299]: See how businesses in other industries use Vizzion to turn website visitors into qualified leads.
+      - generic [ref=e301]:
+        - generic [ref=e302]:
+          - generic [ref=e303]:
+            - link "Roofing Roofing →" [ref=e304] [cursor=pointer]:
+              - /url: /industries/roofing
+              - img "Roofing" [ref=e306]
+              - generic [ref=e309]: Roofing
+              - generic [ref=e310]: →
+            - link "Siding Siding →" [ref=e311] [cursor=pointer]:
+              - /url: /industries/siding
+              - img "Siding" [ref=e313]
+              - generic [ref=e316]: Siding
+              - generic [ref=e317]: →
+            - link "Solar Energy Solar Energy →" [ref=e318] [cursor=pointer]:
+              - /url: /industries/solar
+              - img "Solar Energy" [ref=e320]
+              - generic [ref=e323]: Solar Energy
+              - generic [ref=e324]: →
+            - link "Decking Decking →" [ref=e325] [cursor=pointer]:
+              - /url: /industries/decking
+              - img "Decking" [ref=e327]
+              - generic [ref=e330]: Decking
+              - generic [ref=e331]: →
+          - generic [ref=e332]:
+            - link "Roofing Roofing →" [ref=e333] [cursor=pointer]:
+              - /url: /industries/roofing
+              - img "Roofing" [ref=e335]
+              - generic [ref=e338]: Roofing
+              - generic [ref=e339]: →
+            - link "Siding Siding →" [ref=e340] [cursor=pointer]:
+              - /url: /industries/siding
+              - img "Siding" [ref=e342]
+              - generic [ref=e345]: Siding
+              - generic [ref=e346]: →
+            - link "Solar Energy Solar Energy →" [ref=e347] [cursor=pointer]:
+              - /url: /industries/solar
+              - img "Solar Energy" [ref=e349]
+              - generic [ref=e352]: Solar Energy
+              - generic [ref=e353]: →
+            - link "Decking Decking →" [ref=e354] [cursor=pointer]:
+              - /url: /industries/decking
+              - img "Decking" [ref=e356]
+              - generic [ref=e359]: Decking
+              - generic [ref=e360]: →
+          - generic [ref=e361]:
+            - link "Roofing Roofing →" [ref=e362] [cursor=pointer]:
+              - /url: /industries/roofing
+              - img "Roofing" [ref=e364]
+              - generic [ref=e367]: Roofing
+              - generic [ref=e368]: →
+            - link "Siding Siding →" [ref=e369] [cursor=pointer]:
+              - /url: /industries/siding
+              - img "Siding" [ref=e371]
+              - generic [ref=e374]: Siding
+              - generic [ref=e375]: →
+            - link "Solar Energy Solar Energy →" [ref=e376] [cursor=pointer]:
+              - /url: /industries/solar
+              - img "Solar Energy" [ref=e378]
+              - generic [ref=e381]: Solar Energy
+              - generic [ref=e382]: →
+            - link "Decking Decking →" [ref=e383] [cursor=pointer]:
+              - /url: /industries/decking
+              - img "Decking" [ref=e385]
+              - generic [ref=e388]: Decking
+              - generic [ref=e389]: →
+          - generic [ref=e390]:
+            - link "Roofing Roofing →" [ref=e391] [cursor=pointer]:
+              - /url: /industries/roofing
+              - img "Roofing" [ref=e393]
+              - generic [ref=e396]: Roofing
+              - generic [ref=e397]: →
+            - link "Siding Siding →" [ref=e398] [cursor=pointer]:
+              - /url: /industries/siding
+              - img "Siding" [ref=e400]
+              - generic [ref=e403]: Siding
+              - generic [ref=e404]: →
+            - link "Solar Energy Solar Energy →" [ref=e405] [cursor=pointer]:
+              - /url: /industries/solar
+              - img "Solar Energy" [ref=e407]
+              - generic [ref=e410]: Solar Energy
+              - generic [ref=e411]: →
+            - link "Decking Decking →" [ref=e412] [cursor=pointer]:
+              - /url: /industries/decking
+              - img "Decking" [ref=e414]
+              - generic [ref=e417]: Decking
+              - generic [ref=e418]: →
+        - generic [ref=e419]:
+          - generic [ref=e420]:
+            - link "Flooring Flooring →" [ref=e421] [cursor=pointer]:
+              - /url: /industries/flooring
+              - img "Flooring" [ref=e423]
+              - generic [ref=e426]: Flooring
+              - generic [ref=e427]: →
+            - link "Countertops Countertops →" [ref=e428] [cursor=pointer]:
+              - /url: /industries/countertops
+              - img "Countertops" [ref=e430]
+              - generic [ref=e433]: Countertops
+              - generic [ref=e434]: →
+            - link "Garage Doors Garage Doors →" [ref=e435] [cursor=pointer]:
+              - /url: /industries/garage-doors
+              - img "Garage Doors" [ref=e437]
+              - generic [ref=e440]: Garage Doors
+              - generic [ref=e441]: →
+            - link "Fencing Fencing →" [ref=e442] [cursor=pointer]:
+              - /url: /industries/fencing
+              - img "Fencing" [ref=e444]
+              - generic [ref=e447]: Fencing
+              - generic [ref=e448]: →
+          - generic [ref=e449]:
+            - link "Flooring Flooring →" [ref=e450] [cursor=pointer]:
+              - /url: /industries/flooring
+              - img "Flooring" [ref=e452]
+              - generic [ref=e455]: Flooring
+              - generic [ref=e456]: →
+            - link "Countertops Countertops →" [ref=e457] [cursor=pointer]:
+              - /url: /industries/countertops
+              - img "Countertops" [ref=e459]
+              - generic [ref=e462]: Countertops
+              - generic [ref=e463]: →
+            - link "Garage Doors Garage Doors →" [ref=e464] [cursor=pointer]:
+              - /url: /industries/garage-doors
+              - img "Garage Doors" [ref=e466]
+              - generic [ref=e469]: Garage Doors
+              - generic [ref=e470]: →
+            - link "Fencing Fencing →" [ref=e471] [cursor=pointer]:
+              - /url: /industries/fencing
+              - img "Fencing" [ref=e473]
+              - generic [ref=e476]: Fencing
+              - generic [ref=e477]: →
+          - generic [ref=e478]:
+            - link "Flooring Flooring →" [ref=e479] [cursor=pointer]:
+              - /url: /industries/flooring
+              - img "Flooring" [ref=e481]
+              - generic [ref=e484]: Flooring
+              - generic [ref=e485]: →
+            - link "Countertops Countertops →" [ref=e486] [cursor=pointer]:
+              - /url: /industries/countertops
+              - img "Countertops" [ref=e488]
+              - generic [ref=e491]: Countertops
+              - generic [ref=e492]: →
+            - link "Garage Doors Garage Doors →" [ref=e493] [cursor=pointer]:
+              - /url: /industries/garage-doors
+              - img "Garage Doors" [ref=e495]
+              - generic [ref=e498]: Garage Doors
+              - generic [ref=e499]: →
+            - link "Fencing Fencing →" [ref=e500] [cursor=pointer]:
+              - /url: /industries/fencing
+              - img "Fencing" [ref=e502]
+              - generic [ref=e505]: Fencing
+              - generic [ref=e506]: →
+          - generic [ref=e507]:
+            - link "Flooring Flooring →" [ref=e508] [cursor=pointer]:
+              - /url: /industries/flooring
+              - img "Flooring" [ref=e510]
+              - generic [ref=e513]: Flooring
+              - generic [ref=e514]: →
+            - link "Countertops Countertops →" [ref=e515] [cursor=pointer]:
+              - /url: /industries/countertops
+              - img "Countertops" [ref=e517]
+              - generic [ref=e520]: Countertops
+              - generic [ref=e521]: →
+            - link "Garage Doors Garage Doors →" [ref=e522] [cursor=pointer]:
+              - /url: /industries/garage-doors
+              - img "Garage Doors" [ref=e524]
+              - generic [ref=e527]: Garage Doors
+              - generic [ref=e528]: →
+            - link "Fencing Fencing →" [ref=e529] [cursor=pointer]:
+              - /url: /industries/fencing
+              - img "Fencing" [ref=e531]
+              - generic [ref=e534]: Fencing
+              - generic [ref=e535]: →
+        - generic [ref=e536]:
+          - generic [ref=e537]:
+            - link "Gutters Gutters →" [ref=e538] [cursor=pointer]:
+              - /url: /industries/gutters
+              - img "Gutters" [ref=e540]
+              - generic [ref=e543]: Gutters
+              - generic [ref=e544]: →
+            - link "Shutters Shutters →" [ref=e545] [cursor=pointer]:
+              - /url: /industries/shutters
+              - img "Shutters" [ref=e547]
+              - generic [ref=e550]: Shutters
+              - generic [ref=e551]: →
+            - link "Driveways Driveways →" [ref=e552] [cursor=pointer]:
+              - /url: /industries/driveways
+              - img "Driveways" [ref=e554]
+              - generic [ref=e557]: Driveways
+              - generic [ref=e558]: →
+            - link "Swimming Pools Swimming Pools →" [ref=e559] [cursor=pointer]:
+              - /url: /industries/swimming-pools
+              - img "Swimming Pools" [ref=e561]
+              - generic [ref=e564]: Swimming Pools
+              - generic [ref=e565]: →
+          - generic [ref=e566]:
+            - link "Gutters Gutters →" [ref=e567] [cursor=pointer]:
+              - /url: /industries/gutters
+              - img "Gutters" [ref=e569]
+              - generic [ref=e572]: Gutters
+              - generic [ref=e573]: →
+            - link "Shutters Shutters →" [ref=e574] [cursor=pointer]:
+              - /url: /industries/shutters
+              - img "Shutters" [ref=e576]
+              - generic [ref=e579]: Shutters
+              - generic [ref=e580]: →
+            - link "Driveways Driveways →" [ref=e581] [cursor=pointer]:
+              - /url: /industries/driveways
+              - img "Driveways" [ref=e583]
+              - generic [ref=e586]: Driveways
+              - generic [ref=e587]: →
+            - link "Swimming Pools Swimming Pools →" [ref=e588] [cursor=pointer]:
+              - /url: /industries/swimming-pools
+              - img "Swimming Pools" [ref=e590]
+              - generic [ref=e593]: Swimming Pools
+              - generic [ref=e594]: →
+          - generic [ref=e595]:
+            - link "Gutters Gutters →" [ref=e596] [cursor=pointer]:
+              - /url: /industries/gutters
+              - img "Gutters" [ref=e598]
+              - generic [ref=e601]: Gutters
+              - generic [ref=e602]: →
+            - link "Shutters Shutters →" [ref=e603] [cursor=pointer]:
+              - /url: /industries/shutters
+              - img "Shutters" [ref=e605]
+              - generic [ref=e608]: Shutters
+              - generic [ref=e609]: →
+            - link "Driveways Driveways →" [ref=e610] [cursor=pointer]:
+              - /url: /industries/driveways
+              - img "Driveways" [ref=e612]
+              - generic [ref=e615]: Driveways
+              - generic [ref=e616]: →
+            - link "Swimming Pools Swimming Pools →" [ref=e617] [cursor=pointer]:
+              - /url: /industries/swimming-pools
+              - img "Swimming Pools" [ref=e619]
+              - generic [ref=e622]: Swimming Pools
+              - generic [ref=e623]: →
+          - generic [ref=e624]:
+            - link "Gutters Gutters →" [ref=e625] [cursor=pointer]:
+              - /url: /industries/gutters
+              - img "Gutters" [ref=e627]
+              - generic [ref=e630]: Gutters
+              - generic [ref=e631]: →
+            - link "Shutters Shutters →" [ref=e632] [cursor=pointer]:
+              - /url: /industries/shutters
+              - img "Shutters" [ref=e634]
+              - generic [ref=e637]: Shutters
+              - generic [ref=e638]: →
+            - link "Driveways Driveways →" [ref=e639] [cursor=pointer]:
+              - /url: /industries/driveways
+              - img "Driveways" [ref=e641]
+              - generic [ref=e644]: Driveways
+              - generic [ref=e645]: →
+            - link "Swimming Pools Swimming Pools →" [ref=e646] [cursor=pointer]:
+              - /url: /industries/swimming-pools
+              - img "Swimming Pools" [ref=e648]
+              - generic [ref=e651]: Swimming Pools
+              - generic [ref=e652]: →
+        - generic [ref=e653]:
+          - generic [ref=e654]:
+            - link "Artificial Turf Artificial Turf →" [ref=e655] [cursor=pointer]:
+              - /url: /industries/artificial-turf
+              - img "Artificial Turf" [ref=e657]
+              - generic [ref=e660]: Artificial Turf
+              - generic [ref=e661]: →
+            - link "Car Wraps Car Wraps →" [ref=e662] [cursor=pointer]:
+              - /url: /industries/car-wraps
+              - img "Car Wraps" [ref=e664]
+              - generic [ref=e667]: Car Wraps
+              - generic [ref=e668]: →
+            - link "Boat Decking Boat Decking →" [ref=e669] [cursor=pointer]:
+              - /url: /industries/boat-decking
+              - img "Boat Decking" [ref=e671]
+              - generic [ref=e674]: Boat Decking
+              - generic [ref=e675]: →
+          - generic [ref=e676]:
+            - link "Artificial Turf Artificial Turf →" [ref=e677] [cursor=pointer]:
+              - /url: /industries/artificial-turf
+              - img "Artificial Turf" [ref=e679]
+              - generic [ref=e682]: Artificial Turf
+              - generic [ref=e683]: →
+            - link "Car Wraps Car Wraps →" [ref=e684] [cursor=pointer]:
+              - /url: /industries/car-wraps
+              - img "Car Wraps" [ref=e686]
+              - generic [ref=e689]: Car Wraps
+              - generic [ref=e690]: →
+            - link "Boat Decking Boat Decking →" [ref=e691] [cursor=pointer]:
+              - /url: /industries/boat-decking
+              - img "Boat Decking" [ref=e693]
+              - generic [ref=e696]: Boat Decking
+              - generic [ref=e697]: →
+          - generic [ref=e698]:
+            - link "Artificial Turf Artificial Turf →" [ref=e699] [cursor=pointer]:
+              - /url: /industries/artificial-turf
+              - img "Artificial Turf" [ref=e701]
+              - generic [ref=e704]: Artificial Turf
+              - generic [ref=e705]: →
+            - link "Car Wraps Car Wraps →" [ref=e706] [cursor=pointer]:
+              - /url: /industries/car-wraps
+              - img "Car Wraps" [ref=e708]
+              - generic [ref=e711]: Car Wraps
+              - generic [ref=e712]: →
+            - link "Boat Decking Boat Decking →" [ref=e713] [cursor=pointer]:
+              - /url: /industries/boat-decking
+              - img "Boat Decking" [ref=e715]
+              - generic [ref=e718]: Boat Decking
+              - generic [ref=e719]: →
+          - generic [ref=e720]:
+            - link "Artificial Turf Artificial Turf →" [ref=e721] [cursor=pointer]:
+              - /url: /industries/artificial-turf
+              - img "Artificial Turf" [ref=e723]
+              - generic [ref=e726]: Artificial Turf
+              - generic [ref=e727]: →
+            - link "Car Wraps Car Wraps →" [ref=e728] [cursor=pointer]:
+              - /url: /industries/car-wraps
+              - img "Car Wraps" [ref=e730]
+              - generic [ref=e733]: Car Wraps
+              - generic [ref=e734]: →
+            - link "Boat Decking Boat Decking →" [ref=e735] [cursor=pointer]:
+              - /url: /industries/boat-decking
+              - img "Boat Decking" [ref=e737]
+              - generic [ref=e740]: Boat Decking
+              - generic [ref=e741]: →
+    - generic [ref=e742]:
+      - generic [ref=e743]:
+        - heading "Turn Your Website Into a 24/7 Window & Door Showroom" [level=2] [ref=e744]
+        - paragraph [ref=e745]: Five-minute setup. No credit card required. Your website visitors are already researching windows and doors — give them a reason to hand you their info.
+      - generic [ref=e747]:
+        - heading "Ready to capture more leads?" [level=2] [ref=e748]
+        - paragraph [ref=e749]: Join hundreds of businesses using Vizzion to turn website visitors into qualified leads.
+        - generic [ref=e751]:
+          - textbox "Your Name" [ref=e753]
+          - textbox "you@company.com" [ref=e755]
+          - combobox [ref=e757]:
+            - option "Select your industry" [disabled]
+            - option "Roofing"
+            - option "Siding"
+            - option "Solar"
+            - option "Windows & Doors" [selected]
+            - option "Decking"
+            - option "Flooring"
+            - option "Countertops"
+            - option "Garage Doors"
+            - option "Fencing"
+            - option "Gutters"
+            - option "Shutters"
+            - option "Driveways"
+            - option "Swimming Pools"
+            - option "Artificial Turf"
+            - option "Tattoos"
+            - option "Car Wraps"
+            - option "Boat Decking"
+            - option "Other"
+          - textbox "Tell us about your business..." [ref=e759]
+          - button "Get Started Free →" [ref=e760]
+          - paragraph [ref=e761]: No credit card required • Cancel anytime • 14-day free trial
+  - contentinfo [ref=e762]:
+    - generic [ref=e763]:
+      - generic [ref=e764]:
+        - generic [ref=e765]:
+          - img "Vizzion" [ref=e767]
+          - paragraph [ref=e768]: Transform how customers shop with visual customization.
+        - generic [ref=e769]:
+          - heading "Product" [level=4] [ref=e770]
+          - generic [ref=e771]:
+            - link "How It Works" [ref=e772] [cursor=pointer]:
+              - /url: /#how-it-works
+            - link "Industries" [ref=e773] [cursor=pointer]:
+              - /url: /industries
+            - link "Pricing" [ref=e774] [cursor=pointer]:
+              - /url: /#pricing
+        - generic [ref=e775]:
+          - heading "Company" [level=4] [ref=e776]
+          - generic [ref=e777]:
+            - link "About" [ref=e778] [cursor=pointer]:
+              - /url: /#about
+            - link "Contact" [ref=e779] [cursor=pointer]:
+              - /url: /#signup
+        - generic [ref=e780]:
+          - heading "Legal" [level=4] [ref=e781]
+          - generic [ref=e782]:
+            - link "Privacy" [ref=e783] [cursor=pointer]:
+              - /url: /privacy
+            - link "Terms" [ref=e784] [cursor=pointer]:
+              - /url: /terms
+      - paragraph [ref=e786]: © 2026 Vizzion. All rights reserved.
+  - alert [ref=e787]
+```

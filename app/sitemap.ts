@@ -18,7 +18,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'driveways',
     'swimming-pools',
     'artificial-turf',
-    'tattoos',
     'car-wraps',
     'boat-decking',
   ];
@@ -35,6 +34,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/thanks`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.4,
+    },
+    {
+      url: `${baseUrl}/privacy`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/terms`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
     },
     ...industries.map((slug) => ({
       url: `${baseUrl}/industries/${slug}`,

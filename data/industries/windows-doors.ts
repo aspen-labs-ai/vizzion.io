@@ -16,8 +16,8 @@ export const windowsDoorsData: IndustryData = {
   header: {
     badge: "Windows & Doors Industry",
     headline:
-      "Window and Door Visualizer Widget for Your Window and Door Website",
-    highlightWord: "Qualified",
+      "Let Website Visitors Preview Windows & Doors on Their Home",
+    highlightWord: "Visitors",
     intro:
       "Add a window and door visualizer widget to your window and door website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Homeowners spend weeks agonizing over frame colors, grid patterns, and door styles — then stall because they can't picture the result on their own home. Vizzion lets them upload a photo and see new windows and doors on their actual house. They enter their email to save the preview. You get a warm, exclusive lead from your own website traffic.",
     introHighlight:

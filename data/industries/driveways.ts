@@ -16,8 +16,8 @@ export const drivewaysData: IndustryData = {
   header: {
     badge: "Driveways & Hardscaping",
     headline:
-      "Driveway Visualizer Widget for Your Paving Website",
-    highlightWord: "Driveway",
+      "Let Property Owners Preview Paving Options on Their Driveway",
+    highlightWord: "Paving",
     intro:
       "Add a driveway visualizer widget to your paving website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Your prospect stood in your showroom for forty minutes, touched every Belgard and Techo-Bloc sample on the wall, asked about herringbone versus running bond, took four chips home in a zip-lock bag — and hasn't returned your calls in three weeks. That's not a bad lead. That's a homeowner paralyzed by too many choices and zero ability to see the finished result on their own property. Vizzion lets them upload a photo of their driveway and preview exact materials, patterns, and colors on their actual home in seconds. They enter their email to keep the preview. You get a lead who already knows what they want.",
     introHighlight:

@@ -7,8 +7,26 @@ const DEFAULT_BASE_URL = 'https://vizzion.io';
 const CHECKPOINT_DATE = '2026-02-26';
 const MONITORED_PATHS = ['/', '/industries', '/industries/solar'];
 const REDIRECT_EXPECTATIONS = [
-  { from: 'http://vizzion.io/', toPrefix: 'https://vizzion.io/' },
-  { from: 'https://www.vizzion.io/', toPrefix: 'https://vizzion.io/' },
+  {
+    name: 'http://vizzion.io/ redirects to canonical host',
+    from: 'http://vizzion.io/',
+    toPrefix: 'https://vizzion.io/',
+  },
+  {
+    name: 'https://www.vizzion.io/ redirects to canonical host',
+    from: 'https://www.vizzion.io/',
+    toPrefix: 'https://vizzion.io/',
+  },
+  {
+    name: 'https://www.vizzion.io/industries/solar redirects to canonical host',
+    from: 'https://www.vizzion.io/industries/solar',
+    toPrefix: 'https://vizzion.io/industries/solar',
+  },
+  {
+    name: 'legacy /industries/tattoos redirects to /industries',
+    from: 'https://vizzion.io/industries/tattoos',
+    toPrefix: 'https://vizzion.io/industries',
+  },
 ];
 
 function parseArgs(argv) {
@@ -82,6 +100,23 @@ async function fetchText(url, redirect = 'follow') {
   return { response, body };
 }
 
+async function checkIndexability(pageUrl) {
+  const expectedCanonical = normalizeCanonical(pageUrl);
+  const { response, body } = await fetchText(pageUrl, 'follow');
+  const xRobots = (response.headers.get('x-robots-tag') ?? '').toLowerCase();
+  const metaRobots = extractRobotsMetaContent(body);
+  const canonicalHref = extractCanonicalHref(body);
+  const canonicalResolved = canonicalHref ? normalizeCanonical(new URL(canonicalHref, response.url).toString()) : null;
+  const hasNoindex = xRobots.includes('noindex') || metaRobots.some((entry) => entry.includes('noindex'));
+  const passed = response.status === 200 && canonicalResolved === expectedCanonical && !hasNoindex;
+
+  return {
+    expectedCanonical,
+    passed,
+    details: `status=${response.status}, canonical=${canonicalResolved || '(missing)'}, expected=${expectedCanonical}, noindex=${hasNoindex}`,
+  };
+}
+
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const checks = [];
@@ -97,27 +132,9 @@ async function main() {
     const passed = isRedirectStatus(response.status) && resolvedLocation.startsWith(expectation.toPrefix);
 
     checks.push({
-      name: `${expectation.from} redirects to canonical host`,
+      name: expectation.name,
       passed,
       details: `status=${response.status}, location=${resolvedLocation || '(missing)'}`,
-    });
-  }
-
-  for (const monitoredPath of MONITORED_PATHS) {
-    const pageUrl = new URL(monitoredPath, `${baseOrigin}/`).toString();
-    const expectedCanonical = normalizeCanonical(pageUrl);
-    const { response, body } = await fetchText(pageUrl, 'follow');
-    const xRobots = (response.headers.get('x-robots-tag') ?? '').toLowerCase();
-    const metaRobots = extractRobotsMetaContent(body);
-    const canonicalHref = extractCanonicalHref(body);
-    const canonicalResolved = canonicalHref ? normalizeCanonical(new URL(canonicalHref, response.url).toString()) : null;
-    const hasNoindex = xRobots.includes('noindex') || metaRobots.some((entry) => entry.includes('noindex'));
-    const passed = response.status === 200 && canonicalResolved === expectedCanonical && !hasNoindex;
-
-    checks.push({
-      name: `${expectedCanonical} is indexable with self-canonical`,
-      passed,
-      details: `status=${response.status}, canonical=${canonicalResolved || '(missing)'}, expected=${expectedCanonical}, noindex=${hasNoindex}`,
     });
   }
 
@@ -156,6 +173,18 @@ async function main() {
       containsRequiredPages,
     details: `status=${sitemapResponse.status}, url_count=${sitemapLocs.length}, invalid=${invalidLocs.length}, duplicates=${normalizedLocs.length - uniqueLocs.size}, required_urls_present=${containsRequiredPages}`,
   });
+
+  const canonicalSitemapLocs = [...new Set(normalizedLocs)];
+
+  for (const sitemapLoc of canonicalSitemapLocs) {
+    const indexabilityCheck = await checkIndexability(sitemapLoc);
+
+    checks.push({
+      name: `${indexabilityCheck.expectedCanonical} is indexable with self-canonical (from sitemap)`,
+      passed: indexabilityCheck.passed,
+      details: indexabilityCheck.details,
+    });
+  }
 
   const passedCount = checks.filter((entry) => entry.passed).length;
   const failedCount = checks.length - passedCount;

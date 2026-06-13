@@ -1,0 +1,667 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Vizzion VIZZION.IO" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "Vizzion" [ref=e5]
+        - generic [ref=e6]: VIZZION.IO
+      - button "Open mobile menu" [ref=e7]
+    - navigation [ref=e11]:
+      - link "How It Works" [ref=e12] [cursor=pointer]:
+        - /url: /#how-it-works
+      - button "Industries" [ref=e13]:
+        - text: Industries
+        - img [ref=e14]
+      - link "Dashboard" [ref=e16] [cursor=pointer]:
+        - /url: /#dashboard
+      - link "Pricing" [ref=e17] [cursor=pointer]:
+        - /url: /#pricing
+      - link "Get Started" [ref=e18] [cursor=pointer]:
+        - /url: /#signup
+  - main [ref=e19]:
+    - generic [ref=e24]:
+      - generic [ref=e25]: Marine Decking Industry
+      - heading "Let Boat Owners Visualize Decking Options on Their Vessel" [level=1] [ref=e26]:
+        - text: Let Boat Owners Visualize
+        - generic [ref=e27]: Decking
+        - img
+        - text: Options on Their Vessel
+      - paragraph [ref=e29]:
+        - text: Add a boat decking visualizer widget to your marine decking website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up.
+        - img
+        - generic [ref=e30]: Boat owners spend $50K+ on a vessel but can't picture a $3K deck upgrade.
+        - text: Vizzion lets them see new decking material — SeaDek, synthetic teak, EVA foam, marine vinyl — on their actual boat. They upload a photo, see the transformation, and enter their email to get the full result. You get an exclusive, pre-qualified lead from your own website. No bought lists, no boat-show-only pipeline.
+      - link "See It in Action →" [ref=e31] [cursor=pointer]:
+        - /url: "#how-it-works"
+    - generic [ref=e33]:
+      - heading "Marine Decking Sales Still Run on Samples and Guesswork" [level=2] [ref=e34]
+      - generic [ref=e35]:
+        - paragraph [ref=e36]:
+          - text: Marine decking has a visualization problem. A boat owner's deck is fading, the non-skid is shot, or the original carpet reeks of mildew. They Google options — SeaDek, Castaway Customs, Marine Mat, synthetic teak — and land on your site. They browse your gallery, but none of those boats look like theirs. They've got a 2019 Mako 214 CC, not a 42-foot Yellowfin. So they bounce, and you just lost a
+          - generic [ref=e37]: $1,500 to $6,000 re-deck job
+          - text: to indecision.
+        - paragraph [ref=e38]:
+          - text: Then there's the sample kit drain. You're spending $15 to $30 per kit — foam swatches, color chips, shipping — and
+          - generic [ref=e39]: fewer than 1 in 10 recipients ever convert
+          - text: . Owners hold a 4-inch square up to their helm pad and try to imagine "Storm Gray" across an entire cockpit sole. They can't. Samples show texture. They don't show what the finished boat looks like.
+        - paragraph [ref=e40]: Your website isn't helping either. Most decking installer sites are glorified portfolios — past-job galleries, brand logos, a contact form. They convert at 1 to 3 percent. Boat shows fill the pipeline during season, but up to 60% of marine sales happen in those few show weekends, leaving eight months where your site is the storefront and it's basically a brochure.
+      - generic [ref=e42]:
+        - generic [ref=e43]: 90%+
+        - generic [ref=e44]: of sample kit recipients never convert to a paid decking job — costing marine businesses thousands in wasted fulfillment every year.
+      - generic [ref=e45]:
+        - paragraph [ref=e46]: Evidence Notes
+        - paragraph [ref=e47]: "Last updated: February 15, 2026"
+        - list [ref=e48]:
+          - listitem [ref=e49]: Boat Decking benchmark ranges shown here are directional and should be validated against your own pipeline data.
+          - listitem [ref=e50]: Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.
+    - generic [ref=e52]:
+      - generic [ref=e53]:
+        - paragraph [ref=e54]: Live Demo
+        - heading "Try the Boat Decking Visualizer Widget" [level=2] [ref=e55]
+        - paragraph [ref=e56]: "Upload intent starts here: visitors enter an email, pick an option, and request a preview in under a minute."
+      - generic [ref=e59]:
+        - generic [ref=e60]:
+          - paragraph [ref=e61]: Try this visualizer on your project
+          - paragraph [ref=e62]: Enter your email to request a preview. Demo requests are limited to prevent spam.
+        - generic [ref=e63]:
+          - generic [ref=e64]:
+            - generic [ref=e65]: Material
+            - combobox "Material" [ref=e66]:
+              - option "wood" [selected]
+              - option "metal"
+              - option "test"
+              - option "Trey"
+          - generic [ref=e67]:
+            - generic [ref=e68]: Email
+            - textbox "Email" [ref=e69]:
+              - /placeholder: you@company.com
+          - button "Generate preview" [ref=e70] [cursor=pointer]
+    - generic [ref=e73]:
+      - heading "Let Boat Owners See It Before They Buy It" [level=2] [ref=e74]
+      - paragraph [ref=e75]: Vizzion is a lightweight widget for your website. A boat owner uploads a photo of their deck — helm area, cockpit sole, swim platform — and sees a realistic preview of new decking material on their specific boat. They enter their email to save the result. You get an exclusive, high-intent lead.
+      - generic [ref=e76]:
+        - generic [ref=e77]:
+          - img [ref=e79]
+          - generic [ref=e81]:
+            - heading "Replaces the Sample Kit Guessing Game" [level=3] [ref=e82]
+            - paragraph [ref=e83]: "Vizzion shows boat owners what new decking looks like on their actual boat, at full scale, in seconds. It does what a $25 sample kit fails to do in weeks: builds enough confidence to request a quote."
+        - generic [ref=e84]:
+          - img [ref=e86]
+          - generic [ref=e88]:
+            - heading "Works for Every Decking Material and Brand" [level=3] [ref=e89]
+            - paragraph [ref=e90]: SeaDek, Marine Mat, Castaway Customs, synthetic teak, EVA foam, marine vinyl — Vizzion handles any material your shop installs. Owners compare options on their own vessel and contact you already knowing what they want.
+        - generic [ref=e91]:
+          - img [ref=e93]
+          - generic [ref=e95]:
+            - heading "Captures Leads Year-Round, Not Just at Boat Shows" [level=3] [ref=e96]
+            - paragraph [ref=e97]: Boat shows are a few weekends a year. Your website runs 365 days. Vizzion turns it into an interactive showroom that captures owners during off-season, winter storage planning, and every random Tuesday night someone decides to re-deck.
+        - generic [ref=e98]:
+          - img [ref=e100]
+          - generic [ref=e102]:
+            - heading "Exclusive Leads From Your Own Traffic" [level=3] [ref=e103]
+            - paragraph [ref=e104]: Every lead belongs to you alone. No shared lists, no brokers, no competing with three other shops for the same boat owner.
+        - generic [ref=e105]:
+          - img [ref=e107]
+          - generic [ref=e109]:
+            - heading "Intent That Goes Beyond a Form Fill" [level=3] [ref=e110]
+            - paragraph [ref=e111]: A boat owner who uploads a deck photo, previews a material, and submits their email has already made the emotional decision. These leads close at dramatically higher rates than cold inquiries.
+    - generic [ref=e113]:
+      - heading "How to Add a Boat Decking Visualizer Widget to Your Marine Decking Website" [level=2] [ref=e114]
+      - paragraph [ref=e115]: No IT team, no complex integrations, no waiting on a vendor. Embed a snippet, match your brand, and start converting your existing website traffic into qualified decking leads.
+      - generic [ref=e116]:
+        - generic [ref=e117]:
+          - generic [ref=e118]: "1"
+          - generic [ref=e119]:
+            - heading "Embed the Widget on Your Site" [level=3] [ref=e120]
+            - paragraph [ref=e121]: Copy a single code snippet and paste it into any page — your homepage, a "Visualize Your New Deck" landing page, or your decking services page. The widget auto-adapts to your site's design and brand colors. Setup takes under five minutes, no developer required.
+        - generic [ref=e122]:
+          - generic [ref=e123]: "2"
+          - generic [ref=e124]:
+            - heading "Boat Owner Uploads a Photo and Sees the Transformation" [level=3] [ref=e125]
+            - paragraph [ref=e126]: A visitor clicks the widget, uploads a photo of their current deck — phone photo from the dock, a shot from their last fishing trip, anything with a clear view of the surface — and within seconds sees a realistic digital preview of new decking material installed on their actual boat. Specific to their hull, their layout, their helm configuration.
+        - generic [ref=e127]:
+          - generic [ref=e128]: "3"
+          - generic [ref=e129]:
+            - heading "You Get a Qualified Lead, They Get Confidence" [level=3] [ref=e130]
+            - paragraph [ref=e131]: To view or save the full visualization, the boat owner enters their email. That lead flows directly into your CRM or inbox — complete with their contact info, the original deck photo, and the material preview they engaged with. Your team follows up with an owner who's already seen the upgrade and is ready to talk pricing.
+    - generic [ref=e133]:
+      - paragraph [ref=e134]: Ready to see how Vizzion works for Boat Decking companies?
+      - link "Get Started Free →" [ref=e135] [cursor=pointer]:
+        - /url: "#signup"
+    - generic [ref=e137]:
+      - heading "The Results" [level=2] [ref=e139]
+      - generic [ref=e140]:
+        - generic [ref=e141]:
+          - generic [ref=e142]: $1.5K-$6K
+          - generic [ref=e143]: Average Re-Deck Job Value
+          - paragraph [ref=e144]: Professional SeaDek and marine decking installs range from $1,500 to $6,000 per boat. Every qualified lead Vizzion captures represents a high-value job opportunity, not a $50 impulse buy.
+        - generic [ref=e145]:
+          - generic [ref=e146]: <10%
+          - generic [ref=e147]: Sample Kit Conversion Rate
+          - paragraph [ref=e148]: Marine decking companies spend $15 to $30 per sample kit, and fewer than 1 in 10 recipients ever convert to a paid job. Vizzion lets owners see the finished result on their boat — replacing guesswork with confidence before a kit ever ships.
+        - generic [ref=e149]:
+          - generic [ref=e150]: 12M+
+          - generic [ref=e151]: Registered Boats in the U.S.
+          - paragraph [ref=e152]: Over 12 million recreational boats are registered in the United States, per USCG data. That is a massive addressable market of boat owners whose decks will eventually need replacing or upgrading.
+        - generic [ref=e153]:
+          - generic [ref=e154]: 60%
+          - generic [ref=e155]: Of Sales Tied to Boat Shows
+          - paragraph [ref=e156]: Up to 60% of marine industry sales happen during a handful of boat show weekends. Vizzion fills the pipeline during the other eight months when your website is your only storefront.
+        - generic [ref=e157]:
+          - generic [ref=e158]: $12.4B
+          - generic [ref=e159]: Marine Aftermarket Spending
+          - paragraph [ref=e160]: Boat owners spent $12.4 billion on aftermarket accessories in 2024, per NMMA. Decking is one of the most visible upgrades an owner can make — and the market is growing every year.
+        - generic [ref=e161]:
+          - generic [ref=e162]: 6.5%
+          - generic [ref=e163]: Annual Market Growth
+          - paragraph [ref=e164]: The boat accessories market is growing at a 6.5% CAGR and is projected to nearly double by 2033. More boats, more upgrades, more owners searching online for decking options — and landing on your site.
+    - generic [ref=e166]:
+      - heading "The Old Way vs. The Vizzion Way" [level=2] [ref=e167]
+      - generic [ref=e168]:
+        - generic [ref=e169]:
+          - heading "The Old Way" [level=3] [ref=e170]
+          - list [ref=e171]:
+            - listitem [ref=e172]:
+              - img [ref=e173]
+              - generic [ref=e175]: Ship $15-$30 sample kits that convert under 10%
+            - listitem [ref=e176]:
+              - img [ref=e177]
+              - generic [ref=e179]: Static photo galleries of past jobs — none matching the customer's boat
+            - listitem [ref=e180]:
+              - img [ref=e181]
+              - generic [ref=e183]: Boat show leads that go cold within two weeks
+            - listitem [ref=e184]:
+              - img [ref=e185]
+              - generic [ref=e187]: Contact forms that convert 1-3% of website visitors
+            - listitem [ref=e188]:
+              - img [ref=e189]
+              - generic [ref=e191]: Customers try to imagine "Storm Gray" from a 4-inch foam square
+            - listitem [ref=e192]:
+              - img [ref=e193]
+              - generic [ref=e195]: Off-season website sits idle while competitors book spring installs
+        - generic [ref=e196]:
+          - heading "With Vizzion" [level=3] [ref=e197]
+          - list [ref=e198]:
+            - listitem [ref=e199]:
+              - img [ref=e200]
+              - generic [ref=e202]: Boat owners see new decking on their actual boat in seconds — no samples needed
+            - listitem [ref=e203]:
+              - img [ref=e204]
+              - generic [ref=e206]: Personalized visualization specific to their hull, layout, and deck configuration
+            - listitem [ref=e207]:
+              - img [ref=e208]
+              - generic [ref=e210]: Leads captured year-round from your own website traffic, not just show weekends
+            - listitem [ref=e211]:
+              - img [ref=e212]
+              - generic [ref=e214]: Interactive experience that converts at 5-10× static contact forms
+            - listitem [ref=e215]:
+              - img [ref=e216]
+              - generic [ref=e218]: Owners compare materials and colors on their own vessel before ever calling you
+            - listitem [ref=e219]:
+              - img [ref=e220]
+              - generic [ref=e222]: Pipeline stays full through winter with owners planning spring re-deck projects
+    - generic [ref=e224]:
+      - heading "What Boat Decking Companies Are Saying" [level=2] [ref=e225]
+      - generic [ref=e226]:
+        - generic [ref=e227]:
+          - paragraph [ref=e228]: “We were shipping 200 sample kits a month at $22 each and converting maybe 15 of them. Three months after adding Vizzion to our site, our web leads tripled and sample kit requests actually went down — because owners already know what they want when they call. Our close rate on Vizzion leads is running at 34% versus 8% on sample-kit-only inquiries.”
+          - generic [ref=e229]:
+            - generic [ref=e230]: MT
+            - generic [ref=e231]:
+              - generic [ref=e232]: Mike Treadwell
+              - generic [ref=e233]: Gulf Coast Marine Interiors, Clearwater FL
+          - generic [ref=e234]: 34% close rate on Vizzion leads vs. 8% on sample kit inquiries
+        - generic [ref=e235]:
+          - paragraph [ref=e236]: “January and February used to be dead months — no shows, no foot traffic, just us hoping the phone would ring. Last winter we had Vizzion running on our site and generated 87 qualified leads between December and March. Owners are sitting at home, looking at their boat in storage, thinking about upgrades. Now we actually capture that intent instead of losing it.”
+          - generic [ref=e237]:
+            - generic [ref=e238]: SL
+            - generic [ref=e239]:
+              - generic [ref=e240]: Sarah Lindqvist
+              - generic [ref=e241]: Northshore Marine Services, Sturgeon Bay WI
+          - generic [ref=e242]: 87 qualified leads generated during the off-season (Dec–Mar)
+        - generic [ref=e243]:
+          - paragraph [ref=e244]: “The game changer is that customers come in already knowing they want Whiskey Teak on their cockpit sole and Storm Gray on the swim platform. They've already seen it on their boat. The consultation goes from "let me show you some options" to "let me measure and quote this." Our average time from first contact to signed quote dropped from three weeks to four days.”
+          - generic [ref=e245]:
+            - generic [ref=e246]: CR
+            - generic [ref=e247]:
+              - generic [ref=e248]: Carlos Reyes
+              - generic [ref=e249]: Precision Marine Decking, Houston TX
+          - generic [ref=e250]: Sales cycle shortened from 3 weeks to 4 days
+    - generic [ref=e252]:
+      - generic [ref=e253]:
+        - generic [ref=e254]: FAQ
+        - heading "Frequently Asked Questions" [level=2] [ref=e255]
+      - generic [ref=e256]:
+        - generic [ref=e257]:
+          - button "What types of boats and decking materials does Vizzion support? +" [ref=e258] [cursor=pointer]:
+            - generic [ref=e259]: What types of boats and decking materials does Vizzion support?
+            - generic [ref=e260]: +
+          - generic [ref=e261]: Vizzion works with any boat type — center consoles, bay boats, pontoons, sport fishers, cruisers, ski boats, and personal watercraft. It supports all major decking materials including SeaDek, Marine Mat, Castaway Customs, synthetic teak planking, closed-cell EVA foam, marine vinyl, and traditional teak. If you install it, Vizzion can visualize it.
+        - generic [ref=e262]:
+          - button "How long does it take to set up Vizzion on my website? +" [ref=e263] [cursor=pointer]:
+            - generic [ref=e264]: How long does it take to set up Vizzion on my website?
+            - generic [ref=e265]: +
+          - generic [ref=e266]: Under five minutes. You copy one embed snippet and paste it on your decking services page, or create a dedicated "Visualize Your New Deck" page that captures leads year-round — even during the off-season when boat shows aren't running. The widget auto-matches your site's branding. No developer needed.
+        - generic [ref=e267]:
+          - button "Will this replace our sample kit program? +" [ref=e268] [cursor=pointer]:
+            - generic [ref=e269]: Will this replace our sample kit program?
+            - generic [ref=e270]: +
+          - generic [ref=e271]: It won't replace physical samples entirely — some boat owners will always want to touch the material. But Vizzion dramatically reduces the volume of speculative sample requests. Owners who visualize their boat with new decking first are far more likely to convert when they do request a sample, because they've already committed mentally. Most of our marine clients see sample kit fulfillment costs drop 40-60% while their close rate on remaining sample requests goes up.
+        - generic [ref=e272]:
+          - button "Does Vizzion work with my existing website and CMS? +" [ref=e273] [cursor=pointer]:
+            - generic [ref=e274]: Does Vizzion work with my existing website and CMS?
+            - generic [ref=e275]: +
+          - generic [ref=e276]: Yes. Most marine decking shops run WordPress or Squarespace, and Vizzion works on both — along with Wix, custom-built sites, and any platform that supports HTML embeds. It sits right alongside your existing boat photo galleries and install portfolios without disrupting anything.
+        - generic [ref=e277]:
+          - button "How does Vizzion help during the off-season when boat shows aren't running? +" [ref=e278] [cursor=pointer]:
+            - generic [ref=e279]: How does Vizzion help during the off-season when boat shows aren't running?
+            - generic [ref=e280]: +
+          - generic [ref=e281]: That's exactly when Vizzion delivers the most value. Boat owners research upgrades year-round — especially during fall and winter when their boat is in storage and they're planning spring projects. Your website is your only storefront during those eight months. Vizzion turns it from a static gallery into an interactive experience that captures leads and fills your spring installation pipeline before the season even starts.
+        - generic [ref=e282]:
+          - button "What kind of photo does the boat owner need to upload? +" [ref=e283] [cursor=pointer]:
+            - generic [ref=e284]: What kind of photo does the boat owner need to upload?
+            - generic [ref=e285]: +
+          - generic [ref=e286]: Any clear photo of their deck surface works — a phone photo taken at the dock, a shot from a fishing trip, even a photo taken in the driveway on a trailer. The system handles a wide range of angles and lighting conditions. For best results, a straight-on shot of the deck area they want to upgrade gives the most realistic preview.
+        - generic [ref=e287]:
+          - button "Are the leads exclusive to my business? +" [ref=e288] [cursor=pointer]:
+            - generic [ref=e289]: Are the leads exclusive to my business?
+            - generic [ref=e290]: +
+          - generic [ref=e291]: 100% exclusive. Unlike boat show leads that get passed around and go cold within two weeks, or sample kit requests where 90% never convert, every Vizzion lead comes from your own website and belongs solely to you. The boat owner engaged with your brand, visualized decking on their boat, and handed you their contact info directly.
+        - generic [ref=e292]:
+          - button "How does Vizzion integrate with my CRM or quoting software? +" [ref=e293] [cursor=pointer]:
+            - generic [ref=e294]: How does Vizzion integrate with my CRM or quoting software?
+            - generic [ref=e295]: +
+          - generic [ref=e296]: Vizzion pushes leads directly into HubSpot, Salesforce, Jobber, or any system you use via webhooks and Zapier. Each lead includes the boat owner's contact info, their original deck photo, and the material they chose — so your quoting workflow starts with a clear picture of the job instead of a vague phone inquiry. That context cuts your estimate turnaround dramatically.
+    - generic [ref=e297]:
+      - generic [ref=e298]:
+        - heading "Vizzion Works Across Industries" [level=2] [ref=e299]
+        - paragraph [ref=e300]: See how businesses in other industries use Vizzion to turn website visitors into qualified leads.
+      - generic [ref=e302]:
+        - generic [ref=e303]:
+          - generic [ref=e304]:
+            - link "Roofing Roofing →" [ref=e305] [cursor=pointer]:
+              - /url: /industries/roofing
+              - img "Roofing" [ref=e307]
+              - generic [ref=e310]: Roofing
+              - generic [ref=e311]: →
+            - link "Siding Siding →" [ref=e312] [cursor=pointer]:
+              - /url: /industries/siding
+              - img "Siding" [ref=e314]
+              - generic [ref=e317]: Siding
+              - generic [ref=e318]: →
+            - link "Solar Energy Solar Energy →" [ref=e319] [cursor=pointer]:
+              - /url: /industries/solar
+              - img "Solar Energy" [ref=e321]
+              - generic [ref=e324]: Solar Energy
+              - generic [ref=e325]: →
+            - link "Windows & Doors Windows & Doors →" [ref=e326] [cursor=pointer]:
+              - /url: /industries/windows-doors
+              - img "Windows & Doors" [ref=e328]
+              - generic [ref=e331]: Windows & Doors
+              - generic [ref=e332]: →
+          - generic [ref=e333]:
+            - link "Roofing Roofing →" [ref=e334] [cursor=pointer]:
+              - /url: /industries/roofing
+              - img "Roofing" [ref=e336]
+              - generic [ref=e339]: Roofing
+              - generic [ref=e340]: →
+            - link "Siding Siding →" [ref=e341] [cursor=pointer]:
+              - /url: /industries/siding
+              - img "Siding" [ref=e343]
+              - generic [ref=e346]: Siding
+              - generic [ref=e347]: →
+            - link "Solar Energy Solar Energy →" [ref=e348] [cursor=pointer]:
+              - /url: /industries/solar
+              - img "Solar Energy" [ref=e350]
+              - generic [ref=e353]: Solar Energy
+              - generic [ref=e354]: →
+            - link "Windows & Doors Windows & Doors →" [ref=e355] [cursor=pointer]:
+              - /url: /industries/windows-doors
+              - img "Windows & Doors" [ref=e357]
+              - generic [ref=e360]: Windows & Doors
+              - generic [ref=e361]: →
+          - generic [ref=e362]:
+            - link "Roofing Roofing →" [ref=e363] [cursor=pointer]:
+              - /url: /industries/roofing
+              - img "Roofing" [ref=e365]
+              - generic [ref=e368]: Roofing
+              - generic [ref=e369]: →
+            - link "Siding Siding →" [ref=e370] [cursor=pointer]:
+              - /url: /industries/siding
+              - img "Siding" [ref=e372]
+              - generic [ref=e375]: Siding
+              - generic [ref=e376]: →
+            - link "Solar Energy Solar Energy →" [ref=e377] [cursor=pointer]:
+              - /url: /industries/solar
+              - img "Solar Energy" [ref=e379]
+              - generic [ref=e382]: Solar Energy
+              - generic [ref=e383]: →
+            - link "Windows & Doors Windows & Doors →" [ref=e384] [cursor=pointer]:
+              - /url: /industries/windows-doors
+              - img "Windows & Doors" [ref=e386]
+              - generic [ref=e389]: Windows & Doors
+              - generic [ref=e390]: →
+          - generic [ref=e391]:
+            - link "Roofing Roofing →" [ref=e392] [cursor=pointer]:
+              - /url: /industries/roofing
+              - img "Roofing" [ref=e394]
+              - generic [ref=e397]: Roofing
+              - generic [ref=e398]: →
+            - link "Siding Siding →" [ref=e399] [cursor=pointer]:
+              - /url: /industries/siding
+              - img "Siding" [ref=e401]
+              - generic [ref=e404]: Siding
+              - generic [ref=e405]: →
+            - link "Solar Energy Solar Energy →" [ref=e406] [cursor=pointer]:
+              - /url: /industries/solar
+              - img "Solar Energy" [ref=e408]
+              - generic [ref=e411]: Solar Energy
+              - generic [ref=e412]: →
+            - link "Windows & Doors Windows & Doors →" [ref=e413] [cursor=pointer]:
+              - /url: /industries/windows-doors
+              - img "Windows & Doors" [ref=e415]
+              - generic [ref=e418]: Windows & Doors
+              - generic [ref=e419]: →
+        - generic [ref=e420]:
+          - generic [ref=e421]:
+            - link "Decking Decking →" [ref=e422] [cursor=pointer]:
+              - /url: /industries/decking
+              - img "Decking" [ref=e424]
+              - generic [ref=e427]: Decking
+              - generic [ref=e428]: →
+            - link "Flooring Flooring →" [ref=e429] [cursor=pointer]:
+              - /url: /industries/flooring
+              - img "Flooring" [ref=e431]
+              - generic [ref=e434]: Flooring
+              - generic [ref=e435]: →
+            - link "Countertops Countertops →" [ref=e436] [cursor=pointer]:
+              - /url: /industries/countertops
+              - img "Countertops" [ref=e438]
+              - generic [ref=e441]: Countertops
+              - generic [ref=e442]: →
+            - link "Garage Doors Garage Doors →" [ref=e443] [cursor=pointer]:
+              - /url: /industries/garage-doors
+              - img "Garage Doors" [ref=e445]
+              - generic [ref=e448]: Garage Doors
+              - generic [ref=e449]: →
+          - generic [ref=e450]:
+            - link "Decking Decking →" [ref=e451] [cursor=pointer]:
+              - /url: /industries/decking
+              - img "Decking" [ref=e453]
+              - generic [ref=e456]: Decking
+              - generic [ref=e457]: →
+            - link "Flooring Flooring →" [ref=e458] [cursor=pointer]:
+              - /url: /industries/flooring
+              - img "Flooring" [ref=e460]
+              - generic [ref=e463]: Flooring
+              - generic [ref=e464]: →
+            - link "Countertops Countertops →" [ref=e465] [cursor=pointer]:
+              - /url: /industries/countertops
+              - img "Countertops" [ref=e467]
+              - generic [ref=e470]: Countertops
+              - generic [ref=e471]: →
+            - link "Garage Doors Garage Doors →" [ref=e472] [cursor=pointer]:
+              - /url: /industries/garage-doors
+              - img "Garage Doors" [ref=e474]
+              - generic [ref=e477]: Garage Doors
+              - generic [ref=e478]: →
+          - generic [ref=e479]:
+            - link "Decking Decking →" [ref=e480] [cursor=pointer]:
+              - /url: /industries/decking
+              - img "Decking" [ref=e482]
+              - generic [ref=e485]: Decking
+              - generic [ref=e486]: →
+            - link "Flooring Flooring →" [ref=e487] [cursor=pointer]:
+              - /url: /industries/flooring
+              - img "Flooring" [ref=e489]
+              - generic [ref=e492]: Flooring
+              - generic [ref=e493]: →
+            - link "Countertops Countertops →" [ref=e494] [cursor=pointer]:
+              - /url: /industries/countertops
+              - img "Countertops" [ref=e496]
+              - generic [ref=e499]: Countertops
+              - generic [ref=e500]: →
+            - link "Garage Doors Garage Doors →" [ref=e501] [cursor=pointer]:
+              - /url: /industries/garage-doors
+              - img "Garage Doors" [ref=e503]
+              - generic [ref=e506]: Garage Doors
+              - generic [ref=e507]: →
+          - generic [ref=e508]:
+            - link "Decking Decking →" [ref=e509] [cursor=pointer]:
+              - /url: /industries/decking
+              - img "Decking" [ref=e511]
+              - generic [ref=e514]: Decking
+              - generic [ref=e515]: →
+            - link "Flooring Flooring →" [ref=e516] [cursor=pointer]:
+              - /url: /industries/flooring
+              - img "Flooring" [ref=e518]
+              - generic [ref=e521]: Flooring
+              - generic [ref=e522]: →
+            - link "Countertops Countertops →" [ref=e523] [cursor=pointer]:
+              - /url: /industries/countertops
+              - img "Countertops" [ref=e525]
+              - generic [ref=e528]: Countertops
+              - generic [ref=e529]: →
+            - link "Garage Doors Garage Doors →" [ref=e530] [cursor=pointer]:
+              - /url: /industries/garage-doors
+              - img "Garage Doors" [ref=e532]
+              - generic [ref=e535]: Garage Doors
+              - generic [ref=e536]: →
+        - generic [ref=e537]:
+          - generic [ref=e538]:
+            - link "Fencing Fencing →" [ref=e539] [cursor=pointer]:
+              - /url: /industries/fencing
+              - img "Fencing" [ref=e541]
+              - generic [ref=e544]: Fencing
+              - generic [ref=e545]: →
+            - link "Gutters Gutters →" [ref=e546] [cursor=pointer]:
+              - /url: /industries/gutters
+              - img "Gutters" [ref=e548]
+              - generic [ref=e551]: Gutters
+              - generic [ref=e552]: →
+            - link "Shutters Shutters →" [ref=e553] [cursor=pointer]:
+              - /url: /industries/shutters
+              - img "Shutters" [ref=e555]
+              - generic [ref=e558]: Shutters
+              - generic [ref=e559]: →
+            - link "Driveways Driveways →" [ref=e560] [cursor=pointer]:
+              - /url: /industries/driveways
+              - img "Driveways" [ref=e562]
+              - generic [ref=e565]: Driveways
+              - generic [ref=e566]: →
+          - generic [ref=e567]:
+            - link "Fencing Fencing →" [ref=e568] [cursor=pointer]:
+              - /url: /industries/fencing
+              - img "Fencing" [ref=e570]
+              - generic [ref=e573]: Fencing
+              - generic [ref=e574]: →
+            - link "Gutters Gutters →" [ref=e575] [cursor=pointer]:
+              - /url: /industries/gutters
+              - img "Gutters" [ref=e577]
+              - generic [ref=e580]: Gutters
+              - generic [ref=e581]: →
+            - link "Shutters Shutters →" [ref=e582] [cursor=pointer]:
+              - /url: /industries/shutters
+              - img "Shutters" [ref=e584]
+              - generic [ref=e587]: Shutters
+              - generic [ref=e588]: →
+            - link "Driveways Driveways →" [ref=e589] [cursor=pointer]:
+              - /url: /industries/driveways
+              - img "Driveways" [ref=e591]
+              - generic [ref=e594]: Driveways
+              - generic [ref=e595]: →
+          - generic [ref=e596]:
+            - link "Fencing Fencing →" [ref=e597] [cursor=pointer]:
+              - /url: /industries/fencing
+              - img "Fencing" [ref=e599]
+              - generic [ref=e602]: Fencing
+              - generic [ref=e603]: →
+            - link "Gutters Gutters →" [ref=e604] [cursor=pointer]:
+              - /url: /industries/gutters
+              - img "Gutters" [ref=e606]
+              - generic [ref=e609]: Gutters
+              - generic [ref=e610]: →
+            - link "Shutters Shutters →" [ref=e611] [cursor=pointer]:
+              - /url: /industries/shutters
+              - img "Shutters" [ref=e613]
+              - generic [ref=e616]: Shutters
+              - generic [ref=e617]: →
+            - link "Driveways Driveways →" [ref=e618] [cursor=pointer]:
+              - /url: /industries/driveways
+              - img "Driveways" [ref=e620]
+              - generic [ref=e623]: Driveways
+              - generic [ref=e624]: →
+          - generic [ref=e625]:
+            - link "Fencing Fencing →" [ref=e626] [cursor=pointer]:
+              - /url: /industries/fencing
+              - img "Fencing" [ref=e628]
+              - generic [ref=e631]: Fencing
+              - generic [ref=e632]: →
+            - link "Gutters Gutters →" [ref=e633] [cursor=pointer]:
+              - /url: /industries/gutters
+              - img "Gutters" [ref=e635]
+              - generic [ref=e638]: Gutters
+              - generic [ref=e639]: →
+            - link "Shutters Shutters →" [ref=e640] [cursor=pointer]:
+              - /url: /industries/shutters
+              - img "Shutters" [ref=e642]
+              - generic [ref=e645]: Shutters
+              - generic [ref=e646]: →
+            - link "Driveways Driveways →" [ref=e647] [cursor=pointer]:
+              - /url: /industries/driveways
+              - img "Driveways" [ref=e649]
+              - generic [ref=e652]: Driveways
+              - generic [ref=e653]: →
+        - generic [ref=e654]:
+          - generic [ref=e655]:
+            - link "Swimming Pools Swimming Pools →" [ref=e656] [cursor=pointer]:
+              - /url: /industries/swimming-pools
+              - img "Swimming Pools" [ref=e658]
+              - generic [ref=e661]: Swimming Pools
+              - generic [ref=e662]: →
+            - link "Artificial Turf Artificial Turf →" [ref=e663] [cursor=pointer]:
+              - /url: /industries/artificial-turf
+              - img "Artificial Turf" [ref=e665]
+              - generic [ref=e668]: Artificial Turf
+              - generic [ref=e669]: →
+            - link "Car Wraps Car Wraps →" [ref=e670] [cursor=pointer]:
+              - /url: /industries/car-wraps
+              - img "Car Wraps" [ref=e672]
+              - generic [ref=e675]: Car Wraps
+              - generic [ref=e676]: →
+          - generic [ref=e677]:
+            - link "Swimming Pools Swimming Pools →" [ref=e678] [cursor=pointer]:
+              - /url: /industries/swimming-pools
+              - img "Swimming Pools" [ref=e680]
+              - generic [ref=e683]: Swimming Pools
+              - generic [ref=e684]: →
+            - link "Artificial Turf Artificial Turf →" [ref=e685] [cursor=pointer]:
+              - /url: /industries/artificial-turf
+              - img "Artificial Turf" [ref=e687]
+              - generic [ref=e690]: Artificial Turf
+              - generic [ref=e691]: →
+            - link "Car Wraps Car Wraps →" [ref=e692] [cursor=pointer]:
+              - /url: /industries/car-wraps
+              - img "Car Wraps" [ref=e694]
+              - generic [ref=e697]: Car Wraps
+              - generic [ref=e698]: →
+          - generic [ref=e699]:
+            - link "Swimming Pools Swimming Pools →" [ref=e700] [cursor=pointer]:
+              - /url: /industries/swimming-pools
+              - img "Swimming Pools" [ref=e702]
+              - generic [ref=e705]: Swimming Pools
+              - generic [ref=e706]: →
+            - link "Artificial Turf Artificial Turf →" [ref=e707] [cursor=pointer]:
+              - /url: /industries/artificial-turf
+              - img "Artificial Turf" [ref=e709]
+              - generic [ref=e712]: Artificial Turf
+              - generic [ref=e713]: →
+            - link "Car Wraps Car Wraps →" [ref=e714] [cursor=pointer]:
+              - /url: /industries/car-wraps
+              - img "Car Wraps" [ref=e716]
+              - generic [ref=e719]: Car Wraps
+              - generic [ref=e720]: →
+          - generic [ref=e721]:
+            - link "Swimming Pools Swimming Pools →" [ref=e722] [cursor=pointer]:
+              - /url: /industries/swimming-pools
+              - img "Swimming Pools" [ref=e724]
+              - generic [ref=e727]: Swimming Pools
+              - generic [ref=e728]: →
+            - link "Artificial Turf Artificial Turf →" [ref=e729] [cursor=pointer]:
+              - /url: /industries/artificial-turf
+              - img "Artificial Turf" [ref=e731]
+              - generic [ref=e734]: Artificial Turf
+              - generic [ref=e735]: →
+            - link "Car Wraps Car Wraps →" [ref=e736] [cursor=pointer]:
+              - /url: /industries/car-wraps
+              - img "Car Wraps" [ref=e738]
+              - generic [ref=e741]: Car Wraps
+              - generic [ref=e742]: →
+    - generic [ref=e743]:
+      - generic [ref=e744]:
+        - heading "Start Generating Decking Leads From Your Own Website" [level=2] [ref=e745]
+        - paragraph [ref=e746]: Five-minute setup. No credit card required. See how many of your current visitors are ready to re-deck — they just need to see it on their boat first.
+      - generic [ref=e748]:
+        - heading "Ready to capture more leads?" [level=2] [ref=e749]
+        - paragraph [ref=e750]: Join hundreds of businesses using Vizzion to turn website visitors into qualified leads.
+        - generic [ref=e752]:
+          - textbox "Your Name" [ref=e754]
+          - textbox "you@company.com" [ref=e756]
+          - combobox [ref=e758]:
+            - option "Select your industry" [disabled]
+            - option "Roofing"
+            - option "Siding"
+            - option "Solar"
+            - option "Windows & Doors"
+            - option "Decking"
+            - option "Flooring"
+            - option "Countertops"
+            - option "Garage Doors"
+            - option "Fencing"
+            - option "Gutters"
+            - option "Shutters"
+            - option "Driveways"
+            - option "Swimming Pools"
+            - option "Artificial Turf"
+            - option "Tattoos"
+            - option "Car Wraps"
+            - option "Boat Decking" [selected]
+            - option "Other"
+          - textbox "Tell us about your business..." [ref=e760]
+          - button "Get Started Free →" [ref=e761]
+          - paragraph [ref=e762]: No credit card required • Cancel anytime • 14-day free trial
+  - contentinfo [ref=e763]:
+    - generic [ref=e764]:
+      - generic [ref=e765]:
+        - generic [ref=e766]:
+          - img "Vizzion" [ref=e768]
+          - paragraph [ref=e769]: Transform how customers shop with visual customization.
+        - generic [ref=e770]:
+          - heading "Product" [level=4] [ref=e771]
+          - generic [ref=e772]:
+            - link "How It Works" [ref=e773] [cursor=pointer]:
+              - /url: /#how-it-works
+            - link "Industries" [ref=e774] [cursor=pointer]:
+              - /url: /industries
+            - link "Pricing" [ref=e775] [cursor=pointer]:
+              - /url: /#pricing
+        - generic [ref=e776]:
+          - heading "Company" [level=4] [ref=e777]
+          - generic [ref=e778]:
+            - link "About" [ref=e779] [cursor=pointer]:
+              - /url: /#about
+            - link "Contact" [ref=e780] [cursor=pointer]:
+              - /url: /#signup
+        - generic [ref=e781]:
+          - heading "Legal" [level=4] [ref=e782]
+          - generic [ref=e783]:
+            - link "Privacy" [ref=e784] [cursor=pointer]:
+              - /url: /privacy
+            - link "Terms" [ref=e785] [cursor=pointer]:
+              - /url: /terms
+      - paragraph [ref=e787]: © 2026 Vizzion. All rights reserved.
+  - alert [ref=e788]
+```

@@ -23,7 +23,6 @@ export function SignInForm({
   const supabase = useMemo(() => createClient(), []);
 
   const [email, setEmail] = useState(initialEmail);
-  const [companyName, setCompanyName] = useState('');
   const [sent, setSent] = useState(initialSent);
   const [error, setError] = useState<string | null>(initialError);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -49,7 +48,6 @@ export function SignInForm({
       options: {
         emailRedirectTo,
         shouldCreateUser: true,
-        data: companyName.trim() ? { company_name: companyName.trim() } : undefined,
       },
     });
 
@@ -93,18 +91,6 @@ export function SignInForm({
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             placeholder="you@company.com"
-            className="w-full rounded-lg border border-border-default bg-bg-primary px-3 py-2.5 text-sm text-text-primary outline-none transition focus:border-accent/60"
-          />
-        </label>
-
-        <label className="block space-y-2">
-          <span className="text-sm font-medium text-text-secondary">Company name (optional)</span>
-          <input
-            type="text"
-            name="company_name"
-            value={companyName}
-            onChange={(event) => setCompanyName(event.target.value)}
-            placeholder="Acme Roofing"
             className="w-full rounded-lg border border-border-default bg-bg-primary px-3 py-2.5 text-sm text-text-primary outline-none transition focus:border-accent/60"
           />
         </label>

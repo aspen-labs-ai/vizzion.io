@@ -16,7 +16,7 @@ export const deckingData: IndustryData = {
   header: {
     badge: "Decking Industry",
     headline:
-      "Deck Visualizer Widget for Your Decking Website",
+      "Add a Deck Visualizer to Your Website — Turn Visitors Into Leads",
     highlightWord: "Deck",
     intro:
       "Add a deck visualizer widget to your decking website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Homeowners want a new deck but can't decide between Trex Transcend in Havana Gold or TimberTech in Coastline. They stare at 3×3 color swatches for weeks, request samples from three builders, and eventually do nothing. Vizzion lets them upload a photo of their backyard and see the exact deck — material, color, railing — on their actual property. They enter their email to save the preview. You get a warm lead who already knows what they want.",

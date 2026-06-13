@@ -118,11 +118,6 @@ const industryGroups: IndustryGroup[] = [
         description: 'Help customers preview wrap concepts on their own vehicle before requesting design support.',
       },
       {
-        name: 'Tattoos',
-        slug: 'tattoos',
-        description: 'Reduce hesitation by letting clients preview tattoo designs on their own body placement.',
-      },
-      {
         name: 'Boat Decking',
         slug: 'boat-decking',
         description: 'Show marine decking options on the owner\'s vessel before they contact your shop.',

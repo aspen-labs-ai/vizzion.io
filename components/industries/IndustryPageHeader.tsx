@@ -10,7 +10,7 @@ export default function IndustryPageHeader({ data }: { data: IndustryData }) {
       <div className="absolute inset-0">
         <Image
           src={`/images/industries/${data.slug}.png`}
-          alt=""
+          alt={data.name}
           fill
           className="object-cover opacity-30"
           priority
