@@ -59,6 +59,37 @@ function sanitizeDomainAllowlist(rawValue: string): string[] {
     .map(value => value.replace(/^https?:\/\//, '').replace(/\/$/, ''));
 }
 
+function sanitizeIndustrySlug(value: string): string | null {
+  if (!value) {
+    return null;
+  }
+
+  const normalized = value
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9-]+/g, '-')
+    .replace(/-{2,}/g, '-')
+    .replace(/^-+|-+$/g, '');
+
+  return normalized || null;
+}
+
+function parseSubjectType(value: string): string {
+  if (
+    value === 'home'
+    || value === 'vehicle'
+    || value === 'body'
+    || value === 'yard'
+    || value === 'boat'
+    || value === 'room'
+    || value === 'generic'
+  ) {
+    return value;
+  }
+
+  return 'home';
+}
+
 async function requireOwnerContext() {
   const supabase = await createClient();
   const context = await getWorkspaceContext(supabase);
@@ -88,6 +119,8 @@ export async function updateWidgetSettingsAction(formData: FormData) {
     getFormValue(formData, 'max_generations_per_email_lifetime'),
   );
   const limitReachedCtaUrl = parseOptional(getFormValue(formData, 'limit_reached_cta_url'));
+  const subjectType = parseSubjectType(getFormValue(formData, 'subject_type'));
+  const industrySlug = sanitizeIndustrySlug(getFormValue(formData, 'industry_slug'));
 
   if (Number.isNaN(maxGenerationsPerSession)) {
     redirect('/dashboard/settings?error=Max+generations+per+session+must+be+1+or+greater.');
@@ -135,6 +168,7 @@ export async function updateWidgetSettingsAction(formData: FormData) {
       auto_open_widget: parseCheckbox(formData, 'auto_open_widget'),
       show_product_names: parseCheckbox(formData, 'show_product_names'),
       is_active: parseCheckbox(formData, 'is_active'),
+      subject_type: subjectType,
       max_generations_per_session: maxGenerationsPerSession,
       max_generations_per_email_lifetime: maxGenerationsPerEmailLifetime,
       limit_reached_cta_url: limitReachedCtaUrl,
@@ -146,7 +180,35 @@ export async function updateWidgetSettingsAction(formData: FormData) {
     redirect(`/dashboard/settings?error=${encodeURIComponent(updateResult.error.message)}`);
   }
 
+  const clearMappingResult = await supabase
+    .from('industry_widget_mappings')
+    .delete()
+    .eq('workspace_id', context.workspace.id)
+    .eq('widget_id', context.widget.id);
+
+  if (clearMappingResult.error) {
+    redirect(`/dashboard/settings?error=${encodeURIComponent(clearMappingResult.error.message)}`);
+  }
+
+  if (industrySlug) {
+    const mappingResult = await supabase
+      .from('industry_widget_mappings')
+      .upsert(
+        {
+          workspace_id: context.workspace.id,
+          widget_id: context.widget.id,
+          industry_slug: industrySlug,
+        },
+        { onConflict: 'workspace_id,industry_slug' },
+      );
+
+    if (mappingResult.error) {
+      redirect(`/dashboard/settings?error=${encodeURIComponent(mappingResult.error.message)}`);
+    }
+  }
+
   revalidatePath('/dashboard');
+  revalidatePath('/dashboard/portfolio');
   revalidatePath('/dashboard/settings');
   redirect('/dashboard/settings?saved=1');
 }

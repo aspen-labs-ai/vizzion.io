@@ -3,11 +3,55 @@
 
   var GLOBAL_NAME = 'VizzionWidget';
   var QUEUE_NAME = '__vizzionWidgetQueue';
-  var STYLE_ID = 'vizzion-widget-style-v1';
+  var STYLE_ID = 'vizzion-widget-style-v2';
   var INSTANCE_COUNTER = 0;
   var turnstileLoader = null;
-
   var API_BASE = resolveApiBase();
+
+  var SUBJECT_COPY = {
+    home: {
+      uploadTitle: 'Upload a photo of your home',
+      uploadHint: 'Drag and drop or browse from your device.',
+      uploadLabel: 'home photo',
+      revealLabel: 'your home',
+    },
+    vehicle: {
+      uploadTitle: 'Upload a photo of your vehicle',
+      uploadHint: 'Use a clear side or angled vehicle photo.',
+      uploadLabel: 'vehicle photo',
+      revealLabel: 'your vehicle',
+    },
+    body: {
+      uploadTitle: 'Upload a photo for placement',
+      uploadHint: 'Use a clear photo of the area you want to preview.',
+      uploadLabel: 'placement photo',
+      revealLabel: 'your photo',
+    },
+    yard: {
+      uploadTitle: 'Upload a photo of your yard',
+      uploadHint: 'A front, back, or side yard photo works best.',
+      uploadLabel: 'yard photo',
+      revealLabel: 'your yard',
+    },
+    boat: {
+      uploadTitle: 'Upload a photo of your boat',
+      uploadHint: 'Use a clear shot of the deck area for best results.',
+      uploadLabel: 'boat photo',
+      revealLabel: 'your boat',
+    },
+    room: {
+      uploadTitle: 'Upload a photo of your room',
+      uploadHint: 'Use a bright photo that clearly shows the space.',
+      uploadLabel: 'room photo',
+      revealLabel: 'your room',
+    },
+    generic: {
+      uploadTitle: 'Upload a photo to begin',
+      uploadHint: 'Choose a clear photo for the most realistic preview.',
+      uploadLabel: 'project photo',
+      revealLabel: 'your project',
+    },
+  };
 
   function resolveApiBase() {
     try {
@@ -24,7 +68,7 @@
         return new URL(script.src, window.location.href).origin;
       }
     } catch {
-      // Fall back to current origin below.
+      // Fall back below.
     }
 
     return window.location.origin;
@@ -71,6 +115,32 @@
     });
   }
 
+  function requestMultipart(path, formData) {
+    return fetch(API_BASE + path, {
+      method: 'POST',
+      body: formData,
+      credentials: 'omit',
+    }).then(function (response) {
+      return response
+        .text()
+        .then(function (text) {
+          var parsed = text ? safeJsonParse(text) : {};
+          return {
+            ok: response.ok,
+            status: response.status,
+            data: parsed || {},
+          };
+        })
+        .catch(function () {
+          return {
+            ok: response.ok,
+            status: response.status,
+            data: {},
+          };
+        });
+    });
+  }
+
   function hasGenerationCap(widget) {
     return (
       typeof widget.maxGenerationsPerSession === 'number' ||
@@ -89,6 +159,34 @@
 
   function emailLooksValid(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  function sanitizeColor(value) {
+    var color = typeof value === 'string' ? value.trim() : '';
+    if (/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(color)) {
+      return color;
+    }
+    return '#10B981';
+  }
+
+  function normalizeSubjectType(value) {
+    if (
+      value === 'home' ||
+      value === 'vehicle' ||
+      value === 'body' ||
+      value === 'yard' ||
+      value === 'boat' ||
+      value === 'room' ||
+      value === 'generic'
+    ) {
+      return value;
+    }
+    return 'generic';
+  }
+
+  function getSubjectCopy(subjectType) {
+    var normalized = normalizeSubjectType(subjectType);
+    return SUBJECT_COPY[normalized] || SUBJECT_COPY.generic;
   }
 
   function getSessionStorageKey(embedKey) {
@@ -132,6 +230,13 @@
     }
   }
 
+  function clearPreviewObjectUrl(instance) {
+    if (instance.previewObjectUrl) {
+      URL.revokeObjectURL(instance.previewObjectUrl);
+      instance.previewObjectUrl = null;
+    }
+  }
+
   function ensureStyles() {
     if (document.getElementById(STYLE_ID)) {
       return;
@@ -140,146 +245,69 @@
     var style = document.createElement('style');
     style.id = STYLE_ID;
     style.textContent =
-      '.vz-shell{font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#0f172a;border:1px solid rgba(148,163,184,0.25);border-radius:14px;padding:18px;color:#e2e8f0;box-shadow:0 20px 35px rgba(2,6,23,0.35)}' +
-      '.vz-header{margin:0 0 12px}' +
-      '.vz-title{margin:0 0 6px;font-size:1.12rem;line-height:1.25;font-weight:700;color:#f8fafc}' +
-      '.vz-subtitle{margin:0;font-size:0.9rem;line-height:1.45;color:#94a3b8}' +
+      '.vz-shell{--vz-brand:#10B981;font-family:Sora,Space Grotesk,Avenir Next,Trebuchet MS,sans-serif;background:#0f172a;border:1px solid rgba(148,163,184,.28);border-radius:16px;padding:18px;color:#e2e8f0;box-shadow:0 22px 38px rgba(2,6,23,.38)}' +
+      '.vz-title{margin:0 0 6px;font-size:1.1rem;line-height:1.25;font-weight:700;color:#f8fafc}' +
+      '.vz-subtitle{margin:0;font-size:.9rem;line-height:1.45;color:#94a3b8}' +
+      '.vz-stepper{display:flex;align-items:center;justify-content:center;gap:6px;margin:14px 0 18px}' +
+      '.vz-step{display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:999px;border:1px solid rgba(148,163,184,.35);font-size:.72rem;font-weight:700;color:#94a3b8;background:#020617}' +
+      '.vz-step-active{border-color:var(--vz-brand);background:color-mix(in srgb,var(--vz-brand) 18%,#020617);color:#f8fafc;box-shadow:0 0 0 2px color-mix(in srgb,var(--vz-brand) 26%,transparent)}' +
+      '.vz-step-done{border-color:var(--vz-brand);background:var(--vz-brand);color:#022c22}' +
+      '.vz-step-divider{width:30px;height:2px;background:rgba(148,163,184,.3);border-radius:999px}' +
+      '.vz-step-divider-done{background:var(--vz-brand)}' +
+      '.vz-step-title{margin:0 0 12px;font-size:.92rem;font-weight:600;color:#e2e8f0}' +
+      '.vz-drop{display:grid;gap:10px;align-items:center;justify-items:center;text-align:center;border:1px dashed rgba(148,163,184,.45);background:#020617;border-radius:12px;padding:18px;min-height:160px;cursor:pointer;transition:border-color 140ms ease,background 140ms ease}' +
+      '.vz-drop:hover{border-color:var(--vz-brand);background:rgba(2,6,23,.92)}' +
+      '.vz-drop strong{font-size:.92rem;color:#f8fafc}' +
+      '.vz-drop small{font-size:.8rem;color:#94a3b8}' +
+      '.vz-hidden{display:none!important}' +
+      '.vz-uploaded{display:grid;grid-template-columns:92px 1fr;gap:10px;align-items:center;border:1px solid rgba(148,163,184,.35);background:#020617;border-radius:12px;padding:10px}' +
+      '.vz-uploaded-preview{width:92px;height:68px;border-radius:8px;object-fit:cover;border:1px solid rgba(148,163,184,.35)}' +
+      '.vz-uploaded-meta{display:grid;gap:6px;min-width:0}' +
+      '.vz-uploaded-name{font-size:.82rem;color:#cbd5e1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}' +
+      '.vz-progress{height:6px;background:#0f172a;border-radius:999px;overflow:hidden}' +
+      '.vz-progress > span{display:block;height:100%;border-radius:999px;background:var(--vz-brand);width:100%}' +
+      '.vz-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}' +
+      '.vz-material{border:1px solid rgba(148,163,184,.35);border-radius:10px;overflow:hidden;background:#020617;cursor:pointer;transition:border-color 140ms ease,transform 140ms ease}' +
+      '.vz-material:hover{transform:translateY(-1px)}' +
+      '.vz-material-active{border-color:var(--vz-brand);box-shadow:0 0 0 2px color-mix(in srgb,var(--vz-brand) 26%,transparent)}' +
+      '.vz-material-swatch{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:#1e293b}' +
+      '.vz-material-name{display:block;padding:7px 8px;font-size:.78rem;text-align:center;color:#e2e8f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}' +
       '.vz-form{display:grid;gap:10px}' +
-      '.vz-label{display:block;font-size:0.78rem;color:#94a3b8;margin-bottom:5px}' +
-      '.vz-input,.vz-select{width:100%;background:#020617;border:1px solid rgba(148,163,184,0.35);border-radius:10px;padding:11px 12px;color:#f8fafc;font-size:0.95rem;box-sizing:border-box}' +
-      '.vz-input:focus,.vz-select:focus{outline:none;border-color:#10b981;box-shadow:0 0 0 3px rgba(16,185,129,0.2)}' +
-      '.vz-button{border:0;border-radius:10px;background:#10b981;color:#052e16;font-weight:700;font-size:0.95rem;padding:12px 14px;cursor:pointer;transition:filter 120ms ease,transform 120ms ease}' +
+      '.vz-label{display:block;font-size:.78rem;color:#94a3b8;margin-bottom:5px}' +
+      '.vz-input{width:100%;background:#020617;border:1px solid rgba(148,163,184,.35);border-radius:10px;padding:11px 12px;color:#f8fafc;font-size:.95rem;box-sizing:border-box}' +
+      '.vz-input:focus{outline:none;border-color:var(--vz-brand);box-shadow:0 0 0 3px color-mix(in srgb,var(--vz-brand) 22%,transparent)}' +
+      '.vz-button{width:100%;border:0;border-radius:10px;background:var(--vz-brand);color:#052e16;font-weight:700;font-size:.92rem;padding:11px 13px;cursor:pointer;transition:filter 120ms ease,transform 120ms ease}' +
       '.vz-button:hover{filter:brightness(1.05);transform:translateY(-1px)}' +
-      '.vz-button[disabled]{opacity:0.6;cursor:not-allowed;transform:none;filter:none}' +
-      '.vz-message{margin-top:10px;font-size:0.86rem;line-height:1.45;min-height:20px}' +
+      '.vz-button[disabled]{opacity:.6;cursor:not-allowed;transform:none;filter:none}' +
+      '.vz-button-secondary{background:transparent;color:#e2e8f0;border:1px solid rgba(148,163,184,.4)}' +
+      '.vz-row{display:flex;gap:8px;align-items:center}' +
+      '.vz-row .vz-button{flex:1}' +
+      '.vz-message{margin-top:10px;font-size:.84rem;line-height:1.45;min-height:19px}' +
       '.vz-message-success{color:#6ee7b7}' +
       '.vz-message-error{color:#fca5a5}' +
       '.vz-message-info{color:#93c5fd}' +
       '.vz-message-warning{color:#fde68a}' +
-      '.vz-turnstile{margin-top:2px}' +
-      '.vz-blocked{margin-top:12px;border:1px solid rgba(16,185,129,0.35);border-radius:10px;background:rgba(16,185,129,0.07);padding:12px;display:none}' +
-      '.vz-blocked-title{font-size:0.96rem;font-weight:700;color:#f8fafc;margin:0 0 6px}' +
-      '.vz-blocked-copy{font-size:0.86rem;color:#cbd5e1;margin:0 0 10px}' +
-      '.vz-blocked-limits{font-size:0.8rem;color:#94a3b8;display:grid;gap:3px;margin:0 0 10px}' +
-      '.vz-cta{display:inline-flex;align-items:center;justify-content:center;border-radius:8px;background:#10b981;color:#052e16;text-decoration:none;font-weight:700;padding:9px 12px;font-size:0.84rem}' +
-      '.vz-hidden{display:none !important}';
+      '.vz-consent{margin-top:8px;font-size:.72rem;line-height:1.45;color:#94a3b8}' +
+      '.vz-consent a{color:#bfdbfe;text-decoration:underline}' +
+      '.vz-center{display:grid;gap:10px;justify-items:center;text-align:center;padding:18px 8px}' +
+      '.vz-spinner{width:28px;height:28px;border-radius:999px;border:3px solid rgba(148,163,184,.35);border-top-color:var(--vz-brand);animation:vz-spin .9s linear infinite}' +
+      '@keyframes vz-spin{to{transform:rotate(360deg)}}' +
+      '.vz-reveal{display:grid;gap:12px}' +
+      '.vz-compare{position:relative;border-radius:12px;overflow:hidden;border:1px solid rgba(148,163,184,.35);aspect-ratio:3/2;background:#020617}' +
+      '.vz-compare img{display:block;width:100%;height:100%;object-fit:cover}' +
+      '.vz-before-wrap{position:absolute;top:0;left:0;bottom:0;overflow:hidden;border-right:2px solid rgba(248,250,252,.9)}' +
+      '.vz-slider{width:100%}' +
+      '.vz-badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;background:color-mix(in srgb,var(--vz-brand) 18%,#020617);border:1px solid color-mix(in srgb,var(--vz-brand) 35%,transparent);padding:6px 10px;font-size:.76rem;font-weight:600;color:#e2e8f0}' +
+      '.vz-upload-input{display:none}' +
+      '.vz-turnstile-wrap{margin-top:4px}' +
+      '.vz-popup-launcher{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;border:1px solid rgba(148,163,184,.38);background:#0f172a;color:#e2e8f0;padding:10px 16px;font-weight:700;font-size:.86rem;cursor:pointer}' +
+      '.vz-popup-overlay{position:fixed;inset:0;background:rgba(2,6,23,.72);backdrop-filter:blur(2px);display:none;align-items:center;justify-content:center;padding:20px;z-index:99999}' +
+      '.vz-popup-overlay.vz-open{display:flex}' +
+      '.vz-popup-card{position:relative;width:min(620px,100%)}' +
+      '.vz-popup-close{position:absolute;top:-12px;right:-12px;width:32px;height:32px;border-radius:999px;border:1px solid rgba(148,163,184,.45);background:#020617;color:#e2e8f0;cursor:pointer;font-size:18px;line-height:1}' +
+      '@media (max-width:520px){.vz-shell{padding:14px}.vz-grid{grid-template-columns:1fr}.vz-uploaded{grid-template-columns:72px 1fr}.vz-uploaded-preview{width:72px;height:54px}}';
 
     document.head.appendChild(style);
-  }
-
-  function limitReasonCopy(reason) {
-    if (reason === 'session_cap') {
-      return 'You have reached the maximum previews for this session.';
-    }
-    if (reason === 'email_cap') {
-      return 'This email has reached the preview limit.';
-    }
-    if (reason === 'ip_hour_cap') {
-      return 'Too many preview requests from this network in the last hour.';
-    }
-    if (reason === 'ip_day_cap') {
-      return 'Too many preview requests from this network today.';
-    }
-    return 'Preview limit reached.';
-  }
-
-  function setMessage(instance, message, type) {
-    if (!instance.messageEl) {
-      return;
-    }
-
-    instance.messageEl.className = 'vz-message';
-    if (type === 'success') {
-      instance.messageEl.classList.add('vz-message-success');
-    } else if (type === 'error') {
-      instance.messageEl.classList.add('vz-message-error');
-    } else if (type === 'warning') {
-      instance.messageEl.classList.add('vz-message-warning');
-    } else {
-      instance.messageEl.classList.add('vz-message-info');
-    }
-
-    instance.messageEl.textContent = message;
-  }
-
-  function setSubmitting(instance, isSubmitting) {
-    if (!instance.submitButton) {
-      return;
-    }
-
-    instance.submitButton.disabled = !!isSubmitting;
-    instance.submitButton.textContent = isSubmitting ? 'Submitting...' : 'Generate preview';
-  }
-
-  function showFatal(instance, message) {
-    instance.target.innerHTML =
-      '<div class="vz-shell"><p class="vz-title" style="margin-bottom:8px">Widget unavailable</p><p class="vz-subtitle" style="color:#fca5a5">' +
-      escapeHtml(message) +
-      '</p></div>';
-  }
-
-  function renderBlocked(instance, payload) {
-    if (!instance.formEl || !instance.blockedEl) {
-      return;
-    }
-
-    var limits = payload && payload.limits ? payload.limits : {};
-    var lines = [];
-
-    if (limits.session && typeof limits.session.used === 'number') {
-      lines.push('Session: ' + limits.session.used + '/' + limits.session.limit);
-    }
-    if (limits.emailLifetime && typeof limits.emailLifetime.used === 'number') {
-      lines.push('Email lifetime: ' + limits.emailLifetime.used + '/' + limits.emailLifetime.limit);
-    }
-    if (limits.ipHourly && typeof limits.ipHourly.used === 'number') {
-      lines.push('IP hourly: ' + limits.ipHourly.used + '/' + limits.ipHourly.limit);
-    }
-    if (limits.ipDaily && typeof limits.ipDaily.used === 'number') {
-      lines.push('IP daily: ' + limits.ipDaily.used + '/' + limits.ipDaily.limit);
-    }
-
-    var ctaUrl = payload && typeof payload.contactCtaUrl === 'string' ? payload.contactCtaUrl.trim() : '';
-
-    var limitsMarkup = lines.length
-      ? '<div class="vz-blocked-limits">' +
-        lines
-          .map(function (line) {
-            return '<div>' + escapeHtml(line) + '</div>';
-          })
-          .join('') +
-        '</div>'
-      : '';
-
-    var ctaMarkup = ctaUrl
-      ? '<a class="vz-cta" href="' + escapeHtml(ctaUrl) + '">Contact us for more previews</a>'
-      : '';
-
-    instance.formEl.classList.add('vz-hidden');
-    instance.blockedEl.innerHTML =
-      '<p class="vz-blocked-title">Preview limit reached</p>' +
-      '<p class="vz-blocked-copy">' + escapeHtml(limitReasonCopy(payload && payload.reason)) + '</p>' +
-      limitsMarkup +
-      ctaMarkup;
-    instance.blockedEl.style.display = 'block';
-
-    if (ctaUrl && ctaUrl.charAt(0) === '#') {
-      var ctaEl = instance.blockedEl.querySelector('.vz-cta');
-      if (ctaEl) {
-        ctaEl.addEventListener('click', function (event) {
-          var target = document.querySelector(ctaUrl);
-          if (!target) {
-            return;
-          }
-
-          event.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          if (window.history && window.history.replaceState) {
-            window.history.replaceState(null, '', ctaUrl);
-          }
-        });
-      }
-    }
   }
 
   function loadTurnstile() {
@@ -301,7 +329,6 @@
           resolve(window.turnstile);
           return;
         }
-
         reject(new Error('Turnstile did not initialize.'));
       };
       script.onerror = function () {
@@ -313,132 +340,21 @@
     return turnstileLoader;
   }
 
-  function trackEvent(instance, eventType, eventData) {
-    if (!instance || !instance.embedKey) {
-      return;
-    }
-
-    requestJson('/api/public/widget/event', {
-      method: 'POST',
-      body: {
-        embedKey: instance.embedKey,
-        sessionId: instance.session ? instance.session.id : null,
-        eventType: eventType,
-        eventData: eventData || {},
-        pageUrl: instance.pageUrl,
-      },
-    }).catch(function () {
-      // Best-effort analytics.
-    });
-  }
-
-  function normalizeTarget(target) {
-    if (!target) {
-      return null;
-    }
-
-    if (typeof target === 'string') {
-      return document.querySelector(target);
-    }
-
-    if (target && target.nodeType === 1) {
-      return target;
-    }
-
-    return null;
-  }
-
-  function buildMaterialOptions(instance) {
-    var materials = (instance.widgetConfig && instance.widgetConfig.materials) || [];
-    if (!materials.length) {
-      return '';
-    }
-
-    var showNames = !!instance.widgetConfig.showProductNames;
-
-    return materials
-      .map(function (material, index) {
-        var label = showNames && material.name ? material.name : 'Option ' + (index + 1);
-        return '<option value="' + escapeHtml(material.id) + '">' + escapeHtml(label) + '</option>';
-      })
-      .join('');
-  }
-
-  function renderWidget(instance) {
-    var materials = (instance.widgetConfig && instance.widgetConfig.materials) || [];
-    var hasMaterials = materials.length > 0;
-
-    var materialFieldMarkup = hasMaterials
-      ? '<div><label class="vz-label" for="' +
-        instance.instanceId +
-        '-material">Material</label><select class="vz-select" id="' +
-        instance.instanceId +
-        '-material">' +
-        buildMaterialOptions(instance) +
-        '</select></div>'
-      : '';
-
-    var captchaMarkup = instance.capped
-      ? '<div><label class="vz-label">Verification</label><div class="vz-turnstile"></div></div>'
-      : '';
-
-    instance.target.innerHTML =
-      '<div class="vz-shell">' +
-      '<div class="vz-header">' +
-      '<p class="vz-title">Try this visualizer on your project</p>' +
-      '<p class="vz-subtitle">Enter your email to request a preview. Demo requests are limited to prevent spam.</p>' +
-      '</div>' +
-      '<form class="vz-form" novalidate>' +
-      materialFieldMarkup +
-      '<div><label class="vz-label" for="' +
-      instance.instanceId +
-      '-email">Email</label><input class="vz-input" id="' +
-      instance.instanceId +
-      '-email" type="email" autocomplete="email" placeholder="you@company.com" required></div>' +
-      captchaMarkup +
-      '<button class="vz-button" type="submit">Generate preview</button>' +
-      '</form>' +
-      '<div class="vz-message" aria-live="polite"></div>' +
-      '<div class="vz-blocked"></div>' +
-      '</div>';
-
-    instance.formEl = instance.target.querySelector('.vz-form');
-    instance.emailInput = instance.target.querySelector('#' + instance.instanceId + '-email');
-    instance.materialSelect = instance.target.querySelector('#' + instance.instanceId + '-material');
-    instance.submitButton = instance.target.querySelector('.vz-button');
-    instance.messageEl = instance.target.querySelector('.vz-message');
-    instance.blockedEl = instance.target.querySelector('.vz-blocked');
-    instance.turnstileContainer = instance.target.querySelector('.vz-turnstile');
-
-    instance.formEl.addEventListener('submit', function (event) {
-      event.preventDefault();
-      submitGeneration(instance, true);
-    });
-  }
-
-  function resetTurnstile(instance) {
-    if (
-      instance &&
-      instance.turnstileWidgetId != null &&
-      window.turnstile &&
-      typeof window.turnstile.reset === 'function'
-    ) {
-      window.turnstile.reset(instance.turnstileWidgetId);
-      instance.captchaToken = '';
-    }
-  }
-
   function setupTurnstile(instance) {
     if (!instance.capped) {
       return Promise.resolve();
     }
 
     if (!instance.turnstileSiteKey) {
-      return Promise.reject(new Error('Turnstile site key is missing for capped widget.'));
+      return Promise.reject(new Error('Turnstile site key is missing for this widget.'));
     }
 
     if (!instance.turnstileContainer) {
       return Promise.reject(new Error('Turnstile container not found.'));
+    }
+
+    if (instance.turnstileWidgetId != null) {
+      return Promise.resolve();
     }
 
     return loadTurnstile().then(function (turnstile) {
@@ -458,11 +374,58 @@
     });
   }
 
+  function resetTurnstile(instance) {
+    if (
+      instance &&
+      instance.turnstileWidgetId != null &&
+      window.turnstile &&
+      typeof window.turnstile.reset === 'function'
+    ) {
+      window.turnstile.reset(instance.turnstileWidgetId);
+      instance.captchaToken = '';
+    }
+  }
+
+  function normalizeTarget(target) {
+    if (!target) {
+      return null;
+    }
+
+    if (typeof target === 'string') {
+      return document.querySelector(target);
+    }
+
+    if (target && target.nodeType === 1) {
+      return target;
+    }
+
+    return null;
+  }
+
+  function trackEvent(instance, eventType, eventData) {
+    if (!instance || !instance.resolvedEmbedKey) {
+      return;
+    }
+
+    requestJson('/api/public/widget/event', {
+      method: 'POST',
+      body: {
+        embedKey: instance.resolvedEmbedKey,
+        sessionId: instance.session ? instance.session.id : null,
+        eventType: eventType,
+        eventData: eventData || {},
+        pageUrl: instance.pageUrl,
+      },
+    }).catch(function () {
+      // Best effort analytics.
+    });
+  }
+
   function createSession(instance) {
     return requestJson('/api/public/widget/session', {
       method: 'POST',
       body: {
-        embedKey: instance.embedKey,
+        embedKey: instance.resolvedEmbedKey,
         pageUrl: instance.pageUrl,
         referrer: document.referrer || null,
       },
@@ -481,18 +444,22 @@
         token: session.token,
       };
 
-      writeStoredSession(instance.embedKey, normalized);
+      writeStoredSession(instance.resolvedEmbedKey, normalized);
       return normalized;
     });
   }
 
   function ensureSession(instance, forceNew) {
+    if (!instance.resolvedEmbedKey) {
+      return Promise.resolve(null);
+    }
+
     if (!forceNew && instance.session) {
       return Promise.resolve(instance.session);
     }
 
     if (!forceNew) {
-      var stored = readStoredSession(instance.embedKey);
+      var stored = readStoredSession(instance.resolvedEmbedKey);
       if (stored) {
         instance.session = stored;
         return Promise.resolve(stored);
@@ -505,146 +472,1032 @@
     });
   }
 
-  function buildGeneratePayload(instance) {
-    var email = (instance.emailInput && instance.emailInput.value ? instance.emailInput.value : '').trim();
-    var materialId = instance.materialSelect ? instance.materialSelect.value : null;
+  function buildConfigQuery(instance) {
+    var search = [];
 
-    return {
-      email: email,
-      materialId: materialId || null,
-      sourcePage: instance.pageUrl,
-    };
-  }
-
-  function submitGeneration(instance, allowSessionRetry) {
-    var payload = buildGeneratePayload(instance);
-    if (!emailLooksValid(payload.email)) {
-      setMessage(instance, 'Enter a valid email address to continue.', 'error');
-      return Promise.resolve();
+    if (instance.embedKey) {
+      search.push('embedKey=' + encodeURIComponent(instance.embedKey));
+    } else if (instance.industrySlug) {
+      search.push('industrySlug=' + encodeURIComponent(instance.industrySlug));
     }
 
-    setSubmitting(instance, true);
-    setMessage(instance, '', 'info');
+    search.push('pageUrl=' + encodeURIComponent(instance.pageUrl));
 
-    return ensureSession(instance, false)
-      .then(function (session) {
-        if (session && session.id) {
-          payload.sessionId = session.id;
-        }
-
-        if (instance.capped) {
-          if (!session || !session.token) {
-            throw new Error('No valid widget session available.');
-          }
-
-          if (!instance.captchaToken) {
-            throw new Error('Please complete verification before requesting a preview.');
-          }
-
-          payload.sessionToken = session.token;
-          payload.captchaToken = instance.captchaToken;
-        }
-
-        return requestJson('/api/public/widget/generate-email', {
-          method: 'POST',
-          body: {
-            embedKey: instance.embedKey,
-            email: payload.email,
-            sessionId: payload.sessionId || null,
-            sessionToken: payload.sessionToken || null,
-            captchaToken: payload.captchaToken || null,
-            materialId: payload.materialId,
-            sourcePage: payload.sourcePage,
-          },
-        });
-      })
-      .then(function (response) {
-        if (response.ok) {
-          setMessage(instance, 'Check your email. Your preview request was received.', 'success');
-          trackEvent(instance, 'generation_requested', {
-            status: 'ok',
-            leadId: response.data && response.data.lead ? response.data.lead.id : null,
-            generatedAt: new Date().toISOString(),
-          });
-          if (instance.emailInput) {
-            instance.emailInput.value = '';
-          }
-          resetTurnstile(instance);
-          return;
-        }
-
-        var code = response.data ? response.data.code : null;
-
-        if (response.status === 401 && code === 'invalid_session' && allowSessionRetry) {
-          clearStoredSession(instance.embedKey);
-          instance.session = null;
-          resetTurnstile(instance);
-          return submitGeneration(instance, false);
-        }
-
-        if (response.status === 429 && code === 'generation_limit_reached') {
-          renderBlocked(instance, response.data || {});
-          trackEvent(instance, 'generation_limit_reached', {
-            reason: response.data ? response.data.reason : 'unknown',
-          });
-          return;
-        }
-
-        if (response.status === 429 && code === 'quota_exceeded') {
-          setMessage(instance, response.data && response.data.message ? response.data.message : 'Usage quota exceeded.', 'warning');
-          resetTurnstile(instance);
-          return;
-        }
-
-        if (response.status === 400 && (code === 'captcha_required' || code === 'captcha_failed')) {
-          setMessage(
-            instance,
-            code === 'captcha_required'
-              ? 'Verification is required before generating a preview.'
-              : 'Verification failed. Please try again.',
-            'error'
-          );
-          resetTurnstile(instance);
-          return;
-        }
-
-        var fallbackMessage =
-          (response.data && (response.data.message || response.data.error)) ||
-          'Unable to submit your request right now. Please try again.';
-        setMessage(instance, fallbackMessage, 'error');
-        resetTurnstile(instance);
-      })
-      .catch(function (error) {
-        setMessage(
-          instance,
-          error && error.message ? error.message : 'Unable to submit your request right now.',
-          'error'
-        );
-        resetTurnstile(instance);
-      })
-      .finally(function () {
-        setSubmitting(instance, false);
-      });
+    return '?' + search.join('&');
   }
 
   function loadConfig(instance) {
-    var query =
-      '?embedKey=' + encodeURIComponent(instance.embedKey) +
-      '&pageUrl=' + encodeURIComponent(instance.pageUrl);
-
-    return requestJson('/api/public/widget/config' + query).then(function (response) {
+    return requestJson('/api/public/widget/config' + buildConfigQuery(instance)).then(function (response) {
       if (!response.ok || !response.data || !response.data.widget) {
         return null;
       }
-
       return response.data;
     });
   }
 
+  function createInstance(options, target) {
+    INSTANCE_COUNTER += 1;
+
+    return {
+      instanceId: 'vz-widget-' + INSTANCE_COUNTER,
+      embedKey: typeof options.embedKey === 'string' ? options.embedKey.trim() : '',
+      industrySlug: typeof options.industrySlug === 'string' ? options.industrySlug.trim() : '',
+      target: target,
+      renderRoot: null,
+      popupOverlay: null,
+      popupContent: null,
+      popupLauncher: null,
+      isPopupOpen: false,
+      pageUrl:
+        typeof options.pageUrl === 'string' && options.pageUrl.trim()
+          ? options.pageUrl.trim()
+          : window.location.href,
+      session: null,
+      widgetConfig: null,
+      resolvedEmbedKey: '',
+      state: 'loading',
+      stateMessage: '',
+      upload: null,
+      previewObjectUrl: null,
+      uploadInProgress: false,
+      selectedMaterialId: null,
+      emailDraft: '',
+      optionalEmailMessage: '',
+      emailCaptured: false,
+      generationJobId: null,
+      revealBeforeUrl: null,
+      revealAfterUrl: null,
+      comparePercent: 45,
+      capped: false,
+      turnstileSiteKey: null,
+      turnstileContainer: null,
+      turnstileWidgetId: null,
+      captchaToken: '',
+      fallbackTimer: null,
+      pollingTimer: null,
+      pollingStartedAt: null,
+      fallbackTracked: false,
+      lastError: '',
+    };
+  }
+
+  function clearPolling(instance) {
+    if (instance.fallbackTimer) {
+      clearTimeout(instance.fallbackTimer);
+      instance.fallbackTimer = null;
+    }
+    if (instance.pollingTimer) {
+      clearInterval(instance.pollingTimer);
+      instance.pollingTimer = null;
+    }
+    instance.pollingStartedAt = null;
+  }
+
+  function setState(instance, state, patch) {
+    instance.state = state;
+    if (patch && typeof patch === 'object') {
+      Object.keys(patch).forEach(function (key) {
+        instance[key] = patch[key];
+      });
+    }
+    render(instance);
+  }
+
+  function openPopup(instance) {
+    if (!instance.popupOverlay) {
+      return;
+    }
+    instance.isPopupOpen = true;
+    instance.popupOverlay.classList.add('vz-open');
+    if (instance.state !== 'loading') {
+      render(instance);
+    }
+    if (instance.state !== 'loading') {
+      trackEvent(instance, 'widget_opened', {
+        mode: 'popup',
+      });
+    }
+  }
+
+  function closePopup(instance) {
+    if (!instance.popupOverlay) {
+      return;
+    }
+    instance.isPopupOpen = false;
+    instance.popupOverlay.classList.remove('vz-open');
+  }
+
+  function ensurePopupMount(instance) {
+    if (instance.popupOverlay && instance.popupContent && instance.popupLauncher) {
+      return;
+    }
+
+    var launcherHost = instance.target || document.body;
+    var launcher = document.createElement('button');
+    launcher.type = 'button';
+    launcher.className = 'vz-popup-launcher';
+    launcher.textContent = 'Try Live Preview';
+    launcher.addEventListener('click', function () {
+      openPopup(instance);
+    });
+    launcherHost.appendChild(launcher);
+
+    var overlay = document.createElement('div');
+    overlay.className = 'vz-popup-overlay';
+    overlay.innerHTML =
+      '<div class="vz-popup-card">' +
+      '<button class="vz-popup-close" type="button" aria-label="Close">\u00d7</button>' +
+      '<div class="vz-popup-content"></div>' +
+      '</div>';
+
+    overlay.addEventListener('click', function (event) {
+      if (event.target === overlay) {
+        closePopup(instance);
+      }
+    });
+
+    var closeButton = overlay.querySelector('.vz-popup-close');
+    if (closeButton) {
+      closeButton.addEventListener('click', function () {
+        closePopup(instance);
+      });
+    }
+
+    document.body.appendChild(overlay);
+
+    instance.popupLauncher = launcher;
+    instance.popupOverlay = overlay;
+    instance.popupContent = overlay.querySelector('.vz-popup-content');
+    instance.renderRoot = instance.popupContent;
+  }
+
+  function getRenderRoot(instance) {
+    if (instance.widgetConfig && instance.widgetConfig.mode === 'popup') {
+      return instance.popupContent;
+    }
+    return instance.renderRoot;
+  }
+
+  function buildStepMarker(step, activeStep, completedStep) {
+    var classes = 'vz-step';
+    if (step <= completedStep) {
+      classes += ' vz-step-done';
+    } else if (step === activeStep) {
+      classes += ' vz-step-active';
+    }
+
+    return '<div class="' + classes + '">' + step + '</div>';
+  }
+
+  function renderStepper(activeStep, completedStep) {
+    return (
+      '<div class="vz-stepper">' +
+      buildStepMarker(1, activeStep, completedStep) +
+      '<span class="vz-step-divider ' + (completedStep >= 1 ? 'vz-step-divider-done' : '') + '"></span>' +
+      buildStepMarker(2, activeStep, completedStep) +
+      '<span class="vz-step-divider ' + (completedStep >= 2 ? 'vz-step-divider-done' : '') + '"></span>' +
+      buildStepMarker(3, activeStep, completedStep) +
+      '</div>'
+    );
+  }
+
+  function renderBaseFrame(instance, bodyHtml) {
+    var brand = sanitizeColor(instance.widgetConfig.brandColor);
+    var title = instance.widgetConfig.name || 'Live Visualizer';
+
+    return (
+      '<div class="vz-shell" style="--vz-brand:' + escapeHtml(brand) + '">' +
+      '<p class="vz-title">' + escapeHtml(title) + '</p>' +
+      '<p class="vz-subtitle">Upload, choose, and reveal a realistic preview.</p>' +
+      bodyHtml +
+      '<div class="vz-message" aria-live="polite">' + escapeHtml(instance.stateMessage || '') + '</div>' +
+      '</div>'
+    );
+  }
+
+  function renderUploadState(instance) {
+    var subject = getSubjectCopy(instance.widgetConfig.subjectType);
+    var uploadedMarkup = '';
+
+    if (instance.upload && instance.upload.previewUrl) {
+      uploadedMarkup =
+        '<div class="vz-uploaded">' +
+        '<img class="vz-uploaded-preview" src="' + escapeHtml(instance.upload.previewUrl) + '" alt="Uploaded preview">' +
+        '<div class="vz-uploaded-meta">' +
+        '<div class="vz-uploaded-name">' + escapeHtml(instance.upload.name || subject.uploadLabel) + '</div>' +
+        '<div class="vz-progress"><span></span></div>' +
+        '</div>' +
+        '</div>';
+    }
+
+    var loadingCopy = instance.uploadInProgress
+      ? '<small>Uploading your image...</small>'
+      : '<small>' + escapeHtml(subject.uploadHint) + '</small>';
+
+    return (
+      renderStepper(1, 0) +
+      '<p class="vz-step-title">Step 1: Upload</p>' +
+      '<label class="vz-drop" data-role="drop-zone">' +
+      '<input class="vz-upload-input" data-role="file-input" type="file" accept="image/jpeg,image/png,image/webp">' +
+      '<strong>' + escapeHtml(subject.uploadTitle) + '</strong>' +
+      loadingCopy +
+      '</label>' +
+      uploadedMarkup +
+      '<div class="vz-row">' +
+      '<button class="vz-button" type="button" data-role="to-select" ' +
+      (instance.upload ? '' : 'disabled') +
+      '>Choose material</button>' +
+      '</div>' +
+      '<p class="vz-consent">By continuing you agree to our <a href="/terms" target="_blank" rel="noopener">Terms</a> and <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>.</p>'
+    );
+  }
+
+  function renderMaterialCard(material, isActive, index, showNames) {
+    var cardClasses = 'vz-material' + (isActive ? ' vz-material-active' : '');
+    var name = showNames && material.name ? material.name : 'Option ' + (index + 1);
+    var swatch = material.swatch_url
+      ? '<img class="vz-material-swatch" src="' + escapeHtml(material.swatch_url) + '" alt="' + escapeHtml(name) + '">'
+      : '<div class="vz-material-swatch"></div>';
+
+    return (
+      '<button class="' + cardClasses + '" type="button" data-role="material" data-id="' + escapeHtml(material.id) + '">' +
+      swatch +
+      '<span class="vz-material-name">' + escapeHtml(name) + '</span>' +
+      '</button>'
+    );
+  }
+
+  function renderSelectState(instance) {
+    var materials = instance.widgetConfig.materials || [];
+    var grid = materials
+      .map(function (material, index) {
+        return renderMaterialCard(
+          material,
+          instance.selectedMaterialId === material.id,
+          index,
+          !!instance.widgetConfig.showProductNames,
+        );
+      })
+      .join('');
+
+    var verificationMarkup = '';
+    if (instance.capped && !instance.widgetConfig.requireEmail) {
+      verificationMarkup =
+        '<div class="vz-turnstile-wrap">' +
+        '<label class="vz-label">Verification</label>' +
+        '<div class="vz-turnstile" data-role="turnstile"></div>' +
+        '</div>';
+    }
+
+    var primaryLabel = instance.widgetConfig.requireEmail
+      ? 'Continue to email'
+      : 'Reveal visualization';
+
+    return (
+      renderStepper(instance.widgetConfig.requireEmail ? 2 : 3, 1) +
+      '<p class="vz-step-title">Step 2: Select your option</p>' +
+      '<div class="vz-grid">' + grid + '</div>' +
+      verificationMarkup +
+      '<div class="vz-row">' +
+      '<button class="vz-button vz-button-secondary" type="button" data-role="back-upload">Back</button>' +
+      '<button class="vz-button" type="button" data-role="continue-select" ' +
+      (instance.selectedMaterialId ? '' : 'disabled') +
+      '>' + escapeHtml(primaryLabel) + '</button>' +
+      '</div>'
+    );
+  }
+
+  function renderEmailGateState(instance) {
+    var copy = getSubjectCopy(instance.widgetConfig.subjectType);
+    var verificationMarkup = '';
+    if (instance.capped) {
+      verificationMarkup =
+        '<div class="vz-turnstile-wrap">' +
+        '<label class="vz-label">Verification</label>' +
+        '<div class="vz-turnstile" data-role="turnstile"></div>' +
+        '</div>';
+    }
+
+    return (
+      renderStepper(3, 2) +
+      '<p class="vz-step-title">Step 3: Enter your email to reveal ' + escapeHtml(copy.revealLabel) + '</p>' +
+      '<form class="vz-form" data-role="email-form" novalidate>' +
+      '<div>' +
+      '<label class="vz-label" for="' + escapeHtml(instance.instanceId) + '-email">Email</label>' +
+      '<input class="vz-input" id="' + escapeHtml(instance.instanceId) + '-email" data-role="email-input" type="email" autocomplete="email" placeholder="you@company.com" value="' + escapeHtml(instance.emailDraft || '') + '">' +
+      '</div>' +
+      verificationMarkup +
+      '<div class="vz-row">' +
+      '<button class="vz-button vz-button-secondary" type="button" data-role="back-select">Back</button>' +
+      '<button class="vz-button" type="submit" data-role="submit-email">Reveal visualization</button>' +
+      '</div>' +
+      '</form>' +
+      '<p class="vz-consent">We use your email to deliver your preview and follow up. See our <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>.</p>'
+    );
+  }
+
+  function renderGeneratingState(instance, fallbackMode) {
+    var subtitle = fallbackMode
+      ? 'Still processing your preview. You can keep this open while we continue checking.'
+      : 'Generating your visualization now...';
+    var optionalEmailMarkup = '';
+
+    if (fallbackMode && !instance.widgetConfig.requireEmail) {
+      optionalEmailMarkup = renderOptionalEmailMarkup(
+        instance,
+        'Want us to send this as soon as it is ready?',
+      );
+    }
+
+    return (
+      renderStepper(3, 2) +
+      '<div class="vz-center">' +
+      '<div class="vz-spinner"></div>' +
+      '<strong>' + escapeHtml(subtitle) + '</strong>' +
+      '<small>Most previews are ready in under a minute.</small>' +
+      '</div>' +
+      optionalEmailMarkup +
+      '<div class="vz-row">' +
+      '<button class="vz-button vz-button-secondary" type="button" data-role="restart">Start over</button>' +
+      '</div>'
+    );
+  }
+
+  function renderOptionalEmailMarkup(instance, label) {
+    if (instance.widgetConfig.requireEmail) {
+      return '';
+    }
+
+    if (!instance.emailCaptured) {
+      var helperMessage = instance.optionalEmailMessage
+        ? '<p class="vz-consent">' + escapeHtml(instance.optionalEmailMessage) + '</p>'
+        : '';
+
+      return (
+        '<form class="vz-form" data-role="optional-email-form" novalidate>' +
+        '<label class="vz-label" for="' + escapeHtml(instance.instanceId) + '-optional-email">' +
+        escapeHtml(label) +
+        '</label>' +
+        '<div class="vz-row">' +
+        '<input class="vz-input" id="' + escapeHtml(instance.instanceId) + '-optional-email" data-role="optional-email-input" type="email" autocomplete="email" placeholder="you@company.com" value="' + escapeHtml(instance.emailDraft || '') + '">' +
+        '<button class="vz-button" type="submit">Email me</button>' +
+        '</div>' +
+        '</form>' +
+        helperMessage
+      );
+    }
+
+    if (instance.optionalEmailMessage) {
+      return '<p class="vz-consent">' + escapeHtml(instance.optionalEmailMessage) + '</p>';
+    }
+
+    return '';
+  }
+
+  function renderRevealState(instance) {
+    var beforeUrl = instance.revealBeforeUrl || (instance.upload ? instance.upload.previewUrl : '');
+    var afterUrl = instance.revealAfterUrl || '';
+    var percent = typeof instance.comparePercent === 'number' ? instance.comparePercent : 45;
+    var beforeWidth = Math.max(0, Math.min(100, percent));
+    var optionalEmailMarkup = renderOptionalEmailMarkup(instance, 'Want this in your inbox?');
+
+    return (
+      renderStepper(3, 3) +
+      '<div class="vz-reveal">' +
+      '<span class="vz-badge">Preview ready</span>' +
+      '<div class="vz-compare">' +
+      '<img src="' + escapeHtml(afterUrl) + '" alt="After preview">' +
+      '<div class="vz-before-wrap" data-role="before-wrap" style="width:' + beforeWidth + '%">' +
+      '<img src="' + escapeHtml(beforeUrl) + '" alt="Before upload">' +
+      '</div>' +
+      '</div>' +
+      '<input class="vz-slider" data-role="compare-slider" type="range" min="0" max="100" value="' + beforeWidth + '">' +
+      optionalEmailMarkup +
+      '<div class="vz-row">' +
+      '<button class="vz-button vz-button-secondary" type="button" data-role="restart">Start over</button>' +
+      '</div>' +
+      '</div>'
+    );
+  }
+
+  function renderErrorState(instance) {
+    var message = instance.lastError || 'Unable to complete your request right now.';
+
+    return (
+      renderStepper(1, 0) +
+      '<div class="vz-center">' +
+      '<strong>Something went wrong</strong>' +
+      '<small>' + escapeHtml(message) + '</small>' +
+      '</div>' +
+      '<div class="vz-row">' +
+      '<button class="vz-button" type="button" data-role="restart">Try again</button>' +
+      '</div>'
+    );
+  }
+
+  function renderLoadingState() {
+    return '<div class="vz-shell"><p class="vz-title" style="margin-bottom:8px">Loading widget...</p><p class="vz-subtitle">Preparing live experience.</p></div>';
+  }
+
+  function wireTurnstile(instance) {
+    instance.turnstileContainer = null;
+    instance.turnstileWidgetId = null;
+    instance.captchaToken = '';
+
+    var root = getRenderRoot(instance);
+    if (!root) {
+      return;
+    }
+
+    var turnstile = root.querySelector('[data-role="turnstile"]');
+    if (!turnstile) {
+      return;
+    }
+
+    instance.turnstileContainer = turnstile;
+    setupTurnstile(instance).catch(function (error) {
+      instance.stateMessage = error && error.message ? error.message : 'Verification is unavailable.';
+      render(instance);
+    });
+  }
+
+  function applyStateMessage(root, message, type) {
+    var messageEl = root.querySelector('.vz-message');
+    if (!messageEl) {
+      return;
+    }
+
+    messageEl.className = 'vz-message';
+    if (type === 'success') {
+      messageEl.classList.add('vz-message-success');
+    } else if (type === 'error') {
+      messageEl.classList.add('vz-message-error');
+    } else if (type === 'warning') {
+      messageEl.classList.add('vz-message-warning');
+    } else {
+      messageEl.classList.add('vz-message-info');
+    }
+
+    messageEl.textContent = message || '';
+  }
+
+  function submitOptionalEmail(instance, email) {
+    if (!emailLooksValid(email)) {
+      instance.optionalEmailMessage = 'Enter a valid email address to continue.';
+      render(instance);
+      return;
+    }
+
+    requestJson('/api/public/widget/generate', {
+      method: 'POST',
+      body: {
+        embedKey: instance.resolvedEmbedKey,
+        email: email,
+        sessionId: instance.session ? instance.session.id : null,
+        sessionToken: instance.session ? instance.session.token : null,
+        materialId: instance.selectedMaterialId,
+        sourcePage: instance.pageUrl,
+        uploadId: instance.upload ? instance.upload.id : null,
+        captureOnly: true,
+        generationJobId: instance.generationJobId,
+      },
+    })
+      .then(function (response) {
+        if (!response.ok) {
+          instance.optionalEmailMessage =
+            (response.data && (response.data.message || response.data.error)) ||
+            'Unable to save email right now.';
+          render(instance);
+          return;
+        }
+
+        instance.optionalEmailMessage = 'Email saved. We will send updates to your inbox.';
+        instance.emailDraft = email;
+        instance.emailCaptured = true;
+        render(instance);
+      })
+      .catch(function () {
+        instance.optionalEmailMessage = 'Unable to save email right now.';
+        render(instance);
+      });
+  }
+
+  function startPollingGeneration(instance) {
+    clearPolling(instance);
+
+    instance.pollingStartedAt = Date.now();
+    instance.fallbackTracked = false;
+
+    instance.fallbackTimer = setTimeout(function () {
+      if (instance.state !== 'reveal' && instance.state !== 'error') {
+        instance.state = 'fallback';
+        instance.stateMessage = 'Still processing. Keep this open and we will update automatically.';
+        if (!instance.fallbackTracked) {
+          instance.fallbackTracked = true;
+          trackEvent(instance, 'reveal_fallback_shown', {
+            generationJobId: instance.generationJobId,
+          });
+        }
+        render(instance);
+      }
+    }, 15000);
+
+    function handleSucceeded(payload) {
+      clearPolling(instance);
+      instance.revealBeforeUrl =
+        (payload.preview && payload.preview.originalUploadUrl) ||
+        (instance.upload ? instance.upload.previewUrl : null);
+      instance.revealAfterUrl = payload.preview.generatedPreviewUrl;
+      instance.state = 'reveal';
+      instance.stateMessage = '';
+      render(instance);
+      trackEvent(instance, 'reveal_rendered', {
+        generationJobId: instance.generationJobId,
+      });
+    }
+
+    function handleFailed(payload) {
+      clearPolling(instance);
+      instance.state = 'error';
+      instance.lastError =
+        (payload.generationJob && payload.generationJob.errorMessage) ||
+        'Generation failed. Please try another photo.';
+      render(instance);
+      trackEvent(instance, 'generation_failed', {
+        generationJobId: instance.generationJobId,
+      });
+    }
+
+    function pollOnce() {
+      requestJson(
+        '/api/public/widget/generation-status?embedKey=' +
+          encodeURIComponent(instance.resolvedEmbedKey) +
+          '&generationJobId=' +
+          encodeURIComponent(instance.generationJobId) +
+          '&pageUrl=' +
+          encodeURIComponent(instance.pageUrl),
+      )
+        .then(function (response) {
+          if (!response.ok || !response.data || !response.data.generationJob) {
+            return;
+          }
+
+          var payload = response.data;
+          var status = payload.generationJob.status;
+
+          if (
+            status === 'succeeded' &&
+            payload.preview &&
+            typeof payload.preview.generatedPreviewUrl === 'string' &&
+            payload.preview.generatedPreviewUrl
+          ) {
+            handleSucceeded(payload);
+            return;
+          }
+
+          if (status === 'failed') {
+            handleFailed(payload);
+            return;
+          }
+
+          var elapsed = Date.now() - (instance.pollingStartedAt || Date.now());
+          if (elapsed >= 60000 && (instance.state === 'generating' || instance.state === 'fallback')) {
+            clearPolling(instance);
+            instance.state = 'fallback';
+            instance.stateMessage = 'Preview is still processing. We will keep checking if you stay on this page.';
+            if (!instance.fallbackTracked) {
+              instance.fallbackTracked = true;
+              trackEvent(instance, 'reveal_fallback_shown', {
+                generationJobId: instance.generationJobId,
+                reason: 'timeout',
+              });
+            }
+            render(instance);
+          }
+        })
+        .catch(function () {
+          // Keep polling until timeout.
+        });
+    }
+
+    pollOnce();
+    instance.pollingTimer = setInterval(pollOnce, 2000);
+  }
+
+  function submitGeneration(instance, emailValue) {
+    if (!instance.upload || !instance.upload.id) {
+      instance.stateMessage = 'Upload a photo before continuing.';
+      render(instance);
+      return;
+    }
+
+    if (!instance.selectedMaterialId) {
+      instance.stateMessage = 'Choose an option before continuing.';
+      render(instance);
+      return;
+    }
+
+    if (instance.widgetConfig.requireEmail) {
+      if (!emailLooksValid(emailValue || '')) {
+        instance.stateMessage = 'Enter a valid email address to continue.';
+        render(instance);
+        return;
+      }
+      instance.emailDraft = emailValue;
+      trackEvent(instance, 'email_submitted', {
+        mode: 'required',
+      });
+    }
+
+    if (instance.capped && !instance.captchaToken) {
+      instance.stateMessage = 'Complete verification before requesting a preview.';
+      render(instance);
+      return;
+    }
+
+    setState(instance, 'generating', {
+      stateMessage: '',
+      lastError: '',
+    });
+
+    requestJson('/api/public/widget/generate', {
+      method: 'POST',
+      body: {
+        embedKey: instance.resolvedEmbedKey,
+        email: instance.widgetConfig.requireEmail ? instance.emailDraft : null,
+        sessionId: instance.session ? instance.session.id : null,
+        sessionToken: instance.session ? instance.session.token : null,
+        captchaToken: instance.capped ? instance.captchaToken : null,
+        materialId: instance.selectedMaterialId,
+        sourcePage: instance.pageUrl,
+        uploadId: instance.upload.id,
+      },
+    })
+      .then(function (response) {
+        if (!response.ok) {
+          var code = response.data ? response.data.code : null;
+
+          if (response.status === 401 && code === 'invalid_session') {
+            clearStoredSession(instance.resolvedEmbedKey);
+            instance.session = null;
+            instance.state = 'error';
+            instance.lastError = 'Session expired. Please try again.';
+            render(instance);
+            return;
+          }
+
+          if (response.status === 429 && code === 'generation_limit_reached') {
+            instance.state = 'fallback';
+            instance.stateMessage =
+              (response.data && response.data.message) ||
+              'Preview limit reached. Contact this business for more previews.';
+            render(instance);
+            return;
+          }
+
+          if (response.status === 429 && code === 'quota_exceeded') {
+            instance.state = 'fallback';
+            instance.stateMessage =
+              (response.data && response.data.message) ||
+              'Preview quota is currently exceeded. Please try again later.';
+            render(instance);
+            return;
+          }
+
+          if (response.status === 400 && (code === 'captcha_required' || code === 'captcha_failed')) {
+            instance.state = instance.widgetConfig.requireEmail ? 'email_gate' : 'select';
+            instance.stateMessage =
+              code === 'captcha_required'
+                ? 'Verification is required before requesting a preview.'
+                : 'Verification failed. Please try again.';
+            resetTurnstile(instance);
+            render(instance);
+            return;
+          }
+
+          instance.state = 'error';
+          instance.lastError =
+            (response.data && (response.data.message || response.data.error)) ||
+            'Unable to submit your request right now.';
+          render(instance);
+          trackEvent(instance, 'generation_failed', {
+            reason: code || 'request_failed',
+          });
+          return;
+        }
+
+        if (response.data && response.data.lead && response.data.lead.id) {
+          instance.emailCaptured = true;
+        }
+
+        if (!response.data || !response.data.generationJob || !response.data.generationJob.id) {
+          instance.state = 'error';
+          instance.lastError = 'Generation job could not be created.';
+          render(instance);
+          return;
+        }
+
+        instance.generationJobId = response.data.generationJob.id;
+        trackEvent(instance, 'generation_requested', {
+          generationJobId: instance.generationJobId,
+          materialId: instance.selectedMaterialId,
+        });
+        startPollingGeneration(instance);
+      })
+      .catch(function () {
+        instance.state = 'error';
+        instance.lastError = 'Unable to submit your request right now.';
+        render(instance);
+      })
+      .finally(function () {
+        resetTurnstile(instance);
+      });
+  }
+
+  function handleUpload(instance, file) {
+    if (!file) {
+      return;
+    }
+
+    if (!/^image\/(jpeg|png|webp)$/.test(file.type)) {
+      instance.stateMessage = 'Unsupported file type. Use JPG, PNG, or WebP.';
+      render(instance);
+      return;
+    }
+
+    if (file.size < 1 || file.size > 10 * 1024 * 1024) {
+      instance.stateMessage = 'File must be between 1 byte and 10 MB.';
+      render(instance);
+      return;
+    }
+
+    trackEvent(instance, 'upload_started', {
+      fileName: file.name || null,
+      fileSize: file.size,
+    });
+
+    instance.uploadInProgress = true;
+    instance.stateMessage = '';
+    render(instance);
+
+    ensureSession(instance, false)
+      .then(function (session) {
+        if (instance.capped && (!session || !session.token)) {
+          throw new Error('Unable to create a valid session for upload.');
+        }
+
+        var formData = new FormData();
+        formData.append('embedKey', instance.resolvedEmbedKey);
+        formData.append('pageUrl', instance.pageUrl);
+        if (session && session.id) {
+          formData.append('sessionId', session.id);
+        }
+        formData.append('file', file);
+
+        return requestMultipart('/api/public/widget/upload', formData);
+      })
+      .then(function (response) {
+        if (!response.ok || !response.data || !response.data.upload) {
+          var uploadError =
+            (response.data && (response.data.message || response.data.error)) ||
+            'Unable to upload image.';
+          throw new Error(uploadError);
+        }
+
+        clearPreviewObjectUrl(instance);
+        instance.previewObjectUrl = URL.createObjectURL(file);
+        instance.upload = {
+          id: response.data.upload.id,
+          name: file.name || 'uploaded-image',
+          previewUrl: instance.previewObjectUrl,
+          mimeType: file.type,
+          size: file.size,
+        };
+        instance.uploadInProgress = false;
+        instance.stateMessage = '';
+        trackEvent(instance, 'upload_completed', {
+          uploadId: instance.upload.id,
+        });
+        setState(instance, 'select');
+      })
+      .catch(function (error) {
+        instance.uploadInProgress = false;
+        instance.stateMessage = error && error.message ? error.message : 'Unable to upload image.';
+        render(instance);
+      });
+  }
+
+  function restartFlow(instance) {
+    clearPolling(instance);
+    resetTurnstile(instance);
+    instance.stateMessage = '';
+    instance.lastError = '';
+    instance.optionalEmailMessage = '';
+    instance.emailCaptured = false;
+    instance.generationJobId = null;
+    instance.revealBeforeUrl = null;
+    instance.revealAfterUrl = null;
+    instance.comparePercent = 45;
+    instance.emailDraft = '';
+    instance.selectedMaterialId = null;
+    instance.upload = null;
+    instance.uploadInProgress = false;
+    clearPreviewObjectUrl(instance);
+    setState(instance, 'upload');
+  }
+
+  function wireInteractions(instance) {
+    var root = getRenderRoot(instance);
+    if (!root) {
+      return;
+    }
+
+    applyStateMessage(root, instance.stateMessage, instance.state === 'error' ? 'error' : 'info');
+
+    var restartButton = root.querySelector('[data-role="restart"]');
+    if (restartButton) {
+      restartButton.addEventListener('click', function () {
+        restartFlow(instance);
+      });
+    }
+
+    if (instance.state === 'upload') {
+      var fileInput = root.querySelector('[data-role="file-input"]');
+      var dropZone = root.querySelector('[data-role="drop-zone"]');
+      var toSelectButton = root.querySelector('[data-role="to-select"]');
+
+      if (fileInput) {
+        fileInput.addEventListener('change', function (event) {
+          var file = event.target && event.target.files ? event.target.files[0] : null;
+          handleUpload(instance, file);
+        });
+      }
+
+      if (dropZone) {
+        dropZone.addEventListener('dragover', function (event) {
+          event.preventDefault();
+        });
+        dropZone.addEventListener('drop', function (event) {
+          event.preventDefault();
+          var dropped = event.dataTransfer && event.dataTransfer.files ? event.dataTransfer.files[0] : null;
+          handleUpload(instance, dropped);
+        });
+      }
+
+      if (toSelectButton) {
+        toSelectButton.addEventListener('click', function () {
+          if (instance.upload) {
+            setState(instance, 'select');
+          }
+        });
+      }
+    }
+
+    if (instance.state === 'select') {
+      var materialButtons = root.querySelectorAll('[data-role="material"]');
+      Array.prototype.forEach.call(materialButtons, function (button) {
+        button.addEventListener('click', function () {
+          var materialId = button.getAttribute('data-id');
+          if (!materialId) {
+            return;
+          }
+          instance.selectedMaterialId = materialId;
+          trackEvent(instance, 'material_selected', {
+            materialId: materialId,
+          });
+          render(instance);
+        });
+      });
+
+      var backUpload = root.querySelector('[data-role="back-upload"]');
+      if (backUpload) {
+        backUpload.addEventListener('click', function () {
+          setState(instance, 'upload');
+        });
+      }
+
+      var continueSelect = root.querySelector('[data-role="continue-select"]');
+      if (continueSelect) {
+        continueSelect.addEventListener('click', function () {
+          if (!instance.selectedMaterialId) {
+            return;
+          }
+
+          if (instance.widgetConfig.requireEmail) {
+            setState(instance, 'email_gate', {
+              stateMessage: '',
+            });
+          } else {
+            submitGeneration(instance, null);
+          }
+        });
+      }
+
+      if (instance.capped && !instance.widgetConfig.requireEmail) {
+        wireTurnstile(instance);
+      }
+    }
+
+    if (instance.state === 'email_gate') {
+      var emailInput = root.querySelector('[data-role="email-input"]');
+      var emailForm = root.querySelector('[data-role="email-form"]');
+      var backSelect = root.querySelector('[data-role="back-select"]');
+
+      if (emailInput) {
+        emailInput.addEventListener('input', function (event) {
+          instance.emailDraft = event.target && event.target.value ? event.target.value.trim() : '';
+        });
+      }
+
+      if (backSelect) {
+        backSelect.addEventListener('click', function () {
+          setState(instance, 'select', {
+            stateMessage: '',
+          });
+        });
+      }
+
+      if (emailForm) {
+        emailForm.addEventListener('submit', function (event) {
+          event.preventDefault();
+          var value = emailInput && emailInput.value ? emailInput.value.trim() : '';
+          submitGeneration(instance, value);
+        });
+      }
+
+      if (instance.capped) {
+        wireTurnstile(instance);
+      }
+    }
+
+    if (instance.state === 'reveal' || instance.state === 'fallback') {
+      var slider = root.querySelector('[data-role="compare-slider"]');
+      var beforeWrap = root.querySelector('[data-role="before-wrap"]');
+      if (slider && beforeWrap) {
+        slider.addEventListener('input', function (event) {
+          var next = Number(event.target.value);
+          if (!Number.isFinite(next)) {
+            return;
+          }
+          instance.comparePercent = Math.max(0, Math.min(100, next));
+          beforeWrap.style.width = instance.comparePercent + '%';
+        });
+      }
+
+      var optionalForm = root.querySelector('[data-role="optional-email-form"]');
+      var optionalInput = root.querySelector('[data-role="optional-email-input"]');
+      if (optionalForm && optionalInput) {
+        optionalForm.addEventListener('submit', function (event) {
+          event.preventDefault();
+          var optionalValue = optionalInput.value ? optionalInput.value.trim() : '';
+          submitOptionalEmail(instance, optionalValue);
+        });
+      }
+    }
+  }
+
+  function render(instance) {
+    var root = getRenderRoot(instance);
+    if (!root) {
+      return;
+    }
+
+    if (!instance.widgetConfig || instance.state === 'loading') {
+      root.innerHTML = renderLoadingState();
+      return;
+    }
+
+    var stateHtml = '';
+
+    if (instance.state === 'upload') {
+      stateHtml = renderUploadState(instance);
+    } else if (instance.state === 'select') {
+      stateHtml = renderSelectState(instance);
+    } else if (instance.state === 'email_gate') {
+      stateHtml = renderEmailGateState(instance);
+    } else if (instance.state === 'generating') {
+      stateHtml = renderGeneratingState(instance, false);
+    } else if (instance.state === 'fallback') {
+      stateHtml = renderGeneratingState(instance, true);
+    } else if (instance.state === 'reveal') {
+      stateHtml = renderRevealState(instance);
+    } else if (instance.state === 'error') {
+      stateHtml = renderErrorState(instance);
+    } else {
+      stateHtml = renderUploadState(instance);
+    }
+
+    root.innerHTML = renderBaseFrame(instance, stateHtml);
+    wireInteractions(instance);
+  }
+
   function initializeInstance(instance) {
     ensureStyles();
-    instance.target.innerHTML =
-      '<div class="vz-shell"><p class="vz-title" style="margin-bottom:8px">Loading widget...</p><p class="vz-subtitle">Preparing live demo.</p></div>';
+
+    if (instance.target) {
+      instance.renderRoot = instance.target;
+      instance.renderRoot.innerHTML = renderLoadingState();
+    }
 
     return loadConfig(instance)
       .then(function (configPayload) {
@@ -652,9 +1505,41 @@
           throw new Error('Widget configuration could not be loaded.');
         }
 
-        instance.widgetConfig = configPayload.widget;
+        instance.widgetConfig = {
+          id: configPayload.widget.id,
+          name: configPayload.widget.name,
+          embedKey: configPayload.widget.embedKey || instance.embedKey,
+          mode: configPayload.widget.mode || 'inline',
+          theme: configPayload.widget.theme || 'dark',
+          subjectType: configPayload.widget.subjectType || 'generic',
+          brandColor: configPayload.widget.brandColor || '#10B981',
+          uiVersion: configPayload.widget.uiVersion || 'v2',
+          requireEmail: !!configPayload.widget.requireEmail,
+          autoOpenWidget: !!configPayload.widget.autoOpenWidget,
+          showProductNames: !!configPayload.widget.showProductNames,
+          maxGenerationsPerSession: configPayload.widget.maxGenerationsPerSession,
+          maxGenerationsPerEmailLifetime: configPayload.widget.maxGenerationsPerEmailLifetime,
+          limitReachedCtaUrl: configPayload.widget.limitReachedCtaUrl || null,
+          materials: Array.isArray(configPayload.widget.materials)
+            ? configPayload.widget.materials
+            : [],
+        };
         instance.turnstileSiteKey = configPayload.turnstileSiteKey || null;
         instance.capped = hasGenerationCap(instance.widgetConfig);
+        instance.resolvedEmbedKey = instance.widgetConfig.embedKey || instance.embedKey;
+
+        if (!instance.resolvedEmbedKey) {
+          throw new Error('Widget configuration is missing an embed key.');
+        }
+
+        if (instance.widgetConfig.mode === 'popup') {
+          ensurePopupMount(instance);
+        } else {
+          if (!instance.target) {
+            throw new Error('Inline mode requires a target element.');
+          }
+          instance.renderRoot = instance.target;
+        }
 
         return ensureSession(instance, false);
       })
@@ -663,69 +1548,47 @@
           throw new Error('Unable to start a session for this widget.');
         }
 
-        renderWidget(instance);
+        instance.state = 'upload';
+        instance.stateMessage = '';
 
-        if (instance.capped) {
-          return setupTurnstile(instance);
+        if (instance.widgetConfig.mode === 'popup') {
+          if (instance.widgetConfig.autoOpenWidget) {
+            openPopup(instance);
+          }
+        } else {
+          render(instance);
+          trackEvent(instance, 'widget_opened', {
+            mode: 'inline',
+          });
         }
-
-        return null;
-      })
-      .then(function () {
-        trackEvent(instance, 'widget_rendered', {
-          renderedAt: new Date().toISOString(),
-          capped: instance.capped,
-        });
       })
       .catch(function (error) {
-        showFatal(instance, error && error.message ? error.message : 'Unable to load widget.');
+        var message = error && error.message ? error.message : 'Unable to load widget.';
+        var root = getRenderRoot(instance) || instance.target;
+        if (root) {
+          root.innerHTML =
+            '<div class="vz-shell"><p class="vz-title" style="margin-bottom:8px">Widget unavailable</p><p class="vz-subtitle" style="color:#fca5a5">' +
+            escapeHtml(message) +
+            '</p></div>';
+        }
       });
-  }
-
-  function createInstance(options, target) {
-    INSTANCE_COUNTER += 1;
-
-    return {
-      instanceId: 'vz-widget-' + INSTANCE_COUNTER,
-      embedKey: options.embedKey,
-      target: target,
-      pageUrl: typeof options.pageUrl === 'string' && options.pageUrl.trim()
-        ? options.pageUrl.trim()
-        : window.location.href,
-      session: null,
-      widgetConfig: null,
-      capped: false,
-      turnstileSiteKey: null,
-      turnstileContainer: null,
-      turnstileWidgetId: null,
-      captchaToken: '',
-      formEl: null,
-      emailInput: null,
-      materialSelect: null,
-      submitButton: null,
-      messageEl: null,
-      blockedEl: null,
-    };
   }
 
   function init(options) {
     var normalized = options || {};
-    var embedKey = typeof normalized.embedKey === 'string' ? normalized.embedKey.trim() : '';
     var target = normalizeTarget(normalized.target);
+    var embedKey = typeof normalized.embedKey === 'string' ? normalized.embedKey.trim() : '';
+    var industrySlug = typeof normalized.industrySlug === 'string' ? normalized.industrySlug.trim() : '';
 
-    if (!embedKey) {
-      console.error('[VizzionWidget] init failed: embedKey is required.');
-      return;
-    }
-
-    if (!target) {
-      console.error('[VizzionWidget] init failed: target element not found.');
+    if (!embedKey && !industrySlug) {
+      console.error('[VizzionWidget] init failed: embedKey or industrySlug is required.');
       return;
     }
 
     var instance = createInstance(
       {
         embedKey: embedKey,
+        industrySlug: industrySlug,
         pageUrl: normalized.pageUrl,
       },
       target,

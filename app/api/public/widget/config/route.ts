@@ -1,7 +1,10 @@
 import { NextRequest } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { publicJsonResponse, publicOptionsResponse } from '@/lib/vizzion/cors';
-import { isOriginAllowed, resolvePublicWidget } from '@/lib/vizzion/widget-public';
+import {
+  isOriginAllowed,
+  resolvePublicWidgetByIdentifier,
+} from '@/lib/vizzion/widget-public';
 
 export async function OPTIONS(request: NextRequest) {
   return publicOptionsResponse(request);
@@ -10,16 +13,22 @@ export async function OPTIONS(request: NextRequest) {
 export async function GET(request: NextRequest) {
   const origin = request.headers.get('origin');
   const embedKey = request.nextUrl.searchParams.get('embedKey')?.trim();
+  const industrySlug = request.nextUrl.searchParams.get('industrySlug')?.trim() || null;
   const pageUrl = request.nextUrl.searchParams.get('pageUrl');
   const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim() || null;
 
-  if (!embedKey) {
-    return publicJsonResponse({ error: 'embedKey is required.' }, 400, origin);
+  if (!embedKey && !industrySlug) {
+    return publicJsonResponse({ error: 'embedKey or industrySlug is required.' }, 400, origin);
   }
 
   try {
     const supabase = createAdminClient();
-    const widget = await resolvePublicWidget(supabase, embedKey);
+    const widget = await resolvePublicWidgetByIdentifier(supabase, {
+      embedKey,
+      industrySlug,
+      originHeader: origin,
+      pageUrl,
+    });
 
     if (!widget) {
       return publicJsonResponse({ error: 'Widget not found.' }, 404, origin);
@@ -34,8 +43,12 @@ export async function GET(request: NextRequest) {
         widget: {
           id: widget.id,
           name: widget.name,
+          embedKey: widget.embed_key,
           mode: widget.mode,
           theme: widget.theme,
+          subjectType: widget.subject_type,
+          brandColor: widget.brand_color,
+          uiVersion: 'v2',
           requireEmail: widget.require_email,
           autoOpenWidget: widget.auto_open_widget,
           showProductNames: widget.show_product_names,

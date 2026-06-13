@@ -44,6 +44,16 @@ export default async function SettingsPage({
   const embedLockReason = getSetupLockReason(context.widget);
   const domainAllowlistMissing = missingSetup.some(item => item.key === 'domain_allowlist');
   const isOwner = context.role === 'owner';
+  const mappingResult = await supabase
+    .from('industry_widget_mappings')
+    .select('industry_slug')
+    .eq('workspace_id', context.workspace.id)
+    .eq('widget_id', context.widget.id)
+    .maybeSingle();
+  const industrySlug =
+    !mappingResult.error && mappingResult.data && typeof mappingResult.data.industry_slug === 'string'
+      ? mappingResult.data.industry_slug
+      : '';
 
   return (
     <div className="space-y-8">
@@ -161,6 +171,27 @@ export default async function SettingsPage({
             </select>
           </label>
 
+          <label className="block space-y-2">
+            <span className="text-sm font-medium text-text-secondary">Subject Type</span>
+            <select
+              name="subject_type"
+              defaultValue={context.widget.subject_type ?? 'home'}
+              disabled={!isOwner}
+              className="w-full rounded-lg border border-border-default bg-bg-primary px-3 py-2.5 text-sm text-text-primary outline-none transition focus:border-accent/60"
+            >
+              <option value="home">Home</option>
+              <option value="vehicle">Vehicle</option>
+              <option value="body">Body</option>
+              <option value="yard">Yard</option>
+              <option value="boat">Boat</option>
+              <option value="room">Room</option>
+              <option value="generic">Generic</option>
+            </select>
+            <p className="text-xs text-text-tertiary">
+              Controls upload/reveal copy for this widget&apos;s flow.
+            </p>
+          </label>
+
           <label className="md:col-span-2 block space-y-2">
             <span className="flex items-center gap-2 text-sm font-medium text-text-secondary">
               Domain Allowlist
@@ -191,6 +222,13 @@ export default async function SettingsPage({
               Required before embed code can be copied. Add one domain per line.
             </p>
           </label>
+
+          <InputField
+            label="Industry Slug Mapping"
+            name="industry_slug"
+            defaultValue={industrySlug}
+            disabled={!isOwner}
+          />
 
           <NumberField
             label="Max Generations per Session"
@@ -232,6 +270,12 @@ export default async function SettingsPage({
             defaultChecked={context.widget.require_email}
             disabled={!isOwner}
           />
+          {!context.widget.require_email ? (
+            <p className="md:col-span-2 rounded-lg border border-amber-500/40 bg-amber-500/10 px-4 py-3 text-xs text-amber-200">
+              Email capture is OFF. This is not recommended: it lowers lead capture, weakens follow-up,
+              and reduces attribution quality.
+            </p>
+          ) : null}
 
           <ToggleField
             name="auto_open_widget"

@@ -74,6 +74,18 @@ export interface PortfolioPreviewRow {
   retentionExpiresAt: string | null;
 }
 
+export interface PortfolioStepFunnelMetrics {
+  widgetOpened: number;
+  uploadStarted: number;
+  uploadCompleted: number;
+  materialSelected: number;
+  emailSubmitted: number;
+  generationRequested: number;
+  revealRendered: number;
+  revealFallbackShown: number;
+  generationFailed: number;
+}
+
 export interface PortfolioAlert {
   id: 'high_limit_block_rate' | 'stale_queue_backlog' | 'conversion_drop';
   severity: 'warning' | 'critical';
@@ -99,6 +111,20 @@ interface GeneratedPreviewResult {
   generated_path: string | null;
   metadata: Record<string, unknown> | null;
   created_at: string;
+}
+
+function createEmptyPortfolioStepFunnelMetrics(): PortfolioStepFunnelMetrics {
+  return {
+    widgetOpened: 0,
+    uploadStarted: 0,
+    uploadCompleted: 0,
+    materialSelected: 0,
+    emailSubmitted: 0,
+    generationRequested: 0,
+    revealRendered: 0,
+    revealFallbackShown: 0,
+    generationFailed: 0,
+  };
 }
 
 function toCount(value: number | null): number {
@@ -537,6 +563,67 @@ export async function getPortfolioRecentPreviews(params: {
       };
     }),
   );
+}
+
+export async function getPortfolioStepFunnel(params: {
+  supabase: SupabaseClient;
+  workspaceId: string;
+  dateRange: PortfolioDateRange;
+  widgetIds?: string[];
+}): Promise<PortfolioStepFunnelMetrics> {
+  const metrics = createEmptyPortfolioStepFunnelMetrics();
+  let query = params.supabase
+    .from('widget_events')
+    .select('event_type')
+    .eq('workspace_id', params.workspaceId)
+    .gte('created_at', params.dateRange.fromIso)
+    .lt('created_at', params.dateRange.toIso)
+    .in('event_type', [
+      'widget_opened',
+      'upload_started',
+      'upload_completed',
+      'material_selected',
+      'email_submitted',
+      'generation_requested',
+      'reveal_rendered',
+      'reveal_fallback_shown',
+      'generation_failed',
+    ])
+    .limit(10000);
+
+  if (params.widgetIds && params.widgetIds.length > 0) {
+    query = query.in('widget_id', params.widgetIds);
+  }
+
+  const result = await query;
+
+  if (result.error || !result.data) {
+    return metrics;
+  }
+
+  for (const row of result.data as Array<{ event_type: string }>) {
+    if (row.event_type === 'widget_opened') {
+      metrics.widgetOpened += 1;
+    } else if (row.event_type === 'upload_started') {
+      metrics.uploadStarted += 1;
+    } else if (row.event_type === 'upload_completed') {
+      metrics.uploadCompleted += 1;
+    } else if (row.event_type === 'material_selected') {
+      metrics.materialSelected += 1;
+    } else if (row.event_type === 'email_submitted') {
+      metrics.emailSubmitted += 1;
+    } else if (row.event_type === 'generation_requested') {
+      metrics.generationRequested += 1;
+    } else if (row.event_type === 'reveal_rendered') {
+      metrics.revealRendered += 1;
+    } else if (row.event_type === 'reveal_fallback_shown') {
+      metrics.revealFallbackShown += 1;
+    } else if (row.event_type === 'generation_failed') {
+      metrics.generationFailed += 1;
+    }
+  }
+
+  return metrics;
 }
 
 function formatPercent(value: number): string {

@@ -7,6 +7,7 @@ import {
   getPortfolioAlerts,
   getPortfolioIndustryBreakdown,
   getPortfolioRecentPreviews,
+  getPortfolioStepFunnel,
   getPortfolioTotals,
   getPortfolioWidgetBreakdown,
   getWorkspaceWidgets,
@@ -30,6 +31,27 @@ function getSingleParam(value: string | string[] | undefined): string | null {
 
 function formatPercent(value: number): string {
   return `${value.toFixed(1)}%`;
+}
+
+function formatStepConversion(current: number, previous: number | null): string {
+  if (previous === null) {
+    return 'Entry step';
+  }
+
+  if (previous <= 0) {
+    return '0.0% of previous';
+  }
+
+  return `${((current / previous) * 100).toFixed(1)}% of previous`;
+}
+
+function formatStepDropOff(current: number, previous: number | null): string | null {
+  if (previous === null || previous <= 0) {
+    return null;
+  }
+
+  const dropOff = Math.max(0, 100 - (current / previous) * 100);
+  return `${dropOff.toFixed(1)}% drop-off`;
 }
 
 function withRangeQuery(basePath: string, dateFrom: string, dateTo: string): string {
@@ -69,7 +91,7 @@ export default async function PortfolioPage({ searchParams }: { searchParams: Se
     widgets,
   });
 
-  const [recentPreviews, alerts] = await Promise.all([
+  const [recentPreviews, alerts, stepFunnel] = await Promise.all([
     getPortfolioRecentPreviews({
       supabase: admin,
       workspaceId: context.workspace.id,
@@ -83,10 +105,35 @@ export default async function PortfolioPage({ searchParams }: { searchParams: Se
       dateRange,
       widgetRows,
     }),
+    getPortfolioStepFunnel({
+      supabase: admin,
+      workspaceId: context.workspace.id,
+      dateRange,
+      widgetIds: widgets.map(widget => widget.id),
+    }),
   ]);
 
   const totals = getPortfolioTotals(widgetRows);
   const industryRows = getPortfolioIndustryBreakdown(widgetRows);
+  const funnelSteps = [
+    { label: 'Opened', value: stepFunnel.widgetOpened, previous: null as number | null },
+    { label: 'Upload Start', value: stepFunnel.uploadStarted, previous: stepFunnel.widgetOpened },
+    { label: 'Upload Done', value: stepFunnel.uploadCompleted, previous: stepFunnel.uploadStarted },
+    { label: 'Material Picked', value: stepFunnel.materialSelected, previous: stepFunnel.uploadCompleted },
+    { label: 'Email Submitted', value: stepFunnel.emailSubmitted, previous: stepFunnel.materialSelected },
+    {
+      label: 'Generation Req',
+      value: stepFunnel.generationRequested,
+      previous: stepFunnel.emailSubmitted,
+    },
+    { label: 'Reveal Rendered', value: stepFunnel.revealRendered, previous: stepFunnel.generationRequested },
+    {
+      label: 'Fallback Shown',
+      value: stepFunnel.revealFallbackShown,
+      previous: stepFunnel.generationRequested,
+    },
+    { label: 'Generation Failed', value: stepFunnel.generationFailed, previous: stepFunnel.generationRequested },
+  ];
 
   return (
     <div className="space-y-8">
@@ -188,6 +235,21 @@ export default async function PortfolioPage({ searchParams }: { searchParams: Se
           label="Session -> Preview Conversion"
           value={formatPercent(totals.sessionToPreviewConversionPercent)}
         />
+      </section>
+
+      <section className="rounded-2xl border border-border-default bg-bg-secondary p-5">
+        <h2 className="mb-4 text-xl font-semibold text-text-primary">Step Funnel</h2>
+        <div className="grid gap-3 sm:grid-cols-3 xl:grid-cols-9">
+          {funnelSteps.map(step => (
+            <StepFunnelCard
+              key={step.label}
+              label={step.label}
+              value={step.value}
+              conversion={formatStepConversion(step.value, step.previous)}
+              dropOff={formatStepDropOff(step.value, step.previous)}
+            />
+          ))}
+        </div>
       </section>
 
       <section className="rounded-2xl border border-border-default bg-bg-secondary p-5">
@@ -327,6 +389,27 @@ function MetricCard({ label, value }: { label: string; value: string }) {
     <article className="rounded-2xl border border-border-default bg-bg-secondary p-4">
       <p className="text-xs font-medium uppercase tracking-wide text-text-tertiary">{label}</p>
       <p className="mt-2 text-2xl font-semibold text-text-primary">{value}</p>
+    </article>
+  );
+}
+
+function StepFunnelCard({
+  label,
+  value,
+  conversion,
+  dropOff,
+}: {
+  label: string;
+  value: number;
+  conversion: string;
+  dropOff: string | null;
+}) {
+  return (
+    <article className="rounded-xl border border-border-default bg-bg-primary px-3 py-3">
+      <p className="text-[11px] font-semibold uppercase tracking-wide text-text-tertiary">{label}</p>
+      <p className="mt-1 text-xl font-semibold text-text-primary">{value.toLocaleString()}</p>
+      <p className="mt-1 text-[11px] text-text-tertiary">{conversion}</p>
+      {dropOff ? <p className="text-[11px] text-text-tertiary">{dropOff}</p> : null}
     </article>
   );
 }

@@ -1,13 +1,12 @@
 import Script from 'next/script';
 import { IndustryData } from '@/data/industries/types';
 
-const DEMO_WIDGET_EMBED_KEY = process.env.NEXT_PUBLIC_INDUSTRY_DEMO_WIDGET_EMBED_KEY?.trim() || '';
 const WIDGET_SCRIPT_SRC =
   process.env.NEXT_PUBLIC_WIDGET_SCRIPT_SRC?.trim() || 'https://app.vizzion.io/widget.js';
 
-function buildInitScript(targetSelector: string, embedKey: string): string {
+function buildInitScript(targetSelector: string, industrySlug: string): string {
   const payload = JSON.stringify({
-    embedKey,
+    industrySlug,
     target: targetSelector,
   });
 
@@ -23,23 +22,9 @@ function buildInitScript(targetSelector: string, embedKey: string): string {
 }
 
 export default function IndustryLiveWidget({ data }: { data: IndustryData }) {
-  if (!DEMO_WIDGET_EMBED_KEY) {
-    if (process.env.NODE_ENV !== 'production') {
-      return (
-        <section className="px-6 py-12 bg-bg-primary">
-          <div className="max-w-[1000px] mx-auto rounded-xl border border-border-default bg-bg-secondary px-5 py-4 text-sm text-text-tertiary">
-            Set <code>NEXT_PUBLIC_INDUSTRY_DEMO_WIDGET_EMBED_KEY</code> to render the live widget
-            demo section.
-          </div>
-        </section>
-      );
-    }
-    return null;
-  }
-
   const targetId = `vizzion-widget-${data.slug}`;
   const targetSelector = `#${targetId}`;
-  const initScript = buildInitScript(targetSelector, DEMO_WIDGET_EMBED_KEY);
+  const initScript = buildInitScript(targetSelector, data.slug);
   const scriptId = `vizzion-widget-init-${data.slug}`;
 
   return (
@@ -53,8 +38,8 @@ export default function IndustryLiveWidget({ data }: { data: IndustryData }) {
             Try the {data.shortName} Visualizer Widget
           </h2>
           <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-            Upload intent starts here: visitors enter an email, pick an option, and request a preview in
-            under a minute.
+            Visitors upload a photo, pick an option, and reveal their preview in a guided flow built to
+            capture qualified leads.
           </p>
         </div>
 

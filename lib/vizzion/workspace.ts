@@ -20,6 +20,7 @@ export interface WidgetRecord {
   require_email: boolean;
   auto_open_widget: boolean;
   show_product_names: boolean;
+  subject_type: 'home' | 'vehicle' | 'body' | 'yard' | 'boat' | 'room' | 'generic' | string;
   domain_allowlist: string[];
   max_generations_per_session: number | null;
   max_generations_per_email_lifetime: number | null;
@@ -75,6 +76,18 @@ export interface RecentLeadItem {
   materialName: string | null;
 }
 
+export interface StepFunnelMetrics {
+  widgetOpened: number;
+  uploadStarted: number;
+  uploadCompleted: number;
+  materialSelected: number;
+  emailSubmitted: number;
+  generationRequested: number;
+  revealRendered: number;
+  revealFallbackShown: number;
+  generationFailed: number;
+}
+
 function toCount(value: number | null): number {
   return typeof value === 'number' ? value : 0;
 }
@@ -122,7 +135,7 @@ export async function getWorkspaceContext(supabase: SupabaseClient): Promise<Wor
   const widgetResult = await supabase
     .from('widgets')
     .select(
-      'id, workspace_id, name, embed_key, mode, theme, is_active, require_email, auto_open_widget, show_product_names, domain_allowlist, max_generations_per_session, max_generations_per_email_lifetime, limit_reached_cta_url, is_primary',
+      'id, workspace_id, name, embed_key, mode, theme, is_active, require_email, auto_open_widget, show_product_names, subject_type, domain_allowlist, max_generations_per_session, max_generations_per_email_lifetime, limit_reached_cta_url, is_primary',
     )
     .eq('workspace_id', workspace.id)
     .order('is_primary', { ascending: false })
@@ -147,7 +160,7 @@ export async function getWorkspaceContext(supabase: SupabaseClient): Promise<Wor
         theme: 'dark',
       })
       .select(
-        'id, workspace_id, name, embed_key, mode, theme, is_active, require_email, auto_open_widget, show_product_names, domain_allowlist, max_generations_per_session, max_generations_per_email_lifetime, limit_reached_cta_url, is_primary',
+        'id, workspace_id, name, embed_key, mode, theme, is_active, require_email, auto_open_widget, show_product_names, subject_type, domain_allowlist, max_generations_per_session, max_generations_per_email_lifetime, limit_reached_cta_url, is_primary',
       )
       .single();
 
@@ -266,6 +279,71 @@ export async function getEventBreakdown(
     .map(([eventType, count]) => ({ eventType, count }))
     .sort((a, b) => b.count - a.count)
     .slice(0, 8);
+}
+
+export async function getStepFunnelMetrics(
+  supabase: SupabaseClient,
+  widgetId: string,
+  days = 30,
+): Promise<StepFunnelMetrics> {
+  const since = getSinceIso(days);
+  const result = await supabase
+    .from('widget_events')
+    .select('event_type')
+    .eq('widget_id', widgetId)
+    .gte('created_at', since)
+    .in('event_type', [
+      'widget_opened',
+      'upload_started',
+      'upload_completed',
+      'material_selected',
+      'email_submitted',
+      'generation_requested',
+      'reveal_rendered',
+      'reveal_fallback_shown',
+      'generation_failed',
+    ])
+    .limit(5000);
+
+  const empty: StepFunnelMetrics = {
+    widgetOpened: 0,
+    uploadStarted: 0,
+    uploadCompleted: 0,
+    materialSelected: 0,
+    emailSubmitted: 0,
+    generationRequested: 0,
+    revealRendered: 0,
+    revealFallbackShown: 0,
+    generationFailed: 0,
+  };
+
+  if (result.error || !result.data) {
+    return empty;
+  }
+
+  for (const row of result.data as Array<{ event_type: string }>) {
+    if (row.event_type === 'widget_opened') {
+      empty.widgetOpened += 1;
+    } else if (row.event_type === 'upload_started') {
+      empty.uploadStarted += 1;
+    } else if (row.event_type === 'upload_completed') {
+      empty.uploadCompleted += 1;
+    } else if (row.event_type === 'material_selected') {
+      empty.materialSelected += 1;
+    } else if (row.event_type === 'email_submitted') {
+      empty.emailSubmitted += 1;
+    } else if (row.event_type === 'generation_requested') {
+      empty.generationRequested += 1;
+    } else if (row.event_type === 'reveal_rendered') {
+      empty.revealRendered += 1;
+    } else if (row.event_type === 'reveal_fallback_shown') {
+      empty.revealFallbackShown += 1;
+    } else if (row.event_type === 'generation_failed') {
+      empty.generationFailed += 1;
+    }
+  }
+
+  return empty;
 }
 
 export async function getMaterialPerformance(
