@@ -23,6 +23,7 @@
     "remotion": "^4.0.414",
     "resend": "^6.9.1",
     "rough-notation": "^0.5.1",
+    "sharp": "^0.34.5",
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {

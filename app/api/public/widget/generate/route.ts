@@ -1,6 +1,6 @@
 import { createHash } from 'crypto';
 import type { SupabaseClient } from '@supabase/supabase-js';
-import { NextRequest } from 'next/server';
+import { NextRequest, after } from 'next/server';
 import { Resend } from 'resend';
 import { createAdminClient } from '@/lib/supabase/admin';
 import {
@@ -8,7 +8,13 @@ import {
   notifyUsageThresholdAlerts,
 } from '@/lib/vizzion/billing';
 import { publicJsonResponse, publicOptionsResponse } from '@/lib/vizzion/cors';
+import { processGenerationJob } from '@/lib/vizzion/generation-worker';
 import { isOriginAllowed, resolvePublicWidget } from '@/lib/vizzion/widget-public';
+
+// The visitor's POST returns immediately with a queued job id; image generation
+// runs in the background via after() within this same invocation budget. The
+// widget polls generation-status for the result (typically a few seconds).
+export const maxDuration = 60;
 
 interface GenerateRequestBody {
   embedKey?: string;
@@ -797,6 +803,18 @@ export async function POST(request: NextRequest) {
         sourcePage,
         generationJobId: generationResult.data.id,
       },
+    });
+
+    // Kick off generation in the background so the visitor's request returns
+    // immediately. A cron backstop (api/cron/process-generation-jobs) recovers
+    // any job this invocation fails to complete.
+    const enqueuedJobId = generationResult.data.id;
+    after(async () => {
+      try {
+        await processGenerationJob(enqueuedJobId);
+      } catch {
+        // Errors are persisted on the job row by the worker; nothing to do here.
+      }
     });
 
     let emailStatus = lead?.email_status ?? null;
