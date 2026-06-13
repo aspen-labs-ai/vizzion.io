@@ -187,17 +187,32 @@ export async function processGenerationJob(
 
   const job = jobResult.data as GenerationJobRow;
 
-  // Atomically claim the job. Only proceed if we transition queued (or a stale
-  // processing row) into processing — this row-level guard prevents two workers
-  // from generating the same job.
+  // Atomically claim the job — flip queued -> processing, or reclaim a row that
+  // has been stuck in processing past the stale window. Done as two simple
+  // equality updates (a combined .or() filter with an embedded timestamp does
+  // not match reliably on UPDATE). The row-level update guards against two
+  // workers generating the same job.
+  const nowIso = new Date().toISOString();
   const staleBefore = new Date(Date.now() - STALE_PROCESSING_MS).toISOString();
-  const claim = await supabase
+
+  let claim = await supabase
     .from('generation_jobs')
-    .update({ status: 'processing', updated_at: new Date().toISOString() })
+    .update({ status: 'processing', updated_at: nowIso })
     .eq('id', job.id)
-    .or(`status.eq.queued,and(status.eq.processing,updated_at.lt.${staleBefore})`)
+    .eq('status', 'queued')
     .select('id')
     .maybeSingle();
+
+  if (!claim.error && !claim.data) {
+    claim = await supabase
+      .from('generation_jobs')
+      .update({ status: 'processing', updated_at: nowIso })
+      .eq('id', job.id)
+      .eq('status', 'processing')
+      .lt('updated_at', staleBefore)
+      .select('id')
+      .maybeSingle();
+  }
 
   if (claim.error || !claim.data) {
     return { ok: false, status: 'already_claimed' };
