@@ -241,7 +241,16 @@ export async function processGenerationJob(
     const imageBuffer = Buffer.from(await download.data.arrayBuffer());
     const imageMimeType = download.data.type || 'image/jpeg';
 
-    // 2. Resolve the selected material (tenant-defined change + reference swatch).
+    // 2a. Resolve the widget's target surface (where materials get applied).
+    const widgetResult = await supabase
+      .from('widgets')
+      .select('target_surface')
+      .eq('id', job.widget_id)
+      .maybeSingle();
+    const targetSurface =
+      (widgetResult.data as { target_surface: string | null } | null)?.target_surface ?? null;
+
+    // 2b. Resolve the selected material (name + plain description + reference image).
     let material = {
       name: 'the selected material',
       promptModifier: null as string | null,
@@ -277,6 +286,7 @@ export async function processGenerationJob(
       imageBuffer,
       imageMimeType,
       subjectType,
+      targetSurface,
       material,
     });
 

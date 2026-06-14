@@ -46,7 +46,7 @@ export default async function MaterialsPage({
     <div className="space-y-6">
       <PageHeader
         title="Materials"
-        description="The looks customers can preview — each one's prompt drives the AI visualization."
+        description="The looks customers can preview in your widget — add a photo or a short description of each."
       />
       <MaterialsManager
         key={context.widget.id}

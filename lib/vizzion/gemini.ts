@@ -33,6 +33,12 @@ export interface GenerateVisualizationInput {
   imageMimeType: string;
   /** What the photo depicts, used to phrase preservation context. */
   subjectType: WidgetSubjectType;
+  /**
+   * Plain phrase for the surface this widget changes (e.g. "the roof", "the
+   * siding"). Configured once per widget so materials only carry their own
+   * name/description. Falls back to "the primary surface" when unset.
+   */
+  targetSurface: string | null;
   material: GeminiMaterialInput;
 }
 
@@ -84,28 +90,32 @@ const SUBJECT_DESCRIPTORS: Record<WidgetSubjectType, string> = {
 };
 
 /**
- * Builds the image-edit instruction. The tenant controls *what* changes via the
- * material's prompt_modifier; subject_type supplies the realism/preservation
- * context so unrelated parts of the photo stay untouched.
+ * Builds the image-edit instruction. The customer describes a material in plain
+ * terms (name + optional description + optional reference photo); the widget's
+ * target_surface says where it goes; subject_type supplies the realism /
+ * preservation context so unrelated parts of the photo stay untouched. No
+ * "prompt engineering" is exposed to the customer — this template is the only
+ * place the model instruction is assembled.
  */
 export function buildVisualizationPrompt(
   subjectType: WidgetSubjectType,
   material: GeminiMaterialInput,
   hasReferenceImage: boolean,
+  targetSurface: string | null,
 ): string {
   const subject = SUBJECT_DESCRIPTORS[subjectType] ?? SUBJECT_DESCRIPTORS.generic;
+  const surface = targetSurface?.trim() || 'the primary surface';
 
-  const change = material.promptModifier?.trim()
-    ? material.promptModifier.trim()
-    : `apply ${material.name} to the primary surface`;
+  const description = material.promptModifier?.trim();
+  const descriptionNote = description ? ` Material details: ${description}.` : '';
 
   const referenceNote = hasReferenceImage
-    ? ` The second image is the exact ${material.name} sample — match its texture, color, and pattern precisely.`
+    ? ` The second image is a real sample of ${material.name} — match its texture, color, and pattern precisely.`
     : '';
 
   return [
     `Edit the first image, a photo of ${subject}.`,
-    `Make this change: ${change}.${referenceNote}`,
+    `Change ${surface} to ${material.name}, covering the existing material there.${descriptionNote}${referenceNote}`,
     `Render ${material.name} photorealistically with lighting, shadows, reflections, and perspective consistent with the original photo.`,
     'Keep every other element of the photo exactly the same — structure, background, surroundings, people, and framing must be unchanged.',
     'CRITICAL: The output image MUST keep the EXACT same dimensions, aspect ratio, framing, and composition as the input. Do not crop, zoom, pan, add borders, or change the perspective. Every pixel boundary should align with the original.',
@@ -262,6 +272,7 @@ export async function generateVisualization(
     input.subjectType,
     input.material,
     Boolean(reference),
+    input.targetSurface,
   );
 
   const parts: Array<Record<string, unknown>> = [

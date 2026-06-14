@@ -199,7 +199,7 @@ export default async function SettingsPage({
           <input
             type="hidden"
             name="present_fields"
-            value="name,subject_type,require_email,auto_open_widget,show_product_names,is_active"
+            value="name,subject_type,target_surface,require_email,auto_open_widget,show_product_names,is_active"
           />
           <InputField label="Widget name" name="name" defaultValue={widget.name} required disabled={!isOwner} hint="Internal label — not shown to visitors." />
           <SelectField
@@ -217,6 +217,13 @@ export default async function SettingsPage({
               { value: 'room', label: 'Room — interior spaces' },
               { value: 'generic', label: 'Generic — anything' },
             ]}
+          />
+          <InputField
+            label="What does this widget change?"
+            name="target_surface"
+            defaultValue={widget.target_surface ?? ''}
+            disabled={!isOwner}
+            hint="The part of the photo your materials are applied to, e.g. “the roof”, “the siding”, “the driveway”. Set it once — every material gets applied here."
           />
           <ToggleField
             name="require_email"

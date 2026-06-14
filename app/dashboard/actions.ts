@@ -1,9 +1,63 @@
 'use server';
 
+import { randomUUID } from 'crypto';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import type { SupabaseClient } from '@supabase/supabase-js';
 import { createClient } from '@/lib/supabase/server';
 import { getWorkspaceContext } from '@/lib/vizzion/workspace';
+
+const MATERIAL_IMAGE_MAX_BYTES = 8 * 1024 * 1024;
+const MATERIAL_IMAGE_MIME_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp']);
+
+function materialImageExtension(file: File): string {
+  if (file.type === 'image/png') {
+    return 'png';
+  }
+  if (file.type === 'image/webp') {
+    return 'webp';
+  }
+  return 'jpg';
+}
+
+/**
+ * Uploads an optional customer-provided material image to the public `materials`
+ * bucket and returns its public URL. The path is prefixed with the workspace id
+ * so the owner-only storage RLS policy (keyed off storage_workspace_id) permits
+ * the write. Returns null when no file was provided, or an { error } when the
+ * file is present but invalid.
+ */
+async function uploadMaterialImage(
+  supabase: SupabaseClient,
+  workspaceId: string,
+  widgetId: string,
+  fileValue: FormDataEntryValue | null,
+): Promise<{ url: string } | { error: string } | null> {
+  if (!(fileValue instanceof File) || fileValue.size < 1) {
+    return null;
+  }
+
+  if (!MATERIAL_IMAGE_MIME_TYPES.has(fileValue.type)) {
+    return { error: 'Material image must be a JPG, PNG, or WebP file.' };
+  }
+
+  if (fileValue.size > MATERIAL_IMAGE_MAX_BYTES) {
+    return { error: 'Material image must be 8 MB or smaller.' };
+  }
+
+  const path = `${workspaceId}/${widgetId}/${randomUUID()}.${materialImageExtension(fileValue)}`;
+  const buffer = Buffer.from(await fileValue.arrayBuffer());
+
+  const uploadResult = await supabase.storage
+    .from('materials')
+    .upload(path, buffer, { contentType: fileValue.type, upsert: false });
+
+  if (uploadResult.error) {
+    return { error: 'Unable to upload the material image. Please try again.' };
+  }
+
+  return { url: supabase.storage.from('materials').getPublicUrl(path).data.publicUrl };
+}
 
 function getFormValue(formData: FormData, key: string): string {
   const value = formData.get(key);
@@ -146,6 +200,9 @@ export async function updateWidgetSettingsAction(formData: FormData) {
   }
   if (has('subject_type')) {
     update.subject_type = parseSubjectType(getFormValue(formData, 'subject_type'));
+  }
+  if (has('target_surface')) {
+    update.target_surface = parseOptional(getFormValue(formData, 'target_surface').slice(0, 120));
   }
   if (has('require_email')) {
     update.require_email = parseCheckbox(formData, 'require_email');
@@ -372,13 +429,23 @@ export async function createMaterialAction(formData: FormData) {
     );
   }
 
+  const imageResult = await uploadMaterialImage(
+    supabase,
+    context.workspace.id,
+    context.widget.id,
+    formData.get('image_file'),
+  );
+  if (imageResult && 'error' in imageResult) {
+    redirect(`/dashboard/materials?error=${encodeURIComponent(imageResult.error)}${widgetSuffix(widgetId)}`);
+  }
+
   const insertResult = await supabase.from('materials').insert({
     workspace_id: context.workspace.id,
     widget_id: context.widget.id,
     name,
-    swatch_url: parseOptional(getFormValue(formData, 'swatch_url')),
-    texture_url: parseOptional(getFormValue(formData, 'texture_url')),
-    prompt_modifier: parseOptional(getFormValue(formData, 'prompt_modifier')),
+    swatch_url: imageResult?.url ?? null,
+    texture_url: null,
+    prompt_modifier: parseOptional(getFormValue(formData, 'description')),
     sort_order: parseInteger(getFormValue(formData, 'sort_order'), 0),
     is_active: parseCheckbox(formData, 'is_active'),
   });
@@ -403,16 +470,33 @@ export async function updateMaterialAction(formData: FormData) {
     redirect(`/dashboard/materials?error=Invalid+material+update+request.${widgetSuffix(widgetId)}`);
   }
 
+  const imageResult = await uploadMaterialImage(
+    supabase,
+    context.workspace.id,
+    context.widget.id,
+    formData.get('image_file'),
+  );
+  if (imageResult && 'error' in imageResult) {
+    redirect(`/dashboard/materials?error=${encodeURIComponent(imageResult.error)}${widgetSuffix(widgetId)}`);
+  }
+
+  const update: Record<string, unknown> = {
+    name,
+    prompt_modifier: parseOptional(getFormValue(formData, 'description')),
+    sort_order: parseInteger(getFormValue(formData, 'sort_order'), 0),
+    is_active: parseCheckbox(formData, 'is_active'),
+  };
+  // Only touch the image when a new one was uploaded or removal was requested —
+  // otherwise the existing swatch is left intact.
+  if (imageResult?.url) {
+    update.swatch_url = imageResult.url;
+  } else if (parseCheckbox(formData, 'remove_image')) {
+    update.swatch_url = null;
+  }
+
   const updateResult = await supabase
     .from('materials')
-    .update({
-      name,
-      swatch_url: parseOptional(getFormValue(formData, 'swatch_url')),
-      texture_url: parseOptional(getFormValue(formData, 'texture_url')),
-      prompt_modifier: parseOptional(getFormValue(formData, 'prompt_modifier')),
-      sort_order: parseInteger(getFormValue(formData, 'sort_order'), 0),
-      is_active: parseCheckbox(formData, 'is_active'),
-    })
+    .update(update)
     .eq('id', materialId)
     .eq('workspace_id', context.workspace.id)
     .eq('widget_id', context.widget.id);

@@ -25,6 +25,7 @@ export interface WidgetRecord {
   auto_open_widget: boolean;
   show_product_names: boolean;
   subject_type: 'home' | 'vehicle' | 'body' | 'yard' | 'boat' | 'room' | 'generic' | string;
+  target_surface: string | null;
   domain_allowlist: string[];
   max_generations_per_session: number | null;
   max_generations_per_email_lifetime: number | null;
@@ -101,7 +102,7 @@ function getSinceIso(days: number): string {
 }
 
 const WIDGET_SELECT =
-  'id, workspace_id, name, embed_key, mode, theme, brand_color, is_active, require_email, auto_open_widget, show_product_names, subject_type, domain_allowlist, max_generations_per_session, max_generations_per_email_lifetime, limit_reached_cta_url, is_primary';
+  'id, workspace_id, name, embed_key, mode, theme, brand_color, is_active, require_email, auto_open_widget, show_product_names, subject_type, target_surface, domain_allowlist, max_generations_per_session, max_generations_per_email_lifetime, limit_reached_cta_url, is_primary';
 
 export interface WorkspaceWidgetSummary {
   id: string;
