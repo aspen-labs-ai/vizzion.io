@@ -250,38 +250,49 @@ export async function getDashboardMetrics(
   supabase: SupabaseClient,
   workspaceId: string,
   widgetId: string,
+  sinceIso?: string,
+  untilIso?: string | null,
 ): Promise<DashboardMetrics> {
-  const since = getSinceIso(30);
+  const since = sinceIso ?? getSinceIso(30);
+  const withRange = <T extends { gte: (c: string, v: string) => T; lte: (c: string, v: string) => T }>(
+    query: T,
+    column: string,
+  ): T => {
+    const ranged = since ? query.gte(column, since) : query;
+    return untilIso ? ranged.lte(column, untilIso) : ranged;
+  };
 
   const [sessionsResult, leadsResult, activeMaterialsResult, sentEmailsResult, queuedJobsResult] =
     await Promise.all([
-      supabase
-        .from('widget_sessions')
-        .select('*', { head: true, count: 'exact' })
-        .eq('widget_id', widgetId)
-        .gte('started_at', since),
-      supabase
-        .from('leads')
-        .select('*', { head: true, count: 'exact' })
-        .eq('widget_id', widgetId)
-        .gte('created_at', since),
+      withRange(
+        supabase.from('widget_sessions').select('*', { head: true, count: 'exact' }).eq('widget_id', widgetId),
+        'started_at',
+      ),
+      withRange(
+        supabase.from('leads').select('*', { head: true, count: 'exact' }).eq('widget_id', widgetId),
+        'created_at',
+      ),
       supabase
         .from('materials')
         .select('*', { head: true, count: 'exact' })
         .eq('widget_id', widgetId)
         .eq('is_active', true),
-      supabase
-        .from('leads')
-        .select('*', { head: true, count: 'exact' })
-        .eq('workspace_id', workspaceId)
-        .eq('email_status', 'sent')
-        .gte('created_at', since),
-      supabase
-        .from('generation_jobs')
-        .select('*', { head: true, count: 'exact' })
-        .eq('workspace_id', workspaceId)
-        .in('status', ['queued', 'processing'])
-        .gte('created_at', since),
+      withRange(
+        supabase
+          .from('leads')
+          .select('*', { head: true, count: 'exact' })
+          .eq('workspace_id', workspaceId)
+          .eq('email_status', 'sent'),
+        'created_at',
+      ),
+      withRange(
+        supabase
+          .from('generation_jobs')
+          .select('*', { head: true, count: 'exact' })
+          .eq('workspace_id', workspaceId)
+          .in('status', ['queued', 'processing']),
+        'created_at',
+      ),
     ]);
 
   const sessions30d = toCount(sessionsResult.count);
@@ -331,14 +342,14 @@ export async function getEventBreakdown(
 export async function getStepFunnelMetrics(
   supabase: SupabaseClient,
   widgetId: string,
-  days = 30,
+  sinceIso?: string,
+  untilIso?: string | null,
 ): Promise<StepFunnelMetrics> {
-  const since = getSinceIso(days);
-  const result = await supabase
+  const since = sinceIso ?? getSinceIso(30);
+  let query = supabase
     .from('widget_events')
     .select('event_type')
     .eq('widget_id', widgetId)
-    .gte('created_at', since)
     .in('event_type', [
       'widget_opened',
       'upload_started',
@@ -349,8 +360,14 @@ export async function getStepFunnelMetrics(
       'reveal_rendered',
       'reveal_fallback_shown',
       'generation_failed',
-    ])
-    .limit(5000);
+    ]);
+  if (since) {
+    query = query.gte('created_at', since);
+  }
+  if (untilIso) {
+    query = query.lte('created_at', untilIso);
+  }
+  const result = await query.limit(5000);
 
   const empty: StepFunnelMetrics = {
     widgetOpened: 0,
@@ -396,18 +413,28 @@ export async function getStepFunnelMetrics(
 export async function getMaterialPerformance(
   supabase: SupabaseClient,
   widgetId: string,
+  sinceIso?: string,
+  untilIso?: string | null,
 ): Promise<MaterialPerformanceItem[]> {
+  let leadsQuery = supabase
+    .from('leads')
+    .select('material_id')
+    .eq('widget_id', widgetId)
+    .not('material_id', 'is', null);
+  if (sinceIso) {
+    leadsQuery = leadsQuery.gte('created_at', sinceIso);
+  }
+  if (untilIso) {
+    leadsQuery = leadsQuery.lte('created_at', untilIso);
+  }
+
   const [materialsResult, leadsResult] = await Promise.all([
     supabase
       .from('materials')
       .select('id, name, is_active, sort_order')
       .eq('widget_id', widgetId)
       .order('sort_order', { ascending: true }),
-    supabase
-      .from('leads')
-      .select('material_id')
-      .eq('widget_id', widgetId)
-      .not('material_id', 'is', null),
+    leadsQuery,
   ]);
 
   if (materialsResult.error || !materialsResult.data) {
@@ -446,13 +473,21 @@ export async function getRecentLeads(
   supabase: SupabaseClient,
   widgetId: string,
   limit = 15,
+  sinceIso?: string,
+  untilIso?: string | null,
 ): Promise<RecentLeadItem[]> {
-  const leadsResult = await supabase
+  let leadsQuery = supabase
     .from('leads')
     .select('id, email, email_status, source_page, created_at, material_id')
     .eq('widget_id', widgetId)
-    .order('created_at', { ascending: false })
-    .limit(limit);
+    .order('created_at', { ascending: false });
+  if (sinceIso) {
+    leadsQuery = leadsQuery.gte('created_at', sinceIso);
+  }
+  if (untilIso) {
+    leadsQuery = leadsQuery.lte('created_at', untilIso);
+  }
+  const leadsResult = await leadsQuery.limit(limit);
 
   if (leadsResult.error || !leadsResult.data) {
     return [];

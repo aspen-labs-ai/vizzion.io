@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import DateRangeFilter from '@/components/dashboard/DateRangeFilter';
 import LeadFunnel, { type FunnelStage } from '@/components/dashboard/LeadFunnel';
 import MaterialBarChart from '@/components/dashboard/MaterialBarChart';
 import PageHeader from '@/components/dashboard/PageHeader';
@@ -28,6 +29,43 @@ function getSingleParam(value: string | string[] | undefined): string | null {
 
 function formatPercent(value: number): string {
   return `${value.toFixed(1)}%`;
+}
+
+function resolveDateRange(params: Record<string, string | string[] | undefined>): {
+  sinceIso: string;
+  untilIso: string | null;
+  label: string;
+} {
+  const from = getSingleParam(params.from);
+  const to = getSingleParam(params.to);
+  const range = getSingleParam(params.range);
+
+  if (from && to) {
+    const start = new Date(`${from}T00:00:00`);
+    const end = new Date(`${to}T23:59:59`);
+    if (!Number.isNaN(start.getTime()) && !Number.isNaN(end.getTime())) {
+      return {
+        sinceIso: start.toISOString(),
+        untilIso: end.toISOString(),
+        label: `${start.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} – ${end.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`,
+      };
+    }
+  }
+
+  if (range === 'all') {
+    return { sinceIso: '1970-01-01T00:00:00.000Z', untilIso: null, label: 'all time' };
+  }
+
+  const presets: Record<string, { days: number; label: string }> = {
+    '7': { days: 7, label: 'the last 7 days' },
+    '30': { days: 30, label: 'the last 30 days' },
+    '90': { days: 90, label: 'the last 90 days' },
+    '180': { days: 180, label: 'the last 180 days' },
+    '365': { days: 365, label: 'the last 12 months' },
+  };
+  const preset = (range && presets[range]) || presets['30'];
+  const since = new Date(Date.now() - preset.days * 24 * 60 * 60 * 1000);
+  return { sinceIso: since.toISOString(), untilIso: null, label: preset.label };
 }
 
 function formatDate(dateString: string): string {
@@ -73,11 +111,13 @@ export default async function DashboardOverviewPage({
     }
   }
 
+  const { sinceIso, untilIso, label: rangeLabel } = resolveDateRange(resolvedParams);
+
   const [metrics, materialPerformance, recentLeads, stepFunnel] = await Promise.all([
-    getDashboardMetrics(supabase, context.workspace.id, selectedWidget.id),
-    getMaterialPerformance(supabase, selectedWidget.id),
-    getRecentLeads(supabase, selectedWidget.id, 6),
-    getStepFunnelMetrics(supabase, selectedWidget.id, 30),
+    getDashboardMetrics(supabase, context.workspace.id, selectedWidget.id, sinceIso, untilIso),
+    getMaterialPerformance(supabase, selectedWidget.id, sinceIso, untilIso),
+    getRecentLeads(supabase, selectedWidget.id, 12, sinceIso, untilIso),
+    getStepFunnelMetrics(supabase, selectedWidget.id, sinceIso, untilIso),
   ]);
   const funnelStages: FunnelStage[] = [
     { key: 'opened', label: 'Opened the widget', count: stepFunnel.widgetOpened },
@@ -113,14 +153,17 @@ export default async function DashboardOverviewPage({
     <div className="space-y-8">
       <PageHeader
         title="Dashboard"
-        description={`Performance and activity for ${selectedWidget.name} over the last 30 days.`}
+        description={`Performance and activity for ${selectedWidget.name} over ${rangeLabel}.`}
         actions={
-          <Link
-            href="/dashboard/settings"
-            className="inline-flex items-center rounded-lg border border-border-default bg-bg-secondary px-4 py-2 text-sm font-semibold text-text-secondary transition hover:border-accent/40 hover:text-text-primary"
-          >
-            Widget setup
-          </Link>
+          <>
+            <DateRangeFilter />
+            <Link
+              href="/dashboard/settings"
+              className="inline-flex items-center rounded-lg border border-border-default bg-bg-secondary px-4 py-2 text-sm font-semibold text-text-secondary transition hover:border-accent/40 hover:text-text-primary"
+            >
+              Widget setup
+            </Link>
+          </>
         }
       />
 
@@ -143,8 +186,8 @@ export default async function DashboardOverviewPage({
       ) : null}
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-6">
-        <MetricCard label="Sessions (30d)" value={metrics.sessions30d.toLocaleString()} />
-        <MetricCard label="Leads (30d)" value={metrics.leads30d.toLocaleString()} />
+        <MetricCard label="Sessions" value={metrics.sessions30d.toLocaleString()} />
+        <MetricCard label="Leads" value={metrics.leads30d.toLocaleString()} />
         <MetricCard label="Conversion" value={formatPercent(metrics.conversionRate30d)} />
         <MetricCard label="Active Materials" value={metrics.activeMaterials.toLocaleString()} />
         <MetricCard label="Emails Sent" value={metrics.sentEmailCount30d.toLocaleString()} />
@@ -170,25 +213,29 @@ export default async function DashboardOverviewPage({
         </div>
 
         {recentLeads.length === 0 ? (
-          <p className="text-sm text-text-tertiary">No leads yet.</p>
+          <p className="rounded-xl border border-border-default bg-bg-primary px-4 py-5 text-center text-sm text-text-tertiary">
+            No leads in this period.
+          </p>
         ) : (
-          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-            {recentLeads.map(lead => (
-              <div
-                key={lead.id}
-                className="rounded-lg border border-border-default bg-bg-primary px-3 py-2"
-              >
-                <div className="flex items-center justify-between gap-3">
-                  <p className="truncate text-sm font-medium text-text-primary">{lead.email}</p>
-                  <span className="text-xs uppercase tracking-wide text-text-tertiary">
+          <div className="overflow-hidden rounded-xl border border-border-default">
+            <div className="divide-y divide-border-default">
+              {recentLeads.map(lead => (
+                <div
+                  key={lead.id}
+                  className="flex items-center justify-between gap-4 px-4 py-2.5 transition hover:bg-bg-primary/40"
+                >
+                  <div className="min-w-0">
+                    <p className="truncate text-sm font-medium text-text-primary">{lead.email}</p>
+                    <p className="truncate text-xs text-text-tertiary">
+                      {lead.materialName ?? 'No material'} · {formatDate(lead.createdAt)}
+                    </p>
+                  </div>
+                  <span className="shrink-0 rounded-full border border-border-default bg-bg-primary px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-wide text-text-tertiary">
                     {lead.emailStatus}
                   </span>
                 </div>
-                <p className="mt-1 text-xs text-text-tertiary">
-                  {lead.materialName ?? 'No material'} • {formatDate(lead.createdAt)}
-                </p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         )}
       </section>
