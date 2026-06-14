@@ -1,9 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Check, ChevronsUpDown, Plus } from 'lucide-react';
+import BrandLoader from '@/components/BrandLoader';
 
 function readWidgetCookie(): string | null {
   if (typeof document === 'undefined') return null;
@@ -25,6 +26,7 @@ interface WidgetSwitcherProps {
 
 export default function WidgetSwitcher({ widgets, defaultWidgetId }: WidgetSwitcherProps) {
   const [open, setOpen] = useState(false);
+  const [isPending, startTransition] = useTransition();
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -50,7 +52,11 @@ export default function WidgetSwitcher({ widgets, defaultWidgetId }: WidgetSwitc
     // Stay on the current page; just re-point it at the selected widget.
     const params = new URLSearchParams(searchParams.toString());
     params.set('widgetId', id);
-    router.push(`${pathname}?${params.toString()}`);
+    // Wrap in a transition so we can show the branded loader while the new
+    // widget's page renders (a query-only change doesn't trigger loading.tsx).
+    startTransition(() => {
+      router.push(`${pathname}?${params.toString()}`);
+    });
   }
 
   if (!current) {
@@ -112,6 +118,12 @@ export default function WidgetSwitcher({ widgets, defaultWidgetId }: WidgetSwitc
             </Link>
           </div>
         </>
+      ) : null}
+
+      {isPending ? (
+        <div className="fixed inset-0 z-40 flex items-center justify-center bg-bg-primary/85 backdrop-blur-sm lg:left-[280px]">
+          <BrandLoader full={false} label="Switching widget…" />
+        </div>
       ) : null}
     </div>
   );
