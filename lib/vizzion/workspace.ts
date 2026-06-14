@@ -97,7 +97,38 @@ function getSinceIso(days: number): string {
   return new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
 }
 
-export async function getWorkspaceContext(supabase: SupabaseClient): Promise<WorkspaceContext | null> {
+const WIDGET_SELECT =
+  'id, workspace_id, name, embed_key, mode, theme, brand_color, is_active, require_email, auto_open_widget, show_product_names, subject_type, domain_allowlist, max_generations_per_session, max_generations_per_email_lifetime, limit_reached_cta_url, is_primary';
+
+export interface WorkspaceWidgetSummary {
+  id: string;
+  name: string;
+  is_primary: boolean;
+  is_active: boolean;
+}
+
+export async function listWorkspaceWidgets(
+  supabase: SupabaseClient,
+  workspaceId: string,
+): Promise<WorkspaceWidgetSummary[]> {
+  const result = await supabase
+    .from('widgets')
+    .select('id, name, is_primary, is_active')
+    .eq('workspace_id', workspaceId)
+    .order('is_primary', { ascending: false })
+    .order('created_at', { ascending: true });
+
+  if (result.error || !result.data) {
+    return [];
+  }
+
+  return result.data as WorkspaceWidgetSummary[];
+}
+
+export async function getWorkspaceContext(
+  supabase: SupabaseClient,
+  selectedWidgetId?: string | null,
+): Promise<WorkspaceContext | null> {
   const {
     data: { user },
     error: authError,
@@ -133,22 +164,39 @@ export async function getWorkspaceContext(supabase: SupabaseClient): Promise<Wor
 
   const workspace = workspaceResult.data as WorkspaceRecord;
 
-  const widgetResult = await supabase
-    .from('widgets')
-    .select(
-      'id, workspace_id, name, embed_key, mode, theme, brand_color, is_active, require_email, auto_open_widget, show_product_names, subject_type, domain_allowlist, max_generations_per_session, max_generations_per_email_lifetime, limit_reached_cta_url, is_primary',
-    )
-    .eq('workspace_id', workspace.id)
-    .order('is_primary', { ascending: false })
-    .order('created_at', { ascending: true })
-    .limit(1)
-    .maybeSingle();
+  let widget: WidgetRecord | null = null;
 
-  if (widgetResult.error) {
-    return null;
+  // When a specific widget is requested (e.g. via ?widgetId=), load it as long
+  // as it belongs to this workspace. Otherwise fall back to the primary widget.
+  if (selectedWidgetId) {
+    const selectedResult = await supabase
+      .from('widgets')
+      .select(WIDGET_SELECT)
+      .eq('id', selectedWidgetId)
+      .eq('workspace_id', workspace.id)
+      .maybeSingle();
+
+    if (!selectedResult.error && selectedResult.data) {
+      widget = selectedResult.data as WidgetRecord;
+    }
   }
 
-  let widget = widgetResult.data as WidgetRecord | null;
+  if (!widget) {
+    const widgetResult = await supabase
+      .from('widgets')
+      .select(WIDGET_SELECT)
+      .eq('workspace_id', workspace.id)
+      .order('is_primary', { ascending: false })
+      .order('created_at', { ascending: true })
+      .limit(1)
+      .maybeSingle();
+
+    if (widgetResult.error) {
+      return null;
+    }
+
+    widget = widgetResult.data as WidgetRecord | null;
+  }
 
   if (!widget) {
     const createResult = await supabase
@@ -160,9 +208,7 @@ export async function getWorkspaceContext(supabase: SupabaseClient): Promise<Wor
         mode: 'inline',
         theme: 'dark',
       })
-      .select(
-        'id, workspace_id, name, embed_key, mode, theme, brand_color, is_active, require_email, auto_open_widget, show_product_names, subject_type, domain_allowlist, max_generations_per_session, max_generations_per_email_lifetime, limit_reached_cta_url, is_primary',
-      )
+      .select(WIDGET_SELECT)
       .single();
 
     if (createResult.error || !createResult.data) {

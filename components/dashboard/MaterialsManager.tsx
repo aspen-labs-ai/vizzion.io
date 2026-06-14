@@ -18,6 +18,7 @@ interface MaterialsManagerProps {
   materials: MaterialItem[];
   materialsQuota: number | null;
   planName: string | null;
+  widgetId: string;
   canManage: boolean;
   error: string | null;
   saved: boolean;
@@ -56,6 +57,7 @@ export default function MaterialsManager({
   materials,
   materialsQuota,
   planName,
+  widgetId,
   canManage,
   error,
   saved,
@@ -226,6 +228,7 @@ export default function MaterialsManager({
         <MaterialModal
           title="Create Material"
           submitLabel="Create Material"
+          widgetId={widgetId}
           onClose={() => setIsCreateOpen(false)}
           onSubmit={onCreate}
         />
@@ -236,6 +239,7 @@ export default function MaterialsManager({
           key={editingMaterial.id}
           title={`Edit ${editingMaterial.name}`}
           submitLabel="Save Changes"
+          widgetId={widgetId}
           onClose={() => setEditingMaterialId(null)}
           onSubmit={onUpdate}
           onDelete={onDelete}
@@ -249,6 +253,7 @@ export default function MaterialsManager({
 function MaterialModal({
   title,
   submitLabel,
+  widgetId,
   onClose,
   onSubmit,
   onDelete,
@@ -256,6 +261,7 @@ function MaterialModal({
 }: {
   title: string;
   submitLabel: string;
+  widgetId: string;
   onClose: () => void;
   onSubmit: MaterialAction;
   onDelete?: MaterialAction;
@@ -276,6 +282,7 @@ function MaterialModal({
         </div>
 
         <form action={onSubmit} className="space-y-4 px-5 py-5">
+          <input type="hidden" name="widget_id" value={widgetId} />
           {material ? <input type="hidden" name="material_id" value={material.id} /> : null}
 
           <div className="grid gap-4 md:grid-cols-2">

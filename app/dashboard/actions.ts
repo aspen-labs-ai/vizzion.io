@@ -90,9 +90,9 @@ function parseSubjectType(value: string): string {
   return 'home';
 }
 
-async function requireOwnerContext() {
+async function requireOwnerContext(widgetId?: string | null) {
   const supabase = await createClient();
-  const context = await getWorkspaceContext(supabase);
+  const context = await getWorkspaceContext(supabase, widgetId || undefined);
 
   if (!context) {
     redirect('/auth/sign-in');
@@ -105,8 +105,14 @@ async function requireOwnerContext() {
   return { supabase, context };
 }
 
+/** Builds a trailing query suffix that preserves the selected widget across redirects. */
+function widgetSuffix(widgetId: string | null | undefined): string {
+  return widgetId ? `&widgetId=${encodeURIComponent(widgetId)}` : '';
+}
+
 export async function updateWidgetSettingsAction(formData: FormData) {
-  const { supabase, context } = await requireOwnerContext();
+  const widgetId = getFormValue(formData, 'widget_id') || null;
+  const { supabase, context } = await requireOwnerContext(widgetId);
 
   const name = getFormValue(formData, 'name') || context.widget.name;
   const mode = getFormValue(formData, 'mode') === 'popup' ? 'popup' : 'inline';
@@ -215,7 +221,7 @@ export async function updateWidgetSettingsAction(formData: FormData) {
   revalidatePath('/dashboard');
   revalidatePath('/dashboard/portfolio');
   revalidatePath('/dashboard/settings');
-  redirect('/dashboard/settings?saved=1');
+  redirect(`/dashboard/settings?saved=1${widgetSuffix(context.widget.id)}`);
 }
 
 export async function updateWorkspaceProfileAction(formData: FormData) {
@@ -248,14 +254,15 @@ export async function updateWorkspaceProfileAction(formData: FormData) {
   redirect('/dashboard/settings?workspace_saved=1');
 }
 
-export async function regenerateEmbedKeyAction() {
-  const { supabase, context } = await requireOwnerContext();
+export async function regenerateEmbedKeyAction(formData: FormData) {
+  const widgetId = getFormValue(formData, 'widget_id') || null;
+  const { supabase, context } = await requireOwnerContext(widgetId);
 
   const keyResult = await supabase.rpc('generate_embed_key');
   const newKey = typeof keyResult.data === 'string' ? keyResult.data : null;
 
   if (keyResult.error || !newKey) {
-    redirect('/dashboard/settings?error=Unable+to+regenerate+embed+key.');
+    redirect(`/dashboard/settings?error=Unable+to+regenerate+embed+key.${widgetSuffix(context.widget.id)}`);
   }
 
   const updateResult = await supabase
@@ -265,20 +272,52 @@ export async function regenerateEmbedKeyAction() {
     .eq('workspace_id', context.workspace.id);
 
   if (updateResult.error) {
-    redirect(`/dashboard/settings?error=${encodeURIComponent(updateResult.error.message)}`);
+    redirect(`/dashboard/settings?error=${encodeURIComponent(updateResult.error.message)}${widgetSuffix(context.widget.id)}`);
   }
 
   revalidatePath('/dashboard');
   revalidatePath('/dashboard/settings');
-  redirect('/dashboard/settings?key_regenerated=1');
+  redirect(`/dashboard/settings?key_regenerated=1${widgetSuffix(context.widget.id)}`);
+}
+
+export async function createWidgetAction(formData: FormData) {
+  const { supabase, context } = await requireOwnerContext();
+
+  const name = getFormValue(formData, 'name') || 'New Widget';
+  const subjectType = parseSubjectType(getFormValue(formData, 'subject_type'));
+
+  const insertResult = await supabase
+    .from('widgets')
+    .insert({
+      workspace_id: context.workspace.id,
+      name,
+      subject_type: subjectType,
+      is_primary: false,
+      mode: 'inline',
+      theme: 'dark',
+    })
+    .select('id')
+    .single();
+
+  if (insertResult.error || !insertResult.data) {
+    redirect(
+      `/dashboard/settings?error=${encodeURIComponent(insertResult.error?.message ?? 'Unable to create widget.')}`,
+    );
+  }
+
+  const newId = (insertResult.data as { id: string }).id;
+  revalidatePath('/dashboard');
+  revalidatePath('/dashboard/settings');
+  redirect(`/dashboard/settings?saved=1${widgetSuffix(newId)}`);
 }
 
 export async function createMaterialAction(formData: FormData) {
-  const { supabase, context } = await requireOwnerContext();
+  const widgetId = getFormValue(formData, 'widget_id') || null;
+  const { supabase, context } = await requireOwnerContext(widgetId);
 
   const name = getFormValue(formData, 'name');
   if (!name) {
-    redirect('/dashboard/materials?error=Material+name+is+required.');
+    redirect(`/dashboard/materials?error=Material+name+is+required.${widgetSuffix(widgetId)}`);
   }
 
   const quotaCheckResult = await supabase.rpc('check_material_quota', {
@@ -316,22 +355,23 @@ export async function createMaterialAction(formData: FormData) {
   });
 
   if (insertResult.error) {
-    redirect(`/dashboard/materials?error=${encodeURIComponent(insertResult.error.message)}`);
+    redirect(`/dashboard/materials?error=${encodeURIComponent(insertResult.error.message)}${widgetSuffix(widgetId)}`);
   }
 
   revalidatePath('/dashboard');
   revalidatePath('/dashboard/materials');
-  redirect('/dashboard/materials?saved=1');
+  redirect(`/dashboard/materials?saved=1${widgetSuffix(widgetId)}`);
 }
 
 export async function updateMaterialAction(formData: FormData) {
-  const { supabase, context } = await requireOwnerContext();
+  const widgetId = getFormValue(formData, 'widget_id') || null;
+  const { supabase, context } = await requireOwnerContext(widgetId);
 
   const materialId = getFormValue(formData, 'material_id');
   const name = getFormValue(formData, 'name');
 
   if (!materialId || !name) {
-    redirect('/dashboard/materials?error=Invalid+material+update+request.');
+    redirect(`/dashboard/materials?error=Invalid+material+update+request.${widgetSuffix(widgetId)}`);
   }
 
   const updateResult = await supabase
@@ -354,15 +394,16 @@ export async function updateMaterialAction(formData: FormData) {
 
   revalidatePath('/dashboard');
   revalidatePath('/dashboard/materials');
-  redirect('/dashboard/materials?saved=1');
+  redirect(`/dashboard/materials?saved=1${widgetSuffix(widgetId)}`);
 }
 
 export async function deleteMaterialAction(formData: FormData) {
-  const { supabase, context } = await requireOwnerContext();
+  const widgetId = getFormValue(formData, 'widget_id') || null;
+  const { supabase, context } = await requireOwnerContext(widgetId);
   const materialId = getFormValue(formData, 'material_id');
 
   if (!materialId) {
-    redirect('/dashboard/materials?error=Missing+material+id.');
+    redirect(`/dashboard/materials?error=Missing+material+id.${widgetSuffix(widgetId)}`);
   }
 
   const deleteResult = await supabase
@@ -378,7 +419,7 @@ export async function deleteMaterialAction(formData: FormData) {
 
   revalidatePath('/dashboard');
   revalidatePath('/dashboard/materials');
-  redirect('/dashboard/materials?deleted=1');
+  redirect(`/dashboard/materials?deleted=1${widgetSuffix(widgetId)}`);
 }
 
 export async function updateOverageSettingsAction(formData: FormData) {

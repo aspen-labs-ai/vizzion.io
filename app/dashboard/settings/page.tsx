@@ -30,13 +30,14 @@ export default async function SettingsPage({
   searchParams: SearchParams;
 }) {
   const supabase = await createClient();
-  const context = await getWorkspaceContext(supabase);
+  const resolvedParams = await searchParams;
+  const selectedWidgetId = getSingleParam(resolvedParams.widgetId);
+  const context = await getWorkspaceContext(supabase, selectedWidgetId);
 
   if (!context) {
     redirect('/auth/sign-in');
   }
 
-  const resolvedParams = await searchParams;
   const error = getSingleParam(resolvedParams.error);
   const saved = getSingleParam(resolvedParams.saved) === '1';
   const workspaceSaved = getSingleParam(resolvedParams.workspace_saved) === '1';
@@ -144,6 +145,7 @@ export default async function SettingsPage({
         ) : null}
 
         <form action={updateWidgetSettingsAction} className="mt-5 grid gap-4 md:grid-cols-2">
+          <input type="hidden" name="widget_id" value={context.widget.id} />
           <InputField
             label="Widget Name"
             name="name"
@@ -313,6 +315,7 @@ export default async function SettingsPage({
           </div>
 
           <form action={regenerateEmbedKeyAction}>
+            <input type="hidden" name="widget_id" value={context.widget.id} />
             <button
               type="submit"
               disabled={!isOwner}

@@ -2,10 +2,11 @@ import Image from 'next/image';
 import { signOutAction } from '@/app/auth/actions';
 import AppNav from '@/components/dashboard/AppNav';
 import Topbar from '@/components/dashboard/Topbar';
+import WidgetSwitcher from '@/components/dashboard/WidgetSwitcher';
 import { createClient } from '@/lib/supabase/server';
 import { getWorkspaceWidgets } from '@/lib/vizzion/portfolio';
 import { getMissingSetupRequirements } from '@/lib/vizzion/setup-requirements';
-import { getWorkspaceContext } from '@/lib/vizzion/workspace';
+import { getWorkspaceContext, listWorkspaceWidgets } from '@/lib/vizzion/workspace';
 
 export const dynamic = 'force-dynamic';
 
@@ -66,6 +67,7 @@ export default async function DashboardLayout({
   const userEmail = user?.email ?? '';
   const workspaceWidgets = await getWorkspaceWidgets(supabase, context.workspace.id);
   const showPortfolioNav = workspaceWidgets.length > 1;
+  const widgetOptions = await listWorkspaceWidgets(supabase, context.workspace.id);
 
   const navGroups = [
     {
@@ -115,6 +117,10 @@ export default async function DashboardLayout({
                 Editor
               </span>
             ) : null}
+          </div>
+
+          <div className="border-b border-border-default px-4 py-4">
+            <WidgetSwitcher widgets={widgetOptions} defaultWidgetId={context.widget.id} />
           </div>
 
           <div className="px-4 py-5">
@@ -171,6 +177,10 @@ export default async function DashboardLayout({
                   Sign out
                 </button>
               </form>
+            </div>
+
+            <div className="mt-4">
+              <WidgetSwitcher widgets={widgetOptions} defaultWidgetId={context.widget.id} />
             </div>
 
             <div className="mt-4">

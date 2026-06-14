@@ -14,9 +14,16 @@ function formatDate(value: string): string {
   });
 }
 
-export default async function LeadsPage() {
+export default async function LeadsPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
   const supabase = await createClient();
-  const context = await getWorkspaceContext(supabase);
+  const resolvedParams = await searchParams;
+  const widgetIdParam = resolvedParams.widgetId;
+  const selectedWidgetId = typeof widgetIdParam === 'string' ? widgetIdParam : null;
+  const context = await getWorkspaceContext(supabase, selectedWidgetId);
 
   if (!context) {
     redirect('/auth/sign-in');

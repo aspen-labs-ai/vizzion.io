@@ -28,7 +28,9 @@ export default async function MaterialsPage({
   searchParams: SearchParams;
 }) {
   const supabase = await createClient();
-  const context = await getWorkspaceContext(supabase);
+  const resolvedParams = await searchParams;
+  const selectedWidgetId = getSingleParam(resolvedParams.widgetId);
+  const context = await getWorkspaceContext(supabase, selectedWidgetId);
 
   if (!context) {
     redirect('/auth/sign-in');
@@ -36,7 +38,6 @@ export default async function MaterialsPage({
 
   const materials = await getWidgetMaterials(supabase, context.widget.id);
   const billingSummary = await getWorkspaceBillingSummary(supabase, context.workspace.id);
-  const resolvedParams = await searchParams;
   const error = getSingleParam(resolvedParams.error);
   const saved = getSingleParam(resolvedParams.saved) === '1';
   const deleted = getSingleParam(resolvedParams.deleted) === '1';
@@ -51,6 +52,7 @@ export default async function MaterialsPage({
         materials={materials}
         materialsQuota={billingSummary?.plan.materials_quota ?? null}
         planName={billingSummary?.plan.name ?? null}
+        widgetId={context.widget.id}
         canManage={context.role === 'owner'}
         error={error}
         saved={saved}
