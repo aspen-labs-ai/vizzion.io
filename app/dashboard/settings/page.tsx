@@ -97,6 +97,9 @@ export default async function SettingsPage({
         </p>
       ) : null}
 
+      {/* Widget-scoped sections — keyed by widget id so every field, toggle, and the
+          live preview fully reset when the active widget changes. */}
+      <div key={widget.id} className="space-y-6">
       {/* GO LIVE */}
       <section className="rounded-2xl border border-accent/30 bg-bg-secondary p-6">
         <div className="flex flex-wrap items-start justify-between gap-3">
@@ -305,6 +308,7 @@ export default async function SettingsPage({
           <div className="md:col-span-2">{saveButton('Save advanced')}</div>
         </form>
       </details>
+      </div>
 
       {/* WORKSPACE */}
       <section className="rounded-2xl border border-border-default bg-bg-secondary p-6">

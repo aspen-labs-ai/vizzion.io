@@ -49,6 +49,7 @@ export default async function MaterialsPage({
         description="The looks customers can preview — each one's prompt drives the AI visualization."
       />
       <MaterialsManager
+        key={context.widget.id}
         materials={materials}
         materialsQuota={billingSummary?.plan.materials_quota ?? null}
         planName={billingSummary?.plan.name ?? null}
