@@ -1,4 +1,5 @@
 import { updateOverageSettingsAction } from '@/app/dashboard/actions';
+import PageHeader from '@/components/dashboard/PageHeader';
 import { createClient } from '@/lib/supabase/server';
 import { getWorkspaceBillingSummary } from '@/lib/vizzion/billing';
 import { getWorkspaceContext } from '@/lib/vizzion/workspace';
@@ -60,12 +61,13 @@ export default async function BillingPage({
     : 'Available on current plan';
 
   return (
-    <section className="rounded-2xl border border-border-default bg-bg-secondary p-6">
-      <h2 className="text-xl font-semibold text-text-primary">Billing & Usage</h2>
-      <p className="mt-1 text-sm text-text-secondary">
-        Track current cycle consumption and configure overage protection.
-      </p>
+    <div className="space-y-6">
+      <PageHeader
+        title="Billing & Usage"
+        description="Track this cycle's usage and manage your plan and overage protection."
+      />
 
+      <section className="rounded-2xl border border-border-default bg-bg-secondary p-6">
       {error ? (
         <p className="mt-4 rounded-lg border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm text-red-200">
           {error}
@@ -194,7 +196,8 @@ export default async function BillingPage({
           Billing data is not available for this workspace yet.
         </p>
       )}
-    </section>
+      </section>
+    </div>
   );
 }
 

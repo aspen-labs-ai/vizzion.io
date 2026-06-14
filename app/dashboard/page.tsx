@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import PageHeader from '@/components/dashboard/PageHeader';
+import SetupChecklist from '@/components/dashboard/SetupChecklist';
 import { createClient } from '@/lib/supabase/server';
 import {
   getDashboardMetrics,
@@ -118,8 +120,45 @@ export default async function DashboardOverviewPage({
     { label: 'Generation Failed', value: stepFunnel.generationFailed, previous: stepFunnel.generationRequested },
   ];
 
+  const isPrimaryView = selectedWidget.id === context.widget.id;
+  const setupSteps = [
+    {
+      label: 'Add a material',
+      description: 'Create at least one product or finish customers can preview.',
+      done: metrics.activeMaterials > 0,
+      href: '/dashboard/materials',
+    },
+    {
+      label: 'Set your website domain',
+      description: 'Allow the widget to run on your site (required to go live).',
+      done: Array.isArray(selectedWidget.domain_allowlist) && selectedWidget.domain_allowlist.length > 0,
+      href: '/dashboard/settings',
+    },
+    {
+      label: 'Activate the widget',
+      description: 'Turn the widget on so visitors can use it.',
+      done: selectedWidget.is_active,
+      href: '/dashboard/settings',
+    },
+  ];
+
   return (
     <div className="space-y-8">
+      <PageHeader
+        title="Dashboard"
+        description={`Performance and activity for ${selectedWidget.name} over the last 30 days.`}
+        actions={
+          <Link
+            href="/dashboard/settings"
+            className="inline-flex items-center rounded-lg border border-border-default bg-bg-secondary px-4 py-2 text-sm font-semibold text-text-secondary transition hover:border-accent/40 hover:text-text-primary"
+          >
+            Widget setup
+          </Link>
+        }
+      />
+
+      {isPrimaryView ? <SetupChecklist steps={setupSteps} embedHref="/dashboard/settings" /> : null}
+
       {selectedWidget.id !== context.widget.id ? (
         <div className="rounded-lg border border-accent/40 bg-accent/10 px-4 py-3 text-sm text-accent">
           Viewing metrics for <strong>{selectedWidget.name}</strong>.{' '}

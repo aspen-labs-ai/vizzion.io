@@ -1,4 +1,5 @@
 import CopySnippet from '@/components/dashboard/CopySnippet';
+import PageHeader from '@/components/dashboard/PageHeader';
 import WidgetAppearance from '@/components/dashboard/WidgetAppearance';
 import {
   regenerateEmbedKeyAction,
@@ -58,6 +59,11 @@ export default async function SettingsPage({
 
   return (
     <div className="space-y-8">
+      <PageHeader
+        title="Widget Setup"
+        description="Configure your widget, manage your embed code, and control where it can run."
+      />
+
       <section className="rounded-2xl border border-border-default bg-bg-secondary p-6">
         <h2 className="text-xl font-semibold text-text-primary">Workspace Profile</h2>
         <p className="mt-1 text-sm text-text-secondary">

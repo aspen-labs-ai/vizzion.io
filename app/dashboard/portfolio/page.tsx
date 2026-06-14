@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import PageHeader from '@/components/dashboard/PageHeader';
 import PortfolioPreviewGallery from '@/components/dashboard/PortfolioPreviewGallery';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { createClient } from '@/lib/supabase/server';
@@ -137,36 +138,32 @@ export default async function PortfolioPage({ searchParams }: { searchParams: Se
 
   return (
     <div className="space-y-8">
-      <section className="rounded-2xl border border-border-default bg-bg-secondary p-5">
-        <div className="flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <h1 className="text-2xl font-semibold text-text-primary">Portfolio</h1>
-            <p className="mt-1 text-sm text-text-secondary">
-              Cross-widget analytics for multi-industry performance.
-            </p>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-2">
+      <PageHeader
+        title="Portfolio"
+        description="Cross-widget analytics across all your widgets and industries."
+        actions={
+          <>
             <Link
               href={withRangeQuery(
                 '/api/dashboard/portfolio/export-summary',
                 dateRange.fromInput,
                 dateRange.toInput,
               )}
-              className="rounded-lg border border-border-default bg-bg-primary px-4 py-2 text-sm font-semibold text-text-secondary transition hover:border-accent/40 hover:text-text-primary"
+              className="rounded-lg border border-border-default bg-bg-secondary px-4 py-2 text-sm font-semibold text-text-secondary transition hover:border-accent/40 hover:text-text-primary"
             >
-              Export Summary CSV
+              Export summary
             </Link>
             <Link
               href={withRangeQuery('/api/dashboard/leads/export', dateRange.fromInput, dateRange.toInput)}
-              className="rounded-lg border border-border-default bg-bg-primary px-4 py-2 text-sm font-semibold text-text-secondary transition hover:border-accent/40 hover:text-text-primary"
+              className="rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-bg-primary transition hover:bg-accent-hover"
             >
-              Export Leads CSV
+              Export leads
             </Link>
-          </div>
-        </div>
-
-        <form className="mt-5 grid gap-3 md:grid-cols-[1fr_1fr_auto_auto]">
+          </>
+        }
+      />
+      <section className="rounded-2xl border border-border-default bg-bg-secondary p-5">
+        <form className="grid gap-3 md:grid-cols-[1fr_1fr_auto_auto]">
           <label className="space-y-1">
             <span className="text-xs font-semibold uppercase tracking-wide text-text-tertiary">
               Date From

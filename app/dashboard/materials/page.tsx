@@ -5,6 +5,7 @@ import {
   updateMaterialAction,
 } from '@/app/dashboard/actions';
 import MaterialsManager from '@/components/dashboard/MaterialsManager';
+import PageHeader from '@/components/dashboard/PageHeader';
 import { createClient } from '@/lib/supabase/server';
 import { getWorkspaceBillingSummary } from '@/lib/vizzion/billing';
 import { getWidgetMaterials, getWorkspaceContext } from '@/lib/vizzion/workspace';
@@ -41,17 +42,23 @@ export default async function MaterialsPage({
   const deleted = getSingleParam(resolvedParams.deleted) === '1';
 
   return (
-    <MaterialsManager
-      materials={materials}
-      materialsQuota={billingSummary?.plan.materials_quota ?? null}
-      planName={billingSummary?.plan.name ?? null}
-      canManage={context.role === 'owner'}
-      error={error}
-      saved={saved}
-      deleted={deleted}
-      onCreate={createMaterialAction}
-      onUpdate={updateMaterialAction}
-      onDelete={deleteMaterialAction}
-    />
+    <div className="space-y-6">
+      <PageHeader
+        title="Materials"
+        description="The looks customers can preview — each one's prompt drives the AI visualization."
+      />
+      <MaterialsManager
+        materials={materials}
+        materialsQuota={billingSummary?.plan.materials_quota ?? null}
+        planName={billingSummary?.plan.name ?? null}
+        canManage={context.role === 'owner'}
+        error={error}
+        saved={saved}
+        deleted={deleted}
+        onCreate={createMaterialAction}
+        onUpdate={updateMaterialAction}
+        onDelete={deleteMaterialAction}
+      />
+    </div>
   );
 }

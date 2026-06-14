@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import PageHeader from '@/components/dashboard/PageHeader';
 import { createClient } from '@/lib/supabase/server';
 import { getRecentLeads, getWorkspaceContext } from '@/lib/vizzion/workspace';
 
@@ -46,6 +47,19 @@ export default async function LeadsPage() {
 
   return (
     <div className="space-y-6">
+      <PageHeader
+        title="Leads"
+        description="Every visitor who submitted their email through your widget."
+        actions={
+          <Link
+            href={`/api/dashboard/leads/export?widgetId=${encodeURIComponent(context.widget.id)}`}
+            className="inline-flex items-center rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-bg-primary transition hover:bg-accent-hover"
+          >
+            Export CSV
+          </Link>
+        }
+      />
+
       <section className="grid gap-4 sm:grid-cols-3">
         <LeadMetric label="Today" value={todayCountResult.count ?? 0} />
         <LeadMetric label="Last 7 Days" value={sevenDayCountResult.count ?? 0} />
@@ -53,18 +67,9 @@ export default async function LeadsPage() {
       </section>
 
       <section className="rounded-2xl border border-border-default bg-bg-secondary p-5">
-        <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-          <div>
-            <h2 className="text-xl font-semibold text-text-primary">Lead Feed</h2>
-            <p className="text-sm text-text-secondary">Most recent captured emails and source context.</p>
-          </div>
-
-          <Link
-            href={`/api/dashboard/leads/export?widgetId=${encodeURIComponent(context.widget.id)}`}
-            className="rounded-lg border border-border-default bg-bg-primary px-4 py-2 text-sm font-semibold text-text-secondary transition hover:border-accent/40 hover:text-text-primary"
-          >
-            Export CSV
-          </Link>
+        <div className="mb-4">
+          <h2 className="text-lg font-semibold text-text-primary">Lead feed</h2>
+          <p className="text-sm text-text-secondary">Most recent captured emails and source context.</p>
         </div>
 
         <div className="overflow-x-auto rounded-xl border border-border-default">

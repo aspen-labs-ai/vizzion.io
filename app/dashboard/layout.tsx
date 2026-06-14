@@ -1,20 +1,13 @@
 import Image from 'next/image';
 import { signOutAction } from '@/app/auth/actions';
 import AppNav from '@/components/dashboard/AppNav';
+import Topbar from '@/components/dashboard/Topbar';
 import { createClient } from '@/lib/supabase/server';
 import { getWorkspaceWidgets } from '@/lib/vizzion/portfolio';
 import { getMissingSetupRequirements } from '@/lib/vizzion/setup-requirements';
 import { getWorkspaceContext } from '@/lib/vizzion/workspace';
 
 export const dynamic = 'force-dynamic';
-
-const baseNavItems = [
-  { href: '/dashboard', label: 'Dashboard', icon: 'dashboard' as const },
-  { href: '/dashboard/materials', label: 'Materials', icon: 'materials' as const },
-  { href: '/dashboard/settings', label: 'Settings', icon: 'settings' as const },
-  { href: '/dashboard/billing', label: 'Billing', icon: 'billing' as const },
-  { href: '/dashboard/leads', label: 'Leads', icon: 'leads' as const },
-];
 
 function getStatusLabel(status: string): string {
   if (status === 'active') {
@@ -66,15 +59,37 @@ export default async function DashboardLayout({
   };
   const showEditorRoleChip = context.role === 'editor';
   const workspaceDisplayName = context.workspace.company_name ?? context.workspace.name;
+  const statusLabel = getStatusLabel(context.workspace.status);
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  const userEmail = user?.email ?? '';
   const workspaceWidgets = await getWorkspaceWidgets(supabase, context.workspace.id);
   const showPortfolioNav = workspaceWidgets.length > 1;
-  const navItems = showPortfolioNav
-    ? [
-        baseNavItems[0],
-        { href: '/dashboard/portfolio', label: 'Portfolio', icon: 'portfolio' as const },
-        ...baseNavItems.slice(1),
-      ]
-    : baseNavItems;
+
+  const navGroups = [
+    {
+      label: 'Analyze',
+      items: [
+        { href: '/dashboard', label: 'Dashboard', icon: 'dashboard' as const },
+        ...(showPortfolioNav
+          ? [{ href: '/dashboard/portfolio', label: 'Portfolio', icon: 'portfolio' as const }]
+          : []),
+        { href: '/dashboard/leads', label: 'Leads', icon: 'leads' as const },
+      ],
+    },
+    {
+      label: 'Configure',
+      items: [
+        { href: '/dashboard/materials', label: 'Materials', icon: 'materials' as const },
+        { href: '/dashboard/settings', label: 'Setup', icon: 'settings' as const },
+      ],
+    },
+    {
+      label: 'Account',
+      items: [{ href: '/dashboard/billing', label: 'Billing', icon: 'billing' as const }],
+    },
+  ];
 
   return (
     <div className="h-screen overflow-hidden bg-bg-primary text-text-primary">
@@ -103,7 +118,7 @@ export default async function DashboardLayout({
           </div>
 
           <div className="px-4 py-5">
-            <AppNav items={navItems} alertByHref={navAlerts} />
+            <AppNav groups={navGroups} alertByHref={navAlerts} />
           </div>
 
           <div className="mt-auto border-t border-border-default px-4 py-5">
@@ -159,9 +174,11 @@ export default async function DashboardLayout({
             </div>
 
             <div className="mt-4">
-              <AppNav items={navItems} orientation="horizontal" alertByHref={navAlerts} />
+              <AppNav groups={navGroups} orientation="horizontal" alertByHref={navAlerts} />
             </div>
           </header>
+
+          <Topbar userEmail={userEmail} statusLabel={statusLabel} />
 
           <main className="flex-1 overflow-y-auto px-5 py-6 md:px-7 md:py-7">{children}</main>
         </div>
