@@ -1,56 +1,122 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import LeadsTable, { type LeadRow } from '@/components/dashboard/LeadsTable';
+import LeadsToolbar from '@/components/dashboard/LeadsToolbar';
 import PageHeader from '@/components/dashboard/PageHeader';
 import { createClient } from '@/lib/supabase/server';
-import { getRecentLeads, getWorkspaceContext } from '@/lib/vizzion/workspace';
+import { getWidgetMaterials, getWorkspaceContext } from '@/lib/vizzion/workspace';
 
-function formatDate(value: string): string {
-  return new Date(value).toLocaleString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-    hour: 'numeric',
-    minute: '2-digit',
-  });
+type SearchParams = Promise<Record<string, string | string[] | undefined>>;
+
+function single(value: string | string[] | undefined): string | null {
+  if (typeof value === 'string') return value;
+  if (Array.isArray(value) && value.length > 0) return value[0] ?? null;
+  return null;
 }
 
-export default async function LeadsPage({
-  searchParams,
-}: {
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
-}) {
+function summaryWindows(): { today: string; seven: string; thirty: string } {
+  const now = Date.now();
+  const todayStart = new Date();
+  todayStart.setHours(0, 0, 0, 0);
+  return {
+    today: todayStart.toISOString(),
+    seven: new Date(now - 7 * 864e5).toISOString(),
+    thirty: new Date(now - 30 * 864e5).toISOString(),
+  };
+}
+
+function resolveRange(params: Record<string, string | string[] | undefined>): {
+  sinceIso: string | null;
+  untilIso: string | null;
+} {
+  const from = single(params.from);
+  const to = single(params.to);
+  const range = single(params.range);
+  if (from && to) {
+    const start = new Date(`${from}T00:00:00`);
+    const end = new Date(`${to}T23:59:59`);
+    if (!Number.isNaN(start.getTime()) && !Number.isNaN(end.getTime())) {
+      return { sinceIso: start.toISOString(), untilIso: end.toISOString() };
+    }
+  }
+  if (range === 'all') return { sinceIso: null, untilIso: null };
+  const days: Record<string, number> = { '7': 7, '30': 30, '90': 90, '180': 180, '365': 365 };
+  const n = (range && days[range]) || 30;
+  return { sinceIso: new Date(Date.now() - n * 24 * 60 * 60 * 1000).toISOString(), untilIso: null };
+}
+
+export default async function LeadsPage({ searchParams }: { searchParams: SearchParams }) {
   const supabase = await createClient();
   const resolvedParams = await searchParams;
-  const widgetIdParam = resolvedParams.widgetId;
-  const selectedWidgetId = typeof widgetIdParam === 'string' ? widgetIdParam : null;
+  const selectedWidgetId = single(resolvedParams.widgetId);
   const context = await getWorkspaceContext(supabase, selectedWidgetId);
 
   if (!context) {
     redirect('/auth/sign-in');
   }
 
-  const now = new Date();
-  const todayStart = new Date();
-  todayStart.setHours(0, 0, 0, 0);
+  const widgetId = context.widget.id;
+  const emailQuery = single(resolvedParams.q);
+  const statusFilter = single(resolvedParams.status);
+  const materialFilter = single(resolvedParams.material);
+  const { sinceIso, untilIso } = resolveRange(resolvedParams);
+  const win = summaryWindows();
 
-  const [todayCountResult, sevenDayCountResult, thirtyDayCountResult, leads] = await Promise.all([
-    supabase
-      .from('leads')
-      .select('*', { head: true, count: 'exact' })
-      .eq('widget_id', context.widget.id)
-      .gte('created_at', todayStart.toISOString()),
-    supabase
-      .from('leads')
-      .select('*', { head: true, count: 'exact' })
-      .eq('widget_id', context.widget.id)
-      .gte('created_at', new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString()),
-    supabase
-      .from('leads')
-      .select('*', { head: true, count: 'exact' })
-      .eq('widget_id', context.widget.id)
-      .gte('created_at', new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000).toISOString()),
-    getRecentLeads(supabase, context.widget.id, 200),
+  // Summary counts (independent of filters) + the filtered lead list.
+  let leadsQuery = supabase
+    .from('leads')
+    .select('id, email, email_status, source_page, created_at, material_id')
+    .eq('widget_id', widgetId)
+    .order('created_at', { ascending: false })
+    .limit(100);
+  if (sinceIso) leadsQuery = leadsQuery.gte('created_at', sinceIso);
+  if (untilIso) leadsQuery = leadsQuery.lte('created_at', untilIso);
+  if (statusFilter) leadsQuery = leadsQuery.eq('email_status', statusFilter);
+  if (materialFilter) leadsQuery = leadsQuery.eq('material_id', materialFilter);
+  if (emailQuery) leadsQuery = leadsQuery.ilike('email', `%${emailQuery}%`);
+
+  const [todayCount, sevenDayCount, thirtyDayCount, leadsResult, materials] = await Promise.all([
+    supabase.from('leads').select('*', { head: true, count: 'exact' }).eq('widget_id', widgetId).gte('created_at', win.today),
+    supabase.from('leads').select('*', { head: true, count: 'exact' }).eq('widget_id', widgetId).gte('created_at', win.seven),
+    supabase.from('leads').select('*', { head: true, count: 'exact' }).eq('widget_id', widgetId).gte('created_at', win.thirty),
+    leadsQuery,
+    getWidgetMaterials(supabase, widgetId),
   ]);
+
+  const rawLeads = (leadsResult.data ?? []) as Array<{
+    id: string;
+    email: string;
+    email_status: string;
+    source_page: string | null;
+    created_at: string;
+    material_id: string | null;
+  }>;
+  const leadIds = rawLeads.map((l) => l.id);
+
+  // Which of these leads have a generated visualization?
+  const leadsWithPreview = new Set<string>();
+  if (leadIds.length > 0) {
+    const previewsResult = await supabase
+      .from('generated_previews')
+      .select('lead_id')
+      .eq('widget_id', widgetId)
+      .in('lead_id', leadIds)
+      .not('generated_path', 'is', null);
+    for (const row of (previewsResult.data ?? []) as Array<{ lead_id: string | null }>) {
+      if (row.lead_id) leadsWithPreview.add(row.lead_id);
+    }
+  }
+
+  const materialNameById = new Map(materials.map((m) => [m.id, m.name]));
+  const leads: LeadRow[] = rawLeads.map((lead) => ({
+    id: lead.id,
+    email: lead.email,
+    materialName: lead.material_id ? materialNameById.get(lead.material_id) ?? null : null,
+    emailStatus: lead.email_status,
+    hasPreview: leadsWithPreview.has(lead.id),
+    sourcePage: lead.source_page,
+    createdAt: lead.created_at,
+  }));
 
   return (
     <div className="space-y-6">
@@ -59,7 +125,7 @@ export default async function LeadsPage({
         description="Every visitor who submitted their email through your widget."
         actions={
           <Link
-            href={`/api/dashboard/leads/export?widgetId=${encodeURIComponent(context.widget.id)}`}
+            href={`/api/dashboard/leads/export?widgetId=${encodeURIComponent(widgetId)}`}
             className="inline-flex items-center rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-bg-primary transition hover:bg-accent-hover"
           >
             Export CSV
@@ -68,57 +134,22 @@ export default async function LeadsPage({
       />
 
       <section className="grid gap-4 sm:grid-cols-3">
-        <LeadMetric label="Today" value={todayCountResult.count ?? 0} />
-        <LeadMetric label="Last 7 Days" value={sevenDayCountResult.count ?? 0} />
-        <LeadMetric label="Last 30 Days" value={thirtyDayCountResult.count ?? 0} />
+        <LeadMetric label="Today" value={todayCount.count ?? 0} />
+        <LeadMetric label="Last 7 Days" value={sevenDayCount.count ?? 0} />
+        <LeadMetric label="Last 30 Days" value={thirtyDayCount.count ?? 0} />
       </section>
 
-      <section className="rounded-2xl border border-border-default bg-bg-secondary p-5">
-        <div className="mb-4">
+      <section className="space-y-4 rounded-2xl border border-border-default bg-bg-secondary p-5">
+        <div>
           <h2 className="text-lg font-semibold text-text-primary">Lead feed</h2>
-          <p className="text-sm text-text-secondary">Most recent captured emails and source context.</p>
+          <p className="text-sm text-text-secondary">
+            Click any lead to see its visualization. Status reflects the result, not just email delivery.
+          </p>
         </div>
 
-        <div className="overflow-x-auto rounded-xl border border-border-default">
-          <table className="min-w-full divide-y divide-border-default text-sm">
-            <thead className="bg-bg-primary text-left text-xs uppercase tracking-wide text-text-tertiary">
-              <tr>
-                <th className="px-4 py-3">Email</th>
-                <th className="px-4 py-3">Material</th>
-                <th className="px-4 py-3">Status</th>
-                <th className="px-4 py-3">Source Page</th>
-                <th className="px-4 py-3">Captured</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-border-default bg-bg-secondary">
-              {leads.length === 0 ? (
-                <tr>
-                  <td colSpan={5} className="px-4 py-8 text-center text-text-tertiary">
-                    No leads yet.
-                  </td>
-                </tr>
-              ) : (
-                leads.map(lead => (
-                  <tr key={lead.id}>
-                    <td className="max-w-[18rem] truncate px-4 py-3 text-text-primary">{lead.email}</td>
-                    <td className="px-4 py-3 text-text-secondary">{lead.materialName ?? '—'}</td>
-                    <td className="px-4 py-3">
-                      <span className="rounded-full border border-accent/40 bg-accent/10 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-accent">
-                        {lead.emailStatus}
-                      </span>
-                    </td>
-                    <td className="max-w-[20rem] truncate px-4 py-3 text-text-secondary">
-                      {lead.sourcePage ?? '—'}
-                    </td>
-                    <td className="whitespace-nowrap px-4 py-3 text-text-tertiary">
-                      {formatDate(lead.createdAt)}
-                    </td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
+        <LeadsToolbar materials={materials.map((m) => ({ id: m.id, name: m.name }))} />
+
+        <LeadsTable leads={leads} />
       </section>
     </div>
   );
