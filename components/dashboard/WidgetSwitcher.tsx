@@ -1,9 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Check, ChevronsUpDown, Plus } from 'lucide-react';
+
+function readWidgetCookie(): string | null {
+  if (typeof document === 'undefined') return null;
+  const match = document.cookie.match(/(?:^|;\s*)vz_widget=([^;]+)/);
+  return match ? decodeURIComponent(match[1]) : null;
+}
 
 export interface WidgetOption {
   id: string;
@@ -23,20 +29,28 @@ export default function WidgetSwitcher({ widgets, defaultWidgetId }: WidgetSwitc
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const selectedId = searchParams.get('widgetId') ?? defaultWidgetId;
-  const current = widgets.find((w) => w.id === selectedId) ?? widgets.find((w) => w.is_primary) ?? widgets[0];
+  // The active widget is resolved on the client so the label is always live even
+  // though the dashboard layout (where this lives) is preserved across navigation:
+  // explicit ?widgetId > persisted cookie > server-provided default (primary).
+  const [cookieId, setCookieId] = useState<string | null>(null);
+  useEffect(() => {
+    setCookieId(readWidgetCookie());
+  }, [pathname, searchParams]);
 
-  // Pages that operate on a specific widget. Switching navigates here with ?widgetId.
-  const widgetScopedRoutes = ['/dashboard', '/dashboard/materials', '/dashboard/leads', '/dashboard/settings'];
-  const targetBase = widgetScopedRoutes.find((r) => pathname === r || pathname.startsWith(r + '/')) ?? '/dashboard';
+  const selectedId = searchParams.get('widgetId') ?? cookieId ?? defaultWidgetId;
+  const current = widgets.find((w) => w.id === selectedId) ?? widgets.find((w) => w.is_primary) ?? widgets[0];
 
   function selectWidget(id: string) {
     setOpen(false);
     // Persist selection so it sticks across sidebar navigation (server reads this
-    // cookie when no explicit ?widgetId is present).
+    // cookie when no explicit ?widgetId is present), and reflect it instantly.
     // eslint-disable-next-line react-hooks/immutability -- intentional client-side cookie write in an event handler
     document.cookie = `vz_widget=${encodeURIComponent(id)}; path=/; max-age=${60 * 60 * 24 * 30}; samesite=lax`;
-    router.push(`${targetBase}?widgetId=${encodeURIComponent(id)}`);
+    setCookieId(id);
+    // Stay on the current page; just re-point it at the selected widget.
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('widgetId', id);
+    router.push(`${pathname}?${params.toString()}`);
   }
 
   if (!current) {
