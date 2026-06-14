@@ -113,98 +113,126 @@ function widgetSuffix(widgetId: string | null | undefined): string {
 export async function updateWidgetSettingsAction(formData: FormData) {
   const widgetId = getFormValue(formData, 'widget_id') || null;
   const { supabase, context } = await requireOwnerContext(widgetId);
+  const suffix = widgetSuffix(context.widget.id);
+  const fail = (message: string): never =>
+    redirect(`/dashboard/settings?error=${encodeURIComponent(message)}${suffix}`);
 
-  const name = getFormValue(formData, 'name') || context.widget.name;
-  const mode = getFormValue(formData, 'mode') === 'popup' ? 'popup' : 'inline';
-  const theme = getFormValue(formData, 'theme') === 'light' ? 'light' : 'dark';
-  const brandColorRaw = (getFormValue(formData, 'brand_color') || '').trim();
-  const brandColor = /^#[0-9a-fA-F]{6}$/.test(brandColorRaw)
-    ? brandColorRaw.toUpperCase()
-    : context.widget.brand_color || '#10B981';
-  const domainAllowlist = sanitizeDomainAllowlist(getFormValue(formData, 'domain_allowlist'));
-  const maxGenerationsPerSession = parseOptionalPositiveInteger(
-    getFormValue(formData, 'max_generations_per_session'),
+  // Only the fields this section submitted (declared via the hidden present_fields
+  // input) are touched — so a section can save without resetting fields it doesn't show.
+  const present = new Set(
+    getFormValue(formData, 'present_fields')
+      .split(',')
+      .map(field => field.trim())
+      .filter(Boolean),
   );
-  const maxGenerationsPerEmailLifetime = parseOptionalPositiveInteger(
-    getFormValue(formData, 'max_generations_per_email_lifetime'),
-  );
-  const limitReachedCtaUrl = parseOptional(getFormValue(formData, 'limit_reached_cta_url'));
-  const subjectType = parseSubjectType(getFormValue(formData, 'subject_type'));
-  const industrySlug = sanitizeIndustrySlug(getFormValue(formData, 'industry_slug'));
+  const has = (field: string) => present.has(field);
 
-  if (Number.isNaN(maxGenerationsPerSession)) {
-    redirect('/dashboard/settings?error=Max+generations+per+session+must+be+1+or+greater.');
+  const update: Record<string, unknown> = {};
+
+  if (has('name')) {
+    update.name = getFormValue(formData, 'name') || context.widget.name;
   }
-
-  if (Number.isNaN(maxGenerationsPerEmailLifetime)) {
-    redirect('/dashboard/settings?error=Max+generations+per+email+must+be+1+or+greater.');
+  if (has('mode')) {
+    update.mode = getFormValue(formData, 'mode') === 'popup' ? 'popup' : 'inline';
   }
-
-  const domainQuotaResult = await supabase.rpc('check_embed_domain_quota', {
-    workspace_uuid: context.workspace.id,
-    widget_uuid: context.widget.id,
-    proposed_allowlist: domainAllowlist,
-  });
-
-  const domainQuota = getFirstRpcRow<{
-    allowed: boolean;
-    current_domain_count: number;
-    requested_domain_count: number;
-    quota: number | null;
-  }>(domainQuotaResult.data);
-
-  if (domainQuotaResult.error || !domainQuota) {
-    redirect('/dashboard/settings?error=Unable+to+validate+embed+domain+limits.');
+  if (has('theme')) {
+    update.theme = getFormValue(formData, 'theme') === 'light' ? 'light' : 'dark';
   }
-
-  if (!domainQuota.allowed) {
-    const quotaLabel =
-      domainQuota.quota === null ? 'unlimited' : domainQuota.quota.toString();
-    redirect(
-      `/dashboard/settings?error=${encodeURIComponent(
-        `Embed domain limit reached (${domainQuota.requested_domain_count}/${quotaLabel}). Upgrade your plan to add more domains.`,
-      )}`,
+  if (has('brand_color')) {
+    const raw = (getFormValue(formData, 'brand_color') || '').trim();
+    update.brand_color = /^#[0-9a-fA-F]{6}$/.test(raw)
+      ? raw.toUpperCase()
+      : context.widget.brand_color || '#10B981';
+  }
+  if (has('subject_type')) {
+    update.subject_type = parseSubjectType(getFormValue(formData, 'subject_type'));
+  }
+  if (has('require_email')) {
+    update.require_email = parseCheckbox(formData, 'require_email');
+  }
+  if (has('auto_open_widget')) {
+    update.auto_open_widget = parseCheckbox(formData, 'auto_open_widget');
+  }
+  if (has('show_product_names')) {
+    update.show_product_names = parseCheckbox(formData, 'show_product_names');
+  }
+  if (has('is_active')) {
+    update.is_active = parseCheckbox(formData, 'is_active');
+  }
+  if (has('limit_reached_cta_url')) {
+    update.limit_reached_cta_url = parseOptional(getFormValue(formData, 'limit_reached_cta_url'));
+  }
+  if (has('max_generations_per_session')) {
+    const value = parseOptionalPositiveInteger(getFormValue(formData, 'max_generations_per_session'));
+    if (Number.isNaN(value)) {
+      fail('Max generations per session must be 1 or greater.');
+    }
+    update.max_generations_per_session = value;
+  }
+  if (has('max_generations_per_email_lifetime')) {
+    const value = parseOptionalPositiveInteger(
+      getFormValue(formData, 'max_generations_per_email_lifetime'),
     );
+    if (Number.isNaN(value)) {
+      fail('Max generations per email must be 1 or greater.');
+    }
+    update.max_generations_per_email_lifetime = value;
   }
 
-  const updateResult = await supabase
-    .from('widgets')
-    .update({
-      name,
-      mode,
-      theme,
-      brand_color: brandColor,
-      domain_allowlist: domainAllowlist,
-      require_email: parseCheckbox(formData, 'require_email'),
-      auto_open_widget: parseCheckbox(formData, 'auto_open_widget'),
-      show_product_names: parseCheckbox(formData, 'show_product_names'),
-      is_active: parseCheckbox(formData, 'is_active'),
-      subject_type: subjectType,
-      max_generations_per_session: maxGenerationsPerSession,
-      max_generations_per_email_lifetime: maxGenerationsPerEmailLifetime,
-      limit_reached_cta_url: limitReachedCtaUrl,
-    })
-    .eq('id', context.widget.id)
-    .eq('workspace_id', context.workspace.id);
+  if (has('domain_allowlist')) {
+    const domainAllowlist = sanitizeDomainAllowlist(getFormValue(formData, 'domain_allowlist'));
 
-  if (updateResult.error) {
-    redirect(`/dashboard/settings?error=${encodeURIComponent(updateResult.error.message)}`);
+    const domainQuotaResult = await supabase.rpc('check_embed_domain_quota', {
+      workspace_uuid: context.workspace.id,
+      widget_uuid: context.widget.id,
+      proposed_allowlist: domainAllowlist,
+    });
+    const domainQuota = getFirstRpcRow<{
+      allowed: boolean;
+      current_domain_count: number;
+      requested_domain_count: number;
+      quota: number | null;
+    }>(domainQuotaResult.data);
+
+    if (domainQuotaResult.error || !domainQuota) {
+      fail('Unable to validate embed domain limits.');
+    } else if (!domainQuota.allowed) {
+      const quotaLabel = domainQuota.quota === null ? 'unlimited' : domainQuota.quota.toString();
+      fail(
+        `Embed domain limit reached (${domainQuota.requested_domain_count}/${quotaLabel}). Upgrade your plan to add more domains.`,
+      );
+    }
+
+    update.domain_allowlist = domainAllowlist;
   }
 
-  const clearMappingResult = await supabase
-    .from('industry_widget_mappings')
-    .delete()
-    .eq('workspace_id', context.workspace.id)
-    .eq('widget_id', context.widget.id);
+  if (Object.keys(update).length > 0) {
+    const updateResult = await supabase
+      .from('widgets')
+      .update(update)
+      .eq('id', context.widget.id)
+      .eq('workspace_id', context.workspace.id);
 
-  if (clearMappingResult.error) {
-    redirect(`/dashboard/settings?error=${encodeURIComponent(clearMappingResult.error.message)}`);
+    if (updateResult.error) {
+      fail(updateResult.error.message);
+    }
   }
 
-  if (industrySlug) {
-    const mappingResult = await supabase
+  if (has('industry_slug')) {
+    const industrySlug = sanitizeIndustrySlug(getFormValue(formData, 'industry_slug'));
+
+    const clearMappingResult = await supabase
       .from('industry_widget_mappings')
-      .upsert(
+      .delete()
+      .eq('workspace_id', context.workspace.id)
+      .eq('widget_id', context.widget.id);
+
+    if (clearMappingResult.error) {
+      fail(clearMappingResult.error.message);
+    }
+
+    if (industrySlug) {
+      const mappingResult = await supabase.from('industry_widget_mappings').upsert(
         {
           workspace_id: context.workspace.id,
           widget_id: context.widget.id,
@@ -213,15 +241,16 @@ export async function updateWidgetSettingsAction(formData: FormData) {
         { onConflict: 'workspace_id,industry_slug' },
       );
 
-    if (mappingResult.error) {
-      redirect(`/dashboard/settings?error=${encodeURIComponent(mappingResult.error.message)}`);
+      if (mappingResult.error) {
+        fail(mappingResult.error.message);
+      }
     }
   }
 
   revalidatePath('/dashboard');
   revalidatePath('/dashboard/portfolio');
   revalidatePath('/dashboard/settings');
-  redirect(`/dashboard/settings?saved=1${widgetSuffix(context.widget.id)}`);
+  redirect(`/dashboard/settings?saved=1${suffix}`);
 }
 
 export async function updateWorkspaceProfileAction(formData: FormData) {
