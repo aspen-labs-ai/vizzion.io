@@ -127,11 +127,15 @@ export default async function DashboardLayout({
             <AppNav groups={navGroups} alertByHref={navAlerts} />
           </div>
 
-          <div className="mt-auto border-t border-border-default px-4 py-5">
-            <div className="mb-3">
-              <span className="inline-flex rounded-full border border-accent/50 bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
-                {getStatusLabel(context.workspace.status)}
+          <div className="mt-auto space-y-3 border-t border-border-default px-4 py-5">
+            <div className="flex items-center gap-2.5">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent/15 text-sm font-semibold text-accent">
+                {(userEmail[0] ?? 'U').toUpperCase()}
               </span>
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-sm font-medium text-text-primary">{userEmail || 'Signed in'}</p>
+                <span className="text-[11px] font-semibold text-text-tertiary">{statusLabel}</span>
+              </div>
             </div>
             <form action={signOutAction}>
               <button
@@ -188,7 +192,7 @@ export default async function DashboardLayout({
             </div>
           </header>
 
-          <Topbar userEmail={userEmail} statusLabel={statusLabel} />
+          <Topbar />
 
           <main className="flex-1 overflow-y-auto px-5 py-6 md:px-7 md:py-7">{children}</main>
         </div>
