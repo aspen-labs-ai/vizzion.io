@@ -173,8 +173,12 @@ export default function MaterialsManager({
               <tbody className="divide-y divide-border-default bg-bg-secondary">
                 {materials.length === 0 ? (
                   <tr>
-                    <td colSpan={7} className="px-4 py-8 text-center text-text-tertiary">
-                      No materials yet.
+                    <td colSpan={7} className="px-4 py-10 text-center">
+                      <p className="text-sm font-medium text-text-secondary">No materials yet</p>
+                      <p className="mx-auto mt-1 max-w-sm text-xs text-text-tertiary">
+                        Materials are the looks customers preview. Add one with a clear prompt (e.g.
+                        &ldquo;replace the roof with charcoal asphalt shingles&rdquo;) to start capturing leads.
+                      </p>
                     </td>
                   </tr>
                 ) : (
@@ -294,29 +298,52 @@ function MaterialModal({
               defaultValue={material ? material.sort_order.toString() : '0'}
             />
             <InputField
-              label="Swatch URL"
+              label="Swatch image URL"
               name="swatch_url"
               defaultValue={material?.swatch_url ?? ''}
-              placeholder="https://..."
+              placeholder="https://…/swatch.png"
             />
             <InputField
-              label="Texture URL"
+              label="Texture image URL"
               name="texture_url"
               defaultValue={material?.texture_url ?? ''}
-              placeholder="https://..."
+              placeholder="https://…/texture.jpg"
             />
+            <p className="md:col-span-2 -mt-1 text-xs text-text-tertiary">
+              <span className="text-text-secondary">Swatch</span> is the thumbnail shown in the widget picker.{' '}
+              <span className="text-text-secondary">Texture</span> is optional — a reference image the AI matches for
+              color and pattern (improves accuracy).
+            </p>
           </div>
 
-          <label className="block space-y-2">
-            <span className="text-sm font-medium text-text-secondary">Prompt Modifier</span>
+          <div className="space-y-2">
+            <span className="text-sm font-medium text-text-secondary">Prompt — what the AI should change</span>
             <textarea
               name="prompt_modifier"
-              rows={4}
+              rows={3}
               defaultValue={material?.prompt_modifier ?? ''}
-              placeholder="Use this material for high-contrast roof surfaces..."
+              placeholder="e.g. replace the roof with dark charcoal architectural asphalt shingles"
               className="w-full rounded-lg border border-border-default bg-bg-primary px-3 py-2 text-sm text-text-primary outline-none transition focus:border-accent/60"
             />
-          </label>
+            <p className="text-xs text-text-tertiary">
+              This text drives the AI result. Name the <span className="text-text-secondary">surface</span>, the{' '}
+              <span className="text-text-secondary">material</span>, and the{' '}
+              <span className="text-text-secondary">color/finish</span> — be specific, and avoid vague words like
+              &ldquo;nice&rdquo;.
+            </p>
+            <details className="group rounded-lg border border-border-default bg-bg-primary/40 px-3 py-2">
+              <summary className="cursor-pointer list-none text-xs font-semibold text-accent">
+                See example prompts
+              </summary>
+              <ul className="mt-2 space-y-1.5 text-xs text-text-secondary">
+                <li>&ldquo;replace the roof with dark charcoal architectural asphalt shingles&rdquo;</li>
+                <li>&ldquo;replace the siding with warm cedar wood lap siding&rdquo;</li>
+                <li>&ldquo;apply a glossy midnight-blue vinyl wrap to the vehicle&rdquo;</li>
+                <li>&ldquo;cover the yard with lush natural-green artificial turf&rdquo;</li>
+                <li>&ldquo;refinish the deck with rich espresso-brown composite boards&rdquo;</li>
+              </ul>
+            </details>
+          </div>
 
           <label className="inline-flex items-center gap-2 text-sm text-text-secondary">
             <input
