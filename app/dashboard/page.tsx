@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import LeadFunnel, { type FunnelStage } from '@/components/dashboard/LeadFunnel';
 import PageHeader from '@/components/dashboard/PageHeader';
 import SetupChecklist from '@/components/dashboard/SetupChecklist';
 import { createClient } from '@/lib/supabase/server';
 import {
   getDashboardMetrics,
-  getEventBreakdown,
   getMaterialPerformance,
   getRecentLeads,
   getStepFunnelMetrics,
@@ -27,27 +27,6 @@ function getSingleParam(value: string | string[] | undefined): string | null {
 
 function formatPercent(value: number): string {
   return `${value.toFixed(1)}%`;
-}
-
-function formatStepConversion(current: number, previous: number | null): string {
-  if (previous === null) {
-    return 'Entry step';
-  }
-
-  if (previous <= 0) {
-    return '0.0% of previous';
-  }
-
-  return `${((current / previous) * 100).toFixed(1)}% of previous`;
-}
-
-function formatStepDropOff(current: number, previous: number | null): string | null {
-  if (previous === null || previous <= 0) {
-    return null;
-  }
-
-  const dropOff = Math.max(0, 100 - (current / previous) * 100);
-  return `${dropOff.toFixed(1)}% drop-off`;
 }
 
 function formatDate(dateString: string): string {
@@ -93,31 +72,18 @@ export default async function DashboardOverviewPage({
     }
   }
 
-  const [metrics, eventBreakdown, materialPerformance, recentLeads, stepFunnel] = await Promise.all([
+  const [metrics, materialPerformance, recentLeads, stepFunnel] = await Promise.all([
     getDashboardMetrics(supabase, context.workspace.id, selectedWidget.id),
-    getEventBreakdown(supabase, selectedWidget.id),
     getMaterialPerformance(supabase, selectedWidget.id),
     getRecentLeads(supabase, selectedWidget.id, 6),
     getStepFunnelMetrics(supabase, selectedWidget.id, 30),
   ]);
-  const funnelSteps = [
-    { label: 'Opened', value: stepFunnel.widgetOpened, previous: null as number | null },
-    { label: 'Upload Start', value: stepFunnel.uploadStarted, previous: stepFunnel.widgetOpened },
-    { label: 'Upload Done', value: stepFunnel.uploadCompleted, previous: stepFunnel.uploadStarted },
-    { label: 'Material Picked', value: stepFunnel.materialSelected, previous: stepFunnel.uploadCompleted },
-    { label: 'Email Submitted', value: stepFunnel.emailSubmitted, previous: stepFunnel.materialSelected },
-    {
-      label: 'Generation Req',
-      value: stepFunnel.generationRequested,
-      previous: stepFunnel.emailSubmitted,
-    },
-    { label: 'Reveal Rendered', value: stepFunnel.revealRendered, previous: stepFunnel.generationRequested },
-    {
-      label: 'Fallback Shown',
-      value: stepFunnel.revealFallbackShown,
-      previous: stepFunnel.generationRequested,
-    },
-    { label: 'Generation Failed', value: stepFunnel.generationFailed, previous: stepFunnel.generationRequested },
+  const funnelStages: FunnelStage[] = [
+    { key: 'opened', label: 'Opened the widget', count: stepFunnel.widgetOpened },
+    { key: 'uploaded', label: 'Uploaded a photo', count: stepFunnel.uploadCompleted },
+    { key: 'material', label: 'Chose a look', count: stepFunnel.materialSelected },
+    { key: 'email', label: 'Left their email', count: stepFunnel.emailSubmitted, highlight: true },
+    { key: 'preview', label: 'Got their preview', count: stepFunnel.revealRendered },
   ];
 
   const isPrimaryView = selectedWidget.id === context.widget.id;
@@ -184,48 +150,7 @@ export default async function DashboardOverviewPage({
         <MetricCard label="Queued Jobs" value={metrics.queuedJobs30d.toLocaleString()} />
       </section>
 
-      <section className="space-y-4 rounded-2xl border border-border-default bg-bg-secondary p-5">
-        <h2 className="text-lg font-semibold text-text-primary">Event Activity (30d)</h2>
-        {eventBreakdown.length === 0 ? (
-          <p className="text-sm text-text-tertiary">No events yet. Widget activity will appear here.</p>
-        ) : (
-          <div className="space-y-3">
-            {eventBreakdown.map(item => {
-              const width = Math.max(8, Math.round((item.count / eventBreakdown[0].count) * 100));
-              return (
-                <div key={item.eventType} className="space-y-1">
-                  <div className="flex items-center justify-between text-sm text-text-secondary">
-                    <span>{item.eventType}</span>
-                    <span>{item.count.toLocaleString()}</span>
-                  </div>
-                  <div className="h-2 rounded-full bg-bg-primary">
-                    <div
-                      className="h-2 rounded-full bg-accent"
-                      style={{ width: `${width}%` }}
-                      aria-hidden
-                    />
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        )}
-      </section>
-
-      <section className="space-y-4 rounded-2xl border border-border-default bg-bg-secondary p-5">
-        <h2 className="text-lg font-semibold text-text-primary">Step Funnel (30d)</h2>
-        <div className="grid gap-3 sm:grid-cols-3 xl:grid-cols-9">
-          {funnelSteps.map(step => (
-            <StepFunnelCard
-              key={step.label}
-              label={step.label}
-              value={step.value}
-              conversion={formatStepConversion(step.value, step.previous)}
-              dropOff={formatStepDropOff(step.value, step.previous)}
-            />
-          ))}
-        </div>
-      </section>
+      <LeadFunnel stages={funnelStages} />
 
       <section className="grid gap-6 lg:grid-cols-2">
         <div className="rounded-2xl border border-border-default bg-bg-secondary p-5">
@@ -307,27 +232,6 @@ function MetricCard({ label, value }: { label: string; value: string }) {
     <article className="rounded-2xl border border-border-default bg-bg-secondary p-4">
       <p className="text-xs font-medium uppercase tracking-wide text-text-tertiary">{label}</p>
       <p className="mt-2 text-2xl font-semibold text-text-primary">{value}</p>
-    </article>
-  );
-}
-
-function StepFunnelCard({
-  label,
-  value,
-  conversion,
-  dropOff,
-}: {
-  label: string;
-  value: number;
-  conversion: string;
-  dropOff: string | null;
-}) {
-  return (
-    <article className="rounded-xl border border-border-default bg-bg-primary px-3 py-3">
-      <p className="text-[11px] font-semibold uppercase tracking-wide text-text-tertiary">{label}</p>
-      <p className="mt-1 text-xl font-semibold text-text-primary">{value.toLocaleString()}</p>
-      <p className="mt-1 text-[11px] text-text-tertiary">{conversion}</p>
-      {dropOff ? <p className="text-[11px] text-text-tertiary">{dropOff}</p> : null}
     </article>
   );
 }
