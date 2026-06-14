@@ -128,13 +128,18 @@ export default function LeadsTable({ leads }: { leads: LeadRow[] }) {
       </div>
 
       {activeId ? (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm"
-          onClick={close}
-        >
+        <div className="fixed inset-0 z-50">
           <div
-            className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-border-default bg-bg-secondary shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
+            className="absolute inset-0 bg-black/55 backdrop-blur-[2px]"
+            style={{ animation: 'vz-fade-in 0.2s ease' }}
+            onClick={close}
+            aria-hidden
+          />
+          <aside
+            className="absolute right-0 top-0 flex h-full w-full max-w-md flex-col border-l border-border-default bg-bg-secondary shadow-2xl"
+            style={{ animation: 'vz-sheet-in 0.26s cubic-bezier(0.22,0.61,0.36,1)' }}
+            role="dialog"
+            aria-label="Lead detail"
           >
             <div className="flex items-center justify-between border-b border-border-default px-5 py-4">
               <h3 className="text-base font-semibold text-text-primary">Lead detail</h3>
@@ -148,7 +153,7 @@ export default function LeadsTable({ leads }: { leads: LeadRow[] }) {
               </button>
             </div>
 
-            <div className="space-y-4 px-5 py-5">
+            <div className="flex-1 space-y-5 overflow-y-auto px-5 py-5">
               {loading ? (
                 <p className="py-8 text-center text-sm text-text-tertiary">Loading…</p>
               ) : error ? (
@@ -170,44 +175,45 @@ export default function LeadsTable({ leads }: { leads: LeadRow[] }) {
                   ) : null}
 
                   {detail.hasPreview ? (
-                    <div>
-                      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-text-tertiary">
-                        Visualization
-                      </p>
-                      <div className="grid gap-3 sm:grid-cols-2">
-                        <figure className="space-y-1">
-                          <span className="text-[11px] text-text-tertiary">Their photo</span>
-                          {detail.originalUrl ? (
-                            // eslint-disable-next-line @next/next/no-img-element -- signed external URL
-                            <img src={detail.originalUrl} alt="Original upload" className="w-full rounded-lg border border-border-default" />
-                          ) : (
-                            <div className="flex h-32 items-center justify-center rounded-lg border border-border-default text-xs text-text-tertiary">
-                              Not available
-                            </div>
-                          )}
-                        </figure>
-                        <figure className="space-y-1">
-                          <span className="text-[11px] text-text-tertiary">Generated</span>
-                          {detail.generatedUrl ? (
-                            // eslint-disable-next-line @next/next/no-img-element -- signed external URL
-                            <img src={detail.generatedUrl} alt="Generated visualization" className="w-full rounded-lg border border-accent/40" />
-                          ) : (
-                            <div className="flex h-32 items-center justify-center rounded-lg border border-border-default text-xs text-text-tertiary">
-                              Not available
-                            </div>
-                          )}
-                        </figure>
-                      </div>
+                    <div className="space-y-3">
+                      <p className="text-xs font-semibold uppercase tracking-wide text-text-tertiary">Visualization</p>
+                      <figure className="space-y-1.5">
+                        <span className="text-[11px] text-text-tertiary">Their photo</span>
+                        {detail.originalUrl ? (
+                          // eslint-disable-next-line @next/next/no-img-element -- signed external URL
+                          <img src={detail.originalUrl} alt="Original upload" className="w-full rounded-lg border border-border-default" />
+                        ) : (
+                          <div className="flex h-32 items-center justify-center rounded-lg border border-border-default text-xs text-text-tertiary">
+                            Not available
+                          </div>
+                        )}
+                      </figure>
+                      <figure className="space-y-1.5">
+                        <span className="text-[11px] text-text-tertiary">Generated</span>
+                        {detail.generatedUrl ? (
+                          // eslint-disable-next-line @next/next/no-img-element -- signed external URL
+                          <img src={detail.generatedUrl} alt="Generated visualization" className="w-full rounded-lg border border-accent/40" />
+                        ) : (
+                          <div className="flex h-32 items-center justify-center rounded-lg border border-border-default text-xs text-text-tertiary">
+                            Not available
+                          </div>
+                        )}
+                      </figure>
                     </div>
                   ) : (
-                    <p className="flex items-center gap-2 rounded-lg border border-border-default bg-bg-primary px-4 py-3 text-sm text-text-tertiary">
+                    <p className="rounded-lg border border-border-default bg-bg-primary px-4 py-3 text-sm text-text-tertiary">
                       No visualization was generated for this lead.
                     </p>
                   )}
                 </>
               ) : null}
             </div>
-          </div>
+          </aside>
+
+          <style>{`
+            @keyframes vz-fade-in { from { opacity: 0; } to { opacity: 1; } }
+            @keyframes vz-sheet-in { from { transform: translateX(100%); } to { transform: translateX(0); } }
+          `}</style>
         </div>
       ) : null}
     </>
