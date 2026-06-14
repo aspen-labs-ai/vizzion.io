@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import LeadFunnel, { type FunnelStage } from '@/components/dashboard/LeadFunnel';
+import MaterialBarChart from '@/components/dashboard/MaterialBarChart';
 import PageHeader from '@/components/dashboard/PageHeader';
 import SetupChecklist from '@/components/dashboard/SetupChecklist';
 import { createClient } from '@/lib/supabase/server';
@@ -150,78 +151,46 @@ export default async function DashboardOverviewPage({
         <MetricCard label="Queued Jobs" value={metrics.queuedJobs30d.toLocaleString()} />
       </section>
 
-      <LeadFunnel stages={funnelStages} />
+      <section className="grid gap-6 lg:grid-cols-3">
+        <div className="lg:col-span-2">
+          <LeadFunnel stages={funnelStages} />
+        </div>
+        <MaterialBarChart materials={materialPerformance} />
+      </section>
 
-      <section className="grid gap-6 lg:grid-cols-2">
-        <div className="rounded-2xl border border-border-default bg-bg-secondary p-5">
-          <div className="mb-4 flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-text-primary">Material Performance</h2>
-            <Link
-              href="/dashboard/materials"
-              className="text-xs font-semibold text-accent hover:text-accent-hover"
-            >
-              Manage Materials
-            </Link>
-          </div>
+      <section className="rounded-2xl border border-border-default bg-bg-secondary p-5">
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="text-lg font-semibold text-text-primary">Recent Leads</h2>
+          <Link
+            href="/dashboard/leads"
+            className="text-xs font-semibold text-accent hover:text-accent-hover"
+          >
+            View All Leads
+          </Link>
+        </div>
 
-          {materialPerformance.length === 0 ? (
-            <p className="text-sm text-text-tertiary">Add materials to start measuring lead interest.</p>
-          ) : (
-            <div className="space-y-3">
-              {materialPerformance.slice(0, 8).map(item => (
-                <div
-                  key={item.materialId}
-                  className="flex items-center justify-between rounded-lg border border-border-default bg-bg-primary px-3 py-2"
-                >
-                  <div>
-                    <p className="text-sm font-medium text-text-primary">{item.name}</p>
-                    <p className="text-xs text-text-tertiary">
-                      {item.isActive ? 'Active' : 'Inactive'} • Sort {item.sortOrder}
-                    </p>
-                  </div>
-                  <span className="text-sm font-semibold text-accent">
-                    {item.leadCount.toLocaleString()} leads
+        {recentLeads.length === 0 ? (
+          <p className="text-sm text-text-tertiary">No leads yet.</p>
+        ) : (
+          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+            {recentLeads.map(lead => (
+              <div
+                key={lead.id}
+                className="rounded-lg border border-border-default bg-bg-primary px-3 py-2"
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <p className="truncate text-sm font-medium text-text-primary">{lead.email}</p>
+                  <span className="text-xs uppercase tracking-wide text-text-tertiary">
+                    {lead.emailStatus}
                   </span>
                 </div>
-              ))}
-            </div>
-          )}
-        </div>
-
-        <div className="rounded-2xl border border-border-default bg-bg-secondary p-5">
-          <div className="mb-4 flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-text-primary">Recent Leads</h2>
-            <Link
-              href="/dashboard/leads"
-              className="text-xs font-semibold text-accent hover:text-accent-hover"
-            >
-              View All Leads
-            </Link>
+                <p className="mt-1 text-xs text-text-tertiary">
+                  {lead.materialName ?? 'No material'} • {formatDate(lead.createdAt)}
+                </p>
+              </div>
+            ))}
           </div>
-
-          {recentLeads.length === 0 ? (
-            <p className="text-sm text-text-tertiary">No leads yet.</p>
-          ) : (
-            <div className="space-y-3">
-              {recentLeads.map(lead => (
-                <div
-                  key={lead.id}
-                  className="rounded-lg border border-border-default bg-bg-primary px-3 py-2"
-                >
-                  <div className="flex items-center justify-between gap-3">
-                    <p className="truncate text-sm font-medium text-text-primary">{lead.email}</p>
-                    <span className="text-xs uppercase tracking-wide text-text-tertiary">
-                      {lead.emailStatus}
-                    </span>
-                  </div>
-                  <p className="mt-1 text-xs text-text-tertiary">
-                    {lead.materialName ?? 'No material'} • {formatDate(lead.createdAt)}
-                  </p>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+        )}
       </section>
     </div>
   );
