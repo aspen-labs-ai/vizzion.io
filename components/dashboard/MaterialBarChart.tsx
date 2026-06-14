@@ -36,40 +36,47 @@ export default function MaterialBarChart({ materials }: MaterialBarChartProps) {
           Add materials to start measuring lead interest.
         </p>
       ) : (
-        <div className="mt-5 space-y-3.5">
-          {top.map((material, index) => {
-            const widthPct = material.leadCount > 0 ? Math.max((material.leadCount / maxLeads) * 100, 5) : 0;
-            return (
-              <div key={material.materialId} className="space-y-1.5">
-                <div className="flex items-center justify-between gap-2 text-sm">
-                  <span className="flex min-w-0 items-center gap-1.5">
-                    <span className="truncate text-text-primary">{material.name}</span>
-                    {!material.isActive ? (
-                      <span className="shrink-0 text-[10px] uppercase tracking-wide text-text-tertiary">inactive</span>
-                    ) : null}
-                  </span>
-                  <span className="shrink-0 font-semibold tabular-nums text-text-primary">{material.leadCount}</span>
-                </div>
-                <div className="h-2.5 overflow-hidden rounded-full bg-bg-primary">
+        <>
+          {/* Columns */}
+          <div className="mt-6 flex h-44 items-end gap-3">
+            {top.map((material, index) => {
+              const heightPct = material.leadCount > 0 ? Math.max((material.leadCount / maxLeads) * 100, 5) : 1.5;
+              return (
+                <div key={material.materialId} className="flex h-full flex-1 flex-col items-center justify-end">
+                  <span className="mb-1.5 text-sm font-bold tabular-nums text-text-primary">{material.leadCount}</span>
                   <div
-                    className="h-full rounded-full"
+                    className="w-full max-w-[52px] rounded-t-md"
                     style={{
-                      width: `${widthPct}%`,
+                      height: `${heightPct}%`,
                       background:
                         index === 0 && material.leadCount > 0
-                          ? 'linear-gradient(90deg, #0f8a63, #15d68f)'
-                          : 'linear-gradient(90deg, color-mix(in srgb, #10B981 34%, #0d1117), color-mix(in srgb, #10B981 58%, #0d1117))',
+                          ? 'linear-gradient(180deg, #15d68f, #0f8a63)'
+                          : 'linear-gradient(180deg, color-mix(in srgb, #10B981 58%, #0d1117), color-mix(in srgb, #10B981 34%, #0d1117))',
                     }}
                     aria-hidden
                   />
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
+
+          {/* Labels */}
+          <div className="mt-2 flex gap-3 border-t border-border-default pt-2">
+            {top.map((material) => (
+              <span
+                key={material.materialId}
+                title={material.name}
+                className="flex-1 truncate text-center text-[11px] text-text-secondary"
+              >
+                {material.name}
+              </span>
+            ))}
+          </div>
+
           {!hasLeads ? (
-            <p className="pt-1 text-xs text-text-tertiary">No leads captured yet — bars fill as visitors pick materials.</p>
+            <p className="mt-3 text-xs text-text-tertiary">No leads captured yet — bars grow as visitors pick materials.</p>
           ) : null}
-        </div>
+        </>
       )}
     </section>
   );
