@@ -1,4 +1,7 @@
+import { cookies } from 'next/headers';
 import type { SupabaseClient } from '@supabase/supabase-js';
+
+export const SELECTED_WIDGET_COOKIE = 'vz_widget';
 
 export interface WorkspaceRecord {
   id: string;
@@ -166,13 +169,24 @@ export async function getWorkspaceContext(
 
   let widget: WidgetRecord | null = null;
 
-  // When a specific widget is requested (e.g. via ?widgetId=), load it as long
-  // as it belongs to this workspace. Otherwise fall back to the primary widget.
-  if (selectedWidgetId) {
+  // Resolve the active widget: an explicit ?widgetId wins, otherwise fall back
+  // to the widget selected in the switcher (persisted in a cookie), and finally
+  // to the primary widget. The cookie keeps the selection sticky across nav.
+  let effectiveWidgetId = selectedWidgetId ?? null;
+  if (!effectiveWidgetId) {
+    try {
+      const cookieStore = await cookies();
+      effectiveWidgetId = cookieStore.get(SELECTED_WIDGET_COOKIE)?.value ?? null;
+    } catch {
+      // Cookies unavailable in this context; fall through to the primary widget.
+    }
+  }
+
+  if (effectiveWidgetId) {
     const selectedResult = await supabase
       .from('widgets')
       .select(WIDGET_SELECT)
-      .eq('id', selectedWidgetId)
+      .eq('id', effectiveWidgetId)
       .eq('workspace_id', workspace.id)
       .maybeSingle();
 

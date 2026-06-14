@@ -32,6 +32,9 @@ export default function WidgetSwitcher({ widgets, defaultWidgetId }: WidgetSwitc
 
   function selectWidget(id: string) {
     setOpen(false);
+    // Persist selection so it sticks across sidebar navigation (server reads this
+    // cookie when no explicit ?widgetId is present).
+    document.cookie = `vz_widget=${encodeURIComponent(id)}; path=/; max-age=${60 * 60 * 24 * 30}; samesite=lax`;
     router.push(`${targetBase}?widgetId=${encodeURIComponent(id)}`);
   }
 
