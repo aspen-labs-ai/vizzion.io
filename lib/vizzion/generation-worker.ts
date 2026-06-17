@@ -3,6 +3,11 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 import { Resend } from 'resend';
 import { createAdminClient } from '@/lib/supabase/admin';
 import {
+  readableBrandOnLight,
+  readableTextOn,
+  sanitizeBrandColor,
+} from '@/lib/vizzion/brand-color';
+import {
   GeminiGenerationError,
   generateVisualization,
 } from '@/lib/vizzion/gemini';
@@ -135,54 +140,6 @@ function escapeHtml(value: string): string {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#039;');
-}
-
-function sanitizeBrandColor(value: string | null | undefined): string {
-  return typeof value === 'string' && /^#[0-9a-fA-F]{6}$/.test(value.trim())
-    ? value.trim()
-    : '#10B981';
-}
-
-// WCAG relative luminance for a hex color, or null when the value is invalid.
-function relativeLuminance(hex: string): number | null {
-  let color = hex.replace('#', '');
-  if (color.length === 3) {
-    color = color
-      .split('')
-      .map(channel => channel + channel)
-      .join('');
-  }
-  if (!/^[0-9a-fA-F]{6}$/.test(color)) {
-    return null;
-  }
-  const toLinear = (start: number) => {
-    const value = parseInt(color.slice(start, start + 2), 16) / 255;
-    return value <= 0.03928 ? value / 12.92 : Math.pow((value + 0.055) / 1.055, 2.4);
-  };
-  return 0.2126 * toLinear(0) + 0.7152 * toLinear(2) + 0.0722 * toLinear(4);
-}
-
-// Pick a legible text color to place ON a brand-colored background so CTAs stay
-// readable whether the merchant chose a light or dark brand color. Mirrors the
-// same luminance logic used by the embeddable widget (public/widget.js).
-function readableTextOn(hex: string): string {
-  const luminance = relativeLuminance(hex);
-  if (luminance === null) {
-    return '#ffffff';
-  }
-  return luminance > 0.45 ? '#06121f' : '#ffffff';
-}
-
-// The brand color is also used as text/accents directly on the white email card
-// (company name, "Visualization ready" pill). Very light brand colors wash out
-// there, so fall back to dark slate when contrast against white is too low.
-function readableBrandOnLight(hex: string): string {
-  const luminance = relativeLuminance(hex);
-  if (luminance === null) {
-    return '#0f172a';
-  }
-  const contrastWithWhite = 1.05 / (luminance + 0.05);
-  return contrastWithWhite >= 2 ? hex : '#0f172a';
 }
 
 function sanitizeReplyToEmail(value: string | null | undefined): string | null {

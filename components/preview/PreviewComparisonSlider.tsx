@@ -1,6 +1,7 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
+import { readableTextOn } from '@/lib/vizzion/brand-color';
 
 interface PreviewComparisonSliderProps {
   beforeUrl: string;
@@ -14,8 +15,15 @@ export default function PreviewComparisonSlider({
   brandColor,
 }: PreviewComparisonSliderProps) {
   const [position, setPosition] = useState(50);
+  const surfaceRef = useRef<HTMLDivElement>(null);
+  const draggingRef = useRef(false);
+  const afterTextColor = readableTextOn(brandColor);
 
-  const updateFromClientX = useCallback((clientX: number, element: HTMLDivElement) => {
+  const updateFromClientX = useCallback((clientX: number) => {
+    const element = surfaceRef.current;
+    if (!element) {
+      return;
+    }
     const rect = element.getBoundingClientRect();
     if (!rect.width) {
       return;
@@ -24,31 +32,55 @@ export default function PreviewComparisonSlider({
     setPosition(Math.max(0, Math.min(100, next)));
   }, []);
 
+  const handlePointerDown = useCallback(
+    (event: React.PointerEvent<HTMLDivElement>) => {
+      draggingRef.current = true;
+      // Capture so the drag keeps tracking even if the finger/cursor leaves the
+      // element; touch-action: pan-y (below) lets vertical swipes still scroll.
+      try {
+        event.currentTarget.setPointerCapture(event.pointerId);
+      } catch {
+        // Some browsers can reject capture; dragging still works without it.
+      }
+      updateFromClientX(event.clientX);
+    },
+    [updateFromClientX],
+  );
+
+  const handlePointerMove = useCallback(
+    (event: React.PointerEvent<HTMLDivElement>) => {
+      if (!draggingRef.current) {
+        return;
+      }
+      updateFromClientX(event.clientX);
+    },
+    [updateFromClientX],
+  );
+
+  const stopDragging = useCallback(() => {
+    draggingRef.current = false;
+  }, []);
+
   return (
-    <div className="rounded-[2rem] border border-slate-200 bg-white p-3 shadow-2xl shadow-slate-200/80 md:p-4">
+    <div className="overflow-hidden rounded-xl border border-slate-200 bg-slate-100 shadow-sm">
       <div
-        className="group relative overflow-hidden rounded-[1.5rem] bg-slate-100"
-        onPointerDown={(event) => {
-          const target = event.currentTarget;
-          target.setPointerCapture(event.pointerId);
-          updateFromClientX(event.clientX, target);
-        }}
-        onPointerMove={(event) => {
-          if (event.buttons !== 1) {
-            return;
-          }
-          updateFromClientX(event.clientX, event.currentTarget);
-        }}
+        ref={surfaceRef}
+        className="group relative touch-pan-y select-none"
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={stopDragging}
+        onPointerCancel={stopDragging}
+        onLostPointerCapture={stopDragging}
       >
         {/* eslint-disable-next-line @next/next/no-img-element -- signed Supabase URL */}
         <img
           src={afterUrl}
           alt="After visualization"
-          className="mx-auto block max-h-[68vh] w-full select-none object-contain"
+          className="mx-auto block max-h-[64vh] w-full select-none object-contain"
           draggable={false}
         />
         <div
-          className="absolute inset-0 overflow-hidden"
+          className="pointer-events-none absolute inset-0 overflow-hidden"
           style={{ clipPath: `inset(0 calc(100% - ${position}%) 0 0)` }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element -- signed Supabase URL */}
@@ -60,35 +92,36 @@ export default function PreviewComparisonSlider({
           />
         </div>
 
-        <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-slate-800 shadow-sm backdrop-blur">
+        <span className="pointer-events-none absolute left-3 top-3 rounded-md bg-white/90 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700 shadow-sm ring-1 ring-slate-900/5 backdrop-blur">
           Before
         </span>
         <span
-          className="absolute right-4 top-4 rounded-full px-3 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-white shadow-sm"
-          style={{ backgroundColor: brandColor }}
+          className="pointer-events-none absolute right-3 top-3 rounded-md px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] shadow-sm"
+          style={{ backgroundColor: brandColor, color: afterTextColor }}
         >
           After
         </span>
 
         <div
-          className="absolute inset-y-0 w-1 bg-white shadow-[0_0_20px_rgba(15,23,42,0.35)]"
+          className="pointer-events-none absolute inset-y-0 w-0.5 bg-white/90 shadow-[0_0_12px_rgba(15,23,42,0.3)]"
           style={{ left: `${position}%` }}
         />
-        <button
-          type="button"
-          className="absolute top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-900 shadow-2xl transition group-hover:scale-105"
+        <div
+          className="pointer-events-none absolute top-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-lg transition group-active:scale-105"
           style={{ left: `${position}%` }}
-          aria-label="Drag to compare before and after"
+          aria-hidden="true"
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="h-6 w-6">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="h-5 w-5">
             <path strokeLinecap="round" strokeLinejoin="round" d="M10 7 5 12l5 5M14 7l5 5-5 5" />
           </svg>
-        </button>
+        </div>
 
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-white/95 px-4 py-2 text-xs font-semibold text-slate-700 shadow-lg backdrop-blur">
+        <div className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 rounded-md bg-slate-900/70 px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.12em] text-white/90 opacity-90 backdrop-blur transition group-active:opacity-0">
           Drag to compare
         </div>
 
+        {/* Keyboard/assistive-tech control only; pointer/touch use the drag
+            surface above so there is a single, robust interaction model. */}
         <input
           aria-label="Before and after comparison position"
           type="range"
@@ -96,7 +129,7 @@ export default function PreviewComparisonSlider({
           max="100"
           value={position}
           onChange={(event) => setPosition(Number(event.target.value))}
-          className="absolute inset-x-6 bottom-5 h-2 cursor-ew-resize accent-slate-900 opacity-0"
+          className="pointer-events-none absolute inset-x-4 bottom-4 h-2 opacity-0"
         />
       </div>
     </div>

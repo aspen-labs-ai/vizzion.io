@@ -2,6 +2,13 @@ import type { Metadata } from 'next';
 import { after } from 'next/server';
 import { notFound } from 'next/navigation';
 import PreviewComparisonSlider from '@/components/preview/PreviewComparisonSlider';
+import { readableBrandOnLight, readableTextOn, sanitizeBrandColor } from '@/lib/vizzion/brand-color';
+import {
+  buildDownloadFilename,
+  getMaterialName,
+  isValidShareToken,
+  normalizeStoragePath,
+} from '@/lib/vizzion/preview-share';
 import { createAdminClient } from '@/lib/supabase/admin';
 
 export const dynamic = 'force-dynamic';
@@ -16,27 +23,6 @@ export const metadata: Metadata = {
 
 const SIGNED_URL_TTL_SECONDS = 60 * 60;
 
-function normalizeStoragePath(path: string, bucket: 'uploads-original' | 'renders-generated'): string {
-  const normalized = path.trim().replace(/^\/+/, '');
-  return normalized.startsWith(`${bucket}/`)
-    ? normalized.slice(bucket.length + 1)
-    : normalized;
-}
-
-function getMaterialName(value: unknown): string | null {
-  if (!value || typeof value !== 'object') {
-    return null;
-  }
-  const name = (value as { name?: unknown }).name;
-  return typeof name === 'string' && name.trim() ? name.trim() : null;
-}
-
-function sanitizeBrandColor(value: string | null | undefined): string {
-  return typeof value === 'string' && /^#[0-9a-fA-F]{6}$/.test(value.trim())
-    ? value.trim()
-    : '#10B981';
-}
-
 export default async function SharedPreviewPage({
   params,
 }: {
@@ -44,14 +30,14 @@ export default async function SharedPreviewPage({
 }) {
   const { token } = await params;
   const trimmedToken = token.trim();
-  if (!/^[a-zA-Z0-9_-]{24,80}$/.test(trimmedToken)) {
+  if (!isValidShareToken(trimmedToken)) {
     notFound();
   }
 
   const supabase = createAdminClient();
   const previewResult = await supabase
     .from('generated_previews')
-    .select('id, workspace_id, widget_id, lead_id, original_upload_path, generated_path, material_snapshot, share_expires_at')
+    .select('id, workspace_id, widget_id, lead_id, original_upload_path, generated_path, material_snapshot, share_expires_at, created_at')
     .eq('share_token', trimmedToken)
     .maybeSingle();
 
@@ -68,6 +54,7 @@ export default async function SharedPreviewPage({
     generated_path: string | null;
     material_snapshot: Record<string, unknown> | null;
     share_expires_at: string | null;
+    created_at: string;
   };
 
   const expired =
@@ -136,63 +123,128 @@ export default async function SharedPreviewPage({
   const widget = widgetResult.data as { brand_color: string | null } | null;
   const companyName = workspace?.company_name?.trim() || workspace?.name?.trim() || 'Your contractor';
   const brandColor = sanitizeBrandColor(widget?.brand_color || workspace?.brand_color);
+  const brandOnLight = readableBrandOnLight(brandColor);
   const materialName = getMaterialName(preview.material_snapshot);
+  const downloadTextColor = readableTextOn(brandColor);
+  const downloadFilename = buildDownloadFilename(companyName, materialName);
+  // Served through our own route so the customer's logo can be watermarked onto
+  // the render before download (the route also sets Content-Disposition).
+  const downloadUrl = `/preview/${trimmedToken}/download`;
+  const preparedDate = new Date(preview.created_at).toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
 
   return (
-    <main className="min-h-screen bg-[#f7f9fc] px-4 py-10 text-slate-950 md:py-16">
+    <main className="min-h-screen bg-slate-100 px-4 py-10 text-slate-900 md:py-14">
       <div className="mx-auto max-w-3xl">
-        <header className="mb-7 flex flex-col items-center gap-4 text-center">
-          <div className="flex items-center gap-3">
-            {workspace?.logo_url ? (
-              // eslint-disable-next-line @next/next/no-img-element -- customer logo URL
-              <img
-                src={workspace.logo_url}
-                alt={companyName}
-                className="h-11 w-11 rounded-xl border border-slate-200 bg-white object-contain p-1.5 shadow-sm"
-              />
-            ) : (
-              <div
-                className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-lg font-bold shadow-sm"
-                style={{ color: brandColor }}
-              >
-                {companyName[0]?.toUpperCase() ?? 'V'}
+        <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04),0_22px_48px_-28px_rgba(15,23,42,0.35)]">
+          <div className="h-1.5 w-full" style={{ backgroundColor: brandColor }} aria-hidden="true" />
+
+          <header className="flex items-center justify-between gap-4 border-b border-slate-200 px-6 py-5 md:px-8">
+            <div className="flex items-center gap-3">
+              {workspace?.logo_url ? (
+                // eslint-disable-next-line @next/next/no-img-element -- customer logo URL
+                <img
+                  src={workspace.logo_url}
+                  alt={companyName}
+                  className="h-10 w-10 rounded-lg border border-slate-200 bg-white object-contain p-1"
+                />
+              ) : (
+                <div
+                  className="flex h-10 w-10 items-center justify-center rounded-lg text-sm font-bold"
+                  style={{ backgroundColor: brandColor, color: downloadTextColor }}
+                >
+                  {companyName[0]?.toUpperCase() ?? 'V'}
+                </div>
+              )}
+              <div className="leading-tight">
+                <p className="text-sm font-semibold text-slate-900">{companyName}</p>
+                <p className="text-xs text-slate-500">Visualization preview</p>
               </div>
-            )}
-            <span className="text-base font-bold" style={{ color: brandColor }}>{companyName}</span>
-          </div>
+            </div>
+            <div className="hidden text-right sm:block">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">Prepared</p>
+              <p className="mt-0.5 text-xs font-medium text-slate-600">{preparedDate}</p>
+            </div>
+          </header>
 
-          <h1 className="text-4xl font-black tracking-tight text-slate-950 md:text-5xl">
-            Your new look is ready
-          </h1>
-          {materialName ? (
-            <p className="text-lg text-slate-600">
-              {materialName}
+          <div className="px-6 py-7 md:px-8">
+            <p
+              className="text-[11px] font-semibold uppercase tracking-[0.18em]"
+              style={{ color: brandOnLight }}
+            >
+              Before &amp; after
             </p>
-          ) : null}
-        </header>
+            <h1 className="mt-2 text-2xl font-semibold tracking-tight text-slate-900 md:text-[28px]">
+              Your new look is ready
+            </h1>
+            <p className="mt-2 max-w-xl text-[15px] leading-relaxed text-slate-600">
+              A realistic preview{' '}
+              {materialName ? (
+                <>
+                  featuring <span className="font-medium text-slate-800">{materialName}</span>,{' '}
+                </>
+              ) : null}
+              created from your photo. Drag the slider to compare before and after.
+            </p>
 
-        <PreviewComparisonSlider
-          beforeUrl={originalSigned.data.signedUrl}
-          afterUrl={generatedSigned.data.signedUrl}
-          brandColor={brandColor}
-        />
+            <div className="mt-6">
+              <PreviewComparisonSlider
+                beforeUrl={originalSigned.data.signedUrl}
+                afterUrl={generatedSigned.data.signedUrl}
+                brandColor={brandColor}
+              />
+            </div>
 
-        <p className="mt-5 text-center text-sm text-slate-500">
-          Questions? Just reply to {companyName}&apos;s email.
+            <div className="mt-6 flex flex-col gap-4 border-t border-slate-200 pt-5 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                  {materialName ? 'Material' : 'Visualization'}
+                </p>
+                <p className="mt-1 text-sm font-medium text-slate-800">
+                  {materialName ?? 'Your personalized preview'}
+                </p>
+              </div>
+              <a
+                href={downloadUrl}
+                download={downloadFilename}
+                className="inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold shadow-sm transition hover:opacity-90"
+                style={{ backgroundColor: brandColor, color: downloadTextColor }}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.2"
+                  className="h-4 w-4"
+                  aria-hidden="true"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14" />
+                </svg>
+                Download image
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <p className="mt-6 text-center text-sm text-slate-500">
+          Questions? Reply to {companyName}&apos;s email.
         </p>
 
-        <div className="mt-10 flex justify-center">
+        <div className="mt-5 flex justify-center">
           <a
             href="https://vizzion.io"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 rounded-full bg-slate-900 px-4 py-2 transition hover:bg-slate-800"
+            className="inline-flex items-center gap-2 rounded-full bg-slate-900/90 px-3.5 py-1.5 transition hover:bg-slate-900"
           >
-            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">
               Powered by
             </span>
             {/* eslint-disable-next-line @next/next/no-img-element -- static marketing logo */}
-            <img src="/vizzion-logo.png" alt="Vizzion" className="h-5 w-auto" />
+            <img src="/vizzion-logo.png" alt="Vizzion" className="h-4 w-auto" />
           </a>
         </div>
       </div>
