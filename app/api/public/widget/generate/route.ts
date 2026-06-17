@@ -1,7 +1,6 @@
 import { createHash } from 'crypto';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { NextRequest, after } from 'next/server';
-import { Resend } from 'resend';
 import { createAdminClient } from '@/lib/supabase/admin';
 import {
   mapConsumedVisualizationQuotaResult,
@@ -117,14 +116,6 @@ function buildLimitSummary(params: {
       limit: IP_DAILY_LIMIT,
     },
   };
-}
-
-function buildLeadEmailHtml(): string {
-  return `<div style="font-family:Arial,sans-serif;background:#0d1117;color:#f9fafb;padding:24px;line-height:1.5;">
-    <h2 style="margin:0 0 12px;color:#10B981;">Thanks for trying Vizzion</h2>
-    <p style="margin:0 0 10px;">We received your visualization request. Your preview is being generated now.</p>
-    <p style="margin:0;color:#9ca3af;font-size:14px;">You will receive the final result by email shortly.</p>
-  </div>`;
 }
 
 function escapeSqlLikePattern(value: string): string {
@@ -817,25 +808,6 @@ export async function POST(request: NextRequest) {
         // Errors are persisted on the job row by the worker; nothing to do here.
       }
     });
-
-    const resendApiKey = process.env.RESEND_API_KEY;
-    const resendFromEmail = process.env.RESEND_FROM_EMAIL;
-
-    if (lead && email && resendApiKey && resendFromEmail) {
-      const resend = new Resend(resendApiKey);
-
-      try {
-        await resend.emails.send({
-          from: resendFromEmail,
-          to: [email],
-          subject: 'Your Vizzion request is in progress',
-          html: buildLeadEmailHtml(),
-        });
-      } catch {
-        // The final result email is authoritative; do not mark the lead failed
-        // just because this optional acknowledgement failed.
-      }
-    }
 
     await notifyUsageThresholdAlerts({
       supabase,

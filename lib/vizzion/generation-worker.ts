@@ -143,6 +143,48 @@ function sanitizeBrandColor(value: string | null | undefined): string {
     : '#10B981';
 }
 
+// WCAG relative luminance for a hex color, or null when the value is invalid.
+function relativeLuminance(hex: string): number | null {
+  let color = hex.replace('#', '');
+  if (color.length === 3) {
+    color = color
+      .split('')
+      .map(channel => channel + channel)
+      .join('');
+  }
+  if (!/^[0-9a-fA-F]{6}$/.test(color)) {
+    return null;
+  }
+  const toLinear = (start: number) => {
+    const value = parseInt(color.slice(start, start + 2), 16) / 255;
+    return value <= 0.03928 ? value / 12.92 : Math.pow((value + 0.055) / 1.055, 2.4);
+  };
+  return 0.2126 * toLinear(0) + 0.7152 * toLinear(2) + 0.0722 * toLinear(4);
+}
+
+// Pick a legible text color to place ON a brand-colored background so CTAs stay
+// readable whether the merchant chose a light or dark brand color. Mirrors the
+// same luminance logic used by the embeddable widget (public/widget.js).
+function readableTextOn(hex: string): string {
+  const luminance = relativeLuminance(hex);
+  if (luminance === null) {
+    return '#ffffff';
+  }
+  return luminance > 0.45 ? '#06121f' : '#ffffff';
+}
+
+// The brand color is also used as text/accents directly on the white email card
+// (company name, "Visualization ready" pill). Very light brand colors wash out
+// there, so fall back to dark slate when contrast against white is too low.
+function readableBrandOnLight(hex: string): string {
+  const luminance = relativeLuminance(hex);
+  if (luminance === null) {
+    return '#0f172a';
+  }
+  const contrastWithWhite = 1.05 / (luminance + 0.05);
+  return contrastWithWhite >= 2 ? hex : '#0f172a';
+}
+
 function sanitizeReplyToEmail(value: string | null | undefined): string | null {
   const email = value?.trim().toLowerCase();
   return email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? email : null;
@@ -177,11 +219,13 @@ function buildResultEmailHtml(images: ResultEmailImageUrls, branding: ResultEmai
     : '';
   const originalCard = images.originalUrl ? buildImageCard('Before', images.originalUrl) : '';
   const previewCard = buildImageCard(images.originalUrl ? 'After' : 'Preview', images.previewUrl);
+  const buttonTextColor = readableTextOn(branding.brandColor);
+  const brandOnLight = readableBrandOnLight(branding.brandColor);
   const compareButton = images.shareUrl
     ? `<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin:20px 0 18px;">
         <tr>
           <td align="center" bgcolor="${branding.brandColor}" style="border-radius:14px;background:${branding.brandColor};box-shadow:0 10px 24px rgba(15,23,42,0.16);">
-            <a href="${escapeHtml(images.shareUrl)}" style="display:block;padding:15px 20px;color:#07111f;font-size:15px;font-weight:800;text-decoration:none;border-radius:14px;">Open interactive before/after slider</a>
+            <a href="${escapeHtml(images.shareUrl)}" style="display:block;padding:15px 20px;color:${buttonTextColor};font-size:15px;font-weight:800;text-decoration:none;border-radius:14px;">Open interactive before/after slider</a>
           </td>
         </tr>
       </table>`
@@ -196,13 +240,13 @@ function buildResultEmailHtml(images: ResultEmailImageUrls, branding: ResultEmai
               <td bgcolor="#ffffff" style="padding:26px 28px 18px;background:#ffffff;background-color:#ffffff;">
                 <table role="presentation" width="100%" cellspacing="0" cellpadding="0" bgcolor="#ffffff" style="background:#ffffff;background-color:#ffffff;">
                   <tr>
-                    <td style="vertical-align:middle;">${logo || `<p style="margin:0;color:${branding.brandColor};font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;">${companyName}</p>`}</td>
+                    <td style="vertical-align:middle;">${logo || `<p style="margin:0;color:${brandOnLight};font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;">${companyName}</p>`}</td>
                     <td align="right" style="vertical-align:middle;">
-                      <span style="display:inline-block;border:1px solid ${branding.brandColor};border-radius:999px;padding:6px 10px;color:${branding.brandColor};font-size:12px;font-weight:700;">Visualization ready</span>
+                      <span style="display:inline-block;border:1px solid ${brandOnLight};border-radius:999px;padding:6px 10px;color:${brandOnLight};font-size:12px;font-weight:700;">Visualization ready</span>
                     </td>
                   </tr>
                 </table>
-                ${logo ? `<p style="margin:16px 0 0;color:${branding.brandColor};font-size:13px;font-weight:800;">${companyName}</p>` : ''}
+                ${logo ? `<p style="margin:16px 0 0;color:${brandOnLight};font-size:13px;font-weight:800;">${companyName}</p>` : ''}
                 <h1 style="margin:10px 0 8px;color:#0f172a;font-size:28px;line-height:1.15;letter-spacing:-.02em;">Your visualization is ready</h1>
                 <p style="margin:0;color:#475569;font-size:15px;line-height:1.6;">Here is the personalized preview created from your uploaded photo.</p>
                 ${compareButton}
