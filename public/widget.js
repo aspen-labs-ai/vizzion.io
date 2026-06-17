@@ -1118,12 +1118,10 @@
       });
     }
 
-    function handleFailed(payload) {
+    function handleFailed() {
       clearPolling(instance);
       instance.state = 'error';
-      instance.lastError =
-        (payload.generationJob && payload.generationJob.errorMessage) ||
-        'Generation failed. Please try another photo.';
+      instance.lastError = 'Visualization could not be completed. Please try another photo.';
       render(instance);
       trackEvent(instance, 'generation_failed', {
         generationJobId: instance.generationJobId,

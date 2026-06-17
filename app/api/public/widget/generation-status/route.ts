@@ -181,7 +181,10 @@ export async function GET(request: NextRequest) {
         generationJob: {
           id: generationJob.id,
           status: generationJob.status,
-          errorMessage: generationJob.error_message,
+          errorMessage:
+            generationJob.status === 'failed'
+              ? 'Visualization could not be completed. Please try another photo.'
+              : null,
           createdAt: generationJob.created_at,
           completedAt: generationJob.completed_at,
           leadId: generationJob.lead_id,
