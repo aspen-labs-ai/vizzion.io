@@ -22,6 +22,7 @@ const UPLOADS_BUCKET = 'uploads-original';
 const RENDERS_BUCKET = 'renders-generated';
 const RESULT_SIGNED_URL_TTL_SECONDS = 7 * 24 * 60 * 60;
 const SHARE_LINK_TTL_MS = 7 * 24 * 60 * 60 * 1000;
+const DEFAULT_PUBLIC_APP_URL = 'https://app.vizzion.io';
 /** A job stuck in 'processing' longer than this is assumed dead and recoverable. */
 const STALE_PROCESSING_MS = 3 * 60 * 1000;
 
@@ -68,6 +69,23 @@ function normalizeStoragePath(path: string, bucket: string): string {
   return normalized.startsWith(`${bucket}/`)
     ? normalized.slice(bucket.length + 1)
     : normalized;
+}
+
+function getPublicAppUrl(): string {
+  const value = process.env.NEXT_PUBLIC_SITE_URL?.trim().replace(/\/$/, '');
+  if (!value) {
+    return DEFAULT_PUBLIC_APP_URL;
+  }
+
+  try {
+    const parsed = new URL(value);
+    if (parsed.hostname === 'localhost' || parsed.hostname === '127.0.0.1') {
+      return DEFAULT_PUBLIC_APP_URL;
+    }
+    return parsed.origin;
+  } catch {
+    return DEFAULT_PUBLIC_APP_URL;
+  }
 }
 
 async function recordEvent(
@@ -538,8 +556,7 @@ export async function processGenerationJob(
 
     // 7. Email the finished visualization to the captured lead (best effort).
     try {
-      const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || 'https://app.vizzion.io';
-      await sendResultEmail(supabase, job, uploadPath, generatedPath, `${siteUrl}/preview/${shareToken}`);
+      await sendResultEmail(supabase, job, uploadPath, generatedPath, `${getPublicAppUrl()}/preview/${shareToken}`);
     } catch {
       // Email failure must not fail an otherwise successful generation.
     }
