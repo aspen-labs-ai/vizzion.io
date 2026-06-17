@@ -1118,10 +1118,16 @@
       });
     }
 
-    function handleFailed() {
+    function handleFailed(payload) {
       clearPolling(instance);
       instance.state = 'error';
-      instance.lastError = 'Visualization could not be completed. Please try another photo.';
+      var reference =
+        payload &&
+        payload.generationJob &&
+        payload.generationJob.errorReference
+          ? ' Reference: ' + payload.generationJob.errorReference + '.'
+          : '';
+      instance.lastError = 'Visualization could not be completed. Please try another photo.' + reference;
       render(instance);
       trackEvent(instance, 'generation_failed', {
         generationJobId: instance.generationJobId,

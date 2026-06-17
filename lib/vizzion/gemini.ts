@@ -226,12 +226,9 @@ async function callGeminiOnce(
         body: JSON.stringify({
           contents: [{ parts }],
           generationConfig: {
-            responseModalities: ['TEXT', 'IMAGE'],
-            responseFormat: {
-              image: {
-                aspectRatio,
-                imageSize,
-              },
+            imageConfig: {
+              aspectRatio,
+              imageSize,
             },
           },
         }),
@@ -321,11 +318,11 @@ export async function generateVisualization(
 
   const parts: Array<Record<string, unknown>> = [
     { text: prompt },
-    { inline_data: { mime_type: 'image/jpeg', data: inputJpeg.toString('base64') } },
+    { inlineData: { mimeType: 'image/jpeg', data: inputJpeg.toString('base64') } },
   ];
   if (reference) {
     parts.push({
-      inline_data: { mime_type: reference.mimeType, data: reference.data },
+      inlineData: { mimeType: reference.mimeType, data: reference.data },
     });
   }
 
