@@ -114,11 +114,9 @@ export function buildVisualizationPrompt(
     : '';
 
   return [
-    `Edit the first image, a photo of ${subject}.`,
-    `Change ${surface} to ${material.name}, covering the existing material there.${descriptionNote}${referenceNote}`,
-    `Render ${material.name} photorealistically with lighting, shadows, reflections, and perspective consistent with the original photo.`,
-    'Keep every other element of the photo exactly the same — structure, background, surroundings, people, and framing must be unchanged.',
-    'CRITICAL: The output image MUST keep the EXACT same dimensions, aspect ratio, framing, and composition as the input. Do not crop, zoom, pan, add borders, or change the perspective. Every pixel boundary should align with the original.',
+    `Using the uploaded photo of ${subject}, change only ${surface} to ${material.name}.${descriptionNote}${referenceNote}`,
+    'Keep everything else in the image exactly the same, preserving the original style, lighting, and composition.',
+    'Do not change the input aspect ratio.',
   ].join('\n');
 }
 

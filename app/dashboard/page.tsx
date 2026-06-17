@@ -98,7 +98,7 @@ export default async function DashboardOverviewPage({
     const widgetResult = await supabase
       .from('widgets')
       .select(
-        'id, workspace_id, name, embed_key, mode, theme, is_active, require_email, auto_open_widget, show_product_names, subject_type, domain_allowlist, max_generations_per_session, max_generations_per_email_lifetime, limit_reached_cta_url, is_primary',
+        'id, workspace_id, name, embed_key, mode, theme, brand_color, is_active, require_email, delivery_mode, auto_open_widget, show_product_names, subject_type, target_surface, domain_allowlist, max_generations_per_session, max_generations_per_email_lifetime, limit_reached_cta_url, is_primary',
       )
       .eq('workspace_id', context.workspace.id)
       .eq('id', requestedWidgetId)
@@ -134,6 +134,12 @@ export default async function DashboardOverviewPage({
       description: 'Create at least one product or finish customers can preview.',
       done: metrics.activeMaterials > 0,
       href: '/dashboard/materials',
+    },
+    {
+      label: 'Set the target surface',
+      description: 'Tell Vizzion what part of the photo changes, like the roof or siding.',
+      done: Boolean(selectedWidget.target_surface?.trim()),
+      href: '/dashboard/settings',
     },
     {
       label: 'Set your website domain',

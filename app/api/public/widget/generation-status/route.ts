@@ -145,18 +145,36 @@ export async function GET(request: NextRequest) {
         }
       | null;
 
-    const [originalUpload, generatedPreview] = await Promise.all([
-      createSignedStorageUrl({
-        supabase,
-        bucket: 'uploads-original',
-        path: preview?.original_upload_path ?? null,
-      }),
-      createSignedStorageUrl({
-        supabase,
-        bucket: 'renders-generated',
-        path: preview?.generated_path ?? null,
-      }),
-    ]);
+    let lead: { id: string; email_status: string } | null = null;
+    if (generationJob.lead_id) {
+      const leadResult = await supabase
+        .from('leads')
+        .select('id, email_status')
+        .eq('id', generationJob.lead_id)
+        .eq('widget_id', widget.id)
+        .maybeSingle();
+
+      lead = (leadResult.data as { id: string; email_status: string } | null) ?? null;
+    }
+
+    const emailOnlyDelivery = widget.delivery_mode === 'email';
+    const [originalUpload, generatedPreview] = emailOnlyDelivery
+      ? [
+          { url: null, expiresAt: null },
+          { url: null, expiresAt: null },
+        ]
+      : await Promise.all([
+          createSignedStorageUrl({
+            supabase,
+            bucket: 'uploads-original',
+            path: preview?.original_upload_path ?? null,
+          }),
+          createSignedStorageUrl({
+            supabase,
+            bucket: 'renders-generated',
+            path: preview?.generated_path ?? null,
+          }),
+        ]);
 
     return publicJsonResponse(
       {
@@ -169,15 +187,22 @@ export async function GET(request: NextRequest) {
           leadId: generationJob.lead_id,
           sessionId: generationJob.session_id,
         },
+        lead: lead
+          ? {
+              id: lead.id,
+              emailStatus: lead.email_status,
+            }
+          : null,
         preview: preview
           ? {
               id: preview.id,
-              originalUploadPath: preview.original_upload_path,
-              generatedPath: preview.generated_path,
+              originalUploadPath: emailOnlyDelivery ? null : preview.original_upload_path,
+              generatedPath: emailOnlyDelivery ? null : preview.generated_path,
               originalUploadUrl: originalUpload.url,
               generatedPreviewUrl: generatedPreview.url,
               signedUrlExpiresAt: generatedPreview.expiresAt ?? originalUpload.expiresAt,
               retentionExpiresAt: parseRetentionExpiry(preview.metadata),
+              deliveryMode: widget.delivery_mode,
             }
           : null,
       },

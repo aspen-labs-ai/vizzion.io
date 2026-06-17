@@ -43,6 +43,14 @@ interface GenerationPromptPayload {
   requireEmail?: boolean;
 }
 
+interface ResultEmailBranding {
+  companyName: string;
+  logoUrl: string | null;
+  brandColor: string;
+  materialName: string | null;
+  replyToEmail: string | null;
+}
+
 function parsePromptPayload(prompt: string | null): GenerationPromptPayload {
   if (!prompt) {
     return {};
@@ -101,15 +109,108 @@ async function markFailed(
   await recordEvent(supabase, job, 'generation_failed', { code, message });
 }
 
-function buildResultEmailHtml(previewUrl: string): string {
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function sanitizeBrandColor(value: string | null | undefined): string {
+  return typeof value === 'string' && /^#[0-9a-fA-F]{6}$/.test(value.trim())
+    ? value.trim()
+    : '#10B981';
+}
+
+function sanitizeReplyToEmail(value: string | null | undefined): string | null {
+  const email = value?.trim().toLowerCase();
+  return email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? email : null;
+}
+
+function buildResultEmailHtml(previewUrl: string, branding: ResultEmailBranding): string {
+  const companyName = escapeHtml(branding.companyName);
+  const materialLine = branding.materialName
+    ? `<p style="margin:0 0 16px;color:#d1d5db;">You selected: <strong style="color:#f9fafb;">${escapeHtml(branding.materialName)}</strong></p>`
+    : '';
+  const logo = branding.logoUrl
+    ? `<img src="${escapeHtml(branding.logoUrl)}" alt="${companyName}" style="display:block;max-width:180px;max-height:56px;object-fit:contain;margin:0 0 18px;" />`
+    : '';
+  const replyLine = branding.replyToEmail
+    ? `<p style="margin:14px 0 0;color:#9ca3af;font-size:13px;">Questions? Reply to this email and ${companyName} will receive it.</p>`
+    : '';
+
   return `<div style="font-family:Arial,sans-serif;background:#0d1117;color:#f9fafb;padding:24px;line-height:1.5;">
-    <h2 style="margin:0 0 12px;color:#10B981;">Your visualization is ready</h2>
-    <p style="margin:0 0 16px;">Here is your personalized preview. Tap the image to view it full size.</p>
-    <a href="${previewUrl}" style="display:inline-block;">
-      <img src="${previewUrl}" alt="Your visualization" style="max-width:100%;border-radius:12px;border:1px solid #30363d;" />
+    ${logo}
+    <p style="margin:0 0 6px;color:${branding.brandColor};font-size:13px;font-weight:700;">${companyName}</p>
+    <h2 style="margin:0 0 12px;color:#f9fafb;">Your visualization is ready</h2>
+    <p style="margin:0 0 10px;">Here is your personalized preview. Tap the image to view it full size.</p>
+    ${materialLine}
+    <a href="${escapeHtml(previewUrl)}" style="display:inline-block;">
+      <img src="${escapeHtml(previewUrl)}" alt="Your visualization" style="max-width:100%;border-radius:12px;border:1px solid #30363d;" />
     </a>
+    ${replyLine}
     <p style="margin:16px 0 0;color:#9ca3af;font-size:13px;">This preview link expires in 7 days.</p>
   </div>`;
+}
+
+async function loadResultEmailBranding(
+  supabase: SupabaseClient,
+  job: GenerationJobRow,
+  materialId: string | null | undefined,
+): Promise<ResultEmailBranding> {
+  const [workspaceResult, widgetResult, materialResult] = await Promise.all([
+    supabase
+      .from('workspaces')
+      .select('name, company_name, logo_url, brand_color, reply_to_email')
+      .eq('id', job.workspace_id)
+      .maybeSingle(),
+    supabase
+      .from('widgets')
+      .select('brand_color')
+      .eq('id', job.widget_id)
+      .maybeSingle(),
+    materialId
+      ? supabase
+          .from('materials')
+          .select('name')
+          .eq('id', materialId)
+          .maybeSingle()
+      : Promise.resolve({ data: null }),
+  ]);
+
+  const workspace = workspaceResult.data as {
+    name: string;
+    company_name: string | null;
+    logo_url: string | null;
+    brand_color: string | null;
+    reply_to_email: string | null;
+  } | null;
+  const widget = widgetResult.data as { brand_color: string | null } | null;
+  const material = materialResult.data as { name: string } | null;
+
+  return {
+    companyName: workspace?.company_name?.trim() || workspace?.name?.trim() || 'Vizzion',
+    logoUrl: workspace?.logo_url ?? null,
+    brandColor: sanitizeBrandColor(widget?.brand_color || workspace?.brand_color),
+    materialName: material?.name ?? null,
+    replyToEmail: sanitizeReplyToEmail(workspace?.reply_to_email),
+  };
+}
+
+async function updateLeadEmailStatus(
+  supabase: SupabaseClient,
+  leadId: string,
+  status: 'sent' | 'failed',
+): Promise<void> {
+  await supabase
+    .from('leads')
+    .update({
+      email_status: status,
+      preview_sent_at: status === 'sent' ? new Date().toISOString() : null,
+    })
+    .eq('id', leadId);
 }
 
 async function sendResultEmail(
@@ -124,6 +225,7 @@ async function sendResultEmail(
   const resendApiKey = process.env.RESEND_API_KEY;
   const resendFromEmail = process.env.RESEND_FROM_EMAIL;
   if (!resendApiKey || !resendFromEmail) {
+    await updateLeadEmailStatus(supabase, job.lead_id, 'failed');
     return;
   }
 
@@ -135,6 +237,7 @@ async function sendResultEmail(
 
   const email = (leadResult.data as { email: string } | null)?.email;
   if (!email) {
+    await updateLeadEmailStatus(supabase, job.lead_id, 'failed');
     return;
   }
 
@@ -144,24 +247,33 @@ async function sendResultEmail(
 
   const previewUrl = signed.data?.signedUrl;
   if (!previewUrl) {
+    await updateLeadEmailStatus(supabase, job.lead_id, 'failed');
     return;
   }
 
-  const resend = new Resend(resendApiKey);
-  const emailResult = await resend.emails.send({
-    from: resendFromEmail,
-    to: [email],
-    subject: 'Your Vizzion visualization is ready',
-    html: buildResultEmailHtml(previewUrl),
-  });
+  const payload = parsePromptPayload(job.prompt);
+  const branding = await loadResultEmailBranding(supabase, job, payload.materialId);
 
-  await supabase
-    .from('leads')
-    .update({
-      email_status: emailResult.error ? 'failed' : 'sent',
-      preview_sent_at: emailResult.error ? null : new Date().toISOString(),
-    })
-    .eq('id', job.lead_id);
+  const resend = new Resend(resendApiKey);
+  let emailResult: Awaited<ReturnType<typeof resend.emails.send>>;
+  try {
+    const sendOptions = {
+      from: resendFromEmail,
+      to: [email],
+      subject: `Your ${branding.companyName} visualization is ready`,
+      html: buildResultEmailHtml(previewUrl, branding),
+      ...(branding.replyToEmail ? { replyTo: branding.replyToEmail } : {}),
+    };
+
+    emailResult = await resend.emails.send({
+      ...sendOptions,
+    });
+  } catch {
+    await updateLeadEmailStatus(supabase, job.lead_id, 'failed');
+    return;
+  }
+
+  await updateLeadEmailStatus(supabase, job.lead_id, emailResult.error ? 'failed' : 'sent');
 }
 
 /**

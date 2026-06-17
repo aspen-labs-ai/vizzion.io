@@ -199,7 +199,7 @@ export default async function SettingsPage({
           <input
             type="hidden"
             name="present_fields"
-            value="name,subject_type,target_surface,require_email,auto_open_widget,show_product_names,is_active"
+            value="name,subject_type,target_surface,require_email,delivery_mode,auto_open_widget,show_product_names,is_active"
           />
           <InputField label="Widget name" name="name" defaultValue={widget.name} required disabled={!isOwner} hint="Internal label — not shown to visitors." />
           <SelectField
@@ -228,9 +228,20 @@ export default async function SettingsPage({
           <ToggleField
             name="require_email"
             label="Require email"
-            description="Capture an email before showing the result (recommended)."
+            description="Capture an email before generating or delivering the result."
             defaultChecked={widget.require_email}
             disabled={!isOwner}
+          />
+          <SelectField
+            label="Result delivery"
+            name="delivery_mode"
+            defaultValue={widget.delivery_mode === 'email' ? 'email' : 'instant'}
+            disabled={!isOwner}
+            hint="Instant preview shows the result on-site. Email only sends the result to the visitor instead."
+            options={[
+              { value: 'instant', label: 'Instant preview — show on-site' },
+              { value: 'email', label: 'Email only — send result to inbox' },
+            ]}
           />
           <ToggleField
             name="is_active"
@@ -256,6 +267,11 @@ export default async function SettingsPage({
           {!widget.require_email ? (
             <p className="md:col-span-2 rounded-lg border border-amber-500/40 bg-amber-500/10 px-4 py-3 text-xs text-amber-200">
               Email capture is off — you won&apos;t collect leads. Turn it on to capture and follow up.
+            </p>
+          ) : null}
+          {widget.delivery_mode === 'email' ? (
+            <p className="md:col-span-2 rounded-lg border border-accent/40 bg-accent/10 px-4 py-3 text-xs text-accent">
+              Email-only delivery requires Resend in production. Visitors will not see the finished preview in the widget.
             </p>
           ) : null}
           <div className="md:col-span-2">{saveButton('Save behavior')}</div>
@@ -320,9 +336,9 @@ export default async function SettingsPage({
       {/* WORKSPACE */}
       <section className="rounded-2xl border border-border-default bg-bg-secondary p-6">
         <h2 className="text-lg font-semibold text-text-primary">Workspace</h2>
-        <p className="mt-1 text-sm text-text-secondary">Your account name, shown in the sidebar and billing.</p>
+        <p className="mt-1 text-sm text-text-secondary">Your account name and logo, used in the dashboard and customer emails.</p>
 
-        <form action={updateWorkspaceProfileAction} className="mt-5 grid gap-4 md:grid-cols-2">
+        <form action={updateWorkspaceProfileAction} encType="multipart/form-data" className="mt-5 grid gap-4 md:grid-cols-2">
           <InputField
             label="Workspace name"
             name="workspace_name"
@@ -330,6 +346,15 @@ export default async function SettingsPage({
             required
             disabled={!isOwner}
           />
+          <InputField
+            label="Reply-to email"
+            name="reply_to_email"
+            type="email"
+            defaultValue={context.workspace.reply_to_email ?? ''}
+            disabled={!isOwner}
+            hint="Customer replies to result emails will go here. Leave blank to use the sending address."
+          />
+          <LogoField existingUrl={context.workspace.logo_url} disabled={!isOwner} />
           <div className="flex items-end">{saveButton('Save workspace')}</div>
         </form>
       </section>
@@ -358,6 +383,7 @@ function FieldHint({ hint }: { hint?: string }) {
 function InputField({
   label,
   name,
+  type = 'text',
   defaultValue,
   required,
   disabled,
@@ -365,6 +391,7 @@ function InputField({
 }: {
   label: string;
   name: string;
+  type?: string;
   defaultValue?: string;
   required?: boolean;
   disabled?: boolean;
@@ -374,7 +401,7 @@ function InputField({
     <label className="block space-y-2">
       <span className="text-sm font-medium text-text-secondary">{label}</span>
       <input
-        type="text"
+        type={type}
         name={name}
         defaultValue={defaultValue}
         required={required}
@@ -452,6 +479,49 @@ function NumberField({
       />
       <FieldHint hint={hint} />
     </label>
+  );
+}
+
+function LogoField({ existingUrl, disabled }: { existingUrl: string | null; disabled?: boolean }) {
+  return (
+    <div className="space-y-2 md:col-span-2">
+      <span className="text-sm font-medium text-text-secondary">Company logo</span>
+      <div className="flex flex-wrap items-center gap-4 rounded-lg border border-border-default bg-bg-primary p-4">
+        {existingUrl ? (
+          // eslint-disable-next-line @next/next/no-img-element -- customer-uploaded public logo URL
+          <img
+            src={existingUrl}
+            alt="Current workspace logo"
+            className="max-h-14 max-w-48 rounded-md border border-border-subtle bg-white object-contain p-2"
+          />
+        ) : (
+          <span className="flex h-14 w-28 items-center justify-center rounded-md border border-dashed border-border-default text-xs text-text-tertiary">
+            No logo
+          </span>
+        )}
+        <div className="space-y-2">
+          <input
+            type="file"
+            name="logo_file"
+            accept="image/jpeg,image/png,image/webp"
+            disabled={disabled}
+            className="block text-xs text-text-secondary file:mr-3 file:rounded-md file:border-0 file:bg-accent file:px-3 file:py-2 file:text-xs file:font-semibold file:text-bg-primary disabled:opacity-60"
+          />
+          <p className="text-xs text-text-tertiary">PNG, JPG, or WebP. Max 2 MB. Used in customer result emails.</p>
+          {existingUrl ? (
+            <label className="inline-flex items-center gap-2 text-xs text-text-secondary">
+              <input
+                type="checkbox"
+                name="remove_logo"
+                disabled={disabled}
+                className="h-4 w-4 rounded border-border-default bg-bg-primary text-accent focus:ring-accent"
+              />
+              Remove current logo
+            </label>
+          ) : null}
+        </div>
+      </div>
+    </div>
   );
 }
 

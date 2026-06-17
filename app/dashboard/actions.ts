@@ -9,6 +9,8 @@ import { getWorkspaceContext } from '@/lib/vizzion/workspace';
 
 const MATERIAL_IMAGE_MAX_BYTES = 8 * 1024 * 1024;
 const MATERIAL_IMAGE_MIME_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp']);
+const WORKSPACE_LOGO_MAX_BYTES = 2 * 1024 * 1024;
+const WORKSPACE_LOGO_MIME_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp']);
 
 function materialImageExtension(file: File): string {
   if (file.type === 'image/png') {
@@ -59,6 +61,37 @@ async function uploadMaterialImage(
   return { url: supabase.storage.from('materials').getPublicUrl(path).data.publicUrl };
 }
 
+async function uploadWorkspaceLogo(
+  supabase: SupabaseClient,
+  workspaceId: string,
+  fileValue: FormDataEntryValue | null,
+): Promise<{ url: string } | { error: string } | null> {
+  if (!(fileValue instanceof File) || fileValue.size < 1) {
+    return null;
+  }
+
+  if (!WORKSPACE_LOGO_MIME_TYPES.has(fileValue.type)) {
+    return { error: 'Logo must be a JPG, PNG, or WebP file.' };
+  }
+
+  if (fileValue.size > WORKSPACE_LOGO_MAX_BYTES) {
+    return { error: 'Logo must be 2 MB or smaller.' };
+  }
+
+  const path = `${workspaceId}/logos/${randomUUID()}.${materialImageExtension(fileValue)}`;
+  const buffer = Buffer.from(await fileValue.arrayBuffer());
+
+  const uploadResult = await supabase.storage
+    .from('workspace-assets')
+    .upload(path, buffer, { contentType: fileValue.type, upsert: false });
+
+  if (uploadResult.error) {
+    return { error: 'Unable to upload the logo. Please try again.' };
+  }
+
+  return { url: supabase.storage.from('workspace-assets').getPublicUrl(path).data.publicUrl };
+}
+
 function getFormValue(formData: FormData, key: string): string {
   const value = formData.get(key);
   return typeof value === 'string' ? value.trim() : '';
@@ -66,6 +99,10 @@ function getFormValue(formData: FormData, key: string): string {
 
 function parseOptional(value: string): string | null {
   return value ? value : null;
+}
+
+function isValidEmail(value: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
 function parseInteger(value: string, fallback = 0): number {
@@ -144,6 +181,10 @@ function parseSubjectType(value: string): string {
   return 'home';
 }
 
+function parseDeliveryMode(value: string): string {
+  return value === 'email' ? 'email' : 'instant';
+}
+
 async function requireOwnerContext(widgetId?: string | null) {
   const supabase = await createClient();
   const context = await getWorkspaceContext(supabase, widgetId || undefined);
@@ -206,6 +247,13 @@ export async function updateWidgetSettingsAction(formData: FormData) {
   }
   if (has('require_email')) {
     update.require_email = parseCheckbox(formData, 'require_email');
+  }
+  if (has('delivery_mode')) {
+    const deliveryMode = parseDeliveryMode(getFormValue(formData, 'delivery_mode'));
+    update.delivery_mode = deliveryMode;
+    if (deliveryMode === 'email') {
+      update.require_email = true;
+    }
   }
   if (has('auto_open_widget')) {
     update.auto_open_widget = parseCheckbox(formData, 'auto_open_widget');
@@ -322,12 +370,31 @@ export async function updateWorkspaceProfileAction(formData: FormData) {
     redirect('/dashboard/settings?error=Workspace+name+must+be+80+characters+or+less.');
   }
 
+  const replyToEmail = getFormValue(formData, 'reply_to_email').toLowerCase();
+  if (replyToEmail && !isValidEmail(replyToEmail)) {
+    redirect('/dashboard/settings?error=Reply-to+email+must+be+a+valid+email+address.');
+  }
+
+  const logoResult = await uploadWorkspaceLogo(supabase, context.workspace.id, formData.get('logo_file'));
+  if (logoResult && 'error' in logoResult) {
+    redirect(`/dashboard/settings?error=${encodeURIComponent(logoResult.error)}`);
+  }
+
+  const update: Record<string, unknown> = {
+    name: workspaceName,
+    company_name: workspaceName,
+    reply_to_email: parseOptional(replyToEmail),
+  };
+
+  if (logoResult?.url) {
+    update.logo_url = logoResult.url;
+  } else if (parseCheckbox(formData, 'remove_logo')) {
+    update.logo_url = null;
+  }
+
   const updateResult = await supabase
     .from('workspaces')
-    .update({
-      name: workspaceName,
-      company_name: workspaceName,
-    })
+    .update(update)
     .eq('id', context.workspace.id);
 
   if (updateResult.error) {

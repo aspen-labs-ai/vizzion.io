@@ -18,6 +18,8 @@ export type WidgetSubjectType =
   | 'room'
   | 'generic';
 
+export type WidgetDeliveryMode = 'instant' | 'email';
+
 export interface PublicWidgetConfig {
   id: string;
   workspace_id: string;
@@ -28,6 +30,7 @@ export interface PublicWidgetConfig {
   is_active: boolean;
   domain_allowlist: string[];
   require_email: boolean;
+  delivery_mode: WidgetDeliveryMode;
   auto_open_widget: boolean;
   show_product_names: boolean;
   subject_type: WidgetSubjectType;
@@ -48,6 +51,7 @@ interface RawWidgetRecord {
   is_active: boolean;
   domain_allowlist: string[] | null;
   require_email: boolean;
+  delivery_mode: string | null;
   auto_open_widget: boolean;
   show_product_names: boolean;
   subject_type: string | null;
@@ -112,6 +116,10 @@ function normalizeSubjectType(value: string | null | undefined): WidgetSubjectTy
   return 'home';
 }
 
+function normalizeDeliveryMode(value: string | null | undefined): WidgetDeliveryMode {
+  return value === 'email' ? 'email' : 'instant';
+}
+
 async function loadWidgetMaterials(
   supabase: SupabaseClient,
   widgetId: string,
@@ -160,6 +168,7 @@ function toPublicWidgetConfig(
     is_active: widget.is_active,
     domain_allowlist: Array.isArray(widget.domain_allowlist) ? widget.domain_allowlist : [],
     require_email: widget.require_email,
+    delivery_mode: normalizeDeliveryMode(widget.delivery_mode),
     auto_open_widget: widget.auto_open_widget,
     show_product_names: widget.show_product_names,
     subject_type: normalizeSubjectType(widget.subject_type),
@@ -231,7 +240,7 @@ export async function resolvePublicWidget(
   const widgetResult = await supabase
     .from('widgets')
     .select(
-      'id, workspace_id, name, embed_key, mode, theme, brand_color, is_active, domain_allowlist, require_email, auto_open_widget, show_product_names, subject_type, max_generations_per_session, max_generations_per_email_lifetime, limit_reached_cta_url, workspace:workspaces(brand_color)',
+      'id, workspace_id, name, embed_key, mode, theme, brand_color, is_active, domain_allowlist, require_email, delivery_mode, auto_open_widget, show_product_names, subject_type, max_generations_per_session, max_generations_per_email_lifetime, limit_reached_cta_url, workspace:workspaces(brand_color)',
     )
     .eq('embed_key', embedKey)
     .maybeSingle();
@@ -272,7 +281,7 @@ export async function resolvePublicWidgetByIndustrySlug(
     const widgetResult = await supabase
       .from('widgets')
       .select(
-        'id, workspace_id, name, embed_key, mode, theme, brand_color, is_active, domain_allowlist, require_email, auto_open_widget, show_product_names, subject_type, max_generations_per_session, max_generations_per_email_lifetime, limit_reached_cta_url, workspace:workspaces(brand_color)',
+        'id, workspace_id, name, embed_key, mode, theme, brand_color, is_active, domain_allowlist, require_email, delivery_mode, auto_open_widget, show_product_names, subject_type, max_generations_per_session, max_generations_per_email_lifetime, limit_reached_cta_url, workspace:workspaces(brand_color)',
       )
       .eq('id', widgetId)
       .maybeSingle();

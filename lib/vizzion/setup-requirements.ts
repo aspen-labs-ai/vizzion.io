@@ -1,5 +1,5 @@
 export interface SetupRequirement {
-  key: 'domain_allowlist';
+  key: 'domain_allowlist' | 'target_surface';
   label: string;
   route: '/dashboard/settings';
   isComplete: boolean;
@@ -7,6 +7,7 @@ export interface SetupRequirement {
 
 interface WidgetSetupInput {
   domain_allowlist?: string[] | null;
+  target_surface?: string | null;
 }
 
 function normalizeAllowlist(values: string[] | null | undefined): string[] {
@@ -20,6 +21,12 @@ export function getWidgetSetupRequirements(widget: WidgetSetupInput): SetupRequi
   const normalizedAllowlist = normalizeAllowlist(widget.domain_allowlist);
 
   return [
+    {
+      key: 'target_surface',
+      label: 'Target surface',
+      route: '/dashboard/settings',
+      isComplete: Boolean(widget.target_surface?.trim()),
+    },
     {
       key: 'domain_allowlist',
       label: 'Domain allowlist',

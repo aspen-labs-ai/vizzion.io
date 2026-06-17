@@ -155,6 +155,10 @@
     );
   }
 
+  function isEmailDeliveryOnly(instance) {
+    return instance.widgetConfig && instance.widgetConfig.deliveryMode === 'email';
+  }
+
   function escapeHtml(value) {
     return String(value == null ? '' : value)
       .replace(/&/g, '&amp;')
@@ -826,6 +830,11 @@
 
   function renderEmailGateState(instance) {
     var copy = getSubjectCopy(instance.widgetConfig.subjectType);
+    var emailOnly = isEmailDeliveryOnly(instance);
+    var title = emailOnly
+      ? 'Step 3 · Enter your email to receive your visualization'
+      : 'Step 3 · Enter your email to reveal ' + copy.revealLabel;
+    var buttonLabel = emailOnly ? 'Email me my visualization' : 'Reveal visualization';
     var verificationMarkup = '';
     if (instance.capped) {
       verificationMarkup =
@@ -837,7 +846,7 @@
 
     return (
       renderStepper(3, 2) +
-      '<p class="vz-step-title">Step 3 · Enter your email to reveal ' + escapeHtml(copy.revealLabel) + '</p>' +
+      '<p class="vz-step-title">' + escapeHtml(title) + '</p>' +
       '<form class="vz-form" data-role="email-form" novalidate>' +
       '<div>' +
       '<label class="vz-label" for="' + escapeHtml(instance.instanceId) + '-email">Email</label>' +
@@ -846,7 +855,7 @@
       verificationMarkup +
       '<div class="vz-row">' +
       '<button class="vz-button vz-button-secondary" type="button" data-role="back-select">Back</button>' +
-      '<button class="vz-button" type="submit" data-role="submit-email">Reveal visualization</button>' +
+      '<button class="vz-button" type="submit" data-role="submit-email">' + escapeHtml(buttonLabel) + '</button>' +
       '</div>' +
       '</form>' +
       '<p class="vz-consent">We use your email to deliver your preview and follow up. See our <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>.</p>'
@@ -854,9 +863,13 @@
   }
 
   function renderGeneratingState(instance, fallbackMode) {
-    var subtitle = fallbackMode
-      ? 'Still processing your preview. You can keep this open while we continue checking.'
-      : 'Generating your visualization now...';
+    var subtitle = isEmailDeliveryOnly(instance)
+      ? fallbackMode
+        ? 'Still processing your preview. We will email it as soon as it is ready.'
+        : 'Generating your visualization now. We will email it to you when it is ready.'
+      : fallbackMode
+        ? 'Still processing your preview. You can keep this open while we continue checking.'
+        : 'Generating your visualization now...';
     var optionalEmailMarkup = '';
 
     if (fallbackMode && !instance.widgetConfig.requireEmail) {
@@ -876,6 +889,22 @@
       optionalEmailMarkup +
       '<div class="vz-row">' +
       '<button class="vz-button vz-button-secondary" type="button" data-role="restart">Start over</button>' +
+      '</div>'
+    );
+  }
+
+  function renderEmailDeliveryState(instance) {
+    return (
+      renderStepper(3, 3) +
+      '<div class="vz-reveal">' +
+      '<span class="vz-badge">' + ICON_CHECK + 'Email sent</span>' +
+      '<div class="vz-center" style="align-items:flex-start;text-align:left">' +
+      '<strong>Check your inbox for the finished visualization.</strong>' +
+      '<small>We sent the result to ' + escapeHtml(instance.emailDraft || 'your email') + '. If it does not arrive shortly, check spam or try again with a different email.</small>' +
+      '</div>' +
+      '<div class="vz-row">' +
+      '<button class="vz-button vz-button-secondary" type="button" data-role="restart">Start over</button>' +
+      '</div>' +
       '</div>'
     );
   }
@@ -1067,6 +1096,16 @@
 
     function handleSucceeded(payload) {
       clearPolling(instance);
+      if (isEmailDeliveryOnly(instance)) {
+        instance.state = 'email_delivery';
+        instance.stateMessage = '';
+        render(instance);
+        trackEvent(instance, 'email_delivery_confirmed', {
+          generationJobId: instance.generationJobId,
+        });
+        return;
+      }
+
       instance.revealBeforeUrl =
         (payload.preview && payload.preview.originalUploadUrl) ||
         (instance.upload ? instance.upload.previewUrl : null);
@@ -1091,6 +1130,17 @@
       });
     }
 
+    function handleEmailDeliveryFailed() {
+      clearPolling(instance);
+      instance.state = 'error';
+      instance.lastError =
+        'Your visualization was created, but we could not email it. Please try again or use a different email address.';
+      render(instance);
+      trackEvent(instance, 'email_delivery_failed', {
+        generationJobId: instance.generationJobId,
+      });
+    }
+
     function pollOnce() {
       requestJson(
         '/api/public/widget/generation-status?embedKey=' +
@@ -1108,6 +1158,19 @@
           var payload = response.data;
           var status = payload.generationJob.status;
 
+          if (status === 'succeeded' && isEmailDeliveryOnly(instance)) {
+            var emailStatus = payload.lead && payload.lead.emailStatus;
+            if (emailStatus === 'sent') {
+              handleSucceeded(payload);
+              return;
+            }
+            if (emailStatus === 'failed') {
+              handleEmailDeliveryFailed();
+              return;
+            }
+            return;
+          }
+
           if (
             status === 'succeeded' &&
             payload.preview &&
@@ -1124,6 +1187,33 @@
           }
 
           var elapsed = Date.now() - (instance.pollingStartedAt || Date.now());
+          if (isEmailDeliveryOnly(instance) && elapsed >= 180000) {
+            clearPolling(instance);
+            instance.state = 'error';
+            instance.lastError =
+              'We created your visualization, but could not confirm the email was sent. Please check your inbox or try again.';
+            render(instance);
+            trackEvent(instance, 'email_delivery_failed', {
+              generationJobId: instance.generationJobId,
+              reason: 'timeout',
+            });
+            return;
+          }
+
+          if (isEmailDeliveryOnly(instance) && elapsed >= 60000) {
+            instance.state = 'fallback';
+            instance.stateMessage = 'Your preview is still processing. We will email it as soon as it is ready.';
+            if (!instance.fallbackTracked) {
+              instance.fallbackTracked = true;
+              trackEvent(instance, 'reveal_fallback_shown', {
+                generationJobId: instance.generationJobId,
+                reason: 'email_delivery_pending',
+              });
+            }
+            render(instance);
+            return;
+          }
+
           if (elapsed >= 60000 && (instance.state === 'generating' || instance.state === 'fallback')) {
             clearPolling(instance);
             instance.state = 'fallback';
@@ -1532,7 +1622,7 @@
           if (compare.setPointerCapture) {
             try {
               compare.setPointerCapture(event.pointerId);
-            } catch (captureError) {
+            } catch {
               // Capture is best-effort.
             }
           }
@@ -1606,6 +1696,8 @@
       stateHtml = renderGeneratingState(instance, false);
     } else if (instance.state === 'fallback') {
       stateHtml = renderGeneratingState(instance, true);
+    } else if (instance.state === 'email_delivery') {
+      stateHtml = renderEmailDeliveryState(instance);
     } else if (instance.state === 'reveal') {
       stateHtml = renderRevealState(instance);
     } else if (instance.state === 'error') {
@@ -1642,6 +1734,7 @@
           brandColor: configPayload.widget.brandColor || '#10B981',
           uiVersion: configPayload.widget.uiVersion || 'v2',
           requireEmail: !!configPayload.widget.requireEmail,
+          deliveryMode: configPayload.widget.deliveryMode === 'email' ? 'email' : 'instant',
           autoOpenWidget: !!configPayload.widget.autoOpenWidget,
           showProductNames: !!configPayload.widget.showProductNames,
           maxGenerationsPerSession: configPayload.widget.maxGenerationsPerSession,

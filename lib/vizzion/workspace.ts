@@ -9,6 +9,8 @@ export interface WorkspaceRecord {
   slug: string;
   company_name: string | null;
   brand_color: string;
+  logo_url: string | null;
+  reply_to_email: string | null;
   status: string;
 }
 
@@ -22,6 +24,7 @@ export interface WidgetRecord {
   brand_color: string;
   is_active: boolean;
   require_email: boolean;
+  delivery_mode: 'instant' | 'email' | string;
   auto_open_widget: boolean;
   show_product_names: boolean;
   subject_type: 'home' | 'vehicle' | 'body' | 'yard' | 'boat' | 'room' | 'generic' | string;
@@ -102,7 +105,7 @@ function getSinceIso(days: number): string {
 }
 
 const WIDGET_SELECT =
-  'id, workspace_id, name, embed_key, mode, theme, brand_color, is_active, require_email, auto_open_widget, show_product_names, subject_type, target_surface, domain_allowlist, max_generations_per_session, max_generations_per_email_lifetime, limit_reached_cta_url, is_primary';
+  'id, workspace_id, name, embed_key, mode, theme, brand_color, is_active, require_email, delivery_mode, auto_open_widget, show_product_names, subject_type, target_surface, domain_allowlist, max_generations_per_session, max_generations_per_email_lifetime, limit_reached_cta_url, is_primary';
 
 export interface WorkspaceWidgetSummary {
   id: string;
@@ -158,7 +161,7 @@ export async function getWorkspaceContext(
 
   const workspaceResult = await supabase
     .from('workspaces')
-    .select('id, name, slug, company_name, brand_color, status')
+    .select('id, name, slug, company_name, brand_color, logo_url, reply_to_email, status')
     .eq('id', membership.workspace_id)
     .single();
 
@@ -373,6 +376,7 @@ export async function getStepFunnelMetrics(
       'email_submitted',
       'generation_requested',
       'reveal_rendered',
+      'email_delivery_confirmed',
       'reveal_fallback_shown',
       'generation_failed',
     ]);
@@ -413,7 +417,7 @@ export async function getStepFunnelMetrics(
       empty.emailSubmitted += 1;
     } else if (row.event_type === 'generation_requested') {
       empty.generationRequested += 1;
-    } else if (row.event_type === 'reveal_rendered') {
+    } else if (row.event_type === 'reveal_rendered' || row.event_type === 'email_delivery_confirmed') {
       empty.revealRendered += 1;
     } else if (row.event_type === 'reveal_fallback_shown') {
       empty.revealFallbackShown += 1;

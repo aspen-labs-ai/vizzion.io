@@ -375,7 +375,7 @@ export async function POST(request: NextRequest) {
       return publicJsonResponse({ error: 'Material does not belong to widget.' }, 400, origin);
     }
 
-    if (widget.require_email && !email) {
+    if ((widget.require_email || widget.delivery_mode === 'email') && !email) {
       return publicJsonResponse(
         {
           code: 'email_required',
@@ -728,6 +728,7 @@ export async function POST(request: NextRequest) {
       sourcePage,
       subjectType: widget.subject_type,
       requireEmail: widget.require_email,
+      deliveryMode: widget.delivery_mode,
     };
 
     const generationResult = await supabase
@@ -817,30 +818,23 @@ export async function POST(request: NextRequest) {
       }
     });
 
-    let emailStatus = lead?.email_status ?? null;
-
     const resendApiKey = process.env.RESEND_API_KEY;
     const resendFromEmail = process.env.RESEND_FROM_EMAIL;
 
     if (lead && email && resendApiKey && resendFromEmail) {
       const resend = new Resend(resendApiKey);
 
-      const emailResult = await resend.emails.send({
-        from: resendFromEmail,
-        to: [email],
-        subject: 'Your Vizzion request is in progress',
-        html: buildLeadEmailHtml(),
-      });
-
-      emailStatus = emailResult.error ? 'failed' : 'sent';
-
-      await supabase
-        .from('leads')
-        .update({
-          email_status: emailStatus,
-          preview_sent_at: emailStatus === 'sent' ? new Date().toISOString() : null,
-        })
-        .eq('id', lead.id);
+      try {
+        await resend.emails.send({
+          from: resendFromEmail,
+          to: [email],
+          subject: 'Your Vizzion request is in progress',
+          html: buildLeadEmailHtml(),
+        });
+      } catch {
+        // The final result email is authoritative; do not mark the lead failed
+        // just because this optional acknowledgement failed.
+      }
     }
 
     await notifyUsageThresholdAlerts({
@@ -858,7 +852,7 @@ export async function POST(request: NextRequest) {
         lead: lead
           ? {
               id: lead.id,
-              emailStatus: emailStatus ?? lead.email_status,
+              emailStatus: lead.email_status,
             }
           : null,
         generationJob: {
