@@ -129,29 +129,75 @@ function sanitizeReplyToEmail(value: string | null | undefined): string | null {
   return email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? email : null;
 }
 
-function buildResultEmailHtml(previewUrl: string, branding: ResultEmailBranding): string {
+interface ResultEmailImageUrls {
+  originalUrl: string | null;
+  previewUrl: string;
+}
+
+function buildImageCard(label: string, imageUrl: string): string {
+  return `<td style="width:50%;vertical-align:top;padding:0 6px 12px;">
+    <p style="margin:0 0 8px;color:#9ca3af;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;">${label}</p>
+    <a href="${escapeHtml(imageUrl)}" style="display:block;text-decoration:none;">
+      <img src="${escapeHtml(imageUrl)}" alt="${label}" style="display:block;width:100%;max-width:100%;border-radius:14px;border:1px solid #30363d;background:#111827;" />
+    </a>
+  </td>`;
+}
+
+function buildResultEmailHtml(images: ResultEmailImageUrls, branding: ResultEmailBranding): string {
   const companyName = escapeHtml(branding.companyName);
   const materialLine = branding.materialName
-    ? `<p style="margin:0 0 16px;color:#d1d5db;">You selected: <strong style="color:#f9fafb;">${escapeHtml(branding.materialName)}</strong></p>`
+    ? `<p style="margin:0;color:#d1d5db;font-size:14px;">Selected material</p>
+       <p style="margin:4px 0 0;color:#f9fafb;font-size:16px;font-weight:700;">${escapeHtml(branding.materialName)}</p>`
     : '';
   const logo = branding.logoUrl
-    ? `<img src="${escapeHtml(branding.logoUrl)}" alt="${companyName}" style="display:block;max-width:180px;max-height:56px;object-fit:contain;margin:0 0 18px;" />`
+    ? `<img src="${escapeHtml(branding.logoUrl)}" alt="${companyName}" style="display:block;max-width:150px;max-height:52px;object-fit:contain;margin:0;" />`
     : '';
   const replyLine = branding.replyToEmail
-    ? `<p style="margin:14px 0 0;color:#9ca3af;font-size:13px;">Questions? Reply to this email and ${companyName} will receive it.</p>`
+    ? `<p style="margin:18px 0 0;color:#9ca3af;font-size:13px;">Questions? Reply to this email and ${companyName} will receive it.</p>`
     : '';
+  const originalCard = images.originalUrl ? buildImageCard('Before', images.originalUrl) : '';
+  const previewCard = buildImageCard(images.originalUrl ? 'After' : 'Preview', images.previewUrl);
 
-  return `<div style="font-family:Arial,sans-serif;background:#0d1117;color:#f9fafb;padding:24px;line-height:1.5;">
-    ${logo}
-    <p style="margin:0 0 6px;color:${branding.brandColor};font-size:13px;font-weight:700;">${companyName}</p>
-    <h2 style="margin:0 0 12px;color:#f9fafb;">Your visualization is ready</h2>
-    <p style="margin:0 0 10px;">Here is your personalized preview. Tap the image to view it full size.</p>
-    ${materialLine}
-    <a href="${escapeHtml(previewUrl)}" style="display:inline-block;">
-      <img src="${escapeHtml(previewUrl)}" alt="Your visualization" style="max-width:100%;border-radius:12px;border:1px solid #30363d;" />
-    </a>
-    ${replyLine}
-    <p style="margin:16px 0 0;color:#9ca3af;font-size:13px;">This preview link expires in 7 days.</p>
+  return `<div style="margin:0;padding:0;background:#0b111b;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#0b111b;margin:0;padding:0;">
+      <tr>
+        <td align="center" style="padding:28px 14px;">
+          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:760px;background:#0d1117;border:1px solid #263241;border-radius:22px;overflow:hidden;font-family:Arial,sans-serif;color:#f9fafb;">
+            <tr>
+              <td style="padding:26px 28px 18px;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td style="vertical-align:middle;">${logo || `<p style="margin:0;color:${branding.brandColor};font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;">${companyName}</p>`}</td>
+                    <td align="right" style="vertical-align:middle;">
+                      <span style="display:inline-block;border:1px solid ${branding.brandColor};border-radius:999px;padding:6px 10px;color:${branding.brandColor};font-size:12px;font-weight:700;">Visualization ready</span>
+                    </td>
+                  </tr>
+                </table>
+                ${logo ? `<p style="margin:16px 0 0;color:${branding.brandColor};font-size:13px;font-weight:800;">${companyName}</p>` : ''}
+                <h1 style="margin:10px 0 8px;color:#ffffff;font-size:28px;line-height:1.15;letter-spacing:-.02em;">Your visualization is ready</h1>
+                <p style="margin:0;color:#cbd5e1;font-size:15px;line-height:1.6;">Here is the personalized preview created from your uploaded photo.</p>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:0 22px 8px;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                  <tr>${originalCard}${previewCard}</tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:4px 28px 26px;">
+                <div style="border-radius:16px;background:#111827;border:1px solid #263241;padding:16px 18px;">
+                  ${materialLine}
+                  <p style="margin:14px 0 0;color:#9ca3af;font-size:13px;">Tap either image to view it full size. Preview links expire in 7 days.</p>
+                  ${replyLine}
+                </div>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
   </div>`;
 }
 
@@ -216,6 +262,7 @@ async function updateLeadEmailStatus(
 async function sendResultEmail(
   supabase: SupabaseClient,
   job: GenerationJobRow,
+  originalUploadPath: string,
   generatedPath: string,
 ): Promise<void> {
   if (!job.lead_id) {
@@ -241,11 +288,16 @@ async function sendResultEmail(
     return;
   }
 
-  const signed = await supabase.storage
-    .from(RENDERS_BUCKET)
-    .createSignedUrl(generatedPath, RESULT_SIGNED_URL_TTL_SECONDS);
+  const [originalSigned, previewSigned] = await Promise.all([
+    supabase.storage
+      .from(UPLOADS_BUCKET)
+      .createSignedUrl(normalizeStoragePath(originalUploadPath, UPLOADS_BUCKET), RESULT_SIGNED_URL_TTL_SECONDS),
+    supabase.storage
+      .from(RENDERS_BUCKET)
+      .createSignedUrl(generatedPath, RESULT_SIGNED_URL_TTL_SECONDS),
+  ]);
 
-  const previewUrl = signed.data?.signedUrl;
+  const previewUrl = previewSigned.data?.signedUrl;
   if (!previewUrl) {
     await updateLeadEmailStatus(supabase, job.lead_id, 'failed');
     return;
@@ -261,7 +313,13 @@ async function sendResultEmail(
       from: resendFromEmail,
       to: [email],
       subject: `Your ${branding.companyName} visualization is ready`,
-      html: buildResultEmailHtml(previewUrl, branding),
+      html: buildResultEmailHtml(
+        {
+          originalUrl: originalSigned.data?.signedUrl ?? null,
+          previewUrl,
+        },
+        branding,
+      ),
       ...(branding.replyToEmail ? { replyTo: branding.replyToEmail } : {}),
     };
 
@@ -458,7 +516,7 @@ export async function processGenerationJob(
 
     // 7. Email the finished visualization to the captured lead (best effort).
     try {
-      await sendResultEmail(supabase, job, generatedPath);
+      await sendResultEmail(supabase, job, uploadPath, generatedPath);
     } catch {
       // Email failure must not fail an otherwise successful generation.
     }
