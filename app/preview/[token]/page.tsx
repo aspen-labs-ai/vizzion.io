@@ -118,50 +118,87 @@ export default async function SharedPreviewPage({
   const materialName = getMaterialName(preview.material_snapshot);
 
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.14),transparent_34%),#F8FAFC] px-4 py-8 text-slate-950 md:px-8">
-      <div className="mx-auto max-w-6xl">
-        <section className="mb-6 rounded-3xl border border-slate-200 bg-white p-5 shadow-xl shadow-slate-200/70 md:p-7">
-          <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
-            <div className="flex items-center gap-4">
-              {workspace?.logo_url ? (
-                // eslint-disable-next-line @next/next/no-img-element -- customer logo URL
-                <img
-                  src={workspace.logo_url}
-                  alt={companyName}
-                  className="h-14 w-14 rounded-xl border border-slate-200 bg-white object-contain p-2"
-                />
-              ) : (
-                <div
-                  className="flex h-14 w-14 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-lg font-bold"
-                  style={{ color: brandColor }}
-                >
-                  {companyName[0]?.toUpperCase() ?? 'V'}
+    <main className="min-h-screen bg-[#f7f9fc] px-4 py-6 text-slate-950 md:px-8 md:py-10">
+      <div className="mx-auto max-w-7xl">
+        <header className="mb-8 overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-xl shadow-slate-200/70">
+          <div className="grid gap-6 p-6 md:grid-cols-[1.2fr_0.8fr] md:p-8">
+            <div className="space-y-6">
+              <div className="flex items-center gap-4">
+                {workspace?.logo_url ? (
+                  // eslint-disable-next-line @next/next/no-img-element -- customer logo URL
+                  <img
+                    src={workspace.logo_url}
+                    alt={companyName}
+                    className="h-16 w-16 rounded-2xl border border-slate-200 bg-white object-contain p-2 shadow-sm"
+                  />
+                ) : (
+                  <div
+                    className="flex h-16 w-16 items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 text-xl font-bold shadow-sm"
+                    style={{ color: brandColor }}
+                  >
+                    {companyName[0]?.toUpperCase() ?? 'V'}
+                  </div>
+                )}
+                <div>
+                  <p className="text-sm font-bold" style={{ color: brandColor }}>{companyName}</p>
+                  <p className="text-sm text-slate-500">Personalized visualization preview</p>
                 </div>
-              )}
+              </div>
+
               <div>
-                <p className="text-sm font-semibold" style={{ color: brandColor }}>{companyName}</p>
-                <h1 className="mt-1 text-2xl font-bold tracking-tight md:text-4xl">Compare your visualization</h1>
+                <p className="mb-3 inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-slate-600">
+                  Ready to review
+                </p>
+                <h1 className="max-w-3xl text-4xl font-black tracking-tight text-slate-950 md:text-6xl">
+                  Compare your before and after.
+                </h1>
+                <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-600">
+                  Drag the slider to see how your selected material changes the look of the property.
+                  The original photo stays on the left, and the visualization is on the right.
+                </p>
               </div>
             </div>
-            {materialName ? (
-              <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Selected material</p>
-                <p className="mt-1 text-sm font-bold text-slate-950">{materialName}</p>
+
+            <aside className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-500">Selected material</p>
+              <p className="mt-2 text-xl font-black text-slate-950">{materialName ?? 'Selected material'}</p>
+              <div className="mt-5 h-px bg-slate-200" />
+              <p className="mt-5 text-sm leading-6 text-slate-600">
+                Want to talk through this look or compare other options? Reply to the email you received and
+                {` ${companyName} `}will get your message.
+              </p>
+              <div className="mt-5 rounded-2xl border border-slate-200 bg-white p-4">
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-500">How to compare</p>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  Grab the round handle in the middle of the image and drag left or right.
+                </p>
               </div>
-            ) : null}
+            </aside>
           </div>
-        </section>
+        </header>
 
         <PreviewComparisonSlider
           beforeUrl={originalSigned.data.signedUrl}
           afterUrl={generatedSigned.data.signedUrl}
+          brandColor={brandColor}
         />
 
-        <div className="mt-5 rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm text-slate-600 shadow-sm">
-          Drag the white handle left or right to compare before and after. These image links are temporary for privacy.
-        </div>
+        <section className="mt-6 grid gap-4 md:grid-cols-3">
+          <InfoCard title="Before" description="The original uploaded photo." />
+          <InfoCard title="After" description="The same view with the selected material applied." />
+          <InfoCard title="Private link" description="This preview link is temporary and expires automatically." />
+        </section>
       </div>
     </main>
+  );
+}
+
+function InfoCard({ title, description }: { title: string; description: string }) {
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+      <p className="text-sm font-bold text-slate-950">{title}</p>
+      <p className="mt-1 text-sm leading-6 text-slate-600">{description}</p>
+    </div>
   );
 }
 
