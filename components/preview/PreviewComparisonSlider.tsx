@@ -44,7 +44,7 @@ export default function PreviewComparisonSlider({
         <img
           src={afterUrl}
           alt="After visualization"
-          className="block h-auto w-full select-none"
+          className="mx-auto block max-h-[68vh] w-full select-none object-contain"
           draggable={false}
         />
         <div

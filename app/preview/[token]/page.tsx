@@ -118,63 +118,36 @@ export default async function SharedPreviewPage({
   const materialName = getMaterialName(preview.material_snapshot);
 
   return (
-    <main className="min-h-screen bg-[#f7f9fc] px-4 py-6 text-slate-950 md:px-8 md:py-10">
-      <div className="mx-auto max-w-7xl">
-        <header className="mb-8 overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-xl shadow-slate-200/70">
-          <div className="grid gap-6 p-6 md:grid-cols-[1.2fr_0.8fr] md:p-8">
-            <div className="space-y-6">
-              <div className="flex items-center gap-4">
-                {workspace?.logo_url ? (
-                  // eslint-disable-next-line @next/next/no-img-element -- customer logo URL
-                  <img
-                    src={workspace.logo_url}
-                    alt={companyName}
-                    className="h-16 w-16 rounded-2xl border border-slate-200 bg-white object-contain p-2 shadow-sm"
-                  />
-                ) : (
-                  <div
-                    className="flex h-16 w-16 items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 text-xl font-bold shadow-sm"
-                    style={{ color: brandColor }}
-                  >
-                    {companyName[0]?.toUpperCase() ?? 'V'}
-                  </div>
-                )}
-                <div>
-                  <p className="text-sm font-bold" style={{ color: brandColor }}>{companyName}</p>
-                  <p className="text-sm text-slate-500">Personalized visualization preview</p>
-                </div>
+    <main className="min-h-screen bg-[#f7f9fc] px-4 py-10 text-slate-950 md:py-16">
+      <div className="mx-auto max-w-3xl">
+        <header className="mb-7 flex flex-col items-center gap-4 text-center">
+          <div className="flex items-center gap-3">
+            {workspace?.logo_url ? (
+              // eslint-disable-next-line @next/next/no-img-element -- customer logo URL
+              <img
+                src={workspace.logo_url}
+                alt={companyName}
+                className="h-11 w-11 rounded-xl border border-slate-200 bg-white object-contain p-1.5 shadow-sm"
+              />
+            ) : (
+              <div
+                className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-lg font-bold shadow-sm"
+                style={{ color: brandColor }}
+              >
+                {companyName[0]?.toUpperCase() ?? 'V'}
               </div>
-
-              <div>
-                <p className="mb-3 inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-slate-600">
-                  Ready to review
-                </p>
-                <h1 className="max-w-3xl text-4xl font-black tracking-tight text-slate-950 md:text-6xl">
-                  Compare your before and after.
-                </h1>
-                <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-600">
-                  Drag the slider to see how your selected material changes the look of the property.
-                  The original photo stays on the left, and the visualization is on the right.
-                </p>
-              </div>
-            </div>
-
-            <aside className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-500">Selected material</p>
-              <p className="mt-2 text-xl font-black text-slate-950">{materialName ?? 'Selected material'}</p>
-              <div className="mt-5 h-px bg-slate-200" />
-              <p className="mt-5 text-sm leading-6 text-slate-600">
-                Want to talk through this look or compare other options? Reply to the email you received and
-                {` ${companyName} `}will get your message.
-              </p>
-              <div className="mt-5 rounded-2xl border border-slate-200 bg-white p-4">
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-500">How to compare</p>
-                <p className="mt-2 text-sm leading-6 text-slate-600">
-                  Grab the round handle in the middle of the image and drag left or right.
-                </p>
-              </div>
-            </aside>
+            )}
+            <span className="text-base font-bold" style={{ color: brandColor }}>{companyName}</span>
           </div>
+
+          <h1 className="text-4xl font-black tracking-tight text-slate-950 md:text-5xl">
+            Your new look is ready
+          </h1>
+          {materialName ? (
+            <p className="text-lg text-slate-600">
+              {materialName}
+            </p>
+          ) : null}
         </header>
 
         <PreviewComparisonSlider
@@ -183,22 +156,11 @@ export default async function SharedPreviewPage({
           brandColor={brandColor}
         />
 
-        <section className="mt-6 grid gap-4 md:grid-cols-3">
-          <InfoCard title="Before" description="The original uploaded photo." />
-          <InfoCard title="After" description="The same view with the selected material applied." />
-          <InfoCard title="Private link" description="This preview link is temporary and expires automatically." />
-        </section>
+        <p className="mt-5 text-center text-sm text-slate-500">
+          Drag the slider to compare. Questions? Just reply to {companyName}&apos;s email.
+        </p>
       </div>
     </main>
-  );
-}
-
-function InfoCard({ title, description }: { title: string; description: string }) {
-  return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-      <p className="text-sm font-bold text-slate-950">{title}</p>
-      <p className="mt-1 text-sm leading-6 text-slate-600">{description}</p>
-    </div>
   );
 }
 
