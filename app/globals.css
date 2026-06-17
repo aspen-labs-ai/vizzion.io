@@ -383,6 +383,133 @@
   transition: none !important;
 }
 
+/* ==============================================
+   LEGAL DOCUMENTS (Terms / Privacy) long-form prose
+   ============================================== */
+.legal-prose {
+  color: var(--color-text-secondary);
+  line-height: 1.75;
+  font-size: 1rem;
+}
+
+.legal-prose > section + section {
+  margin-top: 2.75rem;
+}
+
+.legal-prose h2 {
+  scroll-margin-top: 7rem; /* clears the fixed header on anchor jumps */
+  font-size: 1.5rem;
+  line-height: 1.3;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.legal-prose h3 {
+  scroll-margin-top: 7rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-top: 1.75rem;
+  margin-bottom: 0.625rem;
+}
+
+.legal-prose p {
+  margin-bottom: 1rem;
+}
+
+.legal-prose ul,
+.legal-prose ol {
+  margin: 0 0 1rem 1.25rem;
+  padding: 0;
+}
+
+.legal-prose ul {
+  list-style: disc;
+}
+
+.legal-prose ol {
+  list-style: decimal;
+}
+
+.legal-prose li {
+  margin-bottom: 0.5rem;
+  padding-left: 0.25rem;
+}
+
+.legal-prose li::marker {
+  color: var(--color-text-tertiary);
+}
+
+.legal-prose a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.legal-prose a:hover {
+  color: var(--color-accent-hover);
+}
+
+.legal-prose strong {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.legal-prose hr {
+  border: 0;
+  border-top: 1px solid var(--color-border-subtle);
+  margin: 2rem 0;
+}
+
+/* Subprocessor / data table */
+.legal-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 1.25rem;
+  font-size: 0.9375rem;
+}
+
+.legal-prose th,
+.legal-prose td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid var(--color-border-default);
+}
+
+.legal-prose th {
+  background-color: var(--color-bg-tertiary);
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+/* Callout box for important disclaimers */
+.legal-callout {
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-default);
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+  margin: 0 0 1.25rem;
+}
+
+.legal-callout p:last-child {
+  margin-bottom: 0;
+}
+
+/* Table-of-contents card */
+.legal-toc a {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+}
+
+.legal-toc a:hover {
+  color: var(--color-accent);
+}
+
 /* Dark theme scrollbar */
 ::-webkit-scrollbar {
   width: 12px;
@@ -399,4 +526,27 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-accent);
+}
+
+/* Deep-link focus highlight: the onboarding assistant scrolls to a settings
+   field and briefly flashes a ring around it so users know what to change. */
+.vz-focus-target {
+  scroll-margin-top: 5rem;
+}
+
+.vz-focus-flash {
+  animation: vz-focus-flash 2.8s ease-out 1;
+  border-radius: var(--radius-lg, 0.75rem);
+}
+
+@keyframes vz-focus-flash {
+  0%,
+  20% {
+    box-shadow:
+      0 0 0 2px var(--color-accent),
+      0 0 0 7px color-mix(in srgb, var(--color-accent) 28%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
 }

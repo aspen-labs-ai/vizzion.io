@@ -768,7 +768,7 @@
       (instance.upload ? '' : 'disabled') +
       '>Continue</button>' +
       '</div>' +
-      '<p class="vz-consent">By continuing you agree to our <a href="/terms" target="_blank" rel="noopener">Terms</a> and <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>.</p>'
+      '<p class="vz-consent">By continuing you agree to our <a href="' + API_BASE + '/terms" target="_blank" rel="noopener">Terms</a> and <a href="' + API_BASE + '/privacy" target="_blank" rel="noopener">Privacy Policy</a>.</p>'
     );
   }
 
@@ -858,7 +858,7 @@
       '<button class="vz-button" type="submit" data-role="submit-email">' + escapeHtml(buttonLabel) + '</button>' +
       '</div>' +
       '</form>' +
-      '<p class="vz-consent">We use your email to deliver your preview and follow up. See our <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>.</p>'
+      '<p class="vz-consent">We use your email to deliver your preview and follow up. See our <a href="' + API_BASE + '/privacy" target="_blank" rel="noopener">Privacy Policy</a>.</p>'
     );
   }
 
