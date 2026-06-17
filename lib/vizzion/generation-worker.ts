@@ -135,7 +135,7 @@ interface ResultEmailImageUrls {
 }
 
 function buildImageCard(label: string, imageUrl: string): string {
-  return `<td style="width:50%;vertical-align:top;padding:0 6px 12px;">
+  return `<td bgcolor="#0d1117" style="width:50%;vertical-align:top;padding:0 6px 12px;background-color:#0d1117;">
     <p style="margin:0 0 8px;color:#9ca3af;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;">${label}</p>
     <a href="${escapeHtml(imageUrl)}" style="display:block;text-decoration:none;">
       <img src="${escapeHtml(imageUrl)}" alt="${label}" style="display:block;width:100%;max-width:100%;border-radius:14px;border:1px solid #30363d;background:#111827;" />
@@ -158,14 +158,14 @@ function buildResultEmailHtml(images: ResultEmailImageUrls, branding: ResultEmai
   const originalCard = images.originalUrl ? buildImageCard('Before', images.originalUrl) : '';
   const previewCard = buildImageCard(images.originalUrl ? 'After' : 'Preview', images.previewUrl);
 
-  return `<div style="margin:0;padding:0;background:#0b111b;">
-    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#0b111b;margin:0;padding:0;">
+  return `<div style="margin:0;padding:0;background:#0b111b;background-color:#0b111b;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" bgcolor="#0b111b" style="background:#0b111b;background-color:#0b111b;margin:0;padding:0;">
       <tr>
-        <td align="center" style="padding:28px 14px;">
-          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:760px;background:#0d1117;border:1px solid #263241;border-radius:22px;overflow:hidden;font-family:Arial,sans-serif;color:#f9fafb;">
+        <td align="center" bgcolor="#0b111b" style="padding:28px 14px;background:#0b111b;background-color:#0b111b;">
+          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" bgcolor="#0d1117" style="max-width:760px;background:#0d1117;background-color:#0d1117;border:1px solid #263241;border-radius:22px;overflow:hidden;font-family:Arial,sans-serif;color:#f9fafb;">
             <tr>
-              <td style="padding:26px 28px 18px;">
-                <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+              <td bgcolor="#0d1117" style="padding:26px 28px 18px;background:#0d1117;background-color:#0d1117;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" bgcolor="#0d1117" style="background:#0d1117;background-color:#0d1117;">
                   <tr>
                     <td style="vertical-align:middle;">${logo || `<p style="margin:0;color:${branding.brandColor};font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;">${companyName}</p>`}</td>
                     <td align="right" style="vertical-align:middle;">
@@ -179,19 +179,23 @@ function buildResultEmailHtml(images: ResultEmailImageUrls, branding: ResultEmai
               </td>
             </tr>
             <tr>
-              <td style="padding:0 22px 8px;">
-                <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+              <td bgcolor="#0d1117" style="padding:0 22px 8px;background:#0d1117;background-color:#0d1117;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" bgcolor="#0d1117" style="background:#0d1117;background-color:#0d1117;">
                   <tr>${originalCard}${previewCard}</tr>
                 </table>
               </td>
             </tr>
             <tr>
-              <td style="padding:4px 28px 26px;">
-                <div style="border-radius:16px;background:#111827;border:1px solid #263241;padding:16px 18px;">
-                  ${materialLine}
-                  <p style="margin:14px 0 0;color:#9ca3af;font-size:13px;">Tap either image to view it full size. Preview links expire in 7 days.</p>
-                  ${replyLine}
-                </div>
+              <td bgcolor="#0d1117" style="padding:4px 28px 26px;background:#0d1117;background-color:#0d1117;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" bgcolor="#111827" style="background:#111827;background-color:#111827;border:1px solid #263241;border-radius:16px;">
+                  <tr>
+                    <td bgcolor="#111827" style="padding:16px 18px;background:#111827;background-color:#111827;border-radius:16px;">
+                      ${materialLine}
+                      <p style="margin:14px 0 0;color:#9ca3af;font-size:13px;">Tap either image to view it full size. Preview links expire in 7 days.</p>
+                      ${replyLine}
+                    </td>
+                  </tr>
+                </table>
               </td>
             </tr>
           </table>
