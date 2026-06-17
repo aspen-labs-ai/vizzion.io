@@ -93,12 +93,15 @@ export default async function LeadsPage({ searchParams }: { searchParams: Search
   }>;
   const leadIds = rawLeads.map((l) => l.id);
 
-  // Which of these leads have generated visualizations and repeat activity?
+  // Which of these leads have generated visualizations, repeat activity, and
+  // how many times they opened their shared preview link.
   const leadsWithPreview = new Set<string>();
   const visualizationCountByLeadId = new Map<string, number>();
   const lastActivityByLeadId = new Map<string, string>();
+  const previewViewsByLeadId = new Map<string, number>();
+  const leadIdSet = new Set(leadIds);
   if (leadIds.length > 0) {
-    const [previewsResult, jobsResult] = await Promise.all([
+    const [previewsResult, jobsResult, viewsResult] = await Promise.all([
       supabase
         .from('generated_previews')
         .select('lead_id, created_at')
@@ -110,6 +113,13 @@ export default async function LeadsPage({ searchParams }: { searchParams: Search
         .select('lead_id, created_at')
         .eq('widget_id', widgetId)
         .in('lead_id', leadIds),
+      supabase
+        .from('widget_events')
+        .select('event_data, created_at')
+        .eq('widget_id', widgetId)
+        .eq('event_type', 'preview_viewed')
+        .order('created_at', { ascending: false })
+        .limit(5000),
     ]);
 
     for (const row of (previewsResult.data ?? []) as Array<{ lead_id: string | null; created_at: string }>) {
@@ -124,6 +134,13 @@ export default async function LeadsPage({ searchParams }: { searchParams: Search
       const current = lastActivityByLeadId.get(row.lead_id);
       if (!current || row.created_at > current) lastActivityByLeadId.set(row.lead_id, row.created_at);
     }
+    for (const row of (viewsResult.data ?? []) as Array<{ event_data: { leadId?: string | null } | null; created_at: string }>) {
+      const leadId = row.event_data?.leadId;
+      if (!leadId || !leadIdSet.has(leadId)) continue;
+      previewViewsByLeadId.set(leadId, (previewViewsByLeadId.get(leadId) ?? 0) + 1);
+      const current = lastActivityByLeadId.get(leadId);
+      if (!current || row.created_at > current) lastActivityByLeadId.set(leadId, row.created_at);
+    }
   }
 
   const materialNameById = new Map(materials.map((m) => [m.id, m.name]));
@@ -134,6 +151,7 @@ export default async function LeadsPage({ searchParams }: { searchParams: Search
     emailStatus: lead.email_status,
     hasPreview: leadsWithPreview.has(lead.id),
     visualizationCount: visualizationCountByLeadId.get(lead.id) ?? 0,
+    previewViews: previewViewsByLeadId.get(lead.id) ?? 0,
     lastActivityAt: lastActivityByLeadId.get(lead.id) ?? lead.created_at,
     sourcePage: lead.source_page,
     createdAt: lead.created_at,

@@ -74,6 +74,14 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     created_at: string;
   }>;
 
+  const previewViewsResult = await admin
+    .from('widget_events')
+    .select('id', { head: true, count: 'exact' })
+    .eq('widget_id', lead.widget_id)
+    .eq('event_type', 'preview_viewed')
+    .contains('event_data', { leadId });
+  const previewViews = previewViewsResult.count ?? 0;
+
   const visualizations = await Promise.all(
     previews.map(async preview => {
       const [original, generated] = await Promise.all([
@@ -106,6 +114,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     sourcePage: lead.source_page,
     createdAt: lead.created_at,
     visualizationCount: visualizations.length,
+    previewViews,
     originalUrl: latestVisualization?.originalUrl ?? null,
     generatedUrl: latestVisualization?.generatedUrl ?? null,
     hasPreview: visualizations.some(visualization => Boolean(visualization.generatedUrl)),

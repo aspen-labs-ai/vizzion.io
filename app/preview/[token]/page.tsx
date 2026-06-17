@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { after } from 'next/server';
 import { notFound } from 'next/navigation';
 import PreviewComparisonSlider from '@/components/preview/PreviewComparisonSlider';
 import { createAdminClient } from '@/lib/supabase/admin';
@@ -50,7 +51,7 @@ export default async function SharedPreviewPage({
   const supabase = createAdminClient();
   const previewResult = await supabase
     .from('generated_previews')
-    .select('id, workspace_id, widget_id, original_upload_path, generated_path, material_snapshot, share_expires_at')
+    .select('id, workspace_id, widget_id, lead_id, original_upload_path, generated_path, material_snapshot, share_expires_at')
     .eq('share_token', trimmedToken)
     .maybeSingle();
 
@@ -62,6 +63,7 @@ export default async function SharedPreviewPage({
     id: string;
     workspace_id: string;
     widget_id: string;
+    lead_id: string | null;
     original_upload_path: string | null;
     generated_path: string | null;
     material_snapshot: Record<string, unknown> | null;
@@ -105,6 +107,25 @@ export default async function SharedPreviewPage({
   if (!originalSigned.data?.signedUrl || !generatedSigned.data?.signedUrl) {
     return <PreviewUnavailable />;
   }
+
+  // Record a preview view (best effort, non-blocking) so the dashboard can show
+  // how often a lead opened their shared visualization.
+  after(async () => {
+    try {
+      await supabase.from('widget_events').insert({
+        workspace_id: preview.workspace_id,
+        widget_id: preview.widget_id,
+        event_type: 'preview_viewed',
+        event_data: {
+          previewId: preview.id,
+          leadId: preview.lead_id,
+          shareToken: trimmedToken,
+        },
+      });
+    } catch {
+      // Analytics is best effort; never block the preview render.
+    }
+  });
 
   const workspace = workspaceResult.data as {
     company_name: string | null;

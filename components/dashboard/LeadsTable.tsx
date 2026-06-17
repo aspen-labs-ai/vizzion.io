@@ -10,6 +10,7 @@ export interface LeadRow {
   emailStatus: string;
   hasPreview: boolean;
   visualizationCount: number;
+  previewViews: number;
   lastActivityAt: string;
   sourcePage: string | null;
   createdAt: string;
@@ -32,6 +33,7 @@ interface LeadDetail {
   sourcePage: string | null;
   createdAt: string;
   visualizationCount: number;
+  previewViews: number;
   originalUrl: string | null;
   generatedUrl: string | null;
   hasPreview: boolean;
@@ -102,6 +104,7 @@ export default function LeadsTable({ leads }: { leads: LeadRow[] }) {
               <th className="px-4 py-3 font-semibold">Email</th>
               <th className="px-4 py-3 font-semibold">Material</th>
               <th className="px-4 py-3 font-semibold">Visuals</th>
+              <th className="px-4 py-3 font-semibold">Views</th>
               <th className="px-4 py-3 font-semibold">Status</th>
               <th className="px-4 py-3 font-semibold">Last Activity</th>
               <th className="px-4 py-3" />
@@ -110,7 +113,7 @@ export default function LeadsTable({ leads }: { leads: LeadRow[] }) {
           <tbody className="divide-y divide-border-default bg-bg-secondary">
             {leads.length === 0 ? (
               <tr>
-                <td colSpan={6} className="px-4 py-10 text-center text-text-tertiary">
+                <td colSpan={7} className="px-4 py-10 text-center text-text-tertiary">
                   No leads match these filters.
                 </td>
               </tr>
@@ -128,6 +131,11 @@ export default function LeadsTable({ leads }: { leads: LeadRow[] }) {
                     <td className="px-4 py-3 text-text-secondary">
                       <span className="rounded-full border border-border-default bg-bg-primary px-2.5 py-1 text-xs font-semibold text-text-primary">
                         {lead.visualizationCount}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3 text-text-secondary">
+                      <span className="rounded-full border border-border-default bg-bg-primary px-2.5 py-1 text-xs font-semibold text-text-primary">
+                        {lead.previewViews}
                       </span>
                     </td>
                     <td className="px-4 py-3">
@@ -185,6 +193,7 @@ export default function LeadsTable({ leads }: { leads: LeadRow[] }) {
                     <Field label="Material" value={detail.materialName ?? '—'} />
                     <Field label="Captured" value={formatDate(detail.createdAt)} />
                     <Field label="Visualizations" value={detail.visualizationCount.toString()} />
+                    <Field label="Preview views" value={detail.previewViews.toString()} />
                     <Field label="Source page" value={detail.sourcePage ?? '—'} />
                   </div>
 
