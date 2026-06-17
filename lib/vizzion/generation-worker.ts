@@ -21,6 +21,7 @@ import type { WidgetSubjectType } from '@/lib/vizzion/widget-public';
 const UPLOADS_BUCKET = 'uploads-original';
 const RENDERS_BUCKET = 'renders-generated';
 const RESULT_SIGNED_URL_TTL_SECONDS = 7 * 24 * 60 * 60;
+const SHARE_LINK_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 /** A job stuck in 'processing' longer than this is assumed dead and recoverable. */
 const STALE_PROCESSING_MS = 3 * 60 * 1000;
 
@@ -132,6 +133,7 @@ function sanitizeReplyToEmail(value: string | null | undefined): string | null {
 interface ResultEmailImageUrls {
   originalUrl: string | null;
   previewUrl: string;
+  shareUrl: string | null;
 }
 
 function buildImageCard(label: string, imageUrl: string): string {
@@ -157,6 +159,15 @@ function buildResultEmailHtml(images: ResultEmailImageUrls, branding: ResultEmai
     : '';
   const originalCard = images.originalUrl ? buildImageCard('Before', images.originalUrl) : '';
   const previewCard = buildImageCard(images.originalUrl ? 'After' : 'Preview', images.previewUrl);
+  const compareButton = images.shareUrl
+    ? `<table role="presentation" cellspacing="0" cellpadding="0" style="margin:18px 0 0;">
+        <tr>
+          <td bgcolor="${branding.brandColor}" style="border-radius:12px;background:${branding.brandColor};">
+            <a href="${escapeHtml(images.shareUrl)}" style="display:inline-block;padding:13px 18px;color:#07111f;font-size:14px;font-weight:800;text-decoration:none;border-radius:12px;">Compare before and after</a>
+          </td>
+        </tr>
+      </table>`
+    : '';
 
   return `<div style="margin:0;padding:0;background:#0b111b;background-color:#0b111b;">
     <table role="presentation" width="100%" cellspacing="0" cellpadding="0" bgcolor="#0b111b" style="background:#0b111b;background-color:#0b111b;margin:0;padding:0;">
@@ -191,6 +202,7 @@ function buildResultEmailHtml(images: ResultEmailImageUrls, branding: ResultEmai
                   <tr>
                     <td bgcolor="#111827" style="padding:16px 18px;background:#111827;background-color:#111827;border-radius:16px;">
                       ${materialLine}
+                      ${compareButton}
                       <p style="margin:14px 0 0;color:#9ca3af;font-size:13px;">Tap either image to view it full size. Preview links expire in 7 days.</p>
                       ${replyLine}
                     </td>
@@ -268,6 +280,7 @@ async function sendResultEmail(
   job: GenerationJobRow,
   originalUploadPath: string,
   generatedPath: string,
+  shareUrl: string | null,
 ): Promise<void> {
   if (!job.lead_id) {
     return;
@@ -321,6 +334,7 @@ async function sendResultEmail(
         {
           originalUrl: originalSigned.data?.signedUrl ?? null,
           previewUrl,
+          shareUrl,
         },
         branding,
       ),
@@ -466,6 +480,8 @@ export async function processGenerationJob(
 
     // 4. Store the rendered image.
     const generatedPath = `${job.workspace_id}/${job.widget_id}/${job.session_id ?? 'anon'}/${job.id}-${randomUUID()}.jpg`;
+    const shareToken = randomUUID().replace(/-/g, '');
+    const shareExpiresAt = new Date(Date.now() + SHARE_LINK_TTL_MS).toISOString();
     const upload = await supabase.storage
       .from(RENDERS_BUCKET)
       .upload(generatedPath, result.imageBuffer, {
@@ -487,6 +503,8 @@ export async function processGenerationJob(
         generation_job_id: job.id,
         original_upload_path: uploadPath,
         generated_path: generatedPath,
+        share_token: shareToken,
+        share_expires_at: shareExpiresAt,
         material_snapshot: {
           materialId: payload.materialId ?? null,
           name: material.name,
@@ -520,7 +538,8 @@ export async function processGenerationJob(
 
     // 7. Email the finished visualization to the captured lead (best effort).
     try {
-      await sendResultEmail(supabase, job, uploadPath, generatedPath);
+      const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || 'https://app.vizzion.io';
+      await sendResultEmail(supabase, job, uploadPath, generatedPath, `${siteUrl}/preview/${shareToken}`);
     } catch {
       // Email failure must not fail an otherwise successful generation.
     }
