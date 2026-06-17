@@ -410,10 +410,13 @@
       return Promise.resolve();
     }
 
+    var turnstileTheme =
+      instance.widgetConfig && instance.widgetConfig.theme === 'light' ? 'light' : 'dark';
+
     return loadTurnstile().then(function (turnstile) {
       instance.turnstileWidgetId = turnstile.render(instance.turnstileContainer, {
         sitekey: instance.turnstileSiteKey,
-        theme: 'dark',
+        theme: turnstileTheme,
         callback: function (token) {
           instance.captchaToken = token;
         },
@@ -582,6 +585,7 @@
       revealAfterUrl: null,
       comparePercent: 50,
       capped: false,
+      limitCtaUrl: null,
       turnstileSiteKey: null,
       turnstileContainer: null,
       turnstileWidgetId: null,
@@ -774,16 +778,21 @@
 
   function renderMaterialCard(material, isActive, index, showNames) {
     var cardClasses = 'vz-material' + (isActive ? ' vz-material-active' : '');
-    var name = showNames && material.name ? material.name : 'Option ' + (index + 1);
+    // Accessible label always carries a real name; the visible label is hidden
+    // entirely when the owner turns off product names (not just relabeled).
+    var accessibleName = material.name ? material.name : 'Option ' + (index + 1);
     var swatch = material.swatch_url
-      ? '<img class="vz-material-swatch" src="' + escapeHtml(material.swatch_url) + '" alt="' + escapeHtml(name) + '">'
+      ? '<img class="vz-material-swatch" src="' + escapeHtml(material.swatch_url) + '" alt="' + escapeHtml(accessibleName) + '">'
       : '<div class="vz-material-swatch"></div>';
+    var nameMarkup = showNames
+      ? '<span class="vz-material-name">' + escapeHtml(accessibleName) + '</span>'
+      : '';
 
     return (
-      '<button class="' + cardClasses + '" type="button" data-role="material" data-id="' + escapeHtml(material.id) + '" aria-pressed="' + (isActive ? 'true' : 'false') + '">' +
+      '<button class="' + cardClasses + '" type="button" data-role="material" data-id="' + escapeHtml(material.id) + '" aria-pressed="' + (isActive ? 'true' : 'false') + '" aria-label="' + escapeHtml(accessibleName) + '">' +
       swatch +
       '<span class="vz-material-check">' + ICON_CHECK + '</span>' +
-      '<span class="vz-material-name">' + escapeHtml(name) + '</span>' +
+      nameMarkup +
       '</button>'
     );
   }
@@ -905,6 +914,30 @@
       '<div class="vz-row">' +
       '<button class="vz-button vz-button-secondary" type="button" data-role="restart">Start over</button>' +
       '</div>' +
+      '</div>'
+    );
+  }
+
+  function renderLimitReachedState(instance) {
+    var message =
+      instance.stateMessage || 'You have reached the preview limit for now.';
+    var ctaUrl =
+      instance.limitCtaUrl ||
+      (instance.widgetConfig && instance.widgetConfig.limitReachedCtaUrl) ||
+      '';
+    var ctaMarkup = ctaUrl
+      ? '<a class="vz-button" href="' + escapeHtml(ctaUrl) + '" target="_blank" rel="noopener">Get in touch</a>'
+      : '';
+
+    return (
+      renderStepper(3, 2) +
+      '<div class="vz-center" style="align-items:flex-start;text-align:left">' +
+      '<strong>Preview limit reached</strong>' +
+      '<small>' + escapeHtml(message) + '</small>' +
+      '</div>' +
+      '<div class="vz-row">' +
+      ctaMarkup +
+      '<button class="vz-button' + (ctaMarkup ? ' vz-button-secondary' : '') + '" type="button" data-role="restart">Start over</button>' +
       '</div>'
     );
   }
@@ -1063,7 +1096,10 @@
           return;
         }
 
-        instance.optionalEmailMessage = 'Email saved. We will send updates to your inbox.';
+        instance.optionalEmailMessage =
+          response.data && response.data.emailQueued
+            ? 'On its way — check your inbox for the finished visualization.'
+            : 'Saved. We will email your visualization shortly.';
         instance.emailDraft = email;
         instance.emailCaptured = true;
         render(instance);
@@ -1304,19 +1340,25 @@
           }
 
           if (response.status === 429 && code === 'generation_limit_reached') {
-            instance.state = 'fallback';
+            instance.state = 'limit_reached';
             instance.stateMessage =
               (response.data && response.data.message) ||
-              'Preview limit reached. Contact this business for more previews.';
+              'You have reached the preview limit. Contact this business for more previews.';
+            instance.limitCtaUrl =
+              (response.data && response.data.contactCtaUrl) ||
+              (instance.widgetConfig && instance.widgetConfig.limitReachedCtaUrl) ||
+              '';
             render(instance);
             return;
           }
 
           if (response.status === 429 && code === 'quota_exceeded') {
-            instance.state = 'fallback';
+            instance.state = 'limit_reached';
             instance.stateMessage =
               (response.data && response.data.message) ||
-              'Preview quota is currently exceeded. Please try again later.';
+              'Previews are temporarily unavailable. Please try again later.';
+            instance.limitCtaUrl =
+              (instance.widgetConfig && instance.widgetConfig.limitReachedCtaUrl) || '';
             render(instance);
             return;
           }
@@ -1455,6 +1497,7 @@
     instance.revealBeforeUrl = null;
     instance.revealAfterUrl = null;
     instance.comparePercent = 50;
+    instance.limitCtaUrl = null;
     instance.emailDraft = '';
     instance.selectedMaterialId = null;
     instance.upload = null;
@@ -1702,6 +1745,8 @@
       stateHtml = renderGeneratingState(instance, true);
     } else if (instance.state === 'email_delivery') {
       stateHtml = renderEmailDeliveryState(instance);
+    } else if (instance.state === 'limit_reached') {
+      stateHtml = renderLimitReachedState(instance);
     } else if (instance.state === 'reveal') {
       stateHtml = renderRevealState(instance);
     } else if (instance.state === 'error') {

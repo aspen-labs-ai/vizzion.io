@@ -1,5 +1,7 @@
 import { updateOverageSettingsAction } from '@/app/dashboard/actions';
 import PageHeader from '@/components/dashboard/PageHeader';
+import SubmitButton from '@/components/dashboard/SubmitButton';
+import ToggleSwitch from '@/components/dashboard/ToggleSwitch';
 import { createClient } from '@/lib/supabase/server';
 import { getPublicPricingPlans, getWorkspaceBillingSummary } from '@/lib/vizzion/billing';
 import type { BillingPlanRecord } from '@/lib/vizzion/billing';
@@ -164,7 +166,7 @@ export default async function BillingPage({
                   <h2 className="text-base font-semibold text-text-primary">Plans</h2>
                   <p className="mt-0.5 text-xs text-text-tertiary">
                     {isFreePlan
-                      ? 'Upgrade to unlock branding, more visualizations, and overage protection.'
+                      ? 'Upgrade for more visualizations and materials, additional embed domains, and overage protection.'
                       : 'Compare plans and scale up as Vizzion fills your pipeline.'}
                   </p>
                 </div>
@@ -281,17 +283,11 @@ export default async function BillingPage({
                   </p>
                 </div>
 
-                <span className="relative inline-flex h-6 w-11 items-center">
-                  <input
-                    type="checkbox"
-                    name="overage_enabled"
-                    defaultChecked={billingSummary.subscription.overage_enabled}
-                    disabled={overageControlsDisabled}
-                    className="peer sr-only"
-                  />
-                  <span className="absolute inset-0 rounded-full border border-border-default bg-bg-primary transition peer-checked:border-accent/60 peer-checked:bg-accent/20 peer-focus-visible:ring-2 peer-focus-visible:ring-accent/40 peer-disabled:opacity-40" />
-                  <span className="absolute left-0.5 h-5 w-5 rounded-full bg-text-tertiary transition peer-checked:translate-x-5 peer-checked:bg-accent peer-disabled:opacity-40" />
-                </span>
+                <ToggleSwitch
+                  name="overage_enabled"
+                  defaultChecked={billingSummary.subscription.overage_enabled}
+                  disabled={overageControlsDisabled}
+                />
               </div>
 
               <label className="block space-y-2">
@@ -311,13 +307,13 @@ export default async function BillingPage({
                 <p className="text-xs text-text-tertiary">
                   Usage alerts are sent to workspace owners at 50/75/90/100% and near cap.
                 </p>
-                <button
-                  type="submit"
+                <SubmitButton
                   disabled={overageControlsDisabled}
+                  pendingLabel="Saving…"
                   className="rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-bg-primary transition hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   Save Overage Settings
-                </button>
+                </SubmitButton>
               </div>
             </form>
           </section>

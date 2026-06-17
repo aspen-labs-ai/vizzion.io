@@ -2,9 +2,10 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { BarChart3, CreditCard, LayoutGrid, PaintbrushVertical, Settings, Users } from 'lucide-react';
+import { BarChart3, Building2, CreditCard, LayoutGrid, PaintbrushVertical, Settings, Users } from 'lucide-react';
+import type { NavAlertLevel } from '@/lib/vizzion/onboarding';
 
-type NavIcon = 'dashboard' | 'portfolio' | 'materials' | 'settings' | 'billing' | 'leads';
+type NavIcon = 'dashboard' | 'portfolio' | 'materials' | 'settings' | 'billing' | 'leads' | 'workspace';
 
 interface NavItem {
   href: string;
@@ -20,7 +21,7 @@ interface NavGroup {
 interface AppNavProps {
   groups: NavGroup[];
   orientation?: 'vertical' | 'horizontal';
-  alertByHref?: Record<string, boolean>;
+  alertByHref?: Record<string, NavAlertLevel | undefined>;
 }
 
 const iconMap: Record<NavIcon, React.ComponentType<{ className?: string }>> = {
@@ -30,16 +31,17 @@ const iconMap: Record<NavIcon, React.ComponentType<{ className?: string }>> = {
   settings: Settings,
   billing: CreditCard,
   leads: Users,
+  workspace: Building2,
 };
 
 function NavLink({
   item,
   active,
-  hasAlert,
+  alert,
 }: {
   item: NavItem;
   active: boolean;
-  hasAlert: boolean;
+  alert?: NavAlertLevel;
 }) {
   const Icon = item.icon ? iconMap[item.icon] : LayoutGrid;
   return (
@@ -54,10 +56,14 @@ function NavLink({
       <Icon className="h-4 w-4 shrink-0" />
       <span className="inline-flex items-center gap-1.5">
         {item.label}
-        {hasAlert ? (
+        {alert ? (
           <span
-            className="inline-block h-2 w-2 rounded-full bg-red-500"
-            aria-label={`${item.label} requires attention`}
+            className={`inline-block h-2 w-2 rounded-full ${
+              alert === 'warning' ? 'bg-amber-400' : 'bg-red-500'
+            }`}
+            aria-label={`${item.label} ${
+              alert === 'warning' ? 'has a recommended improvement' : 'requires attention'
+            }`}
           />
         ) : null}
       </span>
@@ -80,7 +86,7 @@ export default function AppNav({ groups, orientation = 'vertical', alertByHref =
             key={item.href}
             item={item}
             active={isActive(item.href)}
-            hasAlert={Boolean(alertByHref[item.href])}
+            alert={alertByHref[item.href]}
           />
         ))}
       </nav>
@@ -99,7 +105,7 @@ export default function AppNav({ groups, orientation = 'vertical', alertByHref =
               key={item.href}
               item={item}
               active={isActive(item.href)}
-              hasAlert={Boolean(alertByHref[item.href])}
+              alert={alertByHref[item.href]}
             />
           ))}
         </div>

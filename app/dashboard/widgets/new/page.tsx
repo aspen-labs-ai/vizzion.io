@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { createWidgetAction } from '@/app/dashboard/actions';
 import PageHeader from '@/components/dashboard/PageHeader';
+import SubmitButton from '@/components/dashboard/SubmitButton';
 import { createClient } from '@/lib/supabase/server';
 import { getWorkspaceContext } from '@/lib/vizzion/workspace';
 
@@ -71,12 +72,12 @@ export default async function NewWidgetPage() {
         </label>
 
         <div className="flex items-center gap-3 pt-1">
-          <button
-            type="submit"
+          <SubmitButton
+            pendingLabel="Creating…"
             className="inline-flex items-center rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-bg-primary transition hover:bg-accent-hover"
           >
             Create widget
-          </button>
+          </SubmitButton>
           <Link
             href="/dashboard/settings"
             className="inline-flex items-center rounded-lg border border-border-default bg-bg-primary px-4 py-2.5 text-sm font-semibold text-text-secondary transition hover:border-accent/40 hover:text-text-primary"

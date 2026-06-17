@@ -96,7 +96,13 @@ export default function WidgetAppearance({ defaultTheme, defaultColor, disabled 
       </label>
 
       <div className="md:col-span-2 space-y-2">
-        <span className="text-sm font-medium text-text-secondary">Live preview</span>
+        <div>
+          <span className="text-sm font-medium text-text-secondary">Style preview</span>
+          <p className="mt-0.5 text-xs text-text-tertiary">
+            Updates instantly as you adjust theme and color — no save needed. To test the real, interactive
+            widget, use “Preview live widget” under Go live.
+          </p>
+        </div>
         <div
           aria-hidden
           style={{

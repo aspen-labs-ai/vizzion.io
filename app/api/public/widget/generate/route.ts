@@ -7,8 +7,12 @@ import {
   notifyUsageThresholdAlerts,
 } from '@/lib/vizzion/billing';
 import { publicJsonResponse, publicOptionsResponse } from '@/lib/vizzion/cors';
-import { processGenerationJob } from '@/lib/vizzion/generation-worker';
-import { isOriginAllowed, resolvePublicWidget } from '@/lib/vizzion/widget-public';
+import { processGenerationJob, sendResultEmailForJob } from '@/lib/vizzion/generation-worker';
+import {
+  getWidgetEmailResults,
+  isOriginAllowed,
+  resolvePublicWidget,
+} from '@/lib/vizzion/widget-public';
 
 // The visitor's POST returns immediately with a queued job id; image generation
 // runs in the background via after() within this same invocation budget. The
@@ -366,7 +370,12 @@ export async function POST(request: NextRequest) {
       return publicJsonResponse({ error: 'Material does not belong to widget.' }, 400, origin);
     }
 
-    if ((widget.require_email || widget.delivery_mode === 'email') && !email) {
+    const emailRequiredForWidget =
+      widget.require_email
+      || widget.delivery_mode === 'email'
+      || typeof widget.max_generations_per_email_lifetime === 'number';
+
+    if (emailRequiredForWidget && !email && !captureOnly) {
       return publicJsonResponse(
         {
           code: 'email_required',
@@ -544,9 +553,42 @@ export async function POST(request: NextRequest) {
     }
 
     if (captureOnly) {
+      // Post-reveal opt-in: the visitor saw the on-site preview and now wants it
+      // emailed. Attach the lead to the already-succeeded job + preview and send
+      // the result email in the background.
+      let emailQueued = false;
+      if (lead && generationJobId) {
+        const linkResult = await supabase
+          .from('generation_jobs')
+          .update({ lead_id: lead.id })
+          .eq('id', generationJobId)
+          .eq('widget_id', widget.id)
+          .select('id')
+          .maybeSingle();
+
+        if (!linkResult.error && linkResult.data) {
+          await supabase
+            .from('generated_previews')
+            .update({ lead_id: lead.id })
+            .eq('generation_job_id', generationJobId)
+            .eq('widget_id', widget.id);
+
+          emailQueued = true;
+          const jobToEmail = generationJobId;
+          after(async () => {
+            try {
+              await sendResultEmailForJob(jobToEmail);
+            } catch {
+              // Email is best-effort; status is reflected on the lead row.
+            }
+          });
+        }
+      }
+
       return publicJsonResponse(
         {
           leadCaptured: Boolean(lead),
+          emailQueued,
           lead: lead
             ? {
                 id: lead.id,
@@ -720,6 +762,7 @@ export async function POST(request: NextRequest) {
       subjectType: widget.subject_type,
       requireEmail: widget.require_email,
       deliveryMode: widget.delivery_mode,
+      emailResults: await getWidgetEmailResults(supabase, widget.id),
     };
 
     const generationResult = await supabase

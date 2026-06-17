@@ -4,8 +4,6 @@ export interface PublicWidgetMaterial {
   id: string;
   name: string;
   swatch_url: string | null;
-  texture_url: string | null;
-  prompt_modifier: string | null;
   sort_order: number;
 }
 
@@ -120,13 +118,35 @@ function normalizeDeliveryMode(value: string | null | undefined): WidgetDelivery
   return value === 'email' ? 'email' : 'instant';
 }
 
+/**
+ * Reads the widget's `email_results` toggle, tolerating the column not existing
+ * yet (the feature migration may not be applied). Defaults to true, which
+ * preserves the prior behavior of emailing captured leads in instant mode.
+ */
+export async function getWidgetEmailResults(
+  supabase: SupabaseClient,
+  widgetId: string,
+): Promise<boolean> {
+  const result = await supabase
+    .from('widgets')
+    .select('email_results')
+    .eq('id', widgetId)
+    .maybeSingle();
+
+  if (result.error || !result.data) {
+    return true;
+  }
+
+  return (result.data as { email_results?: boolean | null }).email_results !== false;
+}
+
 async function loadWidgetMaterials(
   supabase: SupabaseClient,
   widgetId: string,
 ): Promise<PublicWidgetMaterial[] | null> {
   const materialsResult = await supabase
     .from('materials')
-    .select('id, name, swatch_url, texture_url, prompt_modifier, sort_order')
+    .select('id, name, swatch_url, sort_order')
     .eq('widget_id', widgetId)
     .eq('is_active', true)
     .order('sort_order', { ascending: true })
@@ -211,6 +231,19 @@ export function isOriginAllowed(
   originHeader: string | null,
   pageUrl: string | null | undefined,
 ): boolean {
+  const candidateHosts = [extractHostname(originHeader), extractHostname(pageUrl)].filter(
+    (value): value is string => Boolean(value),
+  );
+
+  // Always allow Vizzion's own origin so the dashboard's live widget preview
+  // (and first-party industry demo pages) work without the customer having to
+  // allowlist our domain. This is safe: browsers set Origin to our domain only
+  // for requests that genuinely originate from our own pages.
+  const firstPartyHost = extractHostname(process.env.NEXT_PUBLIC_SITE_URL);
+  if (firstPartyHost && candidateHosts.some(host => hostMatches(host, firstPartyHost))) {
+    return true;
+  }
+
   const normalizedAllowlist = (allowlist ?? [])
     .map(normalizeAllowedHost)
     .filter((value): value is string => Boolean(value));
@@ -219,10 +252,6 @@ export function isOriginAllowed(
   if (normalizedAllowlist.length === 0) {
     return false;
   }
-
-  const candidateHosts = [extractHostname(originHeader), extractHostname(pageUrl)].filter(
-    (value): value is string => Boolean(value),
-  );
 
   if (candidateHosts.length === 0) {
     return false;

@@ -1,16 +1,20 @@
 import CopySnippet from '@/components/dashboard/CopySnippet';
 import PageHeader from '@/components/dashboard/PageHeader';
+import SettingsFocus from '@/components/dashboard/SettingsFocus';
+import SubmitButton from '@/components/dashboard/SubmitButton';
+import ToggleSwitch from '@/components/dashboard/ToggleSwitch';
 import WidgetAppearance from '@/components/dashboard/WidgetAppearance';
 import {
   regenerateEmbedKeyAction,
-  updateWorkspaceProfileAction,
   updateWidgetSettingsAction,
 } from '@/app/dashboard/actions';
 import { getSiteUrl } from '@/lib/supabase/env';
 import { createClient } from '@/lib/supabase/server';
-import { getSetupLockReason, getMissingSetupRequirements } from '@/lib/vizzion/setup-requirements';
+import { getEmbedLockReason, getOnboardingState } from '@/lib/vizzion/onboarding';
+import { getWidgetEmailResults } from '@/lib/vizzion/widget-public';
 import { getWorkspaceContext } from '@/lib/vizzion/workspace';
-import { Check } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
 type SearchParams = Promise<Record<string, string | string[] | undefined>>;
@@ -41,42 +45,69 @@ export default async function SettingsPage({
 
   const error = getSingleParam(resolvedParams.error);
   const saved = getSingleParam(resolvedParams.saved) === '1';
-  const workspaceSaved = getSingleParam(resolvedParams.workspace_saved) === '1';
   const keyRegenerated = getSingleParam(resolvedParams.key_regenerated) === '1';
-  const missingSetup = getMissingSetupRequirements(context.widget);
-  const isEmbedLocked = missingSetup.length > 0;
-  const embedLockReason = getSetupLockReason(context.widget);
-  const domainSet = context.widget.domain_allowlist.length > 0;
   const isOwner = context.role === 'owner';
   const widget = context.widget;
 
-  const mappingResult = await supabase
-    .from('industry_widget_mappings')
-    .select('industry_slug')
-    .eq('workspace_id', context.workspace.id)
-    .eq('widget_id', widget.id)
-    .maybeSingle();
+  const [mappingResult, materialsResult, emailResults] = await Promise.all([
+    supabase
+      .from('industry_widget_mappings')
+      .select('industry_slug')
+      .eq('workspace_id', context.workspace.id)
+      .eq('widget_id', widget.id)
+      .maybeSingle(),
+    supabase
+      .from('materials')
+      .select('swatch_url')
+      .eq('widget_id', widget.id)
+      .eq('is_active', true),
+    getWidgetEmailResults(supabase, widget.id),
+  ]);
+
   const industrySlug =
     !mappingResult.error && mappingResult.data && typeof mappingResult.data.industry_slug === 'string'
       ? mappingResult.data.industry_slug
       : '';
 
+  const activeMaterials = (materialsResult.data ?? []) as Array<{ swatch_url: string | null }>;
+  const activeMaterialCount = activeMaterials.length;
+  const materialsMissingImageCount = activeMaterials.filter(material => !material.swatch_url).length;
+
+  const onboardingInput = {
+    widgetId: widget.id,
+    subjectType: widget.subject_type,
+    targetSurface: widget.target_surface,
+    domainAllowlist: widget.domain_allowlist,
+    isActive: widget.is_active,
+    activeMaterialCount,
+    materialsMissingImageCount,
+    brandCustomized: (widget.brand_color || '').toUpperCase() !== '#10B981',
+    hasLogo: Boolean(context.workspace.logo_url),
+  };
+  const onboarding = getOnboardingState(onboardingInput);
+  const isEmbedLocked = !onboarding.goLiveReady;
+  const embedLockReason = getEmbedLockReason(onboardingInput);
+  const domainSet = widget.domain_allowlist.length > 0;
+  const targetSurfaceSet = Boolean(widget.target_surface?.trim());
+  const hasMaterials = activeMaterialCount > 0;
+
   const widgetIdField = <input type="hidden" name="widget_id" value={widget.id} />;
   const saveButton = (label: string) => (
-    <button
-      type="submit"
+    <SubmitButton
       disabled={!isOwner}
+      pendingLabel="Saving…"
       className="rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-bg-primary transition hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-50"
     >
       {isOwner ? label : 'Owner only'}
-    </button>
+    </SubmitButton>
   );
 
   return (
     <div className="space-y-6">
+      <SettingsFocus />
       <PageHeader
         title="Widget Setup"
-        description={`Configure ${widget.name}${widget.is_primary ? ' (primary)' : ''} — appearance, behavior, and where it runs.`}
+        description={`Configure ${widget.name}${widget.is_primary ? ' (primary)' : ''} — install, content, appearance, and behavior.`}
       />
 
       {error ? (
@@ -84,9 +115,6 @@ export default async function SettingsPage({
       ) : null}
       {saved ? (
         <p className="rounded-lg border border-accent/40 bg-accent/10 px-4 py-3 text-sm text-accent">Settings saved.</p>
-      ) : null}
-      {workspaceSaved ? (
-        <p className="rounded-lg border border-accent/40 bg-accent/10 px-4 py-3 text-sm text-accent">Workspace updated.</p>
       ) : null}
       {keyRegenerated ? (
         <p className="rounded-lg border border-accent/40 bg-accent/10 px-4 py-3 text-sm text-accent">Embed key regenerated.</p>
@@ -97,41 +125,43 @@ export default async function SettingsPage({
         </p>
       ) : null}
 
+      {!domainSet || !targetSurfaceSet ? (
+        <p className="rounded-lg border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm text-red-200">
+          A required field still needs attention before this widget can go live — it&apos;s outlined in red below.
+        </p>
+      ) : null}
+
       {/* Widget-scoped sections — keyed by widget id so every field, toggle, and the
           live preview fully reset when the active widget changes. */}
       <div key={widget.id} className="space-y-6">
-      {/* GO LIVE */}
+      {/* 1 · GO LIVE / INSTALL */}
       <section className="rounded-2xl border border-accent/30 bg-bg-secondary p-6">
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <div>
-            <h2 className="text-lg font-semibold text-text-primary">Go live</h2>
-            <p className="mt-1 text-sm text-text-secondary">
-              Approve your website, then drop the embed snippet on your site.
-            </p>
-          </div>
-          <div className="flex gap-2">
-            <StatusChip ok={domainSet} okLabel="Domain set" pendingLabel="Domain needed" />
-            <StatusChip ok={!isEmbedLocked} okLabel="Embed ready" pendingLabel="Embed locked" />
-          </div>
+        <div>
+          <h2 className="text-lg font-semibold text-text-primary">1 · Go live</h2>
+          <p className="mt-1 text-sm text-text-secondary">
+            Approve your website and drop the embed snippet on your site.
+          </p>
         </div>
 
         <form action={updateWidgetSettingsAction} className="mt-5 space-y-2">
           {widgetIdField}
           <input type="hidden" name="present_fields" value="domain_allowlist" />
-          <span className="text-sm font-medium text-text-secondary">Approved website domains</span>
-          <textarea
-            name="domain_allowlist"
-            rows={3}
-            defaultValue={widget.domain_allowlist.join('\n')}
-            placeholder={'yoursite.com\nshop.yoursite.com'}
-            disabled={!isOwner}
-            className={`w-full rounded-lg border bg-bg-primary px-3 py-2 text-sm text-text-primary outline-none transition focus:border-accent/60 ${
-              domainSet ? 'border-border-default' : 'border-red-500/60'
-            }`}
-          />
-          <p className={`text-xs ${domainSet ? 'text-text-tertiary' : 'text-red-300'}`}>
-            Required to go live. One domain per line — each covers all its pages.
-          </p>
+          <div id="setting-domain_allowlist" className="vz-focus-target space-y-2">
+            <span className="text-sm font-medium text-text-secondary">Approved website domains</span>
+            <textarea
+              name="domain_allowlist"
+              rows={3}
+              defaultValue={widget.domain_allowlist.join('\n')}
+              placeholder={'yoursite.com\nshop.yoursite.com'}
+              disabled={!isOwner}
+              className={`w-full rounded-lg border bg-bg-primary px-3 py-2 text-sm text-text-primary outline-none transition focus:border-accent/60 ${
+                domainSet ? 'border-border-default' : 'border-red-500/60'
+              }`}
+            />
+            <p className={`text-xs ${domainSet ? 'text-text-tertiary' : 'text-red-300'}`}>
+              Required to go live. One domain per line — each covers all its pages.
+            </p>
+          </div>
           <div className="pt-1">{saveButton('Save domains')}</div>
         </form>
 
@@ -143,14 +173,29 @@ export default async function SettingsPage({
             </div>
             <form action={regenerateEmbedKeyAction}>
               {widgetIdField}
-              <button
-                type="submit"
+              <SubmitButton
                 disabled={!isOwner}
+                pendingLabel="Regenerating…"
                 className="rounded-lg border border-border-default bg-bg-primary px-4 py-2 text-sm font-semibold text-text-secondary transition hover:border-accent/40 hover:text-text-primary disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {isOwner ? 'Regenerate key' : 'Owner only'}
-              </button>
+              </SubmitButton>
             </form>
+          </div>
+          <div className="mb-4">
+            <a
+              href={`/widget-preview?widgetId=${widget.id}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg border border-accent/50 bg-accent/10 px-4 py-2 text-sm font-semibold text-accent transition hover:bg-accent/20"
+            >
+              <ExternalLink className="h-4 w-4" />
+              Preview live widget
+            </a>
+            <p className="mt-1.5 text-xs text-text-tertiary">
+              Opens the real, interactive widget in a new tab — exactly what your visitors see, using your saved
+              settings. Works before go-live; no domain approval needed.
+            </p>
           </div>
           <CopySnippet
             embedKey={widget.embed_key}
@@ -161,9 +206,74 @@ export default async function SettingsPage({
         </div>
       </section>
 
-      {/* APPEARANCE */}
+      {/* 2 · WHAT VISITORS SEE */}
       <section className="rounded-2xl border border-border-default bg-bg-secondary p-6">
-        <h2 className="text-lg font-semibold text-text-primary">Appearance</h2>
+        <h2 className="text-lg font-semibold text-text-primary">2 · What visitors see</h2>
+        <p className="mt-1 text-sm text-text-secondary">What people upload, what the widget changes, and the looks they can try.</p>
+
+        <form action={updateWidgetSettingsAction} className="mt-5 grid gap-4 md:grid-cols-2">
+          {widgetIdField}
+          <input type="hidden" name="present_fields" value="subject_type,target_surface,show_product_names" />
+          <SelectField
+            label="What visitors upload"
+            name="subject_type"
+            defaultValue={widget.subject_type ?? 'home'}
+            disabled={!isOwner}
+            hint="Sets the upload prompt + reveal copy for this widget."
+            options={[
+              { value: 'home', label: 'Home — house exterior/interior' },
+              { value: 'vehicle', label: 'Vehicle — cars, trucks' },
+              { value: 'body', label: 'Body — tattoos & placements' },
+              { value: 'yard', label: 'Yard — landscaping, turf' },
+              { value: 'boat', label: 'Boat — marine surfaces' },
+              { value: 'room', label: 'Room — interior spaces' },
+              { value: 'generic', label: 'Generic — anything' },
+            ]}
+          />
+          <InputField
+            anchorId="setting-target_surface"
+            label="What does this widget change?"
+            name="target_surface"
+            defaultValue={widget.target_surface ?? ''}
+            disabled={!isOwner}
+            required
+            invalid={!targetSurfaceSet}
+            invalidNote="Required to go live."
+            hint="The part of the photo your materials are applied to, e.g. “the roof”, “the siding”, “the driveway”. Set it once — every material gets applied here."
+          />
+          <ToggleField
+            name="show_product_names"
+            label="Show product names"
+            description="Display each material’s name in the picker. Off hides the labels entirely."
+            defaultChecked={widget.show_product_names}
+            disabled={!isOwner}
+          />
+          <div className="md:col-span-2 rounded-lg border border-border-default bg-bg-primary px-4 py-3 text-xs text-text-tertiary">
+            Materials (the looks customers preview) are managed on the{' '}
+            <Link href={`/dashboard/materials?widgetId=${widget.id}`} className="font-semibold text-accent hover:text-accent-hover">
+              Materials page
+            </Link>
+            {hasMaterials ? (
+              <>
+                {' '}— {activeMaterialCount} active
+                {materialsMissingImageCount > 0 ? (
+                  <span className="text-amber-300">
+                    {' '}· {materialsMissingImageCount} missing a photo
+                  </span>
+                ) : null}
+                .
+              </>
+            ) : (
+              <span className="text-amber-300"> — none yet. Add at least one to go live.</span>
+            )}
+          </div>
+          <div className="md:col-span-2">{saveButton('Save content')}</div>
+        </form>
+      </section>
+
+      {/* 3 · APPEARANCE */}
+      <section id="setting-appearance" className="vz-focus-target rounded-2xl border border-border-default bg-bg-secondary p-6">
+        <h2 className="text-lg font-semibold text-text-primary">3 · Appearance</h2>
         <p className="mt-1 text-sm text-text-secondary">How the widget looks on your site.</p>
 
         <form action={updateWidgetSettingsAction} className="mt-5 grid gap-4 md:grid-cols-2">
@@ -189,42 +299,14 @@ export default async function SettingsPage({
         </form>
       </section>
 
-      {/* BEHAVIOR */}
+      {/* 4 · LEAD CAPTURE & DELIVERY */}
       <section className="rounded-2xl border border-border-default bg-bg-secondary p-6">
-        <h2 className="text-lg font-semibold text-text-primary">Behavior</h2>
-        <p className="mt-1 text-sm text-text-secondary">What visitors upload and how the widget acts.</p>
+        <h2 className="text-lg font-semibold text-text-primary">4 · Lead capture &amp; delivery</h2>
+        <p className="mt-1 text-sm text-text-secondary">Collect emails and choose how visitors get their result.</p>
 
         <form action={updateWidgetSettingsAction} className="mt-5 grid gap-4 md:grid-cols-2">
           {widgetIdField}
-          <input
-            type="hidden"
-            name="present_fields"
-            value="name,subject_type,target_surface,require_email,delivery_mode,auto_open_widget,show_product_names,is_active"
-          />
-          <InputField label="Widget name" name="name" defaultValue={widget.name} required disabled={!isOwner} hint="Internal label — not shown to visitors." />
-          <SelectField
-            label="What visitors upload"
-            name="subject_type"
-            defaultValue={widget.subject_type ?? 'home'}
-            disabled={!isOwner}
-            hint="Sets the upload prompt + reveal copy for this widget."
-            options={[
-              { value: 'home', label: 'Home — house exterior/interior' },
-              { value: 'vehicle', label: 'Vehicle — cars, trucks' },
-              { value: 'body', label: 'Body — tattoos & placements' },
-              { value: 'yard', label: 'Yard — landscaping, turf' },
-              { value: 'boat', label: 'Boat — marine surfaces' },
-              { value: 'room', label: 'Room — interior spaces' },
-              { value: 'generic', label: 'Generic — anything' },
-            ]}
-          />
-          <InputField
-            label="What does this widget change?"
-            name="target_surface"
-            defaultValue={widget.target_surface ?? ''}
-            disabled={!isOwner}
-            hint="The part of the photo your materials are applied to, e.g. “the roof”, “the siding”, “the driveway”. Set it once — every material gets applied here."
-          />
+          <input type="hidden" name="present_fields" value="require_email,delivery_mode,email_results" />
           <ToggleField
             name="require_email"
             label="Require email"
@@ -244,24 +326,10 @@ export default async function SettingsPage({
             ]}
           />
           <ToggleField
-            name="is_active"
-            label="Widget active"
-            description="Turn off to pause the widget on your site."
-            defaultChecked={widget.is_active}
-            disabled={!isOwner}
-          />
-          <ToggleField
-            name="auto_open_widget"
-            label="Auto-open"
-            description="Open the widget automatically on page load."
-            defaultChecked={widget.auto_open_widget}
-            disabled={!isOwner}
-          />
-          <ToggleField
-            name="show_product_names"
-            label="Show product names"
-            description="Display material names in the picker."
-            defaultChecked={widget.show_product_names}
+            name="email_results"
+            label="Also email the result"
+            description="When showing the preview on-site, also email a copy to visitors who left an email."
+            defaultChecked={emailResults}
             disabled={!isOwner}
           />
           {!widget.require_email ? (
@@ -271,18 +339,55 @@ export default async function SettingsPage({
           ) : null}
           {widget.delivery_mode === 'email' ? (
             <p className="md:col-span-2 rounded-lg border border-accent/40 bg-accent/10 px-4 py-3 text-xs text-accent">
-              Email-only delivery requires Resend in production. Visitors will not see the finished preview in the widget.
+              Email-only delivery requires Resend in production. Visitors get the finished preview by email instead of
+              on-site, and email is always required.
             </p>
           ) : null}
+          <div className="md:col-span-2">{saveButton('Save lead capture')}</div>
+        </form>
+      </section>
+
+      {/* 5 · BEHAVIOR */}
+      <section className="rounded-2xl border border-border-default bg-bg-secondary p-6">
+        <h2 className="text-lg font-semibold text-text-primary">5 · Behavior</h2>
+        <p className="mt-1 text-sm text-text-secondary">Turn the widget on and control how it opens.</p>
+
+        <form action={updateWidgetSettingsAction} className="mt-5 grid gap-4 md:grid-cols-2">
+          {widgetIdField}
+          <input type="hidden" name="present_fields" value="name,is_active,auto_open_widget" />
+          <InputField
+            label="Widget name"
+            name="name"
+            defaultValue={widget.name}
+            required
+            disabled={!isOwner}
+            hint="Internal label — not shown to visitors."
+          />
+          <div className="hidden md:block" aria-hidden />
+          <ToggleField
+            anchorId="setting-is_active"
+            name="is_active"
+            label="Widget active"
+            description="Turn off to pause the widget on your site."
+            defaultChecked={widget.is_active}
+            disabled={!isOwner}
+          />
+          <ToggleField
+            name="auto_open_widget"
+            label="Auto-open"
+            description="Open the widget automatically on page load (popup mode)."
+            defaultChecked={widget.auto_open_widget}
+            disabled={!isOwner}
+          />
           <div className="md:col-span-2">{saveButton('Save behavior')}</div>
         </form>
       </section>
 
-      {/* ADVANCED */}
+      {/* 6 · ADVANCED */}
       <details className="group rounded-2xl border border-border-default bg-bg-secondary p-6">
         <summary className="flex cursor-pointer list-none items-center justify-between">
           <div>
-            <h2 className="text-lg font-semibold text-text-primary">Advanced</h2>
+            <h2 className="text-lg font-semibold text-text-primary">6 · Advanced</h2>
             <p className="mt-1 text-sm text-text-secondary">Rate limits and industry-page mapping.</p>
           </div>
           <span className="text-xs font-medium text-text-tertiary group-open:hidden">Show</span>
@@ -312,14 +417,14 @@ export default async function SettingsPage({
             placeholder="Unlimited"
             min={1}
             disabled={!isOwner}
-            hint="Caps previews per email address, all-time. Blank = unlimited."
+            hint="Caps previews per email address, all-time. Setting this requires visitors to enter an email."
           />
           <InputField
             label="“Limit reached” link"
             name="limit_reached_cta_url"
             defaultValue={widget.limit_reached_cta_url ?? ''}
             disabled={!isOwner}
-            hint="Where to send visitors who hit a limit (e.g. a contact page)."
+            hint="Shown to visitors who hit a limit (e.g. a contact or quote page)."
           />
           <InputField
             label="Industry page slug"
@@ -332,46 +437,7 @@ export default async function SettingsPage({
         </form>
       </details>
       </div>
-
-      {/* WORKSPACE */}
-      <section className="rounded-2xl border border-border-default bg-bg-secondary p-6">
-        <h2 className="text-lg font-semibold text-text-primary">Workspace</h2>
-        <p className="mt-1 text-sm text-text-secondary">Your account name and logo, used in the dashboard and customer emails.</p>
-
-        <form action={updateWorkspaceProfileAction} encType="multipart/form-data" className="mt-5 grid gap-4 md:grid-cols-2">
-          <InputField
-            label="Workspace name"
-            name="workspace_name"
-            defaultValue={context.workspace.company_name ?? context.workspace.name}
-            required
-            disabled={!isOwner}
-          />
-          <InputField
-            label="Reply-to email"
-            name="reply_to_email"
-            type="email"
-            defaultValue={context.workspace.reply_to_email ?? ''}
-            disabled={!isOwner}
-            hint="Customer replies to result emails will go here. Leave blank to use the sending address."
-          />
-          <LogoField existingUrl={context.workspace.logo_url} disabled={!isOwner} />
-          <div className="flex items-end">{saveButton('Save workspace')}</div>
-        </form>
-      </section>
     </div>
-  );
-}
-
-function StatusChip({ ok, okLabel, pendingLabel }: { ok: boolean; okLabel: string; pendingLabel: string }) {
-  return (
-    <span
-      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-semibold ${
-        ok ? 'border-accent/50 bg-accent/10 text-accent' : 'border-amber-500/40 bg-amber-500/10 text-amber-300'
-      }`}
-    >
-      {ok ? <Check className="h-3 w-3" strokeWidth={3} /> : <span className="h-1.5 w-1.5 rounded-full bg-current" />}
-      {ok ? okLabel : pendingLabel}
-    </span>
   );
 }
 
@@ -388,6 +454,9 @@ function InputField({
   required,
   disabled,
   hint,
+  anchorId,
+  invalid,
+  invalidNote,
 }: {
   label: string;
   name: string;
@@ -396,9 +465,12 @@ function InputField({
   required?: boolean;
   disabled?: boolean;
   hint?: string;
+  anchorId?: string;
+  invalid?: boolean;
+  invalidNote?: string;
 }) {
   return (
-    <label className="block space-y-2">
+    <label id={anchorId} className={`block space-y-2 ${anchorId ? 'vz-focus-target' : ''}`}>
       <span className="text-sm font-medium text-text-secondary">{label}</span>
       <input
         type={type}
@@ -406,9 +478,12 @@ function InputField({
         defaultValue={defaultValue}
         required={required}
         disabled={disabled}
-        className="w-full rounded-lg border border-border-default bg-bg-primary px-3 py-2.5 text-sm text-text-primary outline-none transition focus:border-accent/60 disabled:opacity-60"
+        className={`w-full rounded-lg border bg-bg-primary px-3 py-2.5 text-sm text-text-primary outline-none transition focus:border-accent/60 disabled:opacity-60 ${
+          invalid ? 'border-red-500/60' : 'border-border-default'
+        }`}
       />
       <FieldHint hint={hint} />
+      {invalid && invalidNote ? <p className="text-xs text-red-300">{invalidNote}</p> : null}
     </label>
   );
 }
@@ -420,6 +495,7 @@ function SelectField({
   options,
   disabled,
   hint,
+  anchorId,
 }: {
   label: string;
   name: string;
@@ -427,9 +503,10 @@ function SelectField({
   options: { value: string; label: string }[];
   disabled?: boolean;
   hint?: string;
+  anchorId?: string;
 }) {
   return (
-    <label className="block space-y-2">
+    <label id={anchorId} className={`block space-y-2 ${anchorId ? 'vz-focus-target' : ''}`}>
       <span className="text-sm font-medium text-text-secondary">{label}</span>
       <select
         name={name}
@@ -482,75 +559,30 @@ function NumberField({
   );
 }
 
-function LogoField({ existingUrl, disabled }: { existingUrl: string | null; disabled?: boolean }) {
-  return (
-    <div className="space-y-2 md:col-span-2">
-      <span className="text-sm font-medium text-text-secondary">Company logo</span>
-      <div className="flex flex-wrap items-center gap-4 rounded-lg border border-border-default bg-bg-primary p-4">
-        {existingUrl ? (
-          // eslint-disable-next-line @next/next/no-img-element -- customer-uploaded public logo URL
-          <img
-            src={existingUrl}
-            alt="Current workspace logo"
-            className="max-h-14 max-w-48 rounded-md border border-border-subtle bg-white object-contain p-2"
-          />
-        ) : (
-          <span className="flex h-14 w-28 items-center justify-center rounded-md border border-dashed border-border-default text-xs text-text-tertiary">
-            No logo
-          </span>
-        )}
-        <div className="space-y-2">
-          <input
-            type="file"
-            name="logo_file"
-            accept="image/jpeg,image/png,image/webp"
-            disabled={disabled}
-            className="block text-xs text-text-secondary file:mr-3 file:rounded-md file:border-0 file:bg-accent file:px-3 file:py-2 file:text-xs file:font-semibold file:text-bg-primary disabled:opacity-60"
-          />
-          <p className="text-xs text-text-tertiary">PNG, JPG, or WebP. Max 2 MB. Used in customer result emails.</p>
-          {existingUrl ? (
-            <label className="inline-flex items-center gap-2 text-xs text-text-secondary">
-              <input
-                type="checkbox"
-                name="remove_logo"
-                disabled={disabled}
-                className="h-4 w-4 rounded border-border-default bg-bg-primary text-accent focus:ring-accent"
-              />
-              Remove current logo
-            </label>
-          ) : null}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function ToggleField({
   name,
   label,
   description,
   defaultChecked,
   disabled,
+  anchorId,
 }: {
   name: string;
   label: string;
   description: string;
   defaultChecked: boolean;
   disabled?: boolean;
+  anchorId?: string;
 }) {
   return (
-    <label className="block rounded-lg border border-border-default bg-bg-primary px-4 py-3">
+    <label id={anchorId} className={`block rounded-lg border border-border-default bg-bg-primary px-4 py-3 ${anchorId ? 'vz-focus-target' : ''}`}>
       <div className="flex items-center justify-between gap-3">
         <div>
           <p className="text-sm font-medium text-text-primary">{label}</p>
           <p className="text-xs text-text-tertiary">{description}</p>
         </div>
 
-        <span className="relative inline-flex h-6 w-11 items-center">
-          <input type="checkbox" name={name} defaultChecked={defaultChecked} disabled={disabled} className="peer sr-only" />
-          <span className="absolute inset-0 rounded-full border border-border-default bg-bg-secondary transition peer-checked:border-accent/60 peer-checked:bg-accent/20 peer-focus-visible:ring-2 peer-focus-visible:ring-accent/40 peer-disabled:opacity-50" />
-          <span className="absolute left-0.5 h-5 w-5 rounded-full bg-text-tertiary transition peer-checked:translate-x-5 peer-checked:bg-accent peer-disabled:opacity-50" />
-        </span>
+        <ToggleSwitch name={name} defaultChecked={defaultChecked} disabled={disabled} />
       </div>
     </label>
   );

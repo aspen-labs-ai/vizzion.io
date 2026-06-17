@@ -41,6 +41,7 @@ export default async function MaterialsPage({
   const error = getSingleParam(resolvedParams.error);
   const saved = getSingleParam(resolvedParams.saved) === '1';
   const deleted = getSingleParam(resolvedParams.deleted) === '1';
+  const focus = getSingleParam(resolvedParams.focus);
 
   return (
     <div className="space-y-6">
@@ -58,6 +59,8 @@ export default async function MaterialsPage({
         error={error}
         saved={saved}
         deleted={deleted}
+        autoOpenCreate={focus === 'add'}
+        highlightMissingImages={focus === 'images'}
         onCreate={createMaterialAction}
         onUpdate={updateMaterialAction}
         onDelete={deleteMaterialAction}

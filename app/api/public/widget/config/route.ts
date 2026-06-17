@@ -49,7 +49,13 @@ export async function GET(request: NextRequest) {
           subjectType: widget.subject_type,
           brandColor: widget.brand_color,
           uiVersion: 'v2',
-          requireEmail: widget.delivery_mode === 'email' || widget.require_email,
+          // Email is required when the owner asks for it, when delivery is
+          // email-only, or when a per-email lifetime cap is configured (the cap
+          // can only be enforced if we know the visitor's email).
+          requireEmail:
+            widget.delivery_mode === 'email'
+            || widget.require_email
+            || typeof widget.max_generations_per_email_lifetime === 'number',
           deliveryMode: widget.delivery_mode,
           autoOpenWidget: widget.auto_open_widget,
           showProductNames: widget.show_product_names,

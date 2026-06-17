@@ -10,7 +10,26 @@ interface CopySnippetProps {
 }
 
 function buildSnippet(embedKey: string, siteUrl: string): string {
-  return `<div id="vizzion-widget"></div>\n<script async src="${siteUrl}/widget.js"></script>\n<script>\n  window.VizzionWidget?.init({\n    embedKey: '${embedKey}',\n    target: '#vizzion-widget'\n  });\n</script>`;
+  // Queue-safe init: widget.js loads async, so the inline script may run before
+  // OR after it. If VizzionWidget is ready we init immediately; otherwise we
+  // push onto a queue that widget.js drains on load. (A bare
+  // `VizzionWidget?.init(...)` silently no-ops when the async script hasn't
+  // loaded yet — the common case — so the widget never mounts.)
+  return [
+    '<div id="vizzion-widget"></div>',
+    `<script async src="${siteUrl}/widget.js"></script>`,
+    '<script>',
+    '  (function () {',
+    `    var config = { embedKey: '${embedKey}', target: '#vizzion-widget' };`,
+    '    window.__vizzionWidgetQueue = window.__vizzionWidgetQueue || [];',
+    "    if (window.VizzionWidget && typeof window.VizzionWidget.init === 'function') {",
+    '      window.VizzionWidget.init(config);',
+    '    } else {',
+    '      window.__vizzionWidgetQueue.push(config);',
+    '    }',
+    '  })();',
+    '</script>',
+  ].join('\n');
 }
 
 export default function CopySnippet({

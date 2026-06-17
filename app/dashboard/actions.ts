@@ -323,6 +323,21 @@ export async function updateWidgetSettingsAction(formData: FormData) {
     }
   }
 
+  // `email_results` is behind a migration that may not be applied yet, so write
+  // it in isolation and ignore a missing-column error (42703) — the toggle
+  // simply has no effect until the migration runs.
+  if (has('email_results')) {
+    const emailResultsUpdate = await supabase
+      .from('widgets')
+      .update({ email_results: parseCheckbox(formData, 'email_results') })
+      .eq('id', context.widget.id)
+      .eq('workspace_id', context.workspace.id);
+
+    if (emailResultsUpdate.error && emailResultsUpdate.error.code !== '42703') {
+      fail(emailResultsUpdate.error.message);
+    }
+  }
+
   if (has('industry_slug')) {
     const industrySlug = sanitizeIndustrySlug(getFormValue(formData, 'industry_slug'));
 
@@ -363,21 +378,21 @@ export async function updateWorkspaceProfileAction(formData: FormData) {
 
   const workspaceName = getFormValue(formData, 'workspace_name');
   if (!workspaceName) {
-    redirect('/dashboard/settings?error=Workspace+name+is+required.');
+    redirect('/dashboard/workspace?error=Workspace+name+is+required.');
   }
 
   if (workspaceName.length > 80) {
-    redirect('/dashboard/settings?error=Workspace+name+must+be+80+characters+or+less.');
+    redirect('/dashboard/workspace?error=Workspace+name+must+be+80+characters+or+less.');
   }
 
   const replyToEmail = getFormValue(formData, 'reply_to_email').toLowerCase();
   if (replyToEmail && !isValidEmail(replyToEmail)) {
-    redirect('/dashboard/settings?error=Reply-to+email+must+be+a+valid+email+address.');
+    redirect('/dashboard/workspace?error=Reply-to+email+must+be+a+valid+email+address.');
   }
 
   const logoResult = await uploadWorkspaceLogo(supabase, context.workspace.id, formData.get('logo_file'));
   if (logoResult && 'error' in logoResult) {
-    redirect(`/dashboard/settings?error=${encodeURIComponent(logoResult.error)}`);
+    redirect(`/dashboard/workspace?error=${encodeURIComponent(logoResult.error)}`);
   }
 
   const update: Record<string, unknown> = {
@@ -398,13 +413,14 @@ export async function updateWorkspaceProfileAction(formData: FormData) {
     .eq('id', context.workspace.id);
 
   if (updateResult.error) {
-    redirect(`/dashboard/settings?error=${encodeURIComponent(updateResult.error.message)}`);
+    redirect(`/dashboard/workspace?error=${encodeURIComponent(updateResult.error.message)}`);
   }
 
   revalidatePath('/dashboard');
+  revalidatePath('/dashboard/workspace');
   revalidatePath('/dashboard/settings');
   revalidatePath('/dashboard/billing');
-  redirect('/dashboard/settings?workspace_saved=1');
+  redirect('/dashboard/workspace?saved=1');
 }
 
 export async function regenerateEmbedKeyAction(formData: FormData) {

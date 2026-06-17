@@ -5,11 +5,12 @@ import DateRangeFilter from '@/components/dashboard/DateRangeFilter';
 import EngagementDepth from '@/components/dashboard/EngagementDepth';
 import LeadFunnel, { type FunnelStage } from '@/components/dashboard/LeadFunnel';
 import MaterialBarChart from '@/components/dashboard/MaterialBarChart';
+import OnboardingAssistant from '@/components/dashboard/OnboardingAssistant';
 import PageHeader from '@/components/dashboard/PageHeader';
 import RecentVisualizations from '@/components/dashboard/RecentVisualizations';
-import SetupChecklist from '@/components/dashboard/SetupChecklist';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { createClient } from '@/lib/supabase/server';
+import { getOnboardingState } from '@/lib/vizzion/onboarding';
 import {
   getDashboardMetrics,
   getRecentLeads,
@@ -143,32 +144,24 @@ export default async function DashboardOverviewPage({
   const looksLikeTestData = metrics.sessions30d > 0 && metrics.sessions30d <= 2 && metrics.visualizations30d > 0;
 
   const isPrimaryView = selectedWidget.id === context.widget.id;
-  const setupSteps = [
-    {
-      label: 'Add a material',
-      description: 'Create at least one product or finish customers can preview.',
-      done: metrics.activeMaterials > 0,
-      href: '/dashboard/materials',
-    },
-    {
-      label: 'Set the target surface',
-      description: 'Tell Vizzion what part of the photo changes, like the roof or siding.',
-      done: Boolean(selectedWidget.target_surface?.trim()),
-      href: '/dashboard/settings',
-    },
-    {
-      label: 'Set your website domain',
-      description: 'Allow the widget to run on your site (required to go live).',
-      done: Array.isArray(selectedWidget.domain_allowlist) && selectedWidget.domain_allowlist.length > 0,
-      href: '/dashboard/settings',
-    },
-    {
-      label: 'Activate the widget',
-      description: 'Turn the widget on so visitors can use it.',
-      done: selectedWidget.is_active,
-      href: '/dashboard/settings',
-    },
-  ];
+
+  const activeMaterialsResult = await supabase
+    .from('materials')
+    .select('swatch_url')
+    .eq('widget_id', selectedWidget.id)
+    .eq('is_active', true);
+  const activeMaterialRows = (activeMaterialsResult.data ?? []) as Array<{ swatch_url: string | null }>;
+  const onboardingState = getOnboardingState({
+    widgetId: selectedWidget.id,
+    subjectType: selectedWidget.subject_type,
+    targetSurface: selectedWidget.target_surface,
+    domainAllowlist: selectedWidget.domain_allowlist,
+    isActive: selectedWidget.is_active,
+    activeMaterialCount: activeMaterialRows.length,
+    materialsMissingImageCount: activeMaterialRows.filter(material => !material.swatch_url).length,
+    brandCustomized: (selectedWidget.brand_color || '').toUpperCase() !== '#10B981',
+    hasLogo: Boolean(context.workspace.logo_url),
+  });
 
   return (
     <div className="space-y-8">
@@ -188,7 +181,14 @@ export default async function DashboardOverviewPage({
         }
       />
 
-      {isPrimaryView ? <SetupChecklist steps={setupSteps} embedHref="/dashboard/settings" /> : null}
+      {isPrimaryView ? (
+        <OnboardingAssistant
+          state={onboardingState}
+          widgetId={selectedWidget.id}
+          embedHref={`/dashboard/settings?widgetId=${selectedWidget.id}`}
+          previewHref={`/widget-preview?widgetId=${selectedWidget.id}`}
+        />
+      ) : null}
 
       {selectedWidget.id !== context.widget.id ? (
         <div className="rounded-lg border border-accent/40 bg-accent/10 px-4 py-3 text-sm text-accent">

@@ -41,7 +41,6 @@ export interface MaterialRecord {
   id: string;
   name: string;
   swatch_url: string | null;
-  texture_url: string | null;
   prompt_modifier: string | null;
   sort_order: number;
   is_active: boolean;
@@ -255,7 +254,7 @@ export async function getWidgetMaterials(
 ): Promise<MaterialRecord[]> {
   const result = await supabase
     .from('materials')
-    .select('id, name, swatch_url, texture_url, prompt_modifier, sort_order, is_active')
+    .select('id, name, swatch_url, prompt_modifier, sort_order, is_active')
     .eq('widget_id', widgetId)
     .order('sort_order', { ascending: true })
     .order('created_at', { ascending: true });

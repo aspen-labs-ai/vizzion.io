@@ -1,25 +1,24 @@
 import Image from 'next/image';
 import { signOutAction } from '@/app/auth/actions';
 import AppNav from '@/components/dashboard/AppNav';
+import SubmitButton from '@/components/dashboard/SubmitButton';
 import Topbar from '@/components/dashboard/Topbar';
 import WidgetSwitcher from '@/components/dashboard/WidgetSwitcher';
 import { createClient } from '@/lib/supabase/server';
+import { getOnboardingNavAlerts } from '@/lib/vizzion/onboarding';
 import { getWorkspaceWidgets } from '@/lib/vizzion/portfolio';
-import { getMissingSetupRequirements } from '@/lib/vizzion/setup-requirements';
 import { getWorkspaceContext, listWorkspaceWidgets } from '@/lib/vizzion/workspace';
 
 export const dynamic = 'force-dynamic';
 
 function getStatusLabel(status: string): string {
-  if (status === 'active') {
-    return 'Active';
-  }
-
   if (status === 'suspended') {
     return 'Suspended';
   }
 
-  return 'Pending Approval';
+  // Self-serve: workspaces are active immediately. Legacy 'pending' rows are
+  // treated as active rather than surfacing a non-existent approval gate.
+  return 'Active';
 }
 
 export default async function DashboardLayout({
@@ -52,12 +51,26 @@ export default async function DashboardLayout({
     );
   }
 
-  const hasSettingsAttention = getMissingSetupRequirements(context.widget).some(
-    requirement => requirement.route === '/dashboard/settings',
-  );
-  const navAlerts: Record<string, boolean> = {
-    '/dashboard/settings': hasSettingsAttention,
-  };
+  const activeMaterialsResult = await supabase
+    .from('materials')
+    .select('swatch_url')
+    .eq('widget_id', context.widget.id)
+    .eq('is_active', true);
+  const activeMaterialRows = (activeMaterialsResult.data ?? []) as Array<{ swatch_url: string | null }>;
+  const activeMaterialCount = activeMaterialRows.length;
+  const materialsMissingImageCount = activeMaterialRows.filter(material => !material.swatch_url).length;
+
+  const navAlerts = getOnboardingNavAlerts({
+    widgetId: context.widget.id,
+    subjectType: context.widget.subject_type,
+    targetSurface: context.widget.target_surface,
+    domainAllowlist: context.widget.domain_allowlist,
+    isActive: context.widget.is_active,
+    activeMaterialCount,
+    materialsMissingImageCount,
+    brandCustomized: false,
+    hasLogo: Boolean(context.workspace.logo_url),
+  });
   const showEditorRoleChip = context.role === 'editor';
   const workspaceDisplayName = context.workspace.company_name ?? context.workspace.name;
   const statusLabel = getStatusLabel(context.workspace.status);
@@ -89,7 +102,10 @@ export default async function DashboardLayout({
     },
     {
       label: 'Account',
-      items: [{ href: '/dashboard/billing', label: 'Billing', icon: 'billing' as const }],
+      items: [
+        { href: '/dashboard/workspace', label: 'Workspace', icon: 'workspace' as const },
+        { href: '/dashboard/billing', label: 'Billing', icon: 'billing' as const },
+      ],
     },
   ];
 
@@ -138,12 +154,12 @@ export default async function DashboardLayout({
               </div>
             </div>
             <form action={signOutAction}>
-              <button
-                type="submit"
+              <SubmitButton
+                pendingLabel="Signing out…"
                 className="w-full rounded-lg border border-border-default bg-bg-secondary px-3 py-2 text-sm font-medium text-text-secondary transition hover:border-accent/40 hover:text-text-primary"
               >
                 Sign out
-              </button>
+              </SubmitButton>
             </form>
           </div>
         </aside>
@@ -174,12 +190,12 @@ export default async function DashboardLayout({
               </div>
 
               <form action={signOutAction}>
-                <button
-                  type="submit"
+                <SubmitButton
+                  pendingLabel="Signing out…"
                   className="rounded-lg border border-border-default bg-bg-secondary px-3 py-2 text-sm font-medium text-text-secondary transition hover:border-accent/40 hover:text-text-primary"
                 >
                   Sign out
-                </button>
+                </SubmitButton>
               </form>
             </div>
 

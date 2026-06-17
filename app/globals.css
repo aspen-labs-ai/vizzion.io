@@ -550,3 +550,14 @@
     box-shadow: 0 0 0 0 transparent;
   }
 }
+
+/* Roofing industry page — subtle shingle grid texture */
+.roofing-shingle-grid {
+  background-image: repeating-linear-gradient(
+    -32deg,
+    transparent,
+    transparent 11px,
+    color-mix(in srgb, var(--color-border-subtle) 55%, transparent) 11px,
+    color-mix(in srgb, var(--color-border-subtle) 55%, transparent) 12px
+  );
+}

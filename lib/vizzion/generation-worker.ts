@@ -48,6 +48,8 @@ interface GenerationPromptPayload {
   sourcePage?: string | null;
   subjectType?: WidgetSubjectType;
   requireEmail?: boolean;
+  deliveryMode?: string;
+  emailResults?: boolean;
 }
 
 interface ResultEmailBranding {
@@ -556,10 +558,18 @@ export async function processGenerationJob(
     });
 
     // 7. Email the finished visualization to the captured lead (best effort).
-    try {
-      await sendResultEmail(supabase, job, uploadPath, generatedPath, `${getPublicAppUrl()}/preview/${shareToken}`);
-    } catch {
-      // Email failure must not fail an otherwise successful generation.
+    // Always email for email-only delivery; for instant delivery only when the
+    // owner opted to also email results (email_results). Legacy jobs without the
+    // flag default to emailing, preserving prior behavior. When auto-email is
+    // off, the visitor can still opt in via the post-reveal capture, which calls
+    // sendResultEmailForJob directly.
+    const shouldAutoEmail = payload.deliveryMode === 'email' || payload.emailResults !== false;
+    if (shouldAutoEmail) {
+      try {
+        await sendResultEmail(supabase, job, uploadPath, generatedPath, `${getPublicAppUrl()}/preview/${shareToken}`);
+      } catch {
+        // Email failure must not fail an otherwise successful generation.
+      }
     }
 
     return { ok: true, status: 'succeeded' };
@@ -570,6 +580,55 @@ export async function processGenerationJob(
     await markFailed(supabase, job, code, message);
     return { ok: false, status: 'failed', reason: code };
   }
+}
+
+/**
+ * Sends (or re-sends) the finished result email for an already-succeeded job to
+ * its currently linked lead. Used by the optional post-reveal "email it to me"
+ * capture, where the visitor opts in after seeing the on-site preview (instant
+ * delivery with auto-email off). Safe and best-effort: returns a reason instead
+ * of throwing when the job/preview/lead isn't ready.
+ */
+export async function sendResultEmailForJob(
+  jobId: string,
+  client?: SupabaseClient,
+): Promise<{ ok: boolean; reason?: string }> {
+  const supabase = client ?? createAdminClient();
+
+  const jobResult = await supabase
+    .from('generation_jobs')
+    .select('id, workspace_id, widget_id, session_id, lead_id, status, prompt')
+    .eq('id', jobId)
+    .maybeSingle();
+
+  if (jobResult.error || !jobResult.data) {
+    return { ok: false, reason: 'job_not_found' };
+  }
+
+  const job = jobResult.data as GenerationJobRow;
+  if (!job.lead_id) {
+    return { ok: false, reason: 'no_lead' };
+  }
+
+  const previewResult = await supabase
+    .from('generated_previews')
+    .select('original_upload_path, generated_path, share_token')
+    .eq('generation_job_id', jobId)
+    .maybeSingle();
+
+  const preview = previewResult.data as {
+    original_upload_path: string | null;
+    generated_path: string | null;
+    share_token: string | null;
+  } | null;
+
+  if (!preview || !preview.generated_path || !preview.original_upload_path) {
+    return { ok: false, reason: 'preview_not_ready' };
+  }
+
+  const shareUrl = preview.share_token ? `${getPublicAppUrl()}/preview/${preview.share_token}` : null;
+  await sendResultEmail(supabase, job, preview.original_upload_path, preview.generated_path, shareUrl);
+  return { ok: true };
 }
 
 /**

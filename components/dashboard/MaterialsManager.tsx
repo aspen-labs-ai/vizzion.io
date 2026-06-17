@@ -1,12 +1,13 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { ImagePlus } from 'lucide-react';
+import SubmitButton from '@/components/dashboard/SubmitButton';
 
 interface MaterialItem {
   id: string;
   name: string;
   swatch_url: string | null;
-  texture_url: string | null;
   prompt_modifier: string | null;
   sort_order: number;
   is_active: boolean;
@@ -23,6 +24,10 @@ interface MaterialsManagerProps {
   error: string | null;
   saved: boolean;
   deleted: boolean;
+  /** Deep-link from the onboarding assistant: open the create modal on load. */
+  autoOpenCreate?: boolean;
+  /** Deep-link from the onboarding assistant: highlight materials missing a photo. */
+  highlightMissingImages?: boolean;
   onCreate: MaterialAction;
   onUpdate: MaterialAction;
   onDelete: MaterialAction;
@@ -49,11 +54,21 @@ export default function MaterialsManager({
   error,
   saved,
   deleted,
+  autoOpenCreate,
+  highlightMissingImages,
   onCreate,
   onUpdate,
   onDelete,
 }: MaterialsManagerProps) {
-  const [isCreateOpen, setIsCreateOpen] = useState(false);
+  // Open the create modal immediately when arriving via the onboarding
+  // assistant's "Add a material" deep link. Derived from props (no window
+  // access) so it's safe during SSR/hydration.
+  const [isCreateOpen, setIsCreateOpen] = useState(
+    () =>
+      Boolean(autoOpenCreate)
+      && canManage
+      && (materialsQuota === null || materials.length < materialsQuota),
+  );
   const [editingMaterialId, setEditingMaterialId] = useState<string | null>(null);
   const materialsUsed = materials.length;
   const hasMaterialsQuota = materialsQuota !== null;
@@ -69,6 +84,9 @@ export default function MaterialsManager({
     () => materials.find(material => material.id === editingMaterialId) ?? null,
     [materials, editingMaterialId],
   );
+
+  const activeMaterials = materials.filter(material => material.is_active);
+  const missingImageCount = activeMaterials.filter(material => !material.swatch_url).length;
 
   return (
     <>
@@ -144,6 +162,20 @@ export default function MaterialsManager({
             </p>
           ) : null}
 
+          {missingImageCount > 0 ? (
+            <div className="mb-4 flex items-start gap-3 rounded-lg border border-amber-500/40 bg-amber-500/10 px-4 py-3 text-sm text-amber-200">
+              <ImagePlus className="mt-0.5 h-4 w-4 shrink-0" />
+              <p>
+                <span className="font-semibold">
+                  {missingImageCount} of {activeMaterials.length} active{' '}
+                  {activeMaterials.length === 1 ? 'material has' : 'materials have'} no photo.
+                </span>{' '}
+                Material photos are used as a visual reference, so previews match the real product far more closely.
+                Edit each one and upload a flat, straight-on photo.
+              </p>
+            </div>
+          ) : null}
+
           <div className="overflow-x-auto rounded-xl border border-border-default">
             <table className="min-w-full divide-y divide-border-default text-sm">
               <thead className="bg-bg-primary text-left text-xs uppercase tracking-wide text-text-tertiary">
@@ -168,13 +200,27 @@ export default function MaterialsManager({
                   </tr>
                 ) : (
                   materials.map(material => (
-                    <tr key={material.id}>
+                    <tr
+                      key={material.id}
+                      className={
+                        highlightMissingImages && material.is_active && !material.swatch_url
+                          ? 'bg-amber-500/5'
+                          : undefined
+                      }
+                    >
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-3">
                           <MaterialThumb url={material.swatch_url} name={material.name} />
-                          <span className="max-w-[14rem] truncate font-medium text-text-primary">
-                            {material.name}
-                          </span>
+                          <div className="min-w-0">
+                            <span className="block max-w-[14rem] truncate font-medium text-text-primary">
+                              {material.name}
+                            </span>
+                            {!material.swatch_url ? (
+                              <span className="mt-0.5 inline-flex items-center gap-1 rounded-full border border-amber-500/40 bg-amber-500/10 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-amber-300">
+                                No photo
+                              </span>
+                            ) : null}
+                          </div>
                         </div>
                       </td>
                       <td className="px-4 py-3">
@@ -321,14 +367,14 @@ function MaterialModal({
           <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border-default pt-4">
             <div>
               {material && onDelete ? (
-                <button
-                  type="submit"
+                <SubmitButton
                   formAction={onDelete}
                   formNoValidate
-                  className="rounded-lg border border-red-500/40 px-4 py-2 text-sm font-semibold text-red-300 transition hover:bg-red-500/10"
+                  pendingLabel="Deleting…"
+                  className="rounded-lg border border-red-500/40 px-4 py-2 text-sm font-semibold text-red-300 transition hover:bg-red-500/10 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   Delete Material
-                </button>
+                </SubmitButton>
               ) : null}
             </div>
 
@@ -340,12 +386,13 @@ function MaterialModal({
               >
                 Cancel
               </button>
-              <button
-                type="submit"
-                className="rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-bg-primary transition hover:bg-accent-hover"
+              <SubmitButton
+                trackAction={onSubmit}
+                pendingLabel={material ? 'Saving…' : 'Adding…'}
+                className="rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-bg-primary transition hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {submitLabel}
-              </button>
+              </SubmitButton>
             </div>
           </div>
         </form>
