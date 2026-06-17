@@ -112,7 +112,8 @@ export function buildVisualizationPrompt(
     : '';
 
   return [
-    `Using the uploaded photo of ${subject}, change only ${surface} to ${material.name}.${descriptionNote}${referenceNote}`,
+    `Using the uploaded photo of ${subject}, change only ${surface} to a brand-new ${material.name}, freshly installed and in pristine, like-new condition, covering the existing material there.${descriptionNote}${referenceNote}`,
+    'Render it as a clean, newly installed, undamaged surface with no wear, aging, weathering, patina, rust, stains, moss, or fading.',
     'Keep everything else in the image exactly the same, preserving the original style, lighting, and composition.',
   ].join('\n');
 }
