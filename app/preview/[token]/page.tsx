@@ -160,16 +160,20 @@ export default async function SharedPreviewPage({
           Questions? Just reply to {companyName}&apos;s email.
         </p>
 
-        <a
-          href="https://vizzion.io"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-10 flex items-center justify-center gap-2 text-slate-400 transition hover:text-slate-600"
-        >
-          <span className="text-xs font-medium uppercase tracking-[0.18em]">Powered by</span>
-          {/* eslint-disable-next-line @next/next/no-img-element -- static marketing logo */}
-          <img src="/vizzion-logo.png" alt="Vizzion" className="h-5 w-auto opacity-80" />
-        </a>
+        <div className="mt-10 flex justify-center">
+          <a
+            href="https://vizzion.io"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2.5 rounded-full bg-slate-900 px-4 py-2 transition hover:bg-slate-800"
+          >
+            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+              Powered by
+            </span>
+            {/* eslint-disable-next-line @next/next/no-img-element -- static marketing logo */}
+            <img src="/vizzion-logo.png" alt="Vizzion" className="h-5 w-auto" />
+          </a>
+        </div>
       </div>
     </main>
   );
