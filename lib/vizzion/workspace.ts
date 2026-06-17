@@ -1,5 +1,6 @@
 import { cookies } from 'next/headers';
 import type { SupabaseClient } from '@supabase/supabase-js';
+import { createSignedStorageUrl } from './portfolio';
 
 export const SELECTED_WIDGET_COOKIE = 'vz_widget';
 
@@ -55,6 +56,7 @@ export interface WorkspaceContext {
 
 export interface DashboardMetrics {
   sessions30d: number;
+  visualizations30d: number;
   leads30d: number;
   conversionRate30d: number;
   activeMaterials: number;
@@ -283,6 +285,7 @@ export async function getDashboardMetrics(
 
   const [
     sessionsResult,
+    visualizationsResult,
     leadsResult,
     activeMaterialsResult,
     sentEmailsResult,
@@ -292,6 +295,14 @@ export async function getDashboardMetrics(
     withRange(
       supabase.from('widget_sessions').select('*', { head: true, count: 'exact' }).eq('widget_id', widgetId),
       'started_at',
+    ),
+    withRange(
+      supabase
+        .from('generated_previews')
+        .select('*', { head: true, count: 'exact' })
+        .eq('widget_id', widgetId)
+        .not('generated_path', 'is', null),
+      'created_at',
     ),
     withRange(
       supabase.from('leads').select('*', { head: true, count: 'exact' }).eq('widget_id', widgetId),
@@ -333,6 +344,7 @@ export async function getDashboardMetrics(
 
   return {
     sessions30d,
+    visualizations30d: toCount(visualizationsResult.count),
     leads30d,
     conversionRate30d: sessions30d > 0 ? (leads30d / sessions30d) * 100 : 0,
     activeMaterials: toCount(activeMaterialsResult.count),
@@ -582,4 +594,306 @@ export async function getRecentLeads(
     createdAt: row.created_at,
     materialName: row.material_id ? (materialNameById.get(row.material_id) ?? null) : null,
   }));
+}
+
+interface MaterialSnapshot {
+  materialId?: unknown;
+  name?: unknown;
+}
+
+function readSnapshotMaterialId(snapshot: MaterialSnapshot | null): string | null {
+  const value = snapshot?.materialId;
+  return typeof value === 'string' && value.trim() ? value.trim() : null;
+}
+
+function readSnapshotMaterialName(snapshot: MaterialSnapshot | null): string | null {
+  const value = snapshot?.name;
+  return typeof value === 'string' && value.trim() ? value.trim() : null;
+}
+
+function chunk<T>(items: T[], size: number): T[][] {
+  const batches: T[][] = [];
+  for (let index = 0; index < items.length; index += size) {
+    batches.push(items.slice(index, index + size));
+  }
+  return batches;
+}
+
+export interface MaterialPreviewPerformanceItem {
+  materialId: string;
+  name: string;
+  /** How many visualizations were generated with this material. */
+  previewCount: number;
+  /** How many distinct visitors generated a preview with this material. */
+  visitorCount: number;
+  isActive: boolean;
+  sortOrder: number;
+}
+
+export interface VisualizationDepthBucket {
+  label: string;
+  visitors: number;
+}
+
+export interface VisualizationInsights {
+  /** Total successful visualizations rendered in the period. */
+  totalVisualizations: number;
+  /** Distinct visitors (sessions) who generated at least one visualization. */
+  visitorsWhoGenerated: number;
+  avgVisualizationsPerVisitor: number;
+  avgMaterialsPerVisitor: number;
+  /** Share of generating visitors who tried 2+ materials, as a percentage. */
+  multiMaterialVisitorPct: number;
+  depthDistribution: VisualizationDepthBucket[];
+  materialPerformance: MaterialPreviewPerformanceItem[];
+}
+
+/**
+ * Builds the "what visitors actually did" picture from `generated_previews` —
+ * the per-visualization record that captures every material a visitor previewed
+ * on their photo. The overview cards/charts historically read `leads`, which
+ * stores only ONE material per visitor, so a person who tried several looks in a
+ * single session collapsed into a single data point. This reconstructs the real
+ * activity: total previews, per-material counts, and how many materials each
+ * visitor explored.
+ */
+export async function getVisualizationInsights(
+  supabase: SupabaseClient,
+  widgetId: string,
+  sinceIso?: string,
+  untilIso?: string | null,
+): Promise<VisualizationInsights> {
+  let previewsQuery = supabase
+    .from('generated_previews')
+    .select('generation_job_id, material_snapshot')
+    .eq('widget_id', widgetId)
+    .not('generated_path', 'is', null);
+  if (sinceIso) {
+    previewsQuery = previewsQuery.gte('created_at', sinceIso);
+  }
+  if (untilIso) {
+    previewsQuery = previewsQuery.lte('created_at', untilIso);
+  }
+
+  const [materialsResult, previewsResult] = await Promise.all([
+    supabase
+      .from('materials')
+      .select('id, name, is_active, sort_order')
+      .eq('widget_id', widgetId)
+      .order('sort_order', { ascending: true }),
+    previewsQuery.limit(5000),
+  ]);
+
+  const previews = (previewsResult.data ?? []) as Array<{
+    generation_job_id: string;
+    material_snapshot: MaterialSnapshot | null;
+  }>;
+
+  // Resolve which session (visitor) each preview belongs to. Previews link to a
+  // session only through their generation job, so we look those up in batches.
+  const jobIds = Array.from(
+    new Set(previews.map(preview => preview.generation_job_id).filter((value): value is string => Boolean(value))),
+  );
+  const sessionByJobId = new Map<string, string>();
+  if (jobIds.length > 0) {
+    const jobBatches = await Promise.all(
+      chunk(jobIds, 300).map(batch =>
+        supabase.from('generation_jobs').select('id, session_id').in('id', batch),
+      ),
+    );
+    for (const batchResult of jobBatches) {
+      for (const row of (batchResult.data ?? []) as Array<{ id: string; session_id: string | null }>) {
+        if (row.session_id) {
+          sessionByJobId.set(row.id, row.session_id);
+        }
+      }
+    }
+  }
+
+  const materialPreviewCounts = new Map<string, number>();
+  const materialVisitorSets = new Map<string, Set<string>>();
+  const snapshotNameById = new Map<string, string>();
+  const sessionMaterialSets = new Map<string, Set<string>>();
+  const sessionPreviewCounts = new Map<string, number>();
+
+  for (const preview of previews) {
+    // Fall back to a per-job key so anonymous/sessionless previews still count
+    // as their own distinct visitor rather than merging together.
+    const sessionKey = sessionByJobId.get(preview.generation_job_id) ?? `job:${preview.generation_job_id}`;
+    sessionPreviewCounts.set(sessionKey, (sessionPreviewCounts.get(sessionKey) ?? 0) + 1);
+    if (!sessionMaterialSets.has(sessionKey)) {
+      sessionMaterialSets.set(sessionKey, new Set<string>());
+    }
+
+    const materialId = readSnapshotMaterialId(preview.material_snapshot);
+    if (!materialId) {
+      continue;
+    }
+    materialPreviewCounts.set(materialId, (materialPreviewCounts.get(materialId) ?? 0) + 1);
+    if (!materialVisitorSets.has(materialId)) {
+      materialVisitorSets.set(materialId, new Set<string>());
+    }
+    materialVisitorSets.get(materialId)?.add(sessionKey);
+    sessionMaterialSets.get(sessionKey)?.add(materialId);
+
+    const name = readSnapshotMaterialName(preview.material_snapshot);
+    if (name) {
+      snapshotNameById.set(materialId, name);
+    }
+  }
+
+  const materials = (materialsResult.data ?? []) as Array<{
+    id: string;
+    name: string;
+    is_active: boolean;
+    sort_order: number;
+  }>;
+  const materialIds = new Set(materials.map(material => material.id));
+
+  const materialPerformance: MaterialPreviewPerformanceItem[] = materials.map(material => ({
+    materialId: material.id,
+    name: material.name,
+    previewCount: materialPreviewCounts.get(material.id) ?? 0,
+    visitorCount: materialVisitorSets.get(material.id)?.size ?? 0,
+    isActive: material.is_active,
+    sortOrder: material.sort_order,
+  }));
+
+  // Surface previews generated with materials that were since deleted so totals
+  // still reconcile with the visualizations count.
+  for (const [materialId, previewCount] of materialPreviewCounts) {
+    if (!materialIds.has(materialId)) {
+      materialPerformance.push({
+        materialId,
+        name: snapshotNameById.get(materialId) ?? 'Removed material',
+        previewCount,
+        visitorCount: materialVisitorSets.get(materialId)?.size ?? 0,
+        isActive: false,
+        sortOrder: Number.MAX_SAFE_INTEGER,
+      });
+    }
+  }
+
+  materialPerformance.sort(
+    (a, b) => b.previewCount - a.previewCount || a.sortOrder - b.sortOrder || a.name.localeCompare(b.name),
+  );
+
+  const visitorsWhoGenerated = sessionPreviewCounts.size;
+  let totalMaterialsTried = 0;
+  let multiMaterialVisitors = 0;
+  const buckets = { one: 0, two: 0, threePlus: 0 };
+
+  for (const materialSet of sessionMaterialSets.values()) {
+    // A visitor who generated always tried at least one material, even if the
+    // snapshot lacked an id for some edge-case render.
+    const distinctMaterials = Math.max(materialSet.size, 1);
+    totalMaterialsTried += distinctMaterials;
+    if (distinctMaterials >= 2) {
+      multiMaterialVisitors += 1;
+    }
+    if (distinctMaterials <= 1) {
+      buckets.one += 1;
+    } else if (distinctMaterials === 2) {
+      buckets.two += 1;
+    } else {
+      buckets.threePlus += 1;
+    }
+  }
+
+  return {
+    totalVisualizations: previews.length,
+    visitorsWhoGenerated,
+    avgVisualizationsPerVisitor: visitorsWhoGenerated > 0 ? previews.length / visitorsWhoGenerated : 0,
+    avgMaterialsPerVisitor: visitorsWhoGenerated > 0 ? totalMaterialsTried / visitorsWhoGenerated : 0,
+    multiMaterialVisitorPct:
+      visitorsWhoGenerated > 0 ? (multiMaterialVisitors / visitorsWhoGenerated) * 100 : 0,
+    depthDistribution: [
+      { label: '1 material', visitors: buckets.one },
+      { label: '2 materials', visitors: buckets.two },
+      { label: '3+ materials', visitors: buckets.threePlus },
+    ],
+    materialPerformance,
+  };
+}
+
+export interface RecentVisualizationItem {
+  id: string;
+  createdAt: string;
+  materialName: string | null;
+  /** Null when the visitor previewed without leaving an email. */
+  visitorEmail: string | null;
+  originalUrl: string | null;
+  generatedUrl: string | null;
+  shareUrl: string | null;
+}
+
+/**
+ * Recent successful visualizations with signed before/after image URLs.
+ * Requires an admin client because the storage buckets are private and signed
+ * URLs are minted with the service role (mirrors the lead-detail endpoint).
+ */
+export async function getRecentVisualizations(
+  admin: SupabaseClient,
+  widgetId: string,
+  limit = 6,
+  sinceIso?: string,
+  untilIso?: string | null,
+): Promise<RecentVisualizationItem[]> {
+  let query = admin
+    .from('generated_previews')
+    .select('id, generated_path, original_upload_path, material_snapshot, share_token, created_at, lead_id')
+    .eq('widget_id', widgetId)
+    .not('generated_path', 'is', null)
+    .order('created_at', { ascending: false });
+  if (sinceIso) {
+    query = query.gte('created_at', sinceIso);
+  }
+  if (untilIso) {
+    query = query.lte('created_at', untilIso);
+  }
+
+  const result = await query.limit(limit);
+  if (result.error || !result.data) {
+    return [];
+  }
+
+  const rows = result.data as Array<{
+    id: string;
+    generated_path: string | null;
+    original_upload_path: string | null;
+    material_snapshot: MaterialSnapshot | null;
+    share_token: string | null;
+    created_at: string;
+    lead_id: string | null;
+  }>;
+
+  const leadIds = Array.from(
+    new Set(rows.map(row => row.lead_id).filter((value): value is string => Boolean(value))),
+  );
+  const emailByLeadId = new Map<string, string>();
+  if (leadIds.length > 0) {
+    const leadsResult = await admin.from('leads').select('id, email').in('id', leadIds);
+    for (const row of (leadsResult.data ?? []) as Array<{ id: string; email: string }>) {
+      emailByLeadId.set(row.id, row.email);
+    }
+  }
+
+  return Promise.all(
+    rows.map(async row => {
+      const [original, generated] = await Promise.all([
+        createSignedStorageUrl(admin, { bucket: 'uploads-original', path: row.original_upload_path }),
+        createSignedStorageUrl(admin, { bucket: 'renders-generated', path: row.generated_path }),
+      ]);
+
+      return {
+        id: row.id,
+        createdAt: row.created_at,
+        materialName: readSnapshotMaterialName(row.material_snapshot),
+        visitorEmail: row.lead_id ? (emailByLeadId.get(row.lead_id) ?? null) : null,
+        originalUrl: original.url,
+        generatedUrl: generated.url,
+        shareUrl: row.share_token ? `/preview/${row.share_token}` : null,
+      };
+    }),
+  );
 }

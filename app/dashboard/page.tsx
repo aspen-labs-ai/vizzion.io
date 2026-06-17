@@ -1,16 +1,21 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { Info } from 'lucide-react';
 import DateRangeFilter from '@/components/dashboard/DateRangeFilter';
+import EngagementDepth from '@/components/dashboard/EngagementDepth';
 import LeadFunnel, { type FunnelStage } from '@/components/dashboard/LeadFunnel';
 import MaterialBarChart from '@/components/dashboard/MaterialBarChart';
 import PageHeader from '@/components/dashboard/PageHeader';
+import RecentVisualizations from '@/components/dashboard/RecentVisualizations';
 import SetupChecklist from '@/components/dashboard/SetupChecklist';
+import { createAdminClient } from '@/lib/supabase/admin';
 import { createClient } from '@/lib/supabase/server';
 import {
   getDashboardMetrics,
-  getMaterialPerformance,
   getRecentLeads,
+  getRecentVisualizations,
   getStepFunnelMetrics,
+  getVisualizationInsights,
   getWorkspaceContext,
   type WidgetRecord,
 } from '@/lib/vizzion/workspace';
@@ -25,10 +30,6 @@ function getSingleParam(value: string | string[] | undefined): string | null {
     return value[0] ?? null;
   }
   return null;
-}
-
-function formatPercent(value: number): string {
-  return `${value.toFixed(1)}%`;
 }
 
 function resolveDateRange(params: Record<string, string | string[] | undefined>): {
@@ -112,11 +113,13 @@ export default async function DashboardOverviewPage({
   }
 
   const { sinceIso, untilIso, label: rangeLabel } = resolveDateRange(resolvedParams);
+  const admin = createAdminClient();
 
-  const [metrics, materialPerformance, recentLeads, stepFunnel] = await Promise.all([
+  const [metrics, insights, recentLeads, recentVisualizations, stepFunnel] = await Promise.all([
     getDashboardMetrics(supabase, context.workspace.id, selectedWidget.id, sinceIso, untilIso),
-    getMaterialPerformance(supabase, selectedWidget.id, sinceIso, untilIso),
-    getRecentLeads(supabase, selectedWidget.id, 12, sinceIso, untilIso),
+    getVisualizationInsights(supabase, selectedWidget.id, sinceIso, untilIso),
+    getRecentLeads(supabase, selectedWidget.id, 8, sinceIso, untilIso),
+    getRecentVisualizations(admin, selectedWidget.id, 6, sinceIso, untilIso),
     getStepFunnelMetrics(supabase, selectedWidget.id, sinceIso, untilIso),
   ]);
   const funnelStages: FunnelStage[] = [
@@ -126,6 +129,18 @@ export default async function DashboardOverviewPage({
     { key: 'email', label: 'Left their email', count: stepFunnel.emailSubmitted, highlight: true },
     { key: 'preview', label: 'Got their preview', count: stepFunnel.revealRendered },
   ];
+
+  const avgPerVisitorLabel =
+    insights.avgVisualizationsPerVisitor > 0
+      ? `≈ ${insights.avgVisualizationsPerVisitor.toFixed(1)} per visitor`
+      : undefined;
+  const conversionLabel =
+    metrics.sessions30d > 0
+      ? `${metrics.leads30d.toLocaleString()} of ${metrics.sessions30d.toLocaleString()} visitors`
+      : undefined;
+  // A handful of sessions with real activity is almost always the owner testing
+  // from their own browser (repeat visits in one browser count as one visitor).
+  const looksLikeTestData = metrics.sessions30d > 0 && metrics.sessions30d <= 2 && metrics.visualizations30d > 0;
 
   const isPrimaryView = selectedWidget.id === context.widget.id;
   const setupSteps = [
@@ -191,22 +206,47 @@ export default async function DashboardOverviewPage({
         </p>
       ) : null}
 
-      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7">
-        <MetricCard label="Sessions" value={metrics.sessions30d.toLocaleString()} />
-        <MetricCard label="Leads" value={metrics.leads30d.toLocaleString()} />
-        <MetricCard label="Conversion" value={formatPercent(metrics.conversionRate30d)} />
-        <MetricCard label="Active Materials" value={metrics.activeMaterials.toLocaleString()} />
+      {looksLikeTestData ? (
+        <div className="flex items-start gap-3 rounded-2xl border border-border-default bg-bg-secondary px-4 py-3 text-sm text-text-secondary">
+          <Info className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+          <p>
+            This looks like test activity from your own browser. Repeat visits from the same browser count as{' '}
+            <strong className="font-semibold text-text-primary">one visitor</strong>, so trying several materials
+            yourself shows as a single visitor with many visualizations. Once real visitors use your widget, these
+            numbers reflect them.
+          </p>
+        </div>
+      ) : null}
+
+      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+        <MetricCard
+          label="Visualizations"
+          value={metrics.visualizations30d.toLocaleString()}
+          hint={avgPerVisitorLabel}
+          tone="accent"
+        />
+        <MetricCard label="Visitors" value={metrics.sessions30d.toLocaleString()} />
+        <MetricCard label="Leads" value={metrics.leads30d.toLocaleString()} hint={conversionLabel} />
         <MetricCard label="Emails Sent" value={metrics.sentEmailCount30d.toLocaleString()} />
-        <MetricCard label="Preview Views" value={metrics.previewViews30d.toLocaleString()} />
-        <MetricCard label="Queued Jobs" value={metrics.queuedJobs30d.toLocaleString()} />
+        <MetricCard label="Active Materials" value={metrics.activeMaterials.toLocaleString()} />
+        <MetricCard label="Shared Opens" value={metrics.previewViews30d.toLocaleString()} />
       </section>
 
       <section className="grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2">
-          <LeadFunnel stages={funnelStages} />
+          <LeadFunnel stages={funnelStages} totalVisualizations={metrics.visualizations30d} />
         </div>
-        <MaterialBarChart materials={materialPerformance} />
+        <EngagementDepth
+          avgMaterialsPerVisitor={insights.avgMaterialsPerVisitor}
+          multiMaterialVisitorPct={insights.multiMaterialVisitorPct}
+          visitorsWhoGenerated={insights.visitorsWhoGenerated}
+          depthDistribution={insights.depthDistribution}
+        />
       </section>
+
+      <MaterialBarChart materials={insights.materialPerformance} />
+
+      <RecentVisualizations visualizations={recentVisualizations} />
 
       <section className="rounded-2xl border border-border-default bg-bg-secondary p-5">
         <div className="mb-4 flex items-center justify-between">
@@ -250,11 +290,33 @@ export default async function DashboardOverviewPage({
   );
 }
 
-function MetricCard({ label, value }: { label: string; value: string }) {
+function MetricCard({
+  label,
+  value,
+  hint,
+  tone = 'default',
+}: {
+  label: string;
+  value: string;
+  hint?: string;
+  tone?: 'default' | 'accent';
+}) {
+  const isAccent = tone === 'accent';
   return (
-    <article className="rounded-2xl border border-border-default bg-bg-secondary p-4">
-      <p className="text-xs font-medium uppercase tracking-wide text-text-tertiary">{label}</p>
+    <article
+      className={`rounded-2xl border p-4 ${
+        isAccent ? 'border-accent/40 bg-accent/10' : 'border-border-default bg-bg-secondary'
+      }`}
+    >
+      <p
+        className={`text-xs font-medium uppercase tracking-wide ${
+          isAccent ? 'text-accent' : 'text-text-tertiary'
+        }`}
+      >
+        {label}
+      </p>
       <p className="mt-2 text-2xl font-semibold text-text-primary">{value}</p>
+      {hint ? <p className="mt-1 text-[11px] text-text-tertiary">{hint}</p> : null}
     </article>
   );
 }

@@ -8,13 +8,15 @@ export interface FunnelStage {
 
 interface LeadFunnelProps {
   stages: FunnelStage[];
+  /** Total visualizations generated in the period — the volume behind the funnel. */
+  totalVisualizations?: number;
 }
 
 function pct(part: number, whole: number): number {
   return whole > 0 ? Math.round((part / whole) * 100) : 0;
 }
 
-export default function LeadFunnel({ stages }: LeadFunnelProps) {
+export default function LeadFunnel({ stages, totalVisualizations }: LeadFunnelProps) {
   const entryCount = stages[0]?.count ?? 0;
   const leadStage = stages.find((s) => s.highlight);
   const conversion = Math.min(100, pct(leadStage?.count ?? 0, entryCount));
@@ -26,7 +28,9 @@ export default function LeadFunnel({ stages }: LeadFunnelProps) {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <h2 className="text-base font-semibold text-text-primary">How visitors become leads</h2>
-          <p className="mt-0.5 text-xs text-text-tertiary">Visitor journey over the last 30 days</p>
+          <p className="mt-0.5 text-xs text-text-tertiary">
+            Each step counts unique visitors who reached it
+          </p>
         </div>
         {!isEmpty ? (
           <div className="flex items-center gap-5 text-sm">
@@ -42,6 +46,16 @@ export default function LeadFunnel({ stages }: LeadFunnelProps) {
           </div>
         ) : null}
       </div>
+
+      {!isEmpty && typeof totalVisualizations === 'number' ? (
+        <p className="mt-2 text-xs text-text-tertiary">
+          These {entryCount.toLocaleString()} visitor{entryCount === 1 ? '' : 's'} generated{' '}
+          <strong className="font-semibold text-text-secondary tabular-nums">
+            {totalVisualizations.toLocaleString()}
+          </strong>{' '}
+          visualization{totalVisualizations === 1 ? '' : 's'} in total — one visitor often tries several looks.
+        </p>
+      ) : null}
 
       {isEmpty ? (
         <p className="mt-4 rounded-xl border border-border-default bg-bg-primary px-4 py-6 text-center text-sm text-text-tertiary">
