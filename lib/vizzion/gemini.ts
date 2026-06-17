@@ -6,16 +6,16 @@ import type { WidgetSubjectType } from '@/lib/vizzion/widget-public';
  *
  * Takes a customer-uploaded photo plus a tenant-defined material and produces a
  * realistic "after" image showing the material applied to the photo's subject.
- * Provider/model are configurable via env so the speed/quality tradeoff can be
- * tuned without code changes (default is the proven gemini-3-pro-image-preview /
- * "Nano Banana Pro"; set GEMINI_IMAGE_MODEL=gemini-2.5-flash-image for faster,
- * lower-cost generation).
+ * Provider/model and image size are configurable via env so quality/cost can be
+ * tuned without code changes.
  */
 
 const GENERATE_CONTENT_BASE =
-  'https://generativelanguage.googleapis.com/v1beta/models';
+  'https://generativelanguage.googleapis.com/v1/models';
 
-const DEFAULT_IMAGE_MODEL = 'gemini-3-pro-image-preview';
+const DEFAULT_IMAGE_MODEL = 'gemini-3.1-flash-image';
+const DEFAULT_IMAGE_SIZE = '512';
+const SUPPORTED_IMAGE_SIZES = new Set(['512', '1K', '2K', '4K']);
 const REQUEST_TIMEOUT_MS = 55_000;
 const MAX_ATTEMPTS = 2;
 
@@ -77,6 +77,11 @@ export function getGeminiApiKey(): string | null {
 
 export function getGeminiImageModel(): string {
   return process.env.GEMINI_IMAGE_MODEL?.trim() || DEFAULT_IMAGE_MODEL;
+}
+
+export function getGeminiImageSize(): string {
+  const size = process.env.GEMINI_IMAGE_SIZE?.trim() || DEFAULT_IMAGE_SIZE;
+  return SUPPORTED_IMAGE_SIZES.has(size) ? size : DEFAULT_IMAGE_SIZE;
 }
 
 const SUBJECT_DESCRIPTORS: Record<WidgetSubjectType, string> = {
@@ -172,6 +177,7 @@ function extractImageBase64(data: GeminiResponse): string | null {
 async function callGeminiOnce(
   apiKey: string,
   model: string,
+  imageSize: string,
   parts: Array<Record<string, unknown>>,
 ): Promise<string> {
   const controller = new AbortController();
@@ -189,7 +195,14 @@ async function callGeminiOnce(
         },
         body: JSON.stringify({
           contents: [{ parts }],
-          generationConfig: { responseModalities: ['TEXT', 'IMAGE'] },
+          generationConfig: {
+            responseModalities: ['TEXT', 'IMAGE'],
+            responseFormat: {
+              image: {
+                imageSize,
+              },
+            },
+          },
         }),
         signal: controller.signal,
       },
@@ -255,13 +268,10 @@ export async function generateVisualization(
   }
 
   const model = getGeminiImageModel();
+  const imageSize = getGeminiImageSize();
 
-  // Normalize the input to JPEG and capture dimensions so we can restore the
-  // exact frame the model occasionally drifts from.
+  // Normalize the input to JPEG before sending it to the image-edit model.
   const inputJpeg = await sharp(input.imageBuffer).jpeg({ quality: 92 }).toBuffer();
-  const metadata = await sharp(inputJpeg).metadata();
-  const targetWidth = metadata.width ?? 1024;
-  const targetHeight = metadata.height ?? 768;
 
   const reference = await fetchReferenceImage(
     input.material.swatchUrl ?? input.material.textureUrl,
@@ -286,9 +296,8 @@ export async function generateVisualization(
   let lastError: GeminiGenerationError | null = null;
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt += 1) {
     try {
-      const generatedBase64 = await callGeminiOnce(apiKey, model, parts);
+      const generatedBase64 = await callGeminiOnce(apiKey, model, imageSize, parts);
       const resized = await sharp(Buffer.from(generatedBase64, 'base64'))
-        .resize(targetWidth, targetHeight, { fit: 'cover', position: 'center' })
         .jpeg({ quality: 90 })
         .toBuffer();
 
