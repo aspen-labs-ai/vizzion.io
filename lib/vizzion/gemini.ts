@@ -14,24 +14,6 @@ const GENERATE_CONTENT_BASE =
   'https://generativelanguage.googleapis.com/v1/models';
 
 const DEFAULT_IMAGE_MODEL = 'gemini-3.1-flash-image';
-const DEFAULT_IMAGE_SIZE = '512';
-const SUPPORTED_IMAGE_SIZES = new Set(['512', '1K', '2K', '4K']);
-const SUPPORTED_ASPECT_RATIOS = [
-  '1:1',
-  '1:4',
-  '1:8',
-  '2:3',
-  '3:2',
-  '3:4',
-  '4:1',
-  '4:3',
-  '4:5',
-  '5:4',
-  '8:1',
-  '9:16',
-  '16:9',
-  '21:9',
-] as const;
 const REQUEST_TIMEOUT_MS = 55_000;
 const MAX_ATTEMPTS = 2;
 
@@ -95,11 +77,6 @@ export function getGeminiImageModel(): string {
   return process.env.GEMINI_IMAGE_MODEL?.trim() || DEFAULT_IMAGE_MODEL;
 }
 
-export function getGeminiImageSize(): string {
-  const size = process.env.GEMINI_IMAGE_SIZE?.trim() || DEFAULT_IMAGE_SIZE;
-  return SUPPORTED_IMAGE_SIZES.has(size) ? size : DEFAULT_IMAGE_SIZE;
-}
-
 const SUBJECT_DESCRIPTORS: Record<WidgetSubjectType, string> = {
   home: 'the exterior of a home or building',
   vehicle: 'a vehicle',
@@ -138,20 +115,6 @@ export function buildVisualizationPrompt(
     `Using the uploaded photo of ${subject}, change only ${surface} to ${material.name}.${descriptionNote}${referenceNote}`,
     'Keep everything else in the image exactly the same, preserving the original style, lighting, and composition.',
   ].join('\n');
-}
-
-function aspectRatioValue(value: string): number {
-  const [width, height] = value.split(':').map(Number);
-  return width / height;
-}
-
-function getClosestSupportedAspectRatio(width: number, height: number): string {
-  const inputRatio = width / height;
-  return SUPPORTED_ASPECT_RATIOS.reduce((closest, candidate) => {
-    const currentDelta = Math.abs(aspectRatioValue(closest) - inputRatio);
-    const candidateDelta = Math.abs(aspectRatioValue(candidate) - inputRatio);
-    return candidateDelta < currentDelta ? candidate : closest;
-  }, '1:1');
 }
 
 async function fetchReferenceImage(
@@ -206,8 +169,6 @@ function extractImageBase64(data: GeminiResponse): string | null {
 async function callGeminiOnce(
   apiKey: string,
   model: string,
-  imageSize: string,
-  aspectRatio: string,
   parts: Array<Record<string, unknown>>,
 ): Promise<string> {
   const controller = new AbortController();
@@ -225,12 +186,6 @@ async function callGeminiOnce(
         },
         body: JSON.stringify({
           contents: [{ parts }],
-          generationConfig: {
-            imageConfig: {
-              aspectRatio,
-              imageSize,
-            },
-          },
         }),
         signal: controller.signal,
       },
@@ -296,15 +251,9 @@ export async function generateVisualization(
   }
 
   const model = getGeminiImageModel();
-  const imageSize = getGeminiImageSize();
 
   // Normalize the input to JPEG before sending it to the image-edit model.
   const inputJpeg = await sharp(input.imageBuffer).jpeg({ quality: 92 }).toBuffer();
-  const metadata = await sharp(inputJpeg).metadata();
-  const aspectRatio = getClosestSupportedAspectRatio(
-    metadata.width ?? 1,
-    metadata.height ?? 1,
-  );
 
   const reference = await fetchReferenceImage(
     input.material.swatchUrl ?? input.material.textureUrl,
@@ -329,7 +278,7 @@ export async function generateVisualization(
   let lastError: GeminiGenerationError | null = null;
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt += 1) {
     try {
-      const generatedBase64 = await callGeminiOnce(apiKey, model, imageSize, aspectRatio, parts);
+      const generatedBase64 = await callGeminiOnce(apiKey, model, parts);
       const resized = await sharp(Buffer.from(generatedBase64, 'base64'))
         .jpeg({ quality: 90 })
         .toBuffer();
