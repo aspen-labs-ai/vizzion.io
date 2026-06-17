@@ -157,8 +157,19 @@ export default async function SharedPreviewPage({
         />
 
         <p className="mt-5 text-center text-sm text-slate-500">
-          Drag the slider to compare. Questions? Just reply to {companyName}&apos;s email.
+          Questions? Just reply to {companyName}&apos;s email.
         </p>
+
+        <a
+          href="https://vizzion.io"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-10 flex items-center justify-center gap-2 text-slate-400 transition hover:text-slate-600"
+        >
+          <span className="text-xs font-medium uppercase tracking-[0.18em]">Powered by</span>
+          {/* eslint-disable-next-line @next/next/no-img-element -- static marketing logo */}
+          <img src="/vizzion-logo.png" alt="Vizzion" className="h-5 w-auto opacity-80" />
+        </a>
       </div>
     </main>
   );
