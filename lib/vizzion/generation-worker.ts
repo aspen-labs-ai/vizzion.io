@@ -155,10 +155,10 @@ interface ResultEmailImageUrls {
 }
 
 function buildImageCard(label: string, imageUrl: string): string {
-  return `<td bgcolor="#0d1117" style="width:50%;vertical-align:top;padding:0 6px 12px;background-color:#0d1117;">
-    <p style="margin:0 0 8px;color:#9ca3af;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;">${label}</p>
+  return `<td bgcolor="#ffffff" style="width:50%;vertical-align:top;padding:0 6px 12px;background-color:#ffffff;">
+    <p style="margin:0 0 8px;color:#64748b;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;">${label}</p>
     <a href="${escapeHtml(imageUrl)}" style="display:block;text-decoration:none;">
-      <img src="${escapeHtml(imageUrl)}" alt="${label}" style="display:block;width:100%;max-width:100%;border-radius:14px;border:1px solid #30363d;background:#111827;" />
+      <img src="${escapeHtml(imageUrl)}" alt="${label}" style="display:block;width:100%;max-width:100%;border-radius:14px;border:1px solid #e2e8f0;background:#f8fafc;" />
     </a>
   </td>`;
 }
@@ -166,35 +166,35 @@ function buildImageCard(label: string, imageUrl: string): string {
 function buildResultEmailHtml(images: ResultEmailImageUrls, branding: ResultEmailBranding): string {
   const companyName = escapeHtml(branding.companyName);
   const materialLine = branding.materialName
-    ? `<p style="margin:0;color:#d1d5db;font-size:14px;">Selected material</p>
-       <p style="margin:4px 0 0;color:#f9fafb;font-size:16px;font-weight:700;">${escapeHtml(branding.materialName)}</p>`
+    ? `<p style="margin:0;color:#64748b;font-size:14px;">Selected material</p>
+       <p style="margin:4px 0 0;color:#0f172a;font-size:16px;font-weight:700;">${escapeHtml(branding.materialName)}</p>`
     : '';
   const logo = branding.logoUrl
     ? `<img src="${escapeHtml(branding.logoUrl)}" alt="${companyName}" style="display:block;max-width:150px;max-height:52px;object-fit:contain;margin:0;" />`
     : '';
   const replyLine = branding.replyToEmail
-    ? `<p style="margin:18px 0 0;color:#9ca3af;font-size:13px;">Questions? Reply to this email and ${companyName} will receive it.</p>`
+    ? `<p style="margin:18px 0 0;color:#64748b;font-size:13px;">Questions? Reply to this email and ${companyName} will receive it.</p>`
     : '';
   const originalCard = images.originalUrl ? buildImageCard('Before', images.originalUrl) : '';
   const previewCard = buildImageCard(images.originalUrl ? 'After' : 'Preview', images.previewUrl);
   const compareButton = images.shareUrl
-    ? `<table role="presentation" cellspacing="0" cellpadding="0" style="margin:18px 0 0;">
+    ? `<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin:20px 0 18px;">
         <tr>
-          <td bgcolor="${branding.brandColor}" style="border-radius:12px;background:${branding.brandColor};">
-            <a href="${escapeHtml(images.shareUrl)}" style="display:inline-block;padding:13px 18px;color:#07111f;font-size:14px;font-weight:800;text-decoration:none;border-radius:12px;">Compare before and after</a>
+          <td align="center" bgcolor="${branding.brandColor}" style="border-radius:14px;background:${branding.brandColor};box-shadow:0 10px 24px rgba(15,23,42,0.16);">
+            <a href="${escapeHtml(images.shareUrl)}" style="display:block;padding:15px 20px;color:#07111f;font-size:15px;font-weight:800;text-decoration:none;border-radius:14px;">Open interactive before/after slider</a>
           </td>
         </tr>
       </table>`
     : '';
 
-  return `<div style="margin:0;padding:0;background:#0b111b;background-color:#0b111b;">
-    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" bgcolor="#0b111b" style="background:#0b111b;background-color:#0b111b;margin:0;padding:0;">
+  return `<div style="margin:0;padding:0;background:#f1f5f9;background-color:#f1f5f9;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" bgcolor="#f1f5f9" style="background:#f1f5f9;background-color:#f1f5f9;margin:0;padding:0;">
       <tr>
-        <td align="center" bgcolor="#0b111b" style="padding:28px 14px;background:#0b111b;background-color:#0b111b;">
-          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" bgcolor="#0d1117" style="max-width:760px;background:#0d1117;background-color:#0d1117;border:1px solid #263241;border-radius:22px;overflow:hidden;font-family:Arial,sans-serif;color:#f9fafb;">
+        <td align="center" bgcolor="#f1f5f9" style="padding:28px 14px;background:#f1f5f9;background-color:#f1f5f9;">
+          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" bgcolor="#ffffff" style="max-width:760px;background:#ffffff;background-color:#ffffff;border:1px solid #e2e8f0;border-radius:22px;overflow:hidden;font-family:Arial,sans-serif;color:#0f172a;">
             <tr>
-              <td bgcolor="#0d1117" style="padding:26px 28px 18px;background:#0d1117;background-color:#0d1117;">
-                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" bgcolor="#0d1117" style="background:#0d1117;background-color:#0d1117;">
+              <td bgcolor="#ffffff" style="padding:26px 28px 18px;background:#ffffff;background-color:#ffffff;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" bgcolor="#ffffff" style="background:#ffffff;background-color:#ffffff;">
                   <tr>
                     <td style="vertical-align:middle;">${logo || `<p style="margin:0;color:${branding.brandColor};font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;">${companyName}</p>`}</td>
                     <td align="right" style="vertical-align:middle;">
@@ -203,25 +203,25 @@ function buildResultEmailHtml(images: ResultEmailImageUrls, branding: ResultEmai
                   </tr>
                 </table>
                 ${logo ? `<p style="margin:16px 0 0;color:${branding.brandColor};font-size:13px;font-weight:800;">${companyName}</p>` : ''}
-                <h1 style="margin:10px 0 8px;color:#ffffff;font-size:28px;line-height:1.15;letter-spacing:-.02em;">Your visualization is ready</h1>
-                <p style="margin:0;color:#cbd5e1;font-size:15px;line-height:1.6;">Here is the personalized preview created from your uploaded photo.</p>
+                <h1 style="margin:10px 0 8px;color:#0f172a;font-size:28px;line-height:1.15;letter-spacing:-.02em;">Your visualization is ready</h1>
+                <p style="margin:0;color:#475569;font-size:15px;line-height:1.6;">Here is the personalized preview created from your uploaded photo.</p>
+                ${compareButton}
               </td>
             </tr>
             <tr>
-              <td bgcolor="#0d1117" style="padding:0 22px 8px;background:#0d1117;background-color:#0d1117;">
-                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" bgcolor="#0d1117" style="background:#0d1117;background-color:#0d1117;">
+              <td bgcolor="#ffffff" style="padding:0 22px 8px;background:#ffffff;background-color:#ffffff;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" bgcolor="#ffffff" style="background:#ffffff;background-color:#ffffff;">
                   <tr>${originalCard}${previewCard}</tr>
                 </table>
               </td>
             </tr>
             <tr>
-              <td bgcolor="#0d1117" style="padding:4px 28px 26px;background:#0d1117;background-color:#0d1117;">
-                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" bgcolor="#111827" style="background:#111827;background-color:#111827;border:1px solid #263241;border-radius:16px;">
+              <td bgcolor="#ffffff" style="padding:4px 28px 26px;background:#ffffff;background-color:#ffffff;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" bgcolor="#f8fafc" style="background:#f8fafc;background-color:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;">
                   <tr>
-                    <td bgcolor="#111827" style="padding:16px 18px;background:#111827;background-color:#111827;border-radius:16px;">
+                    <td bgcolor="#f8fafc" style="padding:16px 18px;background:#f8fafc;background-color:#f8fafc;border-radius:16px;">
                       ${materialLine}
-                      ${compareButton}
-                      <p style="margin:14px 0 0;color:#9ca3af;font-size:13px;">Tap either image to view it full size. Preview links expire in 7 days.</p>
+                      <p style="margin:14px 0 0;color:#64748b;font-size:13px;">Tap either image to view it full size. Preview links expire in 7 days.</p>
                       ${replyLine}
                     </td>
                   </tr>

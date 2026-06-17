@@ -8,6 +8,14 @@ function isValidUuid(value: string): boolean {
   return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
 }
 
+function getMaterialName(value: unknown): string | null {
+  if (!value || typeof value !== 'object') {
+    return null;
+  }
+  const name = (value as { name?: unknown }).name;
+  return typeof name === 'string' && name.trim() ? name.trim() : null;
+}
+
 export async function GET(request: NextRequest, { params }: { params: Promise<{ leadId: string }> }) {
   const { leadId } = await params;
   if (!isValidUuid(leadId)) {
@@ -51,25 +59,44 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
 
   const previewResult = await admin
     .from('generated_previews')
-    .select('original_upload_path, generated_path, created_at')
+    .select('id, original_upload_path, generated_path, material_snapshot, share_token, created_at')
     .eq('lead_id', leadId)
     .eq('workspace_id', context.workspace.id)
     .order('created_at', { ascending: false })
-    .limit(1)
-    .maybeSingle();
+    .limit(25);
 
-  const preview = previewResult.data as
-    | { original_upload_path: string | null; generated_path: string | null }
-    | null;
+  const previews = (previewResult.data ?? []) as Array<{
+    id: string;
+    original_upload_path: string | null;
+    generated_path: string | null;
+    material_snapshot: Record<string, unknown> | null;
+    share_token: string | null;
+    created_at: string;
+  }>;
 
-  const [original, generated] = await Promise.all([
-    preview?.original_upload_path
-      ? createSignedStorageUrl(admin, { bucket: 'uploads-original', path: preview.original_upload_path })
-      : Promise.resolve({ url: null, expiresAt: null }),
-    preview?.generated_path
-      ? createSignedStorageUrl(admin, { bucket: 'renders-generated', path: preview.generated_path })
-      : Promise.resolve({ url: null, expiresAt: null }),
-  ]);
+  const visualizations = await Promise.all(
+    previews.map(async preview => {
+      const [original, generated] = await Promise.all([
+        preview.original_upload_path
+          ? createSignedStorageUrl(admin, { bucket: 'uploads-original', path: preview.original_upload_path })
+          : Promise.resolve({ url: null, expiresAt: null }),
+        preview.generated_path
+          ? createSignedStorageUrl(admin, { bucket: 'renders-generated', path: preview.generated_path })
+          : Promise.resolve({ url: null, expiresAt: null }),
+      ]);
+
+      return {
+        id: preview.id,
+        createdAt: preview.created_at,
+        materialName: getMaterialName(preview.material_snapshot) ?? materialName,
+        status: preview.generated_path ? 'succeeded' : null,
+        originalUrl: original.url,
+        generatedUrl: generated.url,
+        shareUrl: preview.share_token ? `/preview/${preview.share_token}` : null,
+      };
+    }),
+  );
+  const latestVisualization = visualizations[0] ?? null;
 
   return NextResponse.json({
     id: lead.id,
@@ -78,8 +105,10 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     materialName,
     sourcePage: lead.source_page,
     createdAt: lead.created_at,
-    originalUrl: original.url,
-    generatedUrl: generated.url,
-    hasPreview: Boolean(generated.url),
+    visualizationCount: visualizations.length,
+    originalUrl: latestVisualization?.originalUrl ?? null,
+    generatedUrl: latestVisualization?.generatedUrl ?? null,
+    hasPreview: visualizations.some(visualization => Boolean(visualization.generatedUrl)),
+    visualizations,
   });
 }

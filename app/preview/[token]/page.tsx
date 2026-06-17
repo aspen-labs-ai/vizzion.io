@@ -118,9 +118,9 @@ export default async function SharedPreviewPage({
   const materialName = getMaterialName(preview.material_snapshot);
 
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.18),transparent_34%),#0D1117] px-4 py-8 text-text-primary md:px-8">
+    <main className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.14),transparent_34%),#F8FAFC] px-4 py-8 text-slate-950 md:px-8">
       <div className="mx-auto max-w-6xl">
-        <section className="mb-6 rounded-3xl border border-border-default bg-bg-secondary/80 p-5 shadow-2xl backdrop-blur md:p-7">
+        <section className="mb-6 rounded-3xl border border-slate-200 bg-white p-5 shadow-xl shadow-slate-200/70 md:p-7">
           <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
             <div className="flex items-center gap-4">
               {workspace?.logo_url ? (
@@ -128,11 +128,11 @@ export default async function SharedPreviewPage({
                 <img
                   src={workspace.logo_url}
                   alt={companyName}
-                  className="h-14 w-14 rounded-xl border border-border-subtle bg-white object-contain p-2"
+                  className="h-14 w-14 rounded-xl border border-slate-200 bg-white object-contain p-2"
                 />
               ) : (
                 <div
-                  className="flex h-14 w-14 items-center justify-center rounded-xl border border-border-subtle text-lg font-bold"
+                  className="flex h-14 w-14 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-lg font-bold"
                   style={{ color: brandColor }}
                 >
                   {companyName[0]?.toUpperCase() ?? 'V'}
@@ -144,9 +144,9 @@ export default async function SharedPreviewPage({
               </div>
             </div>
             {materialName ? (
-              <div className="rounded-2xl border border-border-default bg-bg-primary px-4 py-3">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-text-tertiary">Selected material</p>
-                <p className="mt-1 text-sm font-bold text-text-primary">{materialName}</p>
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Selected material</p>
+                <p className="mt-1 text-sm font-bold text-slate-950">{materialName}</p>
               </div>
             ) : null}
           </div>
@@ -157,7 +157,7 @@ export default async function SharedPreviewPage({
           afterUrl={generatedSigned.data.signedUrl}
         />
 
-        <div className="mt-5 rounded-2xl border border-border-default bg-bg-secondary/70 px-5 py-4 text-sm text-text-secondary">
+        <div className="mt-5 rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm text-slate-600 shadow-sm">
           Drag the white handle left or right to compare before and after. These image links are temporary for privacy.
         </div>
       </div>
@@ -167,13 +167,13 @@ export default async function SharedPreviewPage({
 
 function PreviewUnavailable({ expired = false }: { expired?: boolean }) {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-bg-primary px-6 text-text-primary">
-      <div className="max-w-lg rounded-3xl border border-border-default bg-bg-secondary p-8 text-center shadow-2xl">
+    <main className="flex min-h-screen items-center justify-center bg-slate-50 px-6 text-slate-950">
+      <div className="max-w-lg rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-xl">
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">Preview unavailable</p>
         <h1 className="mt-3 text-3xl font-bold">
           {expired ? 'This preview link has expired' : 'We could not load this preview'}
         </h1>
-        <p className="mt-3 text-text-secondary">
+        <p className="mt-3 text-slate-600">
           {expired
             ? 'For privacy, visualization links are only available for a limited time.'
             : 'The preview may have expired or the images may no longer be available.'}

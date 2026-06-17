@@ -9,8 +9,20 @@ export interface LeadRow {
   materialName: string | null;
   emailStatus: string;
   hasPreview: boolean;
+  visualizationCount: number;
+  lastActivityAt: string;
   sourcePage: string | null;
   createdAt: string;
+}
+
+interface LeadVisualization {
+  id: string;
+  createdAt: string;
+  materialName: string | null;
+  status: string | null;
+  originalUrl: string | null;
+  generatedUrl: string | null;
+  shareUrl: string | null;
 }
 
 interface LeadDetail {
@@ -19,9 +31,11 @@ interface LeadDetail {
   materialName: string | null;
   sourcePage: string | null;
   createdAt: string;
+  visualizationCount: number;
   originalUrl: string | null;
   generatedUrl: string | null;
   hasPreview: boolean;
+  visualizations: LeadVisualization[];
 }
 
 function formatDate(value: string): string {
@@ -87,15 +101,16 @@ export default function LeadsTable({ leads }: { leads: LeadRow[] }) {
             <tr>
               <th className="px-4 py-3 font-semibold">Email</th>
               <th className="px-4 py-3 font-semibold">Material</th>
+              <th className="px-4 py-3 font-semibold">Visuals</th>
               <th className="px-4 py-3 font-semibold">Status</th>
-              <th className="px-4 py-3 font-semibold">Captured</th>
+              <th className="px-4 py-3 font-semibold">Last Activity</th>
               <th className="px-4 py-3" />
             </tr>
           </thead>
           <tbody className="divide-y divide-border-default bg-bg-secondary">
             {leads.length === 0 ? (
               <tr>
-                <td colSpan={5} className="px-4 py-10 text-center text-text-tertiary">
+                <td colSpan={6} className="px-4 py-10 text-center text-text-tertiary">
                   No leads match these filters.
                 </td>
               </tr>
@@ -110,12 +125,17 @@ export default function LeadsTable({ leads }: { leads: LeadRow[] }) {
                   >
                     <td className="max-w-[20rem] truncate px-4 py-3 font-medium text-text-primary">{lead.email}</td>
                     <td className="px-4 py-3 text-text-secondary">{lead.materialName ?? '—'}</td>
+                    <td className="px-4 py-3 text-text-secondary">
+                      <span className="rounded-full border border-border-default bg-bg-primary px-2.5 py-1 text-xs font-semibold text-text-primary">
+                        {lead.visualizationCount}
+                      </span>
+                    </td>
                     <td className="px-4 py-3">
                       <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-semibold ${status.cls}`}>
                         {status.label}
                       </span>
                     </td>
-                    <td className="whitespace-nowrap px-4 py-3 text-text-tertiary">{formatDate(lead.createdAt)}</td>
+                    <td className="whitespace-nowrap px-4 py-3 text-text-tertiary">{formatDate(lead.lastActivityAt)}</td>
                     <td className="px-4 py-3 text-right">
                       <span className="text-xs font-semibold text-accent">View</span>
                     </td>
@@ -164,6 +184,7 @@ export default function LeadsTable({ leads }: { leads: LeadRow[] }) {
                     <Field label="Email" value={detail.email} />
                     <Field label="Material" value={detail.materialName ?? '—'} />
                     <Field label="Captured" value={formatDate(detail.createdAt)} />
+                    <Field label="Visualizations" value={detail.visualizationCount.toString()} />
                     <Field label="Source page" value={detail.sourcePage ?? '—'} />
                   </div>
 
@@ -176,29 +197,35 @@ export default function LeadsTable({ leads }: { leads: LeadRow[] }) {
 
                   {detail.hasPreview ? (
                     <div className="space-y-3">
-                      <p className="text-xs font-semibold uppercase tracking-wide text-text-tertiary">Visualization</p>
-                      <figure className="space-y-1.5">
-                        <span className="text-[11px] text-text-tertiary">Their photo</span>
-                        {detail.originalUrl ? (
-                          // eslint-disable-next-line @next/next/no-img-element -- signed external URL
-                          <img src={detail.originalUrl} alt="Original upload" className="w-full rounded-lg border border-border-default" />
-                        ) : (
-                          <div className="flex h-32 items-center justify-center rounded-lg border border-border-default text-xs text-text-tertiary">
-                            Not available
+                      <p className="text-xs font-semibold uppercase tracking-wide text-text-tertiary">Visualization history</p>
+                      {detail.visualizations.map((visualization, index) => (
+                        <article key={visualization.id} className="space-y-3 rounded-xl border border-border-default bg-bg-primary p-3">
+                          <div className="flex flex-wrap items-center justify-between gap-2">
+                            <div>
+                              <p className="text-sm font-semibold text-text-primary">
+                                Preview {detail.visualizations.length - index}
+                              </p>
+                              <p className="text-xs text-text-tertiary">
+                                {formatDate(visualization.createdAt)} · {visualization.materialName ?? 'Unknown material'}
+                              </p>
+                            </div>
+                            {visualization.shareUrl ? (
+                              <a
+                                href={visualization.shareUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="rounded-lg border border-accent/50 px-3 py-1.5 text-xs font-semibold text-accent transition hover:bg-accent/10"
+                              >
+                                Open slider
+                              </a>
+                            ) : null}
                           </div>
-                        )}
-                      </figure>
-                      <figure className="space-y-1.5">
-                        <span className="text-[11px] text-text-tertiary">Generated</span>
-                        {detail.generatedUrl ? (
-                          // eslint-disable-next-line @next/next/no-img-element -- signed external URL
-                          <img src={detail.generatedUrl} alt="Generated visualization" className="w-full rounded-lg border border-accent/40" />
-                        ) : (
-                          <div className="flex h-32 items-center justify-center rounded-lg border border-border-default text-xs text-text-tertiary">
-                            Not available
+                          <div className="grid gap-2 sm:grid-cols-2">
+                            <PreviewImage label="Before" url={visualization.originalUrl} />
+                            <PreviewImage label="After" url={visualization.generatedUrl} accent />
                           </div>
-                        )}
-                      </figure>
+                        </article>
+                      ))}
                     </div>
                   ) : (
                     <p className="rounded-lg border border-border-default bg-bg-primary px-4 py-3 text-sm text-text-tertiary">
@@ -217,6 +244,26 @@ export default function LeadsTable({ leads }: { leads: LeadRow[] }) {
         </div>
       ) : null}
     </>
+  );
+}
+
+function PreviewImage({ label, url, accent = false }: { label: string; url: string | null; accent?: boolean }) {
+  return (
+    <figure className="space-y-1.5">
+      <span className="text-[11px] uppercase tracking-wide text-text-tertiary">{label}</span>
+      {url ? (
+        // eslint-disable-next-line @next/next/no-img-element -- signed external URL
+        <img
+          src={url}
+          alt={`${label} visualization`}
+          className={`w-full rounded-lg border ${accent ? 'border-accent/40' : 'border-border-default'}`}
+        />
+      ) : (
+        <div className="flex h-28 items-center justify-center rounded-lg border border-border-default text-xs text-text-tertiary">
+          Not available
+        </div>
+      )}
+    </figure>
   );
 }
 

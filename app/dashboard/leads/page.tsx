@@ -93,17 +93,36 @@ export default async function LeadsPage({ searchParams }: { searchParams: Search
   }>;
   const leadIds = rawLeads.map((l) => l.id);
 
-  // Which of these leads have a generated visualization?
+  // Which of these leads have generated visualizations and repeat activity?
   const leadsWithPreview = new Set<string>();
+  const visualizationCountByLeadId = new Map<string, number>();
+  const lastActivityByLeadId = new Map<string, string>();
   if (leadIds.length > 0) {
-    const previewsResult = await supabase
-      .from('generated_previews')
-      .select('lead_id')
-      .eq('widget_id', widgetId)
-      .in('lead_id', leadIds)
-      .not('generated_path', 'is', null);
-    for (const row of (previewsResult.data ?? []) as Array<{ lead_id: string | null }>) {
-      if (row.lead_id) leadsWithPreview.add(row.lead_id);
+    const [previewsResult, jobsResult] = await Promise.all([
+      supabase
+        .from('generated_previews')
+        .select('lead_id, created_at')
+        .eq('widget_id', widgetId)
+        .in('lead_id', leadIds)
+        .not('generated_path', 'is', null),
+      supabase
+        .from('generation_jobs')
+        .select('lead_id, created_at')
+        .eq('widget_id', widgetId)
+        .in('lead_id', leadIds),
+    ]);
+
+    for (const row of (previewsResult.data ?? []) as Array<{ lead_id: string | null; created_at: string }>) {
+      if (!row.lead_id) continue;
+      leadsWithPreview.add(row.lead_id);
+      visualizationCountByLeadId.set(row.lead_id, (visualizationCountByLeadId.get(row.lead_id) ?? 0) + 1);
+      const current = lastActivityByLeadId.get(row.lead_id);
+      if (!current || row.created_at > current) lastActivityByLeadId.set(row.lead_id, row.created_at);
+    }
+    for (const row of (jobsResult.data ?? []) as Array<{ lead_id: string | null; created_at: string }>) {
+      if (!row.lead_id) continue;
+      const current = lastActivityByLeadId.get(row.lead_id);
+      if (!current || row.created_at > current) lastActivityByLeadId.set(row.lead_id, row.created_at);
     }
   }
 
@@ -114,6 +133,8 @@ export default async function LeadsPage({ searchParams }: { searchParams: Search
     materialName: lead.material_id ? materialNameById.get(lead.material_id) ?? null : null,
     emailStatus: lead.email_status,
     hasPreview: leadsWithPreview.has(lead.id),
+    visualizationCount: visualizationCountByLeadId.get(lead.id) ?? 0,
+    lastActivityAt: lastActivityByLeadId.get(lead.id) ?? lead.created_at,
     sourcePage: lead.source_page,
     createdAt: lead.created_at,
   }));
