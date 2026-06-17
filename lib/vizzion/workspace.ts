@@ -60,6 +60,7 @@ export interface DashboardMetrics {
   activeMaterials: number;
   sentEmailCount30d: number;
   queuedJobs30d: number;
+  previewViews30d: number;
 }
 
 export interface EventBreakdownItem {
@@ -280,38 +281,52 @@ export async function getDashboardMetrics(
     return untilIso ? ranged.lte(column, untilIso) : ranged;
   };
 
-  const [sessionsResult, leadsResult, activeMaterialsResult, sentEmailsResult, queuedJobsResult] =
-    await Promise.all([
-      withRange(
-        supabase.from('widget_sessions').select('*', { head: true, count: 'exact' }).eq('widget_id', widgetId),
-        'started_at',
-      ),
-      withRange(
-        supabase.from('leads').select('*', { head: true, count: 'exact' }).eq('widget_id', widgetId),
-        'created_at',
-      ),
+  const [
+    sessionsResult,
+    leadsResult,
+    activeMaterialsResult,
+    sentEmailsResult,
+    queuedJobsResult,
+    previewViewsResult,
+  ] = await Promise.all([
+    withRange(
+      supabase.from('widget_sessions').select('*', { head: true, count: 'exact' }).eq('widget_id', widgetId),
+      'started_at',
+    ),
+    withRange(
+      supabase.from('leads').select('*', { head: true, count: 'exact' }).eq('widget_id', widgetId),
+      'created_at',
+    ),
+    supabase
+      .from('materials')
+      .select('*', { head: true, count: 'exact' })
+      .eq('widget_id', widgetId)
+      .eq('is_active', true),
+    withRange(
       supabase
-        .from('materials')
+        .from('leads')
+        .select('*', { head: true, count: 'exact' })
+        .eq('workspace_id', workspaceId)
+        .eq('email_status', 'sent'),
+      'created_at',
+    ),
+    withRange(
+      supabase
+        .from('generation_jobs')
+        .select('*', { head: true, count: 'exact' })
+        .eq('workspace_id', workspaceId)
+        .in('status', ['queued', 'processing']),
+      'created_at',
+    ),
+    withRange(
+      supabase
+        .from('widget_events')
         .select('*', { head: true, count: 'exact' })
         .eq('widget_id', widgetId)
-        .eq('is_active', true),
-      withRange(
-        supabase
-          .from('leads')
-          .select('*', { head: true, count: 'exact' })
-          .eq('workspace_id', workspaceId)
-          .eq('email_status', 'sent'),
-        'created_at',
-      ),
-      withRange(
-        supabase
-          .from('generation_jobs')
-          .select('*', { head: true, count: 'exact' })
-          .eq('workspace_id', workspaceId)
-          .in('status', ['queued', 'processing']),
-        'created_at',
-      ),
-    ]);
+        .eq('event_type', 'preview_viewed'),
+      'created_at',
+    ),
+  ]);
 
   const sessions30d = toCount(sessionsResult.count);
   const leads30d = toCount(leadsResult.count);
@@ -323,6 +338,7 @@ export async function getDashboardMetrics(
     activeMaterials: toCount(activeMaterialsResult.count),
     sentEmailCount30d: toCount(sentEmailsResult.count),
     queuedJobs30d: toCount(queuedJobsResult.count),
+    previewViews30d: toCount(previewViewsResult.count),
   };
 }
 
@@ -366,7 +382,7 @@ export async function getStepFunnelMetrics(
   const since = sinceIso ?? getSinceIso(30);
   let query = supabase
     .from('widget_events')
-    .select('event_type')
+    .select('event_type, session_id')
     .eq('widget_id', widgetId)
     .in('event_type', [
       'widget_opened',
@@ -386,7 +402,7 @@ export async function getStepFunnelMetrics(
   if (untilIso) {
     query = query.lte('created_at', untilIso);
   }
-  const result = await query.limit(5000);
+  const result = await query.limit(20000);
 
   const empty: StepFunnelMetrics = {
     widgetOpened: 0,
@@ -404,29 +420,44 @@ export async function getStepFunnelMetrics(
     return empty;
   }
 
-  for (const row of result.data as Array<{ event_type: string }>) {
-    if (row.event_type === 'widget_opened') {
-      empty.widgetOpened += 1;
-    } else if (row.event_type === 'upload_started') {
-      empty.uploadStarted += 1;
-    } else if (row.event_type === 'upload_completed') {
-      empty.uploadCompleted += 1;
-    } else if (row.event_type === 'material_selected') {
-      empty.materialSelected += 1;
-    } else if (row.event_type === 'email_submitted') {
-      empty.emailSubmitted += 1;
-    } else if (row.event_type === 'generation_requested') {
-      empty.generationRequested += 1;
-    } else if (row.event_type === 'reveal_rendered' || row.event_type === 'email_delivery_confirmed') {
-      empty.revealRendered += 1;
-    } else if (row.event_type === 'reveal_fallback_shown') {
-      empty.revealFallbackShown += 1;
-    } else if (row.event_type === 'generation_failed') {
-      empty.generationFailed += 1;
+  // Count UNIQUE sessions per stage so the funnel reflects how many distinct
+  // visitors reached each step — not how many raw events fired. Counting raw
+  // events makes later stages exceed earlier ones (e.g. one tester generating
+  // many times), which produces nonsensical >100% funnel percentages.
+  const stageSessions: Record<string, Set<string>> = {
+    widget_opened: new Set<string>(),
+    upload_started: new Set<string>(),
+    upload_completed: new Set<string>(),
+    material_selected: new Set<string>(),
+    email_submitted: new Set<string>(),
+    generation_requested: new Set<string>(),
+    reveal: new Set<string>(),
+    reveal_fallback_shown: new Set<string>(),
+    generation_failed: new Set<string>(),
+  };
+
+  for (const row of result.data as Array<{ event_type: string; session_id: string | null }>) {
+    if (!row.session_id) {
+      continue;
     }
+    const stage =
+      row.event_type === 'reveal_rendered' || row.event_type === 'email_delivery_confirmed'
+        ? 'reveal'
+        : row.event_type;
+    stageSessions[stage]?.add(row.session_id);
   }
 
-  return empty;
+  return {
+    widgetOpened: stageSessions.widget_opened.size,
+    uploadStarted: stageSessions.upload_started.size,
+    uploadCompleted: stageSessions.upload_completed.size,
+    materialSelected: stageSessions.material_selected.size,
+    emailSubmitted: stageSessions.email_submitted.size,
+    generationRequested: stageSessions.generation_requested.size,
+    revealRendered: stageSessions.reveal.size,
+    revealFallbackShown: stageSessions.reveal_fallback_shown.size,
+    generationFailed: stageSessions.generation_failed.size,
+  };
 }
 
 export async function getMaterialPerformance(

@@ -191,12 +191,13 @@ export default async function DashboardOverviewPage({
         </p>
       ) : null}
 
-      <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-6">
+      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7">
         <MetricCard label="Sessions" value={metrics.sessions30d.toLocaleString()} />
         <MetricCard label="Leads" value={metrics.leads30d.toLocaleString()} />
         <MetricCard label="Conversion" value={formatPercent(metrics.conversionRate30d)} />
         <MetricCard label="Active Materials" value={metrics.activeMaterials.toLocaleString()} />
         <MetricCard label="Emails Sent" value={metrics.sentEmailCount30d.toLocaleString()} />
+        <MetricCard label="Preview Views" value={metrics.previewViews30d.toLocaleString()} />
         <MetricCard label="Queued Jobs" value={metrics.queuedJobs30d.toLocaleString()} />
       </section>
 
