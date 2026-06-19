@@ -14,6 +14,10 @@
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4.5 4.5L19 7"/></svg>';
   var ICON_HANDLE =
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 8l-4 4 4 4"/><path d="M14 8l4 4-4 4"/></svg>';
+  var ICON_EYE =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>';
+  var ICON_CLOSE =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
 
   var SUBJECT_COPY = {
     home: {
@@ -275,12 +279,13 @@
     var style = document.createElement('style');
     style.id = STYLE_ID;
     style.textContent = [
-      '.vz-shell{--vz-brand:#10B981;--vz-on-brand:#04241a;--vz-bg:#0f172a;--vz-bg2:#0b1220;--vz-grad:radial-gradient(130% 130% at 0% 0%,#14213c 0%,var(--vz-bg) 46%,var(--vz-bg2) 100%);--vz-surface:rgba(2,6,23,.5);--vz-surface2:rgba(2,6,23,.62);--vz-line:rgba(148,163,184,.16);--vz-line2:rgba(148,163,184,.3);--vz-strong:#f8fafc;--vz-text:#e8edf4;--vz-muted:#94a3b8;--vz-faint:#64748b;--vz-shadow:rgba(2,6,23,.7);font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--vz-grad);border:1px solid var(--vz-line);border-radius:20px;padding:22px;color:var(--vz-text);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 30px 60px -24px var(--vz-shadow);-webkit-font-smoothing:antialiased;text-align:left}',
+      '.vz-shell{--vz-brand:#10B981;--vz-on-brand:#04241a;--vz-bg:#0f172a;--vz-bg2:#0b1220;--vz-grad:radial-gradient(130% 130% at 0% 0%,#14213c 0%,var(--vz-bg) 46%,var(--vz-bg2) 100%);--vz-surface:rgba(2,6,23,.5);--vz-surface2:rgba(2,6,23,.62);--vz-line:rgba(148,163,184,.16);--vz-line2:rgba(148,163,184,.3);--vz-strong:#f8fafc;--vz-text:#e8edf4;--vz-muted:#94a3b8;--vz-faint:#64748b;--vz-shadow:rgba(2,6,23,.7);font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--vz-grad);border:1px solid var(--vz-line);border-radius:20px;padding:22px;color:var(--vz-text);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 30px 60px -24px var(--vz-shadow);-webkit-font-smoothing:antialiased;text-align:left;box-sizing:border-box;max-width:560px;margin-left:auto;margin-right:auto;display:flex;flex-direction:column;height:var(--vz-h,560px);max-height:calc(100vh - 40px)}',
       '.vz-shell.vz-theme-light{--vz-bg:#ffffff;--vz-bg2:#eef2f7;--vz-grad:linear-gradient(180deg,#ffffff 0%,#eef2f7 100%);--vz-surface:#f4f6fa;--vz-surface2:#e9eef5;--vz-line:rgba(15,23,42,.1);--vz-line2:rgba(15,23,42,.18);--vz-strong:#0f172a;--vz-text:#27313f;--vz-muted:#5b6472;--vz-faint:#94a3b8;--vz-shadow:rgba(15,23,42,.28)}',
       '.vz-shell *,.vz-shell *::before,.vz-shell *::after{box-sizing:border-box}',
       '.vz-title{margin:0 0 4px;font-size:18px;line-height:1.2;font-weight:700;letter-spacing:-.01em;color:var(--vz-strong)}',
       '.vz-subtitle{margin:0;font-size:13px;line-height:1.45;color:var(--vz-muted)}',
-      '.vz-body{animation:vz-fade .28s cubic-bezier(.22,.61,.36,1) both}',
+      '.vz-head{flex:none}',
+      '.vz-body{animation:vz-fade .28s cubic-bezier(.22,.61,.36,1) both;flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden}',
       '@keyframes vz-fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}',
       '.vz-stepper{display:flex;align-items:center;justify-content:center;gap:8px;margin:16px 0 18px}',
       '.vz-step{display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:999px;border:1px solid var(--vz-line2);font-size:12px;font-weight:700;color:var(--vz-muted);background:var(--vz-surface);transition:all .2s ease}',
@@ -306,14 +311,14 @@
       '.vz-progress{height:5px;background:color-mix(in srgb,var(--vz-muted) 22%,transparent);border-radius:999px;overflow:hidden}',
       '.vz-progress>span{display:block;height:100%;border-radius:999px;background:var(--vz-brand);width:45%;animation:vz-load 1.1s ease-in-out infinite}',
       '@keyframes vz-load{0%{margin-left:-45%}100%{margin-left:100%}}',
-      '.vz-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}',
+      '.vz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(108px,1fr));gap:8px}',
       '.vz-material{position:relative;border:1px solid var(--vz-line2);border-radius:14px;overflow:hidden;background:var(--vz-surface);cursor:pointer;padding:0;transition:border-color .16s ease,transform .16s ease,box-shadow .16s ease}',
       '.vz-material:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--vz-brand) 50%,var(--vz-line2))}',
       '.vz-material-active{border-color:var(--vz-brand);box-shadow:0 0 0 3px color-mix(in srgb,var(--vz-brand) 22%,transparent)}',
       '.vz-material-swatch{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:linear-gradient(135deg,color-mix(in srgb,var(--vz-muted) 22%,var(--vz-surface)),var(--vz-surface))}',
-      '.vz-material-name{display:block;padding:9px 10px;font-size:12.5px;font-weight:500;text-align:left;color:var(--vz-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
-      '.vz-material-check{position:absolute;top:8px;right:8px;width:22px;height:22px;border-radius:999px;background:var(--vz-brand);color:var(--vz-on-brand);display:none;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(2,6,23,.4)}',
-      '.vz-material-check svg{width:13px;height:13px}',
+      '.vz-material-name{display:block;padding:6px 8px;font-size:11px;font-weight:500;text-align:left;color:var(--vz-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
+      '.vz-material-check{position:absolute;top:6px;right:6px;width:18px;height:18px;border-radius:999px;background:var(--vz-brand);color:var(--vz-on-brand);display:none;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(2,6,23,.4)}',
+      '.vz-material-check svg{width:11px;height:11px}',
       '.vz-material-active .vz-material-check{display:flex}',
       '.vz-form{display:flex;flex-direction:column;gap:12px}',
       '.vz-label{display:block;font-size:12.5px;font-weight:500;color:var(--vz-muted);margin-bottom:6px}',
@@ -328,7 +333,7 @@
       '.vz-button-secondary:hover{filter:none;background:color-mix(in srgb,var(--vz-muted) 14%,transparent);color:var(--vz-strong)}',
       '.vz-row{display:flex;gap:10px;align-items:center;margin-top:14px}',
       '.vz-row .vz-button{flex:1}',
-      '.vz-message{margin-top:12px;font-size:13px;line-height:1.45;min-height:18px}',
+      '.vz-message{margin-top:12px;font-size:13px;line-height:1.45;min-height:18px;flex:none}',
       '.vz-message-success{color:color-mix(in srgb,var(--vz-brand) 80%,var(--vz-strong))}.vz-message-error{color:#ef4444}.vz-message-info{color:#3b82f6}.vz-message-warning{color:#d97706}',
       '.vz-consent{margin-top:12px;font-size:11.5px;line-height:1.5;color:var(--vz-faint)}',
       '.vz-consent a{color:var(--vz-muted);text-decoration:underline}',
@@ -351,12 +356,16 @@
       '.vz-compare-handle svg{width:20px;height:20px}',
       '.vz-upload-input{display:none}',
       '.vz-turnstile-wrap{margin-top:12px}',
-      '.vz-popup-launcher{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;border:1px solid var(--vz-line2);background:var(--vz-bg);color:var(--vz-text);padding:11px 18px;font-weight:700;font-size:14px;font-family:inherit;cursor:pointer;transition:transform .12s ease}',
-      '.vz-popup-launcher:hover{transform:translateY(-1px)}',
+      '.vz-popup-launcher{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;background:#10B981;color:#fff;padding:13px 22px;font-weight:700;font-size:14.5px;font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1;cursor:pointer;box-shadow:0 10px 22px -10px rgba(2,6,23,.45);transition:transform .12s ease,filter .14s ease,box-shadow .14s ease}',
+      '.vz-popup-launcher svg{width:18px;height:18px}',
+      '.vz-popup-launcher:hover{transform:translateY(-1px);filter:brightness(1.05);box-shadow:0 14px 26px -10px rgba(2,6,23,.5)}',
+      '.vz-popup-launcher:active{transform:translateY(0)}',
       '.vz-popup-overlay{position:fixed;inset:0;background:rgba(2,6,23,.74);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:20px;z-index:99999;animation:vz-fade .2s ease both}',
       '.vz-popup-overlay.vz-open{display:flex}',
       '.vz-popup-card{position:relative;width:min(560px,100%)}',
-      '.vz-popup-close{position:absolute;top:-14px;right:-14px;width:34px;height:34px;border-radius:999px;border:1px solid var(--vz-line2);background:var(--vz-bg);color:var(--vz-text);cursor:pointer;font-size:18px;line-height:1;display:flex;align-items:center;justify-content:center}',
+      '.vz-popup-close{position:absolute;top:12px;right:12px;z-index:3;width:34px;height:34px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(15,23,42,.55);color:#fff;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);box-shadow:0 4px 14px rgba(2,6,23,.4);transition:background .14s ease,transform .12s ease}',
+      '.vz-popup-close svg{width:16px;height:16px}',
+      '.vz-popup-close:hover{background:rgba(15,23,42,.82);transform:scale(1.06)}',
       '.vz-sent{align-items:center;text-align:center;gap:10px;padding:6px 4px 2px}',
       '.vz-sent-icon{display:flex;align-items:center;justify-content:center;width:62px;height:62px;border-radius:999px;background:var(--vz-brand);color:var(--vz-on-brand);box-shadow:0 14px 30px -12px color-mix(in srgb,var(--vz-brand) 80%,transparent);animation:vz-pop .5s cubic-bezier(.17,.89,.32,1.28) both}',
       '.vz-sent-icon svg{width:30px;height:30px}',
@@ -565,6 +574,11 @@
       instanceId: 'vz-widget-' + INSTANCE_COUNTER,
       embedKey: typeof options.embedKey === 'string' ? options.embedKey.trim() : '',
       industrySlug: typeof options.industrySlug === 'string' ? options.industrySlug.trim() : '',
+      // Optional per-embed overrides so one page can mount the same widget both
+      // inline and as a popup, regardless of the saved display mode.
+      modeOverride:
+        options.mode === 'popup' || options.mode === 'inline' ? options.mode : null,
+      autoOpenOverride: typeof options.autoOpen === 'boolean' ? options.autoOpen : null,
       target: target,
       renderRoot: null,
       popupOverlay: null,
@@ -657,10 +671,21 @@
     }
 
     var launcherHost = instance.target || document.body;
+    // In popup mode the target only hosts the launcher button, so clear the
+    // "Loading widget…" placeholder that initializeInstance dropped in —
+    // otherwise it lingers behind the launcher.
+    if (instance.target) {
+      instance.target.innerHTML = '';
+    }
     var launcher = document.createElement('button');
     launcher.type = 'button';
     launcher.className = 'vz-popup-launcher';
-    launcher.textContent = 'Try Live Preview';
+    launcher.innerHTML = ICON_EYE + '<span>Try the live preview</span>';
+    // The launcher sits outside .vz-shell (where the brand CSS vars are defined),
+    // so paint the brand color on directly.
+    var launcherBrand = sanitizeColor(instance.widgetConfig && instance.widgetConfig.brandColor);
+    launcher.style.background = launcherBrand;
+    launcher.style.color = readableTextOn(launcherBrand);
     launcher.addEventListener('click', function () {
       openPopup(instance);
     });
@@ -670,7 +695,7 @@
     overlay.className = 'vz-popup-overlay';
     overlay.innerHTML =
       '<div class="vz-popup-card">' +
-      '<button class="vz-popup-close" type="button" aria-label="Close">\u00d7</button>' +
+      '<button class="vz-popup-close" type="button" aria-label="Close">' + ICON_CLOSE + '</button>' +
       '<div class="vz-popup-content"></div>' +
       '</div>';
 
@@ -900,7 +925,7 @@
       '<div class="vz-center">' +
       '<div class="vz-spinner"></div>' +
       '<strong>' + escapeHtml(subtitle) + '</strong>' +
-      '<small>Most previews are ready in under a minute.</small>' +
+      '<small>Most visualizations are ready in under 20 seconds.</small>' +
       '</div>' +
       optionalEmailMarkup +
       '<div class="vz-row">' +
@@ -1895,14 +1920,17 @@
           id: configPayload.widget.id,
           name: configPayload.widget.name,
           embedKey: configPayload.widget.embedKey || instance.embedKey,
-          mode: configPayload.widget.mode || 'inline',
+          mode: instance.modeOverride || configPayload.widget.mode || 'inline',
           theme: configPayload.widget.theme || 'dark',
           subjectType: configPayload.widget.subjectType || 'generic',
           brandColor: configPayload.widget.brandColor || '#10B981',
           uiVersion: configPayload.widget.uiVersion || 'v2',
           requireEmail: !!configPayload.widget.requireEmail,
           deliveryMode: configPayload.widget.deliveryMode === 'email' ? 'email' : 'instant',
-          autoOpenWidget: !!configPayload.widget.autoOpenWidget,
+          autoOpenWidget:
+            instance.autoOpenOverride !== null
+              ? instance.autoOpenOverride
+              : !!configPayload.widget.autoOpenWidget,
           showProductNames: !!configPayload.widget.showProductNames,
           maxGenerationsPerSession: configPayload.widget.maxGenerationsPerSession,
           maxGenerationsPerEmailLifetime: configPayload.widget.maxGenerationsPerEmailLifetime,
@@ -1977,6 +2005,8 @@
         embedKey: embedKey,
         industrySlug: industrySlug,
         pageUrl: normalized.pageUrl,
+        mode: normalized.mode,
+        autoOpen: normalized.autoOpen,
       },
       target,
     );

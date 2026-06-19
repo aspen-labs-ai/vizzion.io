@@ -284,10 +284,10 @@ export default async function SettingsPage({
             name="mode"
             defaultValue={widget.mode}
             disabled={!isOwner}
-            hint="Inline embeds it in the page; Popup shows a button that opens it."
+            hint="Inline embeds the widget right in your page, in a fixed-size box. Popup adds a button that opens the widget in an overlay, so it never shifts your page layout."
             options={[
-              { value: 'inline', label: 'Inline' },
-              { value: 'popup', label: 'Popup' },
+              { value: 'inline', label: 'Inline — embedded in the page' },
+              { value: 'popup', label: 'Popup — opens in an overlay' },
             ]}
           />
           <WidgetAppearance
