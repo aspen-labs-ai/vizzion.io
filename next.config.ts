@@ -17,6 +17,17 @@ const contentSecurityPolicy = `
   .trim();
 
 const nextConfig: NextConfig = {
+  experimental: {
+    // Material + logo images are submitted through Server Actions as multipart
+    // form data. Next's default Server Action body cap is 1MB, which rejects
+    // anything larger with a 400 *before* the action runs (surfacing as the
+    // cryptic "An unexpected response was received from the server" crash).
+    // Raise it to Vercel's hard request-body ceiling (4.5MB). Files are also
+    // validated against a 4MB app limit, leaving headroom for multipart overhead.
+    serverActions: {
+      bodySizeLimit: '4.5mb',
+    },
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
   },

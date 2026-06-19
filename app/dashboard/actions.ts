@@ -7,7 +7,11 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 import { createClient } from '@/lib/supabase/server';
 import { getWorkspaceContext } from '@/lib/vizzion/workspace';
 
-const MATERIAL_IMAGE_MAX_BYTES = 8 * 1024 * 1024;
+// Capped at 4MB (not 8MB): Server Actions on Vercel can't receive a request
+// body larger than 4.5MB, so the effective ceiling is ~4MB once multipart
+// overhead is accounted for. Keep in sync with next.config.ts bodySizeLimit
+// and the client-side guard in MaterialsManager.
+const MATERIAL_IMAGE_MAX_BYTES = 4 * 1024 * 1024;
 const MATERIAL_IMAGE_MIME_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp']);
 const WORKSPACE_LOGO_MAX_BYTES = 2 * 1024 * 1024;
 const WORKSPACE_LOGO_MIME_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp']);
@@ -44,7 +48,7 @@ async function uploadMaterialImage(
   }
 
   if (fileValue.size > MATERIAL_IMAGE_MAX_BYTES) {
-    return { error: 'Material image must be 8 MB or smaller.' };
+    return { error: 'Material image must be 4 MB or smaller.' };
   }
 
   const path = `${workspaceId}/${widgetId}/${randomUUID()}.${materialImageExtension(fileValue)}`;

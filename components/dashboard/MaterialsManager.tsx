@@ -4,6 +4,12 @@ import { useMemo, useState } from 'react';
 import { ImagePlus } from 'lucide-react';
 import SubmitButton from '@/components/dashboard/SubmitButton';
 
+// Keep in sync with MATERIAL_IMAGE_MAX_BYTES in app/dashboard/actions.ts and the
+// serverActions.bodySizeLimit in next.config.ts. Vercel caps Server Action
+// request bodies at 4.5MB, so we guard at 4MB to leave multipart headroom.
+const MAX_IMAGE_BYTES = 4 * 1024 * 1024;
+const ACCEPTED_IMAGE_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp']);
+
 interface MaterialItem {
   id: string;
   name: string;
@@ -405,14 +411,32 @@ function ImageUploadField({ existingUrl }: { existingUrl: string | null }) {
   const [preview, setPreview] = useState<string | null>(existingUrl);
   const [pickedNew, setPickedNew] = useState(false);
   const [removeExisting, setRemoveExisting] = useState(false);
+  const [sizeError, setSizeError] = useState<string | null>(null);
 
   function handleFile(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
-    if (file) {
-      setPreview(URL.createObjectURL(file));
-      setPickedNew(true);
-      setRemoveExisting(false);
+    if (!file) {
+      return;
     }
+
+    // Guard before submit: Server Actions on Vercel cap the request body at
+    // 4.5MB, so reject oversized/invalid files here with a friendly message
+    // instead of letting the upload fail with a cryptic server error.
+    if (!ACCEPTED_IMAGE_TYPES.has(file.type)) {
+      setSizeError('Use a JPG, PNG, or WebP image.');
+      event.target.value = '';
+      return;
+    }
+    if (file.size > MAX_IMAGE_BYTES) {
+      setSizeError('That image is larger than 4 MB — please pick a smaller file.');
+      event.target.value = '';
+      return;
+    }
+
+    setSizeError(null);
+    setPreview(URL.createObjectURL(file));
+    setPickedNew(true);
+    setRemoveExisting(false);
   }
 
   function clearImage() {
@@ -466,7 +490,10 @@ function ImageUploadField({ existingUrl }: { existingUrl: string | null }) {
               Remove
             </button>
           ) : null}
-          <p className="text-[11px] text-text-tertiary">JPG, PNG, or WebP · up to 8 MB</p>
+          <p className="text-[11px] text-text-tertiary">JPG, PNG, or WebP · up to 4 MB</p>
+          {sizeError ? (
+            <p className="text-[11px] font-medium text-red-300">{sizeError}</p>
+          ) : null}
         </div>
       </div>
 
