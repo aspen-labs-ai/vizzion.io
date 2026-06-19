@@ -3,7 +3,7 @@
 
   var GLOBAL_NAME = 'VizzionWidget';
   var QUEUE_NAME = '__vizzionWidgetQueue';
-  var STYLE_ID = 'vizzion-widget-style-v4';
+  var STYLE_ID = 'vizzion-widget-style-v5';
   var INSTANCE_COUNTER = 0;
   var turnstileLoader = null;
   var API_BASE = resolveApiBase();
@@ -357,6 +357,13 @@
       '.vz-popup-overlay.vz-open{display:flex}',
       '.vz-popup-card{position:relative;width:min(560px,100%)}',
       '.vz-popup-close{position:absolute;top:-14px;right:-14px;width:34px;height:34px;border-radius:999px;border:1px solid var(--vz-line2);background:var(--vz-bg);color:var(--vz-text);cursor:pointer;font-size:18px;line-height:1;display:flex;align-items:center;justify-content:center}',
+      '.vz-sent{align-items:center;text-align:center;gap:10px;padding:6px 4px 2px}',
+      '.vz-sent-icon{display:flex;align-items:center;justify-content:center;width:62px;height:62px;border-radius:999px;background:var(--vz-brand);color:var(--vz-on-brand);box-shadow:0 14px 30px -12px color-mix(in srgb,var(--vz-brand) 80%,transparent);animation:vz-pop .5s cubic-bezier(.17,.89,.32,1.28) both}',
+      '.vz-sent-icon svg{width:30px;height:30px}',
+      '.vz-sent-title{font-size:19px;font-weight:800;letter-spacing:-.01em;color:var(--vz-strong)}',
+      '.vz-sent-sub{margin:0;font-size:13.5px;line-height:1.5;color:var(--vz-muted);max-width:330px}',
+      '.vz-sent-sub b{color:var(--vz-text);font-weight:600}',
+      '@keyframes vz-pop{0%{transform:scale(.4);opacity:0}60%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}',
       '@media (max-width:480px){.vz-shell{padding:16px;border-radius:16px}.vz-title{font-size:16px}.vz-compare-handle{width:38px;height:38px}}',
     ].join('');
 
@@ -902,15 +909,125 @@
     );
   }
 
+  // Lightweight, dependency-free confetti burst for the success state. Subtle by
+  // design (small count, ~1.8s, fades out), contained inside the widget shell,
+  // and skipped entirely for reduced-motion users.
+  function launchConfetti(instance) {
+    try {
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+      }
+    } catch {
+      // matchMedia unavailable — proceed.
+    }
+
+    var root = getRenderRoot(instance);
+    var shell = root ? root.querySelector('.vz-shell') : null;
+    if (!shell) {
+      return;
+    }
+
+    var width = shell.clientWidth;
+    var height = shell.clientHeight;
+    if (!width || !height) {
+      return;
+    }
+
+    // The canvas overlays the card; anchor it so it tracks the shell.
+    if (window.getComputedStyle(shell).position === 'static') {
+      shell.style.position = 'relative';
+    }
+
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var canvas = document.createElement('canvas');
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+    canvas.style.cssText =
+      'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:5';
+    shell.appendChild(canvas);
+
+    var ctx = canvas.getContext('2d');
+    if (!ctx) {
+      canvas.remove();
+      return;
+    }
+    ctx.scale(dpr, dpr);
+
+    var brand = sanitizeColor(instance.widgetConfig && instance.widgetConfig.brandColor);
+    var colors = [brand, '#fbbf24', '#34d399', '#60a5fa', '#f472b6'];
+    var originX = width / 2;
+    var originY = height * 0.3;
+    var count = Math.max(16, Math.min(28, Math.round(width / 16)));
+    var particles = [];
+    for (var i = 0; i < count; i += 1) {
+      // Upward fountain spread (around straight up) that gravity pulls back down.
+      var angle = -Math.PI / 2 + (Math.random() - 0.5) * Math.PI * 1.1;
+      var speed = 3 + Math.random() * 4.5;
+      particles.push({
+        x: originX + (Math.random() - 0.5) * 30,
+        y: originY,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        size: 4 + Math.random() * 5,
+        rot: Math.random() * Math.PI,
+        vrot: (Math.random() - 0.5) * 0.32,
+        color: colors[(Math.random() * colors.length) | 0],
+        round: Math.random() > 0.5,
+      });
+    }
+
+    var startedAt =
+      typeof performance !== 'undefined' && performance.now ? performance.now() : Date.now();
+    var DURATION = 1800;
+    var GRAVITY = 0.15;
+
+    function frame(now) {
+      // Bail if the card re-rendered (e.g. "Start over") and removed the canvas.
+      if (!canvas.isConnected) {
+        return;
+      }
+      var elapsed = now - startedAt;
+      ctx.clearRect(0, 0, width, height);
+      var fade = elapsed > DURATION - 500 ? Math.max(0, (DURATION - elapsed) / 500) : 1;
+      for (var p = 0; p < particles.length; p += 1) {
+        var pt = particles[p];
+        pt.vy += GRAVITY;
+        pt.vx *= 0.99;
+        pt.x += pt.vx;
+        pt.y += pt.vy;
+        pt.rot += pt.vrot;
+        ctx.save();
+        ctx.globalAlpha = fade;
+        ctx.translate(pt.x, pt.y);
+        ctx.rotate(pt.rot);
+        ctx.fillStyle = pt.color;
+        if (pt.round) {
+          ctx.beginPath();
+          ctx.arc(0, 0, pt.size / 2, 0, Math.PI * 2);
+          ctx.fill();
+        } else {
+          ctx.fillRect(-pt.size / 2, -pt.size / 2, pt.size, pt.size * 0.62);
+        }
+        ctx.restore();
+      }
+      if (elapsed < DURATION) {
+        window.requestAnimationFrame(frame);
+      } else {
+        canvas.remove();
+      }
+    }
+
+    window.requestAnimationFrame(frame);
+  }
+
   function renderEmailDeliveryState(instance) {
+    var email = escapeHtml(instance.emailDraft || 'your email');
     return (
       renderStepper(3, 3) +
-      '<div class="vz-reveal">' +
-      '<span class="vz-badge">' + ICON_CHECK + 'Email sent</span>' +
-      '<div class="vz-center" style="align-items:flex-start;text-align:left">' +
-      '<strong>Check your inbox for the finished visualization.</strong>' +
-      '<small>We sent the result to ' + escapeHtml(instance.emailDraft || 'your email') + '. If it does not arrive shortly, check spam or try again with a different email.</small>' +
-      '</div>' +
+      '<div class="vz-reveal vz-sent">' +
+      '<div class="vz-sent-icon">' + ICON_CHECK + '</div>' +
+      '<strong class="vz-sent-title">Email sent!</strong>' +
+      '<p class="vz-sent-sub">Your visualization is on its way to <b>' + email + '</b>. Check your inbox — if it is not there in a minute, take a quick look in spam.</p>' +
       '<div class="vz-row">' +
       '<button class="vz-button vz-button-secondary" type="button" data-role="restart">Start over</button>' +
       '</div>' +
@@ -1136,6 +1253,7 @@
         instance.state = 'email_delivery';
         instance.stateMessage = '';
         render(instance);
+        launchConfetti(instance);
         trackEvent(instance, 'email_delivery_confirmed', {
           generationJobId: instance.generationJobId,
         });
