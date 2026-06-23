@@ -374,6 +374,161 @@ async function sendResultEmail(
 }
 
 /**
+ * Addresses BCC'd on every new-lead notification — a global monitoring copy
+ * during early access. Configure (comma-separated) or disable via
+ * LEAD_NOTIFICATION_BCC; defaults to the founder inbox so it works out of the box.
+ */
+function getLeadNotificationBcc(): string[] {
+  const raw = process.env.LEAD_NOTIFICATION_BCC ?? 'trey@aspenlabs.ai';
+  return raw
+    .split(',')
+    .map(value => value.trim().toLowerCase())
+    .filter(value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value));
+}
+
+function buildLeadNotificationHtml(params: {
+  companyName: string;
+  logoUrl: string | null;
+  brandColor: string;
+  leadEmail: string;
+  materialName: string | null;
+  sourcePage: string | null;
+  shareUrl: string | null;
+  previewImageUrl: string | null;
+}): string {
+  const companyName = escapeHtml(params.companyName);
+  const leadEmail = escapeHtml(params.leadEmail);
+  const buttonTextColor = readableTextOn(params.brandColor);
+  const brandOnLight = readableBrandOnLight(params.brandColor);
+  const logo = params.logoUrl
+    ? `<img src="${escapeHtml(params.logoUrl)}" alt="${companyName}" style="display:block;max-width:150px;max-height:48px;object-fit:contain;margin:0;" />`
+    : `<p style="margin:0;color:${brandOnLight};font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;">${companyName}</p>`;
+  const materialLine = params.materialName
+    ? `<tr><td style="padding:5px 0;color:#64748b;font-size:14px;">Previewed</td><td style="padding:5px 0;color:#0f172a;font-size:14px;font-weight:700;text-align:right;">${escapeHtml(params.materialName)}</td></tr>`
+    : '';
+  const sourceLine = params.sourcePage
+    ? `<tr><td style="padding:5px 0;color:#64748b;font-size:14px;vertical-align:top;">On page</td><td style="padding:5px 0;text-align:right;"><a href="${escapeHtml(params.sourcePage)}" style="color:${brandOnLight};font-size:12px;word-break:break-all;">${escapeHtml(params.sourcePage)}</a></td></tr>`
+    : '';
+  const previewImg =
+    params.previewImageUrl && params.shareUrl
+      ? `<a href="${escapeHtml(params.shareUrl)}" style="display:block;text-decoration:none;"><img src="${escapeHtml(params.previewImageUrl)}" alt="Preview" style="display:block;width:100%;max-width:100%;border-radius:14px;border:1px solid #e2e8f0;margin:0 0 16px;" /></a>`
+      : '';
+  const shareButton = params.shareUrl
+    ? `<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin:8px 0 4px;"><tr><td align="center" bgcolor="${params.brandColor}" style="border-radius:14px;background:${params.brandColor};"><a href="${escapeHtml(params.shareUrl)}" style="display:block;padding:14px 20px;color:${buttonTextColor};font-size:15px;font-weight:800;text-decoration:none;border-radius:14px;">View their before &amp; after</a></td></tr></table>`
+    : '';
+
+  return `<div style="margin:0;padding:0;background:#f1f5f9;background-color:#f1f5f9;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" bgcolor="#f1f5f9" style="background:#f1f5f9;margin:0;padding:0;">
+      <tr><td align="center" bgcolor="#f1f5f9" style="padding:28px 14px;">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" bgcolor="#ffffff" style="max-width:560px;background:#ffffff;border:1px solid #e2e8f0;border-radius:22px;overflow:hidden;font-family:Arial,sans-serif;color:#0f172a;">
+          <tr><td bgcolor="#ffffff" style="padding:24px 26px 8px;">
+            ${logo}
+            <span style="display:inline-block;margin-top:14px;border:1px solid ${brandOnLight};border-radius:999px;padding:5px 10px;color:${brandOnLight};font-size:12px;font-weight:700;">New lead</span>
+            <h1 style="margin:14px 0 6px;color:#0f172a;font-size:24px;line-height:1.2;letter-spacing:-.02em;">You&rsquo;ve got a new lead</h1>
+            <p style="margin:0;color:#475569;font-size:15px;line-height:1.6;">Someone just used your visualizer. Reply to this email to reach them directly.</p>
+          </td></tr>
+          <tr><td bgcolor="#ffffff" style="padding:6px 26px 0;">
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" bgcolor="#f8fafc" style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;">
+              <tr><td bgcolor="#f8fafc" style="padding:14px 18px;">
+                <p style="margin:0 0 2px;color:#64748b;font-size:13px;">Lead email</p>
+                <p style="margin:0;font-size:18px;font-weight:800;"><a href="mailto:${leadEmail}" style="color:#0f172a;text-decoration:none;">${leadEmail}</a></p>
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-top:8px;">${materialLine}${sourceLine}</table>
+              </td></tr>
+            </table>
+          </td></tr>
+          <tr><td bgcolor="#ffffff" style="padding:16px 26px 26px;">
+            ${previewImg}
+            ${shareButton}
+            <p style="margin:16px 0 0;color:#94a3b8;font-size:12px;">Hitting reply goes straight to the lead. Preview link expires in 7 days.</p>
+          </td></tr>
+        </table>
+      </td></tr>
+    </table>
+  </div>`;
+}
+
+/**
+ * Emails the business owner that a new lead came through the widget (best effort).
+ * Goes to the workspace's reply-to address, BCCs the global monitoring inbox, and
+ * sets Reply-To to the lead so the owner can respond to them directly. Never
+ * throws — a notification failure must not affect the visitor flow.
+ */
+async function sendLeadNotificationEmail(
+  supabase: SupabaseClient,
+  job: GenerationJobRow,
+): Promise<void> {
+  if (!job.lead_id) {
+    return;
+  }
+
+  const resendApiKey = process.env.RESEND_API_KEY;
+  const resendFromEmail = process.env.RESEND_FROM_EMAIL;
+  if (!resendApiKey || !resendFromEmail) {
+    return;
+  }
+
+  const payload = parsePromptPayload(job.prompt);
+  const [leadResult, previewResult, branding] = await Promise.all([
+    supabase.from('leads').select('email').eq('id', job.lead_id).maybeSingle(),
+    supabase
+      .from('generated_previews')
+      .select('generated_path, share_token')
+      .eq('generation_job_id', job.id)
+      .maybeSingle(),
+    loadResultEmailBranding(supabase, job, payload.materialId),
+  ]);
+
+  const leadEmail = (leadResult.data as { email: string } | null)?.email;
+  // The notification is addressed to the business (workspace reply-to). Without
+  // one configured we have no one to notify, so skip.
+  const recipient = branding.replyToEmail;
+  if (!leadEmail || !recipient) {
+    return;
+  }
+
+  const preview = previewResult.data as {
+    generated_path: string | null;
+    share_token: string | null;
+  } | null;
+  const shareUrl = preview?.share_token
+    ? `${getPublicAppUrl()}/preview/${preview.share_token}`
+    : null;
+
+  let previewImageUrl: string | null = null;
+  if (preview?.generated_path) {
+    const signed = await supabase.storage
+      .from(RENDERS_BUCKET)
+      .createSignedUrl(preview.generated_path, RESULT_SIGNED_URL_TTL_SECONDS);
+    previewImageUrl = signed.data?.signedUrl ?? null;
+  }
+
+  const bcc = getLeadNotificationBcc().filter(address => address !== recipient.toLowerCase());
+
+  const resend = new Resend(resendApiKey);
+  try {
+    await resend.emails.send({
+      from: resendFromEmail,
+      to: [recipient],
+      ...(bcc.length > 0 ? { bcc } : {}),
+      replyTo: leadEmail,
+      subject: `New lead from your ${branding.companyName} visualizer: ${leadEmail}`,
+      html: buildLeadNotificationHtml({
+        companyName: branding.companyName,
+        logoUrl: branding.logoUrl,
+        brandColor: branding.brandColor,
+        leadEmail,
+        materialName: branding.materialName,
+        sourcePage: payload.sourcePage ?? null,
+        shareUrl,
+        previewImageUrl,
+      }),
+    });
+  } catch {
+    // Best effort — never affects the visitor's result flow.
+  }
+}
+
+/**
  * Processes one job by id. Safe to call more than once: it atomically claims the
  * job by flipping queued/stale->processing, so concurrent invocations (eager
  * trigger + cron backstop) won't double-generate.
@@ -572,6 +727,15 @@ export async function processGenerationJob(
       }
     }
 
+    // 8. Notify the business of the new lead (best effort; never fails the job).
+    if (job.lead_id) {
+      try {
+        await sendLeadNotificationEmail(supabase, job);
+      } catch {
+        // Lead notification is best-effort.
+      }
+    }
+
     return { ok: true, status: 'succeeded' };
   } catch (error) {
     const code =
@@ -628,6 +792,14 @@ export async function sendResultEmailForJob(
 
   const shareUrl = preview.share_token ? `${getPublicAppUrl()}/preview/${preview.share_token}` : null;
   await sendResultEmail(supabase, job, preview.original_upload_path, preview.generated_path, shareUrl);
+
+  // Post-reveal opt-in just attached a lead — notify the business (best effort).
+  try {
+    await sendLeadNotificationEmail(supabase, job);
+  } catch {
+    // Lead notification is best-effort.
+  }
+
   return { ok: true };
 }
 
