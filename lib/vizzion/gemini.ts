@@ -254,7 +254,9 @@ export async function generateVisualization(
   const model = getGeminiImageModel();
 
   // Normalize the input to JPEG before sending it to the image-edit model.
-  const inputJpeg = await sharp(input.imageBuffer).jpeg({ quality: 92 }).toBuffer();
+  // .rotate() with no args bakes in EXIF orientation first, so phone photos
+  // (often stored sideways with an orientation flag) aren't sent rotated.
+  const inputJpeg = await sharp(input.imageBuffer).rotate().jpeg({ quality: 92 }).toBuffer();
 
   const reference = await fetchReferenceImage(
     input.material.swatchUrl ?? input.material.textureUrl,
