@@ -1,41 +1,70 @@
-import type { Metadata } from 'next';
 import Script from 'next/script';
 import { Monitor, MousePointerClick } from 'lucide-react';
 
-// Customer-specific live demo page. Hosted on our own site so a prospect can
-// try their real widget without us touching their site. Because this page is
-// served from our first-party origin (app.vizzion.io / vizzion.io), the widget
-// passes the origin allowlist automatically.
-//
-// To spin up a demo for a new prospect, copy this folder to
-// app/demo/<prospect-slug>/page.tsx and swap the two constants below.
-const EMBED_KEY = 'vwk_3c38fe8aeca73645ef303560512aa450d5c6';
-const COMPANY_NAME = 'Premier Roofing & Gutters';
-const LOGO_URL =
-  'https://xjrcpmnwnfetivxeffzr.supabase.co/storage/v1/object/public/workspace-assets/dc86d7ab-ed2f-4ea1-9fa8-340b5dec3fb6/logos/d685cb80-a61d-4059-aca0-96ffe9d2715b.png';
+/**
+ * Reusable hosted-demo template for prospects. Renders a customer's real widget
+ * two ways — embedded inline and behind a popup button — with plain-language
+ * labels, served from our first-party origin (so it passes the widget's origin
+ * allowlist with no extra setup).
+ *
+ * To spin up a demo for a new prospect, create app/demo/<slug>/page.tsx:
+ *
+ *   import type { Metadata } from 'next';
+ *   import DemoPage, { type DemoConfig } from '@/components/demo/DemoPage';
+ *
+ *   const config: DemoConfig = {
+ *     companyName: 'Premier Roofing & Gutters',
+ *     logoUrl: 'https://.../logo.png',
+ *     embedKey: 'vwk_...',
+ *     productLabel: 'Roofing Visualizer',
+ *     headline: 'See a new roof on your',
+ *     headlineHighlight: 'actual home',
+ *     intro:
+ *       "Upload a photo of the house and preview Premier Roofing & Gutters' real " +
+ *       'roofing products on it in seconds.',
+ *   };
+ *
+ *   export const metadata: Metadata = {
+ *     title: `${config.companyName} — Live Demo`,
+ *     robots: { index: false, follow: false },
+ *   };
+ *
+ *   export default function Page() {
+ *     return <DemoPage config={config} />;
+ *   }
+ */
+
+export interface DemoConfig {
+  /** Business name shown in the header + copy. */
+  companyName: string;
+  /** Public logo URL (or null to fall back to the company name). */
+  logoUrl: string | null;
+  /** The widget's embed key (vwk_...). */
+  embedKey: string;
+  /** Subtitle under the company name, e.g. "Roofing Visualizer". */
+  productLabel: string;
+  /** Headline lead-in, e.g. "See a new roof on your". */
+  headline: string;
+  /** Accented tail of the headline, e.g. "actual home". */
+  headlineHighlight: string;
+  /** Industry-specific first sentence of the intro. */
+  intro: string;
+}
 
 const INLINE_TARGET_ID = 'vizzion-inline';
 const POPUP_TARGET_ID = 'vizzion-popup';
 
-export const metadata: Metadata = {
-  title: `${COMPANY_NAME} — Roofing Visualizer (Live Demo)`,
-  description:
-    'Upload a photo of a home and preview real roofing styles on it in seconds.',
-  // Customer-specific demo: keep it out of search engines.
-  robots: { index: false, follow: false },
-};
-
-// Queue-safe init mirrors the production embed snippet. We mount the SAME widget
-// twice with per-embed overrides: once embedded in the page (inline) and once
-// behind a button (popup), so the prospect can compare both on one page.
-function buildInitScript(): string {
+// Queue-safe init mirroring the production embed snippet. Mounts the SAME widget
+// twice via per-embed overrides: once inline, once as a popup, so the prospect
+// can compare both on one page.
+function buildInitScript(embedKey: string): string {
   const inline = JSON.stringify({
-    embedKey: EMBED_KEY,
+    embedKey,
     target: `#${INLINE_TARGET_ID}`,
     mode: 'inline',
   });
   const popup = JSON.stringify({
-    embedKey: EMBED_KEY,
+    embedKey,
     target: `#${POPUP_TARGET_ID}`,
     mode: 'popup',
     autoOpen: false,
@@ -53,16 +82,18 @@ function buildInitScript(): string {
 })();`;
 }
 
-export default function PremierRoofingDemoPage() {
+export default function DemoPage({ config }: { config: DemoConfig }) {
   return (
     <main className="min-h-screen bg-bg-primary text-text-primary">
       <div className="mx-auto flex min-h-screen max-w-5xl flex-col px-6 py-10">
         <header className="flex items-center gap-3">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={LOGO_URL} alt={COMPANY_NAME} className="h-9 w-auto" />
+          {config.logoUrl ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={config.logoUrl} alt={config.companyName} className="h-9 w-auto" />
+          ) : null}
           <div className="leading-tight">
-            <p className="text-sm font-semibold text-text-primary">{COMPANY_NAME}</p>
-            <p className="text-xs text-text-tertiary">Roofing Visualizer</p>
+            <p className="text-sm font-semibold text-text-primary">{config.companyName}</p>
+            <p className="text-xs text-text-tertiary">{config.productLabel}</p>
           </div>
           <span className="ml-auto inline-flex items-center rounded-full bg-accent-light px-3 py-1 text-xs font-medium text-accent">
             Live demo
@@ -71,11 +102,10 @@ export default function PremierRoofingDemoPage() {
 
         <section className="mt-12 max-w-2xl md:mt-16">
           <h1 className="text-4xl font-bold leading-tight tracking-tight text-text-primary md:text-5xl">
-            See a new roof on your <span className="text-accent">actual home</span>
+            {config.headline} <span className="text-accent">{config.headlineHighlight}</span>
           </h1>
           <p className="mt-4 text-lg text-text-secondary">
-            Upload a photo of the house and preview {COMPANY_NAME}&apos;s real roofing products on
-            it in seconds. Below are two ways the tool can appear on your website — try them both
+            {config.intro} Below are two ways the tool can appear on your website — try them both
             and tell us which you prefer.
           </p>
         </section>
@@ -125,7 +155,7 @@ export default function PremierRoofingDemoPage() {
           first-party (passes the origin allowlist without extra config). */}
       <Script src="/widget.js" strategy="afterInteractive" />
       <Script id="vizzion-demo-init" strategy="afterInteractive">
-        {buildInitScript()}
+        {buildInitScript(config.embedKey)}
       </Script>
     </main>
   );
