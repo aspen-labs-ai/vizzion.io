@@ -6,6 +6,12 @@ import {
   resolvePublicWidgetByIdentifier,
 } from '@/lib/vizzion/widget-public';
 
+// Temporary per-widget notes shown under the material picker. Swap for a
+// `widgets.materials_note` column + dashboard field when more customers need it.
+const MATERIAL_PICKER_NOTES: Record<string, string> = {
+  vwk_3c38fe8aeca73645ef303560512aa450d5c6: 'More colors available on request — just ask!',
+};
+
 export async function OPTIONS(request: NextRequest) {
   return publicOptionsResponse(request);
 }
@@ -62,6 +68,7 @@ export async function GET(request: NextRequest) {
           maxGenerationsPerSession: widget.max_generations_per_session,
           maxGenerationsPerEmailLifetime: widget.max_generations_per_email_lifetime,
           limitReachedCtaUrl: widget.limit_reached_cta_url,
+          materialsNote: MATERIAL_PICKER_NOTES[widget.embed_key] ?? null,
           materials: widget.materials,
         },
         turnstileSiteKey,

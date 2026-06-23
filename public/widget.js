@@ -320,6 +320,7 @@
       '.vz-material-check{position:absolute;top:6px;right:6px;width:18px;height:18px;border-radius:999px;background:var(--vz-brand);color:var(--vz-on-brand);display:none;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(2,6,23,.4)}',
       '.vz-material-check svg{width:11px;height:11px}',
       '.vz-material-active .vz-material-check{display:flex}',
+      '.vz-materials-note{margin:10px 0 0;font-size:12px;line-height:1.4;color:var(--vz-muted);text-align:center}',
       '.vz-form{display:flex;flex-direction:column;gap:12px}',
       '.vz-label{display:block;font-size:12.5px;font-weight:500;color:var(--vz-muted);margin-bottom:6px}',
       '.vz-input{width:100%;background:var(--vz-surface);border:1px solid var(--vz-line2);border-radius:12px;padding:12px 13px;color:var(--vz-strong);font-size:15px;font-family:inherit;transition:border-color .15s ease,box-shadow .15s ease}',
@@ -859,6 +860,9 @@
       renderStepper(instance.widgetConfig.requireEmail ? 2 : 3, 1) +
       '<p class="vz-step-title">Step 2 · Choose your look</p>' +
       '<div class="vz-grid">' + grid + '</div>' +
+      (instance.widgetConfig.materialsNote
+        ? '<p class="vz-materials-note">' + escapeHtml(instance.widgetConfig.materialsNote) + '</p>'
+        : '') +
       verificationMarkup +
       '<div class="vz-row">' +
       '<button class="vz-button vz-button-secondary" type="button" data-role="back-upload">Back</button>' +
@@ -1935,6 +1939,10 @@
           maxGenerationsPerSession: configPayload.widget.maxGenerationsPerSession,
           maxGenerationsPerEmailLifetime: configPayload.widget.maxGenerationsPerEmailLifetime,
           limitReachedCtaUrl: configPayload.widget.limitReachedCtaUrl || null,
+          materialsNote:
+            typeof configPayload.widget.materialsNote === 'string'
+              ? configPayload.widget.materialsNote
+              : null,
           materials: Array.isArray(configPayload.widget.materials)
             ? configPayload.widget.materials
             : [],
