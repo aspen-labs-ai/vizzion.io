@@ -29,7 +29,7 @@ export interface GenerateVisualizationInput {
   imageBuffer: Buffer;
   /** MIME type of the uploaded photo (image/jpeg, image/png, image/webp). */
   imageMimeType: string;
-  /** What the photo depicts, used to phrase preservation context. */
+  /** What the photo depicts. Stored as run metadata; not used in the prompt. */
   subjectType: WidgetSubjectType;
   /**
    * Plain phrase for the surface this widget changes (e.g. "the roof", "the
@@ -77,44 +77,36 @@ export function getGeminiImageModel(): string {
   return process.env.GEMINI_IMAGE_MODEL?.trim() || DEFAULT_IMAGE_MODEL;
 }
 
-const SUBJECT_DESCRIPTORS: Record<WidgetSubjectType, string> = {
-  home: 'the exterior of a home or building',
-  vehicle: 'a vehicle',
-  body: "a person's body",
-  yard: 'an outdoor yard or property',
-  boat: 'a boat',
-  room: 'an interior room',
-  generic: 'the main subject in the scene',
-};
-
 /**
- * Builds the image-edit instruction. The customer describes a material in plain
- * terms (name + optional description + optional reference photo); the widget's
- * target_surface says where it goes; subject_type supplies the realism /
- * preservation context so unrelated parts of the photo stay untouched. No
- * "prompt engineering" is exposed to the customer — this template is the only
+ * Builds the image-edit instruction. Kept deliberately short and literal so the
+ * model has little room to reinterpret the scene: name the surface to change,
+ * the material to apply (and the reference image when present), then a hard
+ * instruction to leave everything else untouched. The customer supplies the
+ * material name + optional plain description; target_surface says where it goes.
+ * No "prompt engineering" is exposed to the customer — this template is the only
  * place the model instruction is assembled.
  */
 export function buildVisualizationPrompt(
-  subjectType: WidgetSubjectType,
   material: GeminiMaterialInput,
   hasReferenceImage: boolean,
   targetSurface: string | null,
 ): string {
-  const subject = SUBJECT_DESCRIPTORS[subjectType] ?? SUBJECT_DESCRIPTORS.generic;
   const surface = targetSurface?.trim() || 'the primary surface';
-
   const description = material.promptModifier?.trim();
-  const descriptionNote = description ? ` Material details: ${description}.` : '';
+  const photo = hasReferenceImage ? 'the first image' : 'the image';
 
-  const referenceNote = hasReferenceImage
-    ? ` The second image is a real sample of ${material.name} — match its texture, color, and pattern precisely.`
-    : '';
+  let instruction = `Using ${photo}, change only ${surface} to a new material: ${material.name}.`;
+  if (description) {
+    instruction += ` The material is ${description}.`;
+  }
+  if (hasReferenceImage) {
+    instruction += ` You can see this exact material in the second image — match its color, texture, and pattern.`;
+  }
 
   return [
-    `Using the uploaded photo of ${subject}, change only ${surface} to a brand-new ${material.name}, freshly installed and in pristine, like-new condition, covering the existing material there.${descriptionNote}${referenceNote}`,
-    'Render it as a clean, newly installed, undamaged surface with no wear, aging, weathering, patina, rust, stains, moss, or fading.',
-    'Keep everything else in the image exactly the same, preserving the original style, lighting, and composition.',
+    instruction,
+    `Make ${surface} look freshly installed and brand-new.`,
+    `Keep everything else in the image exactly the same. Only ${surface} should change.`,
   ].join('\n');
 }
 
@@ -262,7 +254,6 @@ export async function generateVisualization(
     input.material.swatchUrl ?? input.material.textureUrl,
   );
   const prompt = buildVisualizationPrompt(
-    input.subjectType,
     input.material,
     Boolean(reference),
     input.targetSurface,
