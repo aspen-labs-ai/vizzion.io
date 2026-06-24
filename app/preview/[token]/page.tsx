@@ -5,6 +5,7 @@ import PreviewComparisonSlider from '@/components/preview/PreviewComparisonSlide
 import { readableBrandOnLight, readableTextOn, sanitizeBrandColor } from '@/lib/vizzion/brand-color';
 import {
   buildDownloadFilename,
+  buildPoweredByUrl,
   getMaterialName,
   isValidShareToken,
   normalizeStoragePath,
@@ -122,6 +123,7 @@ export default async function SharedPreviewPage({
   } | null;
   const widget = widgetResult.data as { brand_color: string | null } | null;
   const companyName = workspace?.company_name?.trim() || workspace?.name?.trim() || 'Your contractor';
+  const poweredByUrl = buildPoweredByUrl(companyName);
   const brandColor = sanitizeBrandColor(widget?.brand_color || workspace?.brand_color);
   const brandOnLight = readableBrandOnLight(brandColor);
   const materialName = getMaterialName(preview.material_snapshot);
@@ -235,7 +237,7 @@ export default async function SharedPreviewPage({
 
         <div className="mt-5 flex justify-center">
           <a
-            href="https://vizzion.io"
+            href={poweredByUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full bg-slate-900/90 px-3.5 py-1.5 transition hover:bg-slate-900"

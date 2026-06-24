@@ -1,5 +1,6 @@
 import Script from 'next/script';
 import { Check } from 'lucide-react';
+import { buildPoweredByUrl } from '@/lib/vizzion/preview-share';
 
 /**
  * Reusable prospect-facing demo template. Pitches the business owner on the
@@ -65,18 +66,45 @@ export default function DemoPage({ config }: { config: DemoConfig }) {
     'Embeds on your existing website',
     'Live in minutes — no developer',
   ];
+  const vizzionUrl = buildPoweredByUrl(config.companyName, 'demo');
 
   return (
     <main className="min-h-screen bg-bg-primary text-text-primary">
-      {/* Light header so dark / transparent logos stay visible */}
-      <header className="flex items-center gap-3 border-b border-slate-200 bg-white px-6 py-3">
-        {config.logoUrl ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={config.logoUrl} alt={config.companyName} className="h-9 w-auto" />
-        ) : (
-          <span className="text-base font-semibold text-slate-900">{config.companyName}</span>
-        )}
-        <span className="ml-auto text-xs font-medium text-slate-400">Powered by Vizzion</span>
+      {/* Co-branded header: the prospect's logo sits on a light chip (so any
+          logo stays legible on the dark bar) and Vizzion's logo links home. */}
+      <header className="border-b border-border-default bg-bg-secondary">
+        <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-6 py-4">
+          {config.logoUrl ? (
+            <span className="inline-flex items-center rounded-lg bg-white px-3.5 py-2 shadow-sm">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={config.logoUrl}
+                alt={config.companyName}
+                className="h-8 w-auto max-w-[180px] object-contain"
+              />
+            </span>
+          ) : (
+            <span className="text-lg font-semibold text-text-primary">{config.companyName}</span>
+          )}
+          <a
+            href={vizzionUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2"
+            aria-label="Visit Vizzion"
+          >
+            <span className="hidden text-[10px] font-semibold uppercase tracking-[0.18em] text-text-tertiary sm:inline">
+              Powered by
+            </span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/vizzion-logo.png"
+              alt=""
+              className="h-6 w-auto opacity-90 transition group-hover:opacity-100"
+            />
+            <span className="text-base font-bold tracking-tight text-text-primary">Vizzion</span>
+          </a>
+        </div>
       </header>
 
       {/* Centered value pitch + live widget */}
@@ -104,6 +132,40 @@ export default function DemoPage({ config }: { config: DemoConfig }) {
         <p className="mt-10 mb-4 text-sm font-medium text-text-tertiary">Try it yourself</p>
         <div className="w-full" id={WIDGET_TARGET_ID} />
       </div>
+
+      {/* Footer: brand it back to Vizzion with a clear path to the site. */}
+      <footer className="mt-8 border-t border-border-default">
+        <div className="mx-auto flex max-w-2xl flex-col items-center gap-5 px-6 py-14 text-center">
+          <a
+            href={vizzionUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2"
+            aria-label="Visit Vizzion"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/vizzion-logo.png"
+              alt=""
+              className="h-8 w-auto opacity-90 transition group-hover:opacity-100"
+            />
+            <span className="text-xl font-bold tracking-tight text-text-primary">Vizzion</span>
+          </a>
+          <p className="max-w-md text-sm leading-relaxed text-text-tertiary">
+            Vizzion turns your website traffic into qualified leads with realistic product
+            previews — embedded right on your own site.
+          </p>
+          <a
+            href={vizzionUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-bg-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent-hover"
+          >
+            See how Vizzion works
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </footer>
 
       {/* Load widget.js from this same origin so the widget's API calls stay
           first-party (passes the origin allowlist without extra config). */}

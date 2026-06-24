@@ -32,3 +32,31 @@ export function buildDownloadFilename(companyName: string, materialName: string 
     .replace(/-+$/, '');
   return `${base || 'visualization'}.jpg`;
 }
+
+const VIZZION_SITE_URL = 'https://vizzion.io';
+
+// Attribution slug for UTM params, e.g. "Joe's Roofing" -> "joes-roofing".
+function toAttributionSlug(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/['’]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 60)
+    .replace(/-+$/, '');
+}
+
+/**
+ * "Powered by Vizzion" link with UTM params so an inbound click is attributed to
+ * the customer who drove it (utm_source) and to the surface it came from
+ * (utm_medium, e.g. "preview" or "demo"). Falls back to a generic source when
+ * the name can't be slugified.
+ */
+export function buildPoweredByUrl(companyName: string, medium: string = 'preview'): string {
+  const params = new URLSearchParams({
+    utm_source: toAttributionSlug(companyName) || 'customer',
+    utm_medium: medium,
+    utm_campaign: 'powered_by',
+  });
+  return `${VIZZION_SITE_URL}/?${params.toString()}`;
+}
