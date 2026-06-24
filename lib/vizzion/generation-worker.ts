@@ -403,12 +403,28 @@ function buildLeadNotificationHtml(params: {
   const logo = params.logoUrl
     ? `<img src="${escapeHtml(params.logoUrl)}" alt="${companyName}" style="display:block;max-width:150px;max-height:48px;object-fit:contain;margin:0;" />`
     : `<p style="margin:0;color:${brandOnLight};font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;">${companyName}</p>`;
-  const materialLine = params.materialName
-    ? `<tr><td style="padding:5px 0;color:#64748b;font-size:14px;">Previewed</td><td style="padding:5px 0;color:#0f172a;font-size:14px;font-weight:700;text-align:right;">${escapeHtml(params.materialName)}</td></tr>`
+  // Show the source page as its hostname (clickable) instead of the full,
+  // often very long, URL — keeps the card tidy.
+  let sourceDisplay = params.sourcePage ?? '';
+  if (params.sourcePage) {
+    try {
+      sourceDisplay = new URL(params.sourcePage).hostname || params.sourcePage;
+    } catch {
+      sourceDisplay = params.sourcePage;
+    }
+  }
+  const metaLabel =
+    'color:#64748b;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;';
+  const materialBlock = params.materialName
+    ? `<p style="margin:0 0 3px;${metaLabel}">Previewed</p><p style="margin:0;color:#0f172a;font-size:15px;font-weight:700;line-height:1.4;">${escapeHtml(params.materialName)}</p>`
     : '';
-  const sourceLine = params.sourcePage
-    ? `<tr><td style="padding:5px 0;color:#64748b;font-size:14px;vertical-align:top;">On page</td><td style="padding:5px 0;text-align:right;"><a href="${escapeHtml(params.sourcePage)}" style="color:${brandOnLight};font-size:12px;word-break:break-all;">${escapeHtml(params.sourcePage)}</a></td></tr>`
+  const sourceBlock = params.sourcePage
+    ? `<p style="margin:${params.materialName ? '14px' : '0'} 0 3px;${metaLabel}">On page</p><a href="${escapeHtml(params.sourcePage)}" style="color:${brandOnLight};font-size:13px;line-height:1.4;text-decoration:none;word-break:break-word;overflow-wrap:anywhere;">${escapeHtml(sourceDisplay)} &rsaquo;</a>`
     : '';
+  const metaBlock =
+    materialBlock || sourceBlock
+      ? `<div style="margin-top:14px;padding-top:14px;border-top:1px solid #e2e8f0;">${materialBlock}${sourceBlock}</div>`
+      : '';
   const previewImg =
     params.previewImageUrl && params.shareUrl
       ? `<a href="${escapeHtml(params.shareUrl)}" style="display:block;text-decoration:none;"><img src="${escapeHtml(params.previewImageUrl)}" alt="Preview" style="display:block;width:100%;max-width:100%;border-radius:14px;border:1px solid #e2e8f0;margin:0 0 16px;" /></a>`
@@ -429,10 +445,10 @@ function buildLeadNotificationHtml(params: {
           </td></tr>
           <tr><td bgcolor="#ffffff" style="padding:6px 26px 0;">
             <table role="presentation" width="100%" cellspacing="0" cellpadding="0" bgcolor="#f8fafc" style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;">
-              <tr><td bgcolor="#f8fafc" style="padding:14px 18px;">
-                <p style="margin:0 0 2px;color:#64748b;font-size:13px;">Lead email</p>
-                <p style="margin:0;font-size:18px;font-weight:800;"><a href="mailto:${leadEmail}" style="color:#0f172a;text-decoration:none;">${leadEmail}</a></p>
-                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-top:8px;">${materialLine}${sourceLine}</table>
+              <tr><td bgcolor="#f8fafc" style="padding:16px 18px;">
+                <p style="margin:0 0 3px;color:#64748b;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;">Lead email</p>
+                <p style="margin:0;font-size:18px;font-weight:800;line-height:1.3;"><a href="mailto:${leadEmail}" style="color:#0f172a;text-decoration:none;">${leadEmail}</a></p>
+                ${metaBlock}
               </td></tr>
             </table>
           </td></tr>
