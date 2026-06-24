@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { trackClarityEvent, setClarityTag } from '@/lib/analytics/clarity';
 
 const INDUSTRIES = [
   'Roofing',
@@ -22,6 +23,20 @@ const INDUSTRIES = [
   'Other',
 ];
 
+// FormSubmit redirects here after a successful POST. We thread the selected
+// industry and the page the form was submitted from through the URL so Clarity
+// can tag the converting session (see the `submitted=true` effect below).
+function buildSuccessRedirect(industry: string, source: string): string {
+  const params = new URLSearchParams({ submitted: 'true' });
+  if (industry) {
+    params.set('industry', industry);
+  }
+  if (source) {
+    params.set('source', source);
+  }
+  return `https://vizzion.io/?${params.toString()}#signup`;
+}
+
 export default function SignupSection({ 
   defaultIndustry
 }: { 
@@ -29,12 +44,33 @@ export default function SignupSection({
 }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [industry, setIndustry] = useState(defaultIndustry || '');
+  const [sourcePath, setSourcePath] = useState('');
+
+  // Capture the page the form lives on so it survives the FormSubmit redirect.
+  useEffect(() => {
+    setSourcePath(window.location.pathname);
+  }, []);
 
   useEffect(() => {
     // Check URL for submitted parameter
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('submitted') === 'true') {
       setShowSuccess(true);
+
+      // Tag the converting session for segmentation in Clarity. Validate the
+      // industry against the known list so a tampered URL can't pollute tags.
+      const submittedIndustry = urlParams.get('industry');
+      if (submittedIndustry && INDUSTRIES.includes(submittedIndustry)) {
+        setClarityTag('industry', submittedIndustry);
+      }
+      const submittedSource = urlParams.get('source');
+      if (submittedSource && submittedSource.startsWith('/')) {
+        setClarityTag('signup_source', submittedSource);
+      }
+      // Confirmed conversion: fires only after FormSubmit's success round-trip.
+      trackClarityEvent('lead_form_submitted');
+
       // Clear URL parameter after 5 seconds
       const timer = setTimeout(() => {
         setShowSuccess(false);
@@ -77,7 +113,7 @@ export default function SignupSection({
             <input type="hidden" name="_subject" value="New Vizzion Lead" />
             <input type="hidden" name="_template" value="table" />
             <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_next" value="https://vizzion.io/?submitted=true#signup" />
+            <input type="hidden" name="_next" value={buildSuccessRedirect(industry, sourcePath)} />
             <input type="hidden" name="_webhook" value="https://vizzion.io/api/webhook/formsubmit" />
 
             <div>
@@ -103,7 +139,8 @@ export default function SignupSection({
             <div>
               <select
                 name="industry"
-                defaultValue={defaultIndustry || ''}
+                value={industry}
+                onChange={(e) => setIndustry(e.target.value)}
                 required
                 className="w-full px-6 py-4 bg-bg-tertiary border border-border-default rounded-lg text-text-primary focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all text-lg appearance-none"
                 style={{ colorScheme: 'dark' }}
