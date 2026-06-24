@@ -61,7 +61,7 @@ function buildInitScript(embedKey: string): string {
 export default function DemoPage({ config }: { config: DemoConfig }) {
   const uploadNoun = config.uploadNoun ?? 'home';
   const benefits = [
-    'Captures every visitor’s email',
+    'Turns visitors into leads',
     'Embeds on your existing website',
     'Live in minutes — no developer',
   ];
@@ -88,9 +88,9 @@ export default function DemoPage({ config }: { config: DemoConfig }) {
           Turn website visitors into <span className="text-accent">{config.trade} leads</span>
         </h1>
         <p className="mt-4 max-w-xl text-lg text-text-secondary">
-          Your visitors upload a photo of their {uploadNoun}, instantly see your {config.trade} on
-          it, and enter their email to get the result — turning the traffic you already have into
-          qualified leads in your inbox.
+          A visitor uploads a photo of their {uploadNoun}, enters their email, and gets a realistic
+          preview of your {config.trade} on it — sent straight to their inbox. You get a new lead
+          with every preview.
         </p>
 
         <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-text-secondary">

@@ -1793,6 +1793,9 @@
       var handle = root.querySelector('[data-role="compare-handle"]');
       if (compare) {
         var dragging = false;
+        var compareRect = null;
+        var compareRafId = null;
+        var pendingClientX = 0;
 
         var setPct = function (pct) {
           pct = Math.max(0, Math.min(100, pct));
@@ -1803,16 +1806,33 @@
           }
         };
 
-        var setFromClientX = function (clientX) {
-          var rect = compare.getBoundingClientRect();
+        var applyClientX = function (clientX) {
+          // Reuse the rect captured at drag start so we never force a synchronous
+          // layout (getBoundingClientRect) mid-drag — that read-after-write was
+          // the source of the handle lag.
+          var rect = compareRect || compare.getBoundingClientRect();
           if (!rect.width) {
             return;
           }
           setPct(((clientX - rect.left) / rect.width) * 100);
         };
 
+        // Coalesce moves to one update per animation frame so rapid pointer
+        // events don't pile up and trail behind the cursor.
+        var scheduleClientX = function (clientX) {
+          pendingClientX = clientX;
+          if (compareRafId !== null) {
+            return;
+          }
+          compareRafId = window.requestAnimationFrame(function () {
+            compareRafId = null;
+            applyClientX(pendingClientX);
+          });
+        };
+
         compare.addEventListener('pointerdown', function (event) {
           dragging = true;
+          compareRect = compare.getBoundingClientRect();
           if (compare.setPointerCapture) {
             try {
               compare.setPointerCapture(event.pointerId);
@@ -1820,16 +1840,21 @@
               // Capture is best-effort.
             }
           }
-          setFromClientX(event.clientX);
+          applyClientX(event.clientX);
           event.preventDefault();
         });
         compare.addEventListener('pointermove', function (event) {
           if (dragging) {
-            setFromClientX(event.clientX);
+            scheduleClientX(event.clientX);
           }
         });
         var endDrag = function () {
           dragging = false;
+          if (compareRafId !== null) {
+            window.cancelAnimationFrame(compareRafId);
+            compareRafId = null;
+          }
+          compareRect = null;
         };
         compare.addEventListener('pointerup', endDrag);
         compare.addEventListener('pointercancel', endDrag);

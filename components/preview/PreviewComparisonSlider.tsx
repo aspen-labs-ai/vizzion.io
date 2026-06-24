@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { readableTextOn } from '@/lib/vizzion/brand-color';
 
 interface PreviewComparisonSliderProps {
@@ -17,24 +17,51 @@ export default function PreviewComparisonSlider({
   const [position, setPosition] = useState(50);
   const surfaceRef = useRef<HTMLDivElement>(null);
   const draggingRef = useRef(false);
+  const rectRef = useRef<DOMRect | null>(null);
+  const rafRef = useRef<number | null>(null);
+  const pendingXRef = useRef(0);
   const afterTextColor = readableTextOn(brandColor);
 
-  const updateFromClientX = useCallback((clientX: number) => {
-    const element = surfaceRef.current;
-    if (!element) {
-      return;
-    }
-    const rect = element.getBoundingClientRect();
-    if (!rect.width) {
+  const applyFromClientX = useCallback((clientX: number) => {
+    // Reuse the rect captured at drag start so we never force a synchronous
+    // layout (getBoundingClientRect) on every move — that read-after-write was
+    // the source of the slider lag.
+    const rect = rectRef.current ?? surfaceRef.current?.getBoundingClientRect();
+    if (!rect || !rect.width) {
       return;
     }
     const next = ((clientX - rect.left) / rect.width) * 100;
     setPosition(Math.max(0, Math.min(100, next)));
   }, []);
 
+  // Coalesce moves to one update per animation frame.
+  const scheduleFromClientX = useCallback(
+    (clientX: number) => {
+      pendingXRef.current = clientX;
+      if (rafRef.current !== null) {
+        return;
+      }
+      rafRef.current = requestAnimationFrame(() => {
+        rafRef.current = null;
+        applyFromClientX(pendingXRef.current);
+      });
+    },
+    [applyFromClientX],
+  );
+
+  useEffect(
+    () => () => {
+      if (rafRef.current !== null) {
+        cancelAnimationFrame(rafRef.current);
+      }
+    },
+    [],
+  );
+
   const handlePointerDown = useCallback(
     (event: React.PointerEvent<HTMLDivElement>) => {
       draggingRef.current = true;
+      rectRef.current = surfaceRef.current?.getBoundingClientRect() ?? null;
       // Capture so the drag keeps tracking even if the finger/cursor leaves the
       // element; touch-action: pan-y (below) lets vertical swipes still scroll.
       try {
@@ -42,9 +69,9 @@ export default function PreviewComparisonSlider({
       } catch {
         // Some browsers can reject capture; dragging still works without it.
       }
-      updateFromClientX(event.clientX);
+      applyFromClientX(event.clientX);
     },
-    [updateFromClientX],
+    [applyFromClientX],
   );
 
   const handlePointerMove = useCallback(
@@ -52,13 +79,18 @@ export default function PreviewComparisonSlider({
       if (!draggingRef.current) {
         return;
       }
-      updateFromClientX(event.clientX);
+      scheduleFromClientX(event.clientX);
     },
-    [updateFromClientX],
+    [scheduleFromClientX],
   );
 
   const stopDragging = useCallback(() => {
     draggingRef.current = false;
+    if (rafRef.current !== null) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
+    rectRef.current = null;
   }, []);
 
   return (
