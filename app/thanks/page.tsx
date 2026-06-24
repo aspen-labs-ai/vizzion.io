@@ -38,7 +38,7 @@ export default function ThanksPage() {
         <div className="pt-8">
           <Link
             href="/"
-            className="inline-block px-8 py-4 bg-accent hover:bg-accent-hover text-primary text-lg font-semibold rounded-lg transition-all duration-250 hover:shadow-accent-glow hover:-translate-y-0.5"
+            className="vz-btn-primary vz-btn-lg"
           >
             Back to Home
           </Link>

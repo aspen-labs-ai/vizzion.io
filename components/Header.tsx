@@ -81,7 +81,7 @@ export default function Header() {
             className="h-10 w-auto transition-transform duration-300 group-hover:scale-105"
             priority
           />
-          <div className="text-2xl font-bold text-text-primary tracking-tight">
+          <div className="text-2xl font-bold text-text-primary tracking-tight font-display">
             VIZZION.IO
           </div>
         </Link>
@@ -180,10 +180,7 @@ export default function Header() {
           >
             Pricing
           </Link>
-          <Link
-            href="/#signup"
-            className="inline-flex items-center justify-center gap-2 px-8 py-3 font-semibold rounded-lg bg-accent text-primary hover:bg-accent-hover transition-all duration-250 hover:-translate-y-0.5 hover:shadow-accent-glow"
-          >
+          <Link href="/#signup" className="vz-btn-primary vz-btn-sm">
             Get Started
           </Link>
         </nav>
@@ -270,7 +267,7 @@ export default function Header() {
           </Link>
           <Link
             href="/#signup"
-            className="py-3 px-6 text-center font-semibold rounded-lg bg-accent text-primary hover:bg-accent-hover transition-all mt-4"
+            className="vz-btn-primary mt-4"
             onClick={closeMobileMenu}
           >
             Get Started

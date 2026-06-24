@@ -5,240 +5,169 @@ export const artificialTurfData: IndustryData = {
   name: "Artificial Turf",
   shortName: "Artificial Turf",
   metaTitle: "Artificial Turf Visualizer Widget for Turf Websites | Vizzion",
-  metaDescription: "Use an artificial turf visualizer widget on your turf website. Let visitors preview options on their own photo and turn traffic into qualified leads.",
+  metaDescription:
+    "Add an artificial turf visualizer widget to your website. Visitors preview turf blade styles and colors on their own yard and become exclusive, ready-to-quote leads.",
 
-  lastUpdated: "February 15, 2026",
+  lastUpdated: "June 17, 2026",
   evidenceNotes: [
-    "Artificial Turf benchmark ranges shown here are directional and should be validated against your own pipeline data.",
-    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+    "Benchmark ranges are directional — validate against your own pipeline data.",
+    "Project values and shared-lead prices vary by region, yard size, and season.",
   ],
 
   header: {
-    badge: "Turf Industry",
-    headline: "Let Homeowners See Turf Transformation on Their Actual Yard",
-    highlightWord: "Turf",
+    badge: "Artificial turf visualizer widget",
+    headline: "Show homeowners your turf on their yard",
+    highlightWord: "yard",
+    accentLine: "in seconds.",
     intro:
-      "Add an artificial turf visualizer widget to your turf website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Homeowners are curious about turf but worried it won't look natural on their yard. Vizzion lets them upload a photo and see synthetic turf replacing their actual lawn — their lot, their landscaping, their house. To see the full result, they enter their email. You get an exclusive, high-intent lead from your own website. No shared lists, no cold calls, no convincing required.",
-    introHighlight: "Worried it won't look natural on their yard.",
-    cta: { text: "See It in Action", href: "#how-it-works" },
+      "Homeowners upload a photo of their yard and preview your turf on it. They enter their email to save the result — you get an exclusive lead from your own site traffic.",
+    cta: { text: "Get Started Free", href: "#signup" },
   },
 
   context: {
-    headline: "The Turf Industry Is Booming — But Lead Gen Is Still Stuck in the Stone Age",
+    headline: "People Don't Buy Turf They Can't Picture",
     paragraphs: [
-      `Water restrictions across California, Arizona, Nevada, Texas, and Colorado are driving record demand for artificial turf. Municipalities are banning new sod in residential developments. Utility rebates of $1 to $3 per square foot are paying homeowners to rip out natural grass. The average residential install runs $8,000 to $15,000 — and for larger yards or commercial work, it scales fast. If you're a turf installer, the demand is there. The question is whether your website is capturing it.`,
-      `For most installers, the answer is no. Your site has project photos and a contact form — the same setup every contractor uses. Conversion rates sit around 2 to 4 percent. The problem is straightforward: turf is a visual product, and homeowners can't picture it on their yard. Their yard has slopes, shade, garden beds, a cracked patio. Will turf look natural there? That uncertainty is the reason they browse and bounce instead of picking up the phone.`,
-      `There's no visualization tool built for the turf industry. Measurement software, infill calculators, CRM platforms — the rest of your sales stack has tools. But the top of the funnel, where a homeowner is Googling "artificial turf cost" and deciding whether to request a quote, has nothing. That's the gap Vizzion fills.`,
+      `Your visitor is about to spend $8,000 to $15,000 to replace their lawn — then tries to picture the result from a 4-inch turf swatch or a gallery photo of someone else's yard. A blade sample that looks lush in their hand says nothing about how turf reads across their own slopes, shade, and garden beds. The question they can't shake — will it look natural on my yard? — is exactly why they browse, hesitate, and keep shopping.`,
+
+      `Vizzion puts the finished lawn in front of them on their actual yard in seconds. Once they can picture it, the hardest part of the sale is already done — and they enter their email to save the preview so you can follow up while they're still excited.`,
     ],
     highlights: [
-      "$1 to $3 per square foot rebates driving demand",
-      "no visualization tool built for the turf industry",
-      "uncertainty is the reason they browse and bounce",
+      "will it look natural on my yard?",
+      "browse, hesitate, and keep shopping",
     ],
     callout: {
-      stat: "14M+",
-      text: "households in water-restricted regions are actively considering lawn alternatives — and most of them will visit a turf installer's website before making a decision.",
+      stat: "96%",
+      text: "of turf site visitors leave without requesting a quote. They couldn't picture turf on their own yard, so they kept looking.",
     },
   },
 
-  showcase: {
-    headline: "From Patchy Lawn to Perfect Turf in Seconds",
-    subtext: "This is exactly what your website visitors experience. They upload a photo of their yard — and within seconds, they see lush artificial turf replacing their existing lawn.",
-    beforeImage: "/images/industries/artificial-turf-before.png",
-    afterImage: "/images/industries/artificial-turf.png",
-    beforeLabel: "Their Current Lawn",
-    afterLabel: "With Artificial Turf",
-  },
-
   solution: {
-    headline: "Turn Curious Browsers Into Booked Consultations",
+    headline: "Why Turf Installers Add It to Their Site",
     intro:
-      "Vizzion is an embeddable widget that lets homeowners upload a yard photo and see realistic artificial turf replacing their lawn in seconds. To view the full result, they enter their email — and you get an exclusive lead from your own website.",
+      "Vizzion lives on your turf website and turns browsers into exclusive leads who have already chosen a turf product.",
     points: [
       {
-        title: "The First Visualization Tool Built for Turf",
+        title: "Exclusive leads from your own traffic",
         description:
-          "No other embeddable preview widget exists for the turf industry. Sample boxes and galleries can't show a homeowner turf on their specific yard — Vizzion gives your company a tool no competitor has.",
+          "Every lead is yours alone — not shared with Angi or auctioned on HomeAdvisor.",
       },
       {
-        title: "Exclusive Leads From Your Own Traffic",
+        title: "Half sold before you call",
         description:
-          "Every lead belongs to you. No shared leads from Angi or HomeAdvisor, no bidding against three other installers on the same prospect.",
+          "Homeowners arrive with their yard photo, turf choice, and a preview they already love.",
       },
       {
-        title: "Eliminate the 'Will It Look Natural?' Objection",
+        title: "Live in five minutes",
         description:
-          "The top hesitation is whether turf will look real on their property — their shade, their slopes, their garden beds. Vizzion answers that in seconds, and the objection disappears.",
-      },
-      {
-        title: "Capture Demand From Water Rebate Traffic",
-        description:
-          `Thousands of homeowners search "turf rebate" and "lawn replacement rebate" monthly in drought states. Vizzion converts that rebate curiosity into a qualified lead with an immediate preview.`,
-      },
-      {
-        title: "Works Around the Clock, Rain or Shine",
-        description:
-          "Homeowners browse evenings, weekends, and lunch breaks. Vizzion captures those prospects whenever they visit — no staff needed.",
+          "Paste one snippet on WordPress, Wix, Squarespace, or any custom site. No developer required.",
       },
     ],
   },
 
   howItWorks: {
-    headline: "How to Add an Artificial Turf Visualizer Widget to Your Turf Website",
+    headline: "One Snippet. Three Steps for Your Visitor.",
     intro:
-      "No developers, no complex integrations, no onboarding calls. Embed a snippet on your site, customize it to match your brand, and start generating leads from the traffic you already have.",
+      "No developer, no complicated setup. Paste one snippet and your site starts capturing qualified turf leads.",
     steps: [
       {
         number: 1,
-        title: "Embed the Widget on Your Site",
+        title: "Embed the widget",
         description:
-          `Copy a single code snippet and paste it on any page — your homepage, a gallery page, or a dedicated "See Turf on Your Lawn" landing page. The widget automatically matches your brand colors and styling. Total setup time: under five minutes. Works on WordPress, Wix, Squarespace, or any custom site.`,
+          "Copy one snippet onto any page — your homepage, a landing page, or a service-area page. It matches your branding and works with WordPress, Wix, Squarespace, or a custom site. Setup takes about five minutes.",
       },
       {
         number: 2,
-        title: "Homeowner Uploads a Yard Photo and Sees the Preview",
+        title: "They preview on their yard",
         description:
-          "A visitor clicks the widget, uploads a photo of their lawn — a phone photo of the front yard, a backyard shot, even a photo of a patchy side yard — and within seconds sees a realistic digital preview of artificial turf installed on their actual property. Not a generic catalog render. Their yard, their landscaping, their new turf lawn.",
+          "A visitor uploads a photo of their yard and sees your turf on it in seconds. They pick from the turf products you've configured — including options you've uploaded yourself — and get a realistic preview on their own lawn.",
       },
       {
         number: 3,
-        title: "You Get a Qualified Lead, They Get Certainty",
+        title: "You get the lead",
         description:
-          "To view or save their full turf preview, the homeowner enters their email address. That lead flows directly to your CRM or inbox — complete with contact info, yard photo, and the visualization they engaged with. Your sales team follows up with a prospect who has already seen turf on their property and is ready to discuss next steps.",
+          "To save their preview, they enter their email. The lead lands in your inbox or CRM with their photo and the turf they chose. Your follow-up starts at \"which one did you like best?\" instead of \"can I come measure?\"",
       },
     ],
   },
 
   benefits: [
     {
-      metric: "$12.75",
-      label: "Average Cost Per Sq Ft Installed",
+      metric: "Exclusive",
+      label: "Leads You Own",
       description:
-        "The average residential turf installation runs $5 to $20 per square foot, with most projects landing around $12.75. At those price points, a single Vizzion-generated lead that closes can be worth $8K to $15K in revenue.",
+        "Every lead comes from your own website traffic — never shared with competitors.",
     },
     {
-      metric: "55K gal",
-      label: "Water Saved Per Lawn Per Year",
+      metric: "5 min",
+      label: "Setup Time",
       description:
-        "A typical 1,000 sq ft natural lawn uses over 55,000 gallons of water annually. That stat is your best sales hook — and Vizzion turns it into a visual preview that gets homeowners to act.",
+        "Paste one embed snippet. No developer, no staging environment.",
     },
     {
-      metric: "14M+",
-      label: "Households in Water-Restricted Regions",
+      metric: "$8K+",
+      label: "Typical Turf Job",
       description:
-        "Over 14 million US households live under active water restrictions. California, Arizona, Nevada, and Colorado are banning new sod and offering rebates — creating massive demand for turf installers who can capture it.",
-    },
-    {
-      metric: "$50–$150",
-      label: "Typical Cost Per Shared Lead",
-      description:
-        "Angi and HomeAdvisor charge $50 to $150 per shared lead — and you're competing with 3 to 5 other installers for the same prospect. Vizzion leads come from your own traffic at zero marginal cost.",
-    },
-    {
-      metric: "3–7 yr",
-      label: "Homeowner Payback Period",
-      description:
-        "Homeowners recoup their turf investment in 3 to 7 years through water savings, eliminated mowing costs, and zero fertilizer spend. Showing them a preview of their yard makes that ROI feel real and immediate.",
-    },
-    {
-      metric: "12.7%",
-      label: "Industry CAGR Through 2030",
-      description:
-        "The global artificial turf market is growing at a 12.7% CAGR, with residential landscape installations outpacing all other segments. Installers who capture online demand now will own the market as it doubles.",
+        "Most installs run $8,000 to $15,000 — one closed deal covers months of widget cost.",
     },
   ],
 
   comparison: {
     headline: "The Old Way vs. The Vizzion Way",
     oldWay: [
-      "Mailing turf samples that sit on a counter and never get compared to the actual yard",
-      "Static contact forms that convert 2–4% of traffic and reveal zero buyer intent",
-      "Paying $50–$150 per shared lead from Angi or HomeAdvisor — competing with 3–5 other installers",
-      "Driving to free estimates for homeowners who are 'just looking' and never call back",
-      "Gallery photos of other yards that look nothing like the homeowner's property",
-      "No way to capture the thousands of rebate-driven visitors who browse and bounce",
+      "Buy shared leads at $50–$150 and race four installers to call first",
+      "Hand over a 4-inch turf swatch and ask them to imagine a whole yard",
+      "Drive out for an estimate before they've committed to anything",
+      "Lose deals to \"we want to think about how it'll look\" for weeks",
+      "A static gallery of other people's yards, like every competitor",
     ],
     vizzionWay: [
-      "Homeowners see turf on their actual yard — their landscaping, their slopes, their space",
-      "Interactive visualization converts at 5–10× the rate of static forms",
-      "Exclusive leads from your own website — no sharing, no competition, no bidding",
-      "Leads arrive pre-visualized: they've seen the result and want to discuss scope and timing",
-      `The #1 objection — "will it look natural?" — is answered before the first phone call`,
-      "Capture rebate-driven traffic with an engaging experience that converts curiosity into contact info",
+      "Exclusive leads from your own site at near-zero marginal cost",
+      "They see your turf on their real yard",
+      "Prospects arrive having already picked a turf product",
+      "The \"will it look natural?\" question is settled before the first call",
+      "An interactive preview that makes your site the one they remember",
     ],
   },
 
-  testimonials: [
-    {
-      quote:
-        `We're in Southern California where every other homeowner is thinking about turf because of water restrictions. Our website was getting solid traffic but converting maybe 3% of it. We added Vizzion and within the first month we had 74 new leads — all exclusive, all from our own site. The close rate on those leads is 28%. Our Angi leads close at maybe 10%. The difference is that Vizzion leads have already seen turf on their yard. They're not shopping around, they're ready to schedule.`,
-      author: "Miguel Serrano",
-      company: "Pacific Turf Pros, San Diego CA",
-      result: "28% close rate on Vizzion leads vs. 10% on Angi leads",
-    },
-    {
-      quote:
-        `The biggest objection we hear is "I'm not sure it'll look real on my yard." Every single time. Vizzion kills that objection before we ever talk to the customer. They've already seen their yard with turf. By the time they submit their email, the conversation has shifted from "will it look okay?" to "when can you start?" Our average time from lead to signed contract dropped from 22 days to 9 days on Vizzion-sourced leads.`,
-      author: "Amanda Kline",
-      company: "Desert Green Turf, Phoenix AZ",
-      result: "Sales cycle shortened from 22 days to 9 days",
-    },
-    {
-      quote:
-        `I run a three-crew operation and I don't have time to chase cold leads. We were spending $2,400 a month on HomeAdvisor and most of those leads ghosted after the first call. I added Vizzion to our site as an experiment — it took five minutes. In the first 90 days we generated 112 leads at zero additional ad spend. I've since cut HomeAdvisor entirely. These are better leads, they're exclusive, and they actually answer the phone.`,
-      author: "Derek Yancey",
-      company: "YardKing Turf & Landscape, Las Vegas NV",
-      result: "112 leads in 90 days, eliminated $2,400/mo in paid lead spend",
-    },
-  ],
+  testimonials: [],
 
   faq: [
     {
-      question: "How long does it take to set up Vizzion on my turf company website?",
+      question: "How long does it take to add Vizzion to my turf website?",
       answer:
-        `Under five minutes. You copy one embed snippet and drop it on your project gallery, a dedicated "See Turf on Your Lawn" landing page, or even a page targeting local rebate traffic like "Las Vegas Turf Rebate — See It First." No developer needed. Most turf installers have it live and capturing leads before their next crew finishes a backyard.`,
+        "About five minutes. Copy one embed snippet onto any page — no developer needed. It works with WordPress, Wix, Squarespace, and custom-built sites, and starts capturing leads the moment you publish.",
     },
     {
-      question: "How much does Vizzion cost for turf installers?",
+      question: "What turf products can visitors preview?",
       answer:
-        "There's a free tier so you can test it with real traffic before spending a dollar. Paid plans are based on monthly visualization volume. When your average install runs $8K to $15K, a single closed deal covers months of the widget — compare that to burning $50 to $150 per shared lead on HomeAdvisor where you're bidding against four other installers for the same drought-motivated homeowner.",
+        "Whatever you set up in your widget — the blade styles, colors, and pile heights you sell, plus any custom turf options you upload yourself. A homeowner selects an option, sees a realistic preview on their own yard, and can explore a different look by generating another preview. Each result is tied to the product they chose, so your team knows what caught their interest.",
     },
     {
-      question: "Does the visualization show different turf styles or blade types?",
+      question: "How is Vizzion different from mailing turf samples or a showroom visit?",
       answer:
-        "The preview generates a realistic rendering of lush, natural-looking synthetic turf on the homeowner's actual yard. The goal is to show them what the transformation looks like — eliminating the biggest barrier to requesting a quote. Specific product selection and blade-type consultation happen during your normal sales process, where your expertise shines.",
+        "Samples and showrooms show a homeowner what a blade feels like in their hand — but neither shows what turf will look like across their own yard, with their slopes, shade, and garden beds. Vizzion fills that gap with a realistic preview of their actual yard transformed. Use the preview to get the lead, then samples and your showroom to close.",
     },
     {
-      question: "Will it work for front yards, backyards, and side yards?",
+      question: "What if a homeowner uploads a bad photo or the yard is hard to see?",
       answer:
-        "Yes. Homeowners can upload photos of any outdoor space — front lawn, backyard, side strip, pet area, or even rooftop decks. The visualization adapts to the specific space in the photo and generates a realistic turf preview for that area.",
+        "The preview works best with a clear photo that shows the full yard — typically a phone shot taken from the patio or driveway. Heavy shade, extreme angles, or very low resolution can limit how realistic the result looks. Ask the homeowner to retake the photo with as much of the lawn visible as possible.",
     },
     {
-      question: "How is Vizzion different from turf manufacturer sample programs?",
+      question: "How much does Vizzion cost compared to buying turf leads?",
       answer:
-        "Turf samples show a homeowner what the product feels like in their hand — but samples can't show what turf will look like across their actual yard, with their specific landscaping, shade patterns, and hardscape. Vizzion bridges that gap with a photo-realistic digital preview of their entire yard transformed. Samples and Vizzion work well together: the preview gets them excited, the sample seals the tactile experience.",
+        "There's a free tier to start, with plans that scale by visualization volume. Compare that to $50–$150 per shared lead split with three or four other installers. A single closed install at $8,000+ covers months of Vizzion.",
     },
     {
-      question: "Can I customize the widget to match my company branding?",
+      question: "Does it integrate with my turf CRM?",
       answer:
-        `Fully. You set your turf company's logo, brand colors, and custom button text — something like "See Turf on Your Lawn" or "Preview Your Yard." The widget looks like a built-in feature of your site, not a third-party tool. Homeowners interact with your brand the entire time, which matters when they're choosing between you and three other installers in their area.`,
-    },
-    {
-      question: "Does Vizzion integrate with my CRM or scheduling software?",
-      answer:
-        "Yes. Vizzion connects directly with Jobber, Housecall Pro, Service Autopilot, and LMN — the tools turf and landscaping companies actually run on. It also integrates with HubSpot, Salesforce, and anything that accepts webhooks or Zapier triggers. Leads arrive with contact info, yard photo, and engagement data, ready to auto-route into your estimate scheduling workflow.",
-    },
-    {
-      question: "Are the leads exclusive to my company?",
-      answer:
-        "100% exclusive. Every lead comes from your own website — not a marketplace that sells the same homeowner to 3 to 5 competing turf installers in drought-heavy markets like Phoenix or Las Vegas. No bidding wars, no speed-to-lead races. The homeowner saw turf on their yard through your site and gave you their info directly.",
+        "Yes — we can integrate with your CRM if needed. Reach out and we'll walk through what your setup looks like.",
     },
   ],
 
   cta: {
-    headline: "Start Generating Turf Leads From Your Own Website Today",
+    headline: "Your Next Turf Lead Is Already on Your Website",
     subtext:
-      "Five-minute setup. No credit card required. The demand is already there — homeowners just need to see what their yard could look like.",
+      "Vizzion just helps them raise their hand. Five-minute setup, no credit card.",
     buttonText: "Get Started Free",
     href: "#signup",
   },
@@ -257,30 +186,34 @@ export const artificialTurfData: IndustryData = {
       "synthetic grass lead gen",
       "artificial turf website conversion",
       "turf preview tool",
-      "water-saving lawn leads",
-      "drought-resistant lawn leads",
+      "exclusive turf leads",
+      "see turf on my yard",
+      "artificial turf visualizer widget",
+      "residential turf leads",
       "turf installation lead generation",
     ],
     schema: {
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      name: "Vizzion Turf Visualization Widget",
+      name: "Vizzion Artificial Turf Visualization Widget",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
       description:
-        "Embeddable artificial turf visualization tool that helps turf installers generate exclusive, pre-qualified leads from their own website traffic. Homeowners see a realistic preview of synthetic turf on their actual yard.",
+        "Embeddable artificial turf visualization tool that helps turf installers generate exclusive, pre-qualified leads from their own website traffic. Homeowners see realistic previews of turf blade styles, colors, and pile heights on their actual yard.",
       offers: {
         "@type": "Offer",
         price: "0",
         priceCurrency: "USD",
-        description: "Free tier available. Premium plans based on visualization volume.",
+        description:
+          "Free tier available. Premium plans based on visualization volume.",
       },
       featureList: [
-        "Realistic artificial turf yard visualization",
+        "Realistic turf visualization on homeowner photos",
+        "Configurable turf products and custom uploaded options",
         "Embeddable website widget",
         "White-label branding",
-        "CRM integration",
-        "Lead capture and routing",
+        "Optional CRM integration",
+        "Lead capture with yard photo and product preference",
         "5-minute setup",
       ],
       screenshot: "https://vizzion.io/images/industries/artificial-turf.png",

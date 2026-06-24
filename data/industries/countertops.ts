@@ -5,283 +5,216 @@ export const countertopsData: IndustryData = {
   name: "Countertops & Stone",
   shortName: "Countertops",
   metaTitle: "Countertop Visualizer Widget for Countertop Websites | Vizzion",
-  metaDescription: "Use a countertop visualizer widget on your countertop website. Let visitors preview options on their own photo and turn traffic into qualified leads.",
+  metaDescription:
+    "Add a countertop visualizer widget to your website. Visitors preview quartz, granite, or marble in their own kitchen and become exclusive, ready-to-quote leads.",
 
-  lastUpdated: "February 15, 2026",
+  lastUpdated: "June 17, 2026",
   evidenceNotes: [
-    "Countertops benchmark ranges shown here are directional and should be validated against your own pipeline data.",
-    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+    "Project values and lead prices here are directional industry ranges — validate against your own market and pipeline data.",
   ],
 
   header: {
-    badge: "Countertops & Stone Industry",
-    headline: "Add a Countertop Visualizer to Your Site — Generate Qualified Leads",
-    highlightWord: "Countertop",
+    badge: "Countertop visualizer widget",
+    headline: "Show homeowners your countertops in their kitchen",
+    highlightWord: "kitchen",
+    accentLine: "in seconds.",
     intro:
-      "Add a countertop visualizer widget to your countertop website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Homeowners don't commit to a $6,000 countertop based on a 4-inch sample chip. Vizzion lets them see granite, quartz, or marble in their actual kitchen — then captures their email before they see the result. You get a warm, qualified lead from a customer who already knows what they want. No more slab yard no-shows, no more ghosted quotes.",
-    introHighlight: "Homeowners don't commit to a $6,000 countertop based on a 4-inch sample chip.",
-    cta: { text: "See It in Action", href: "#how-it-works" },
+      "Homeowners upload a photo of their kitchen and preview your countertop materials in it. They enter their email to save the result — you get an exclusive lead from your own site traffic.",
+    cta: { text: "Get Started Free", href: "#signup" },
   },
 
   context: {
-    headline: "The Sample-to-Slab Gap Is Killing Your Close Rate",
+    headline: "People Don't Buy Countertops They Can't Picture",
     paragraphs: [
-      `The US countertop market is worth $28 billion, and the average kitchen countertop project runs $4,000 to $8,000 installed. That's a serious purchase — and homeowners treat it like one. They visit your showroom, hold sample chips up to their cabinet doors under fluorescent lighting, squint at 2-inch squares of Calacatta Gold, and try to imagine what 40 square feet of it will look like in their kitchen. They can't. Nobody can. A polished chip the size of a credit card tells you almost nothing about how veining will flow across an L-shaped island or how a busy granite pattern will look next to existing backsplash tile.`,
-      `So they leave. They visit two more showrooms. They schedule a slab yard appointment, then reschedule it, then cancel. Industry data shows 67% of homeowners who receive a countertop quote ultimately ghost — not because the price was wrong, but because they couldn't commit to a material they've never truly seen at scale. The gap between a sample chip and an installed countertop is the single biggest conversion killer in the stone business. And every week a customer hesitates is another week they might find a competitor, change their mind entirely, or decide to just keep their old laminate.`,
-      `Meanwhile, the big brands have tried to solve this with generic room designers. Cambria's AR visualizer, Caesarstone's online room planner, Silestone's design tool — they all drop their stones into a stock kitchen that looks nothing like your customer's actual space. A white shaker kitchen render doesn't help someone with cherry cabinets and a terracotta backsplash. These tools sell the brand's catalog, not your customer's confidence. There's a gap between the showroom visit and the signed fabrication order — and that's exactly where Vizzion lives.`,
+      `Your visitor is about to spend $4,000 to $8,000 on the centerpiece of their kitchen — then tries to imagine the result from a 4-inch sample chip held up to their cabinets under showroom lights. Stone reads completely differently at scale: a busy granite that looks rich on a chip the size of a credit card can overwhelm an entire island, and veining that's subtle up close can flow in unexpected ways across an L-shaped run. They can't picture a crisp Cambria quartz versus a dramatic Calacatta marble on their own counters, so they stall, delay, and keep shopping.`,
+
+      `Vizzion puts the finished countertops in front of them in their actual kitchen in seconds. Once they can picture it, the hardest part of the sale is already done — and they enter their email to save the preview so you can follow up while they're still excited.`,
     ],
     highlights: [
-      "67% of homeowners",
-      "sample chip and an installed countertop",
-      "where Vizzion lives",
+      "overwhelm an entire island",
+      "stall, delay, and keep shopping",
     ],
     callout: {
-      stat: "$28B",
-      text: "US countertop market — and the biggest barrier to closing isn't price. It's the inability to picture a full slab in a real kitchen from a 4-inch sample.",
+      stat: "67%",
+      text: "of homeowners who get a countertop quote never move forward — not because of price, but because they couldn't picture the slab in their own kitchen.",
     },
   },
 
-  showcase: {
-    headline: "See the Difference Instantly",
-    subtext: "This is exactly what your website visitors experience. They upload a photo of their kitchen — and within seconds, they see new countertops in their actual space.",
-    beforeImage: "/images/demo-kitchen-old-countertops.png",
-    afterImage: "/images/demo-kitchen-new-countertops.png",
-    beforeLabel: "Current Kitchen",
-    afterLabel: "With New Countertops",
-  },
-
   solution: {
-    headline: "Close the Gap Between Sample Chip and Signed Contract",
+    headline: "Why Countertop Shops Add It to Their Site",
     intro:
-      "Vizzion embeds on your website and lets homeowners see countertop materials in their actual kitchen in seconds. They upload a photo of their space, see a realistic preview of the stone they're considering, and enter their email to save it. You get an exclusive lead from someone who already knows what material they want in their kitchen.",
+      "Vizzion lives on your countertop website and turns browsers into exclusive leads who have already chosen a material.",
     points: [
       {
-        title: "Their Kitchen, Not a Stock Render",
+        title: "Exclusive leads from your own traffic",
         description:
-          "Cambria's visualizer and Caesarstone's room designer drop stones into generic white kitchens. Vizzion shows materials in the customer's actual space — their cabinets, their backsplash, their lighting. That's the difference between browsing and buying.",
+          "Every lead is yours alone — not shared with Angi or auctioned on HomeAdvisor.",
       },
       {
-        title: "Eliminate Material Uncertainty Before Fabrication",
+        title: "Half sold before you call",
         description:
-          "With 4 to 6 week fabrication lead times and no take-backs once the saw touches the slab, material confidence matters. Customers who see their selection in their own kitchen commit faster and don't call back with cold feet the day before templating.",
+          "Homeowners arrive with their kitchen photo, a material choice, and a preview they already love.",
       },
       {
-        title: "Drive Premium Upgrades Naturally",
+        title: "Live in five minutes",
         description:
-          "When a customer can see the difference between builder-grade granite and premium quartzite in their actual kitchen, they upgrade themselves. No upsell pitch needed — the visualization does the selling. Shops using Vizzion report 42% higher average tickets.",
-      },
-      {
-        title: "Qualified Leads, Not Tire-Kickers",
-        description:
-          "A homeowner who uploads a kitchen photo, previews three different stones, and submits their email has real intent. They're not casually browsing Pinterest — they're actively planning a project and have already narrowed their preferences.",
-      },
-      {
-        title: "Reduce Slab Yard Visit No-Shows",
-        description:
-          "Slab yard appointments are expensive to staff and painful when customers don't show. Let customers narrow their choices online first, then come to the yard knowing exactly which materials to look at. Fewer wasted trips for everyone.",
+          "Paste one snippet on WordPress, Wix, Squarespace, or any custom site. No developer required.",
       },
     ],
   },
 
   howItWorks: {
-    headline: "How to Add a Countertop Visualizer Widget to Your Countertop Website",
+    headline: "One Snippet. Three Steps for Your Visitor.",
     intro:
-      "Vizzion is designed to be dead simple. No IT department needed, no complex integrations, no six-week onboarding. You embed a snippet, customize the look, and start generating leads from your existing website traffic.",
+      "No developer, no complicated setup. Paste one snippet and your site starts capturing qualified countertop leads.",
     steps: [
       {
         number: 1,
-        title: "Embed the Widget on Your Site",
+        title: "Embed the widget",
         description:
-          `Copy a single code snippet and paste it into any page on your website — your homepage, a dedicated countertop gallery page, or a \"See It in Your Kitchen\" landing page. The widget matches your brand colors and styling automatically. Total setup time: under five minutes.`,
+          "Copy one snippet onto any page — your homepage, a landing page, or a gallery page. It matches your branding and works with WordPress, Wix, Squarespace, or a custom site. Setup takes about five minutes.",
       },
       {
         number: 2,
-        title: "Customer Uploads a Kitchen Photo and Sees the Preview",
+        title: "They preview in their kitchen",
         description:
-          "A visitor clicks the widget, uploads a photo of their kitchen or bathroom (phone photo works perfectly), and within seconds sees a realistic digital preview of their selected countertop material installed in their actual space. They can compare granite vs. quartz vs. marble side by side — all on their own counters, not a stock image.",
+          "A visitor uploads a photo of their kitchen and sees your countertop materials in it in seconds. They pick from the materials you've configured — including custom slabs you've uploaded yourself — and get a realistic preview on their own counters.",
       },
       {
         number: 3,
-        title: "You Get a Qualified Lead, They Get Confidence",
+        title: "You get the lead",
         description:
-          "To view or save their full countertop preview, the homeowner enters their email address. That lead flows directly into your CRM or inbox — complete with their contact info, kitchen photo, and the specific materials they engaged with. Your sales team follows up with a prospect who already knows what stone they want.",
+          "To save their preview, they enter their email. The lead lands in your inbox or CRM with their photo and the material they chose. Your follow-up starts at \"which one did you like best?\" instead of \"can you come into the showroom?\"",
       },
     ],
   },
 
   benefits: [
     {
-      metric: "$5,800",
-      label: "Average Kitchen Countertop Project",
+      metric: "Exclusive",
+      label: "Leads You Own",
       description:
-        "The average installed cost for kitchen countertops ranges from $4,000 to $8,000 depending on material and layout. Every qualified lead represents a meaningful project — and Vizzion captures them from traffic you already have at zero marginal cost per lead.",
+        "Every lead comes from your own website traffic — never shared with competitors.",
     },
     {
-      metric: "67%",
-      label: "Abandon Quotes Over Material Uncertainty",
+      metric: "5 min",
+      label: "Setup Time",
       description:
-        "Two out of three homeowners who get a countertop quote never follow through — not because of price, but because they can't confidently commit to a material from a small sample. Vizzion closes that confidence gap before the quote is even written.",
+        "Paste one embed snippet. No developer, no staging environment.",
     },
     {
-      metric: "4–6 weeks",
-      label: "Fabrication Lead Time — No Take-Backs",
+      metric: "$5K+",
+      label: "Average Countertop Job",
       description:
-        "Once a slab is cut and fabricated, there's no changing your mind without starting the entire process over. Customers who visualize their selection in their actual kitchen before signing off don't get buyer's remorse at the finish line.",
-    },
-    {
-      metric: "500+",
-      label: "Quartz Colors Alone — Before Natural Stone",
-      description:
-        "Cambria, Caesarstone, and Silestone alone offer over 500 quartz options. Add granite, marble, quartzite, and soapstone and the choices become paralyzing. Vizzion cuts through decision fatigue by letting customers see options in context, not in a catalog.",
-    },
-    {
-      metric: "42%",
-      label: "Higher Average Ticket With Visualization",
-      description:
-        "Customers who see premium materials in their actual kitchen consistently upgrade from builder-grade options. When the difference between Level 1 granite and exotic quartzite is visible in their own space, the value becomes obvious.",
-    },
-    {
-      metric: "$1,200+",
-      label: "Average Upsell From Standard to Premium",
-      description:
-        "Countertop shops using visualization tools see an average revenue increase of over $1,200 per project when customers can compare standard and premium materials side by side in their own kitchen. The visual proof sells what sample chips never could.",
+        "One closed kitchen covers months of widget cost.",
     },
   ],
 
   comparison: {
     headline: "The Old Way vs. The Vizzion Way",
     oldWay: [
-      "Tiny sample chips held up under showroom fluorescent lights — nothing like the customer's kitchen",
-      "Generic kitchen renders from brand visualizers that match nobody's actual cabinets or backsplash",
-      "Multiple slab yard visits that eat up weekends and often end in no-shows",
-      "Customers ghost after receiving quotes because they can't commit to a material they've never seen at scale",
-      "Post-fabrication regret and change orders that destroy margins and delay timelines",
-      "Decision fatigue from 500+ options with no way to narrow the field in context",
+      "Buy shared leads at $25–$75 and race three fabricators to call first",
+      "Hand over a 4-inch sample chip and ask them to imagine a whole kitchen",
+      "Send them to the slab yard before they've committed to anything",
+      "Lose deals to \"we want to think about the material\" for weeks",
+      "A static gallery of other people's kitchens, like every competitor",
     ],
     vizzionWay: [
-      "See any stone in the customer's actual kitchen — their cabinets, their lighting, their layout",
-      "Compare granite, quartz, marble, and quartzite side by side in context, not in a catalog",
-      "Customers arrive at the slab yard knowing exactly what they want — fewer visits, faster decisions",
-      "Leads come in pre-committed to a material, with their kitchen photo and preferences attached",
-      "Confident buyers who saw the finished look before the saw touches the slab — no regret, no change orders",
-      "Cut through 500+ options by letting customers see what matters: how it looks in their space",
+      "Exclusive leads from your own site at near-zero marginal cost",
+      "They see their chosen countertop material in their real kitchen",
+      "Prospects arrive having already picked a material and color",
+      "Material decisions happen before the first call, not after the third",
+      "An interactive preview that makes your site the one they remember",
     ],
   },
 
-  testimonials: [
-    {
-      quote:
-        `We used to schedule 30 slab yard visits a month and have maybe 18 actually show up. Now customers come in knowing exactly which three materials they want to see because they've already previewed them in their own kitchen on our website. Our slab yard conversion rate went from 40% to 71%, and we're closing premium upgrades we never would have pitched before.`,
-      author: "Angela Russo",
-      company: "Stone & Surface Studio, Austin TX",
-      result: "Slab yard conversion rate increased from 40% to 71%",
-    },
-    {
-      quote:
-        `Change orders were eating us alive. A customer would sign off on a material, we'd template and fabricate, and then they'd call in a panic saying it doesn't look like they expected. Since we added Vizzion to our site, post-fabrication regret has dropped to nearly zero. Customers see exactly what the stone will look like in their kitchen before we ever cut a slab. Our rework costs dropped by 85%.`,
-      author: "James Park",
-      company: "Metro Countertops & Fabrication, Atlanta GA",
-      result: "Post-fabrication change orders reduced by 85%",
-    },
-    {
-      quote:
-        `Our sales cycle used to be 6 to 8 weeks — three showroom visits, a slab yard trip, then weeks of the customer going back and forth with their spouse. Now they preview materials on our site, come in once to confirm in person, and sign. Average cycle is down to 12 days. We're closing more kitchens per month with less staff time per deal.`,
-      author: "Diana Walsh",
-      company: "Keystone Kitchen & Bath, Philadelphia PA",
-      result: "Sales cycle shortened from 6–8 weeks to 12 days",
-    },
-  ],
+  testimonials: [],
 
   faq: [
     {
-      question: "Can customers see different countertop materials — granite, quartz, marble — in their actual kitchen?",
+      question: "How long does it take to add Vizzion to my countertop website?",
       answer:
-        "Yes. Customers upload a photo of their kitchen and can preview any countertop material you offer — granite, quartz, marble, quartzite, soapstone, or any other surface. They see the stone in their actual space with their existing cabinets, backsplash, and lighting, not a generic stock kitchen. They can compare multiple materials side by side to narrow their selection before visiting your showroom.",
+        "About five minutes. Copy one embed snippet onto any page — no developer needed. It works with WordPress, Wix, Squarespace, and custom-built sites, and starts capturing leads the moment you publish.",
     },
     {
-      question: "How does Vizzion handle the unique veining patterns in natural stone?",
+      question: "What countertop materials can homeowners preview?",
       answer:
-        "Vizzion renders realistic stone textures including veining, movement, and color variation that represent each material faithfully. While every individual slab of natural stone is unique, the visualization gives customers an accurate sense of the material's character, scale, and how its pattern will flow across their specific countertop layout. It bridges the gap between a 4-inch sample and a 40-square-foot installation.",
+        "Whatever you set up in your widget — the quartz, granite, marble, and other surfaces you carry, plus any custom slabs you upload yourself. A homeowner selects a material, sees a realistic preview in their own kitchen, and can explore a different look by generating another preview to compare. Each result is tied to the material they chose, so your team knows what caught their interest.",
     },
     {
-      question: "How is Vizzion different from Cambria's or Caesarstone's visualizers?",
+      question:
+        "How is Vizzion different from a slab-yard visit or quoting tools like CounterGo or Moraware?",
       answer:
-        "Brand visualizers like Cambria's AR tool and Caesarstone's room designer drop their specific catalog into a generic stock kitchen. Vizzion does the opposite: it puts any material into the customer's actual kitchen. That's a fundamental difference. Brand tools sell their catalog. Vizzion sells your customer's confidence — and captures their contact info for your business, not the manufacturer's.",
+        "They solve different problems. A slab-yard visit shows real stone but only happens once a homeowner is committed enough to drive out; quoting and fabrication tools like CounterGo and Moraware help your team price and produce the job — all after you have the lead. Vizzion works at the top of the funnel: it shows the material in the homeowner's own kitchen and captures the email. Use it to get the lead, then your slab yard and quoting tools to close.",
     },
     {
-      question: "Does it work for bathroom vanities and not just kitchens?",
+      question: "What if a homeowner uploads a bad photo or the counters are cluttered?",
       answer:
-        "Absolutely. Customers can upload photos of bathrooms, laundry rooms, wet bars, outdoor kitchens — any space where countertops are being considered. The visualization works the same way regardless of the room. Many fabricators use Vizzion across multiple landing pages targeting different project types.",
+        "The preview works best with a clear photo that shows the full countertop area — typically a phone shot taken a step back with the counters mostly clear. Heavy clutter, extreme angles, or very low resolution can limit how realistic the result looks. Ask the homeowner to retake the photo with as much of the counter surface visible as possible.",
     },
     {
-      question: "How much does Vizzion cost for countertop fabricators?",
+      question: "How much does Vizzion cost compared to buying countertop leads?",
       answer:
-        "There's a free tier to test the product and scaled plans based on monthly visualization volume. Compare it to your current cost per lead and the margin on a typical $5,800 kitchen countertop project. One closed deal pays for months of Vizzion. Most countertop shops see positive ROI within the first two weeks.",
+        "There's a free tier to start, with plans that scale by visualization volume. Compare that to $25–$75 per shared lead split with competitors. A single closed countertop job at $4,000 to $8,000 covers months of Vizzion.",
     },
     {
-      question: "Can I show only the brands and slabs I carry in my showroom?",
+      question: "Does it integrate with my countertop CRM?",
       answer:
-        "Yes. You control which materials appear in the visualization. If you carry Cambria, MSI, and Daltile but not Caesarstone, you configure the widget to show only your inventory. This keeps the customer experience honest — they only preview stones you can actually sell and fabricate, eliminating disappointment and wasted time.",
-    },
-    {
-      question: "Does Vizzion integrate with my countertop quoting software?",
-      answer:
-        "Vizzion integrates with popular CRMs including Salesforce, HubSpot, and JobNimbus via direct integrations, plus any other tool via webhooks and Zapier. Leads arrive with the customer's email, kitchen photo, and material preferences attached. You can route them directly into your quoting workflow — whether that's CounterGo, Moraware, or a custom system.",
-    },
-    {
-      question: "What if the customer's kitchen photo has poor lighting?",
-      answer:
-        "Vizzion is built to work with real-world photos — phone cameras, uneven lighting, slightly angled shots. The system identifies the countertop surfaces and generates a realistic preview regardless of perfect conditions. For extremely dark or blurry images, the widget prompts the customer to try a clearer photo, keeping the experience smooth without frustrating them.",
+        "Yes — we can integrate with your CRM if needed. Reach out and we'll walk through what your setup looks like.",
     },
   ],
 
   cta: {
-    headline: "Start Turning Kitchen Photos Into Signed Contracts",
+    headline: "Your Next Countertop Lead Is Already on Your Website",
     subtext:
-      "Five-minute setup. No credit card required. See how many of your website visitors are ready to commit — they just need to see the stone in their kitchen first.",
+      "Vizzion just helps them raise their hand. Five-minute setup, no credit card.",
     buttonText: "Get Started Free",
     href: "#signup",
   },
 
   seo: {
     keywords: [
-      "countertop visualization",
       "countertop lead generation",
-      "kitchen countertop visualizer",
-      "granite countertop preview",
-      "quartz countertop tool",
-      "countertop showroom widget",
-      "countertop sales tool",
-      "stone visualization",
-      "countertop website leads",
-      "countertop marketing tool",
-      "kitchen countertop preview",
-      "marble countertop visualizer",
+      "countertop leads",
+      "countertop company leads",
+      "countertop visualizer",
+      "countertop visualization tool",
+      "countertop website widget",
       "countertop lead capture",
+      "exclusive countertop leads",
+      "countertop marketing tool",
+      "kitchen countertop visualizer",
+      "granite countertop visualizer",
+      "quartz countertop visualizer",
+      "marble countertop preview",
+      "countertop sales tool",
+      "see countertops in my kitchen",
+      "stone fabricator leads",
       "countertop website conversion",
-      "countertop fabricator leads",
+      "countertop lead gen software",
     ],
     schema: {
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      name: "Vizzion Countertop Visualization Widget",
+      name: "Vizzion Countertops Visualization Widget",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
       description:
-        "Embeddable countertop visualization tool that helps stone fabricators and showrooms generate qualified leads. Homeowners see granite, quartz, and marble in their actual kitchen before committing.",
+        "Embeddable countertop visualization tool that helps countertop shops and stone fabricators generate exclusive, pre-qualified leads from their own website traffic. Homeowners see realistic previews of quartz, granite, and marble in their actual kitchen.",
       offers: {
         "@type": "Offer",
         price: "0",
         priceCurrency: "USD",
-        description: "Free tier available. Premium plans based on visualization volume.",
+        description:
+          "Free tier available. Premium plans based on visualization volume.",
       },
       featureList: [
-        "Realistic countertop material visualization",
-        "Multiple stone comparison in customer's actual kitchen",
+        "Realistic countertop material visualization on homeowner photos",
+        "Configurable countertop materials and custom uploaded slabs",
         "Embeddable website widget",
         "White-label branding",
-        "CRM integration",
-        "Lead capture and routing",
+        "Optional CRM integration",
+        "Lead capture with kitchen photo and material preference",
         "5-minute setup",
       ],
       screenshot: "https://vizzion.io/images/industries/countertops.png",

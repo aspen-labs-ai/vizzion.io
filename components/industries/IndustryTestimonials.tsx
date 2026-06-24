@@ -5,6 +5,10 @@ function getInitials(name: string) {
 }
 
 export default function IndustryTestimonials({ data }: { data: IndustryData }) {
+  if (data.testimonials.length === 0) {
+    return null;
+  }
+
   return (
     <section className="py-16 px-6 bg-bg-primary">
       <div className="max-w-[1000px] mx-auto">

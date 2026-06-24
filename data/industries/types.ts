@@ -11,6 +11,7 @@ export interface IndustryData {
     badge: string;
     headline: string;
     highlightWord: string;
+    accentLine?: string;
     intro: string;
     introHighlight?: string;
     cta: { text: string; href: string };

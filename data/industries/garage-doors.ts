@@ -5,242 +5,168 @@ export const garageDoorsData: IndustryData = {
   name: "Garage Doors",
   shortName: "Garage Doors",
   metaTitle: "Garage Door Visualizer Widget for Garage Door Websites | Vizzion",
-  metaDescription: "Use a garage door visualizer widget on your garage door website. Let visitors preview options on their own photo and turn traffic into qualified leads.",
+  metaDescription:
+    "Add a garage door visualizer widget to your website. Visitors preview door styles, colors, and windows on their own home and become exclusive, ready-to-quote leads.",
 
-  lastUpdated: "February 15, 2026",
+  lastUpdated: "June 17, 2026",
   evidenceNotes: [
-    "Garage Doors benchmark ranges shown here are directional and should be validated against your own pipeline data.",
-    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+    "Benchmark ranges are directional — validate against your own pipeline data.",
   ],
 
   header: {
-    badge: "Garage Door Industry",
-    headline:
-      "Let Homeowners Preview Garage Doors on Their Actual Home",
-    highlightWord: "Garage",
+    badge: "Garage door visualizer widget",
+    headline: "Show homeowners a new garage door on their home",
+    highlightWord: "home",
+    accentLine: "in seconds.",
     intro:
-      "Add a garage door visualizer widget to your garage door website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Homeowners stare at garage door catalogs and can't picture the result. Vizzion lets them see a new garage door on their actual home — then captures their email before they see the full preview. You get a warm, exclusive lead from your own website. No bought lists, no shared leads, no catalog guesswork.",
-    introHighlight:
-      "Homeowners stare at garage door catalogs and can't picture the result.",
-    cta: { text: "See It in Action", href: "#how-it-works" },
+      "Homeowners upload a photo of their home and preview your garage door styles on it. They enter their email to save the result — you get an exclusive lead from your own site traffic.",
+    cta: { text: "Get Started Free", href: "#signup" },
   },
 
   context: {
-    headline:
-      "The Garage Door Industry Has a $6 Billion Visualization Problem",
+    headline: "People Don't Buy a Door They Can't Picture",
     paragraphs: [
-      `Garage doors account for 30 to 40 percent of a home's front-facing exterior. That makes them the single largest visual element on most houses — bigger than the front door, bigger than the windows, and far more noticeable than the siding trim. Remodeling Magazine's annual Cost vs. Value report consistently ranks garage door replacement as the top remodeling project for return on investment, with homeowners recovering roughly 94 cents on every dollar spent. The US garage door market exceeds $6 billion annually, with replacement projects ranging from $800 for a basic steel raised-panel door to $4,000 or more for a custom carriage house or modern aluminum-and-glass design. That's a huge market with enormous variation in style, material, and price — and the purchasing decision is almost entirely visual.`,
-      `Here's the core problem: homeowners cannot visualize how a new garage door will look on their specific home. The style options are overwhelming. Traditional raised panel in white, almond, or dark walnut? Carriage house with decorative hardware and arched windows? Flush contemporary in charcoal with frosted glass inserts? Every manufacturer — Clopay, Amarr, Wayne Dalton, CHI Overhead Doors — offers dozens of styles, colors, and window insert patterns (arched, rectangular, prairie, Stockton, Waterford). The combinations easily reach into the hundreds. Homeowners know what they like in a catalog photo, but they have no idea how that door will look on their particular house with their particular brick color, roof pitch, driveway angle, and landscaping. That uncertainty kills deals.`,
-      `Most garage door companies try to bridge this gap with before-and-after photo galleries from previous jobs. But those galleries show other people's homes, not the homeowner's home. A carriage house door looks stunning on a craftsman bungalow in the gallery — but will it look right on the homeowner's 1990s colonial with beige vinyl siding? They don't know, so they hesitate. They bookmark three different dealer websites, visit a showroom that has six display doors out of hundreds of options, and eventually either pick the safest choice (the same white raised-panel door they already have) or delay the project entirely. Dealers lose high-value upgrades because homeowners can't see the outcome before committing.`,
-      `The sales process compounds the visualization gap. Most garage door dealers run their websites as digital brochures — a product catalog, an estimate request form, and maybe a gallery page. The typical website conversion rate for home services sits around 2 to 4 percent. For garage door companies, it's often lower because the product is so visual and the form asks the homeowner to describe what they want in words. "I want something modern but not too modern" tells your sales team nothing. Meanwhile, the homeowner who spent fifteen minutes browsing your Clopay catalog page and left without converting? That was a $3,000 sale that walked out the door. You'll never know they were there.`,
-      `Storm damage and insurance claims add another dimension. Hail, wind, and impact damage drive a significant volume of garage door replacements — often on an accelerated timeline. These homeowners aren't leisurely browsing; they need a replacement fast, their insurance adjuster wants documentation, and they're comparing two or three dealers simultaneously. The company that helps them see exactly what the new door looks like on their home — quickly and on their terms — wins that job. Right now, nobody is doing that at the top of the funnel.`,
+      `Your visitor is about to spend $800 to $4,000 on the single biggest feature of their home's curb appeal — a garage door can fill 30 to 40 percent of the front of the house — then tries to picture it from a thumbnail in a brochure or a photo of someone else's home. A carriage-house door that looks perfect in the catalog can read completely different against their brick, their roofline, and their driveway. They can't tell how a raised-panel door compares to a modern flush design on their own home, so they stall, delay, and keep shopping.`,
+
+      `Vizzion puts the finished door on their actual house in seconds. Once they can picture it, the hardest part of the sale is already done — and they enter their email to save the preview so you can follow up while they're still excited.`,
     ],
     highlights: [
-      "30 to 40 percent of a home's front-facing exterior",
-      "94 cents on every dollar spent",
-      "That uncertainty kills deals",
+      "30 to 40 percent of the front of the house",
+      "stall, delay, and keep shopping",
     ],
     callout: {
-      stat: "94%",
-      text: "cost recovery on garage door replacement — the highest ROI of any remodeling project. Yet most dealers still lose leads because homeowners can't picture the new door on their home.",
+      stat: "96%",
+      text: "of garage door site visitors leave without requesting a quote. They couldn't picture the new door on their home, so they kept shopping.",
     },
   },
 
   solution: {
-    headline: "Let Homeowners See the New Door Before They Buy",
+    headline: "Why Garage Door Dealers Add It to Their Site",
     intro:
-      "Vizzion embeds on your website and lets homeowners see a new garage door on their actual home in seconds. They upload a photo of their house, choose a style, and see a realistic preview — then enter their email to save it. You get an exclusive, self-qualified lead with real purchase intent.",
+      "Vizzion lives on your garage door website and turns browsers into exclusive leads who have already chosen a door.",
     points: [
       {
-        title: "Eliminate the Style Guessing Game",
+        title: "Exclusive leads from your own traffic",
         description:
-          "Homeowners browse hundreds of door styles, colors, and window patterns without knowing how any of them look on their home. Vizzion lets them try carriage house, modern flush, raised panel, and glass-insert designs on their actual house — so they arrive at the showroom (or the phone call) knowing exactly what they want.",
+          "Every lead is yours alone — not shared with Angi or auctioned on HomeAdvisor.",
       },
       {
-        title: "Capture Leads Your Catalog Pages Are Losing",
+        title: "Half sold before you call",
         description:
-          "Your Clopay, Amarr, or CHI catalog pages get traffic. Homeowners browse styles, compare colors, and leave. Vizzion turns that browsing into engagement: instead of passively scrolling a PDF catalog, they're uploading their home photo and interacting with your products. That interaction is the difference between a bounce and a lead.",
+          "Homeowners arrive with their house photo, a door style they chose, and a preview they already love.",
       },
       {
-        title: "Exclusive Leads From Your Own Traffic",
+        title: "Live in five minutes",
         description:
-          "Every lead belongs to you. These homeowners found your company, engaged with your brand, and chose to hand over their email after seeing a door on their own home. No shared lists, no Angi or HomeAdvisor bidding wars, no competing with four other dealers for the same phone number.",
-      },
-      {
-        title: "Sell the Upgrade, Not Just the Replacement",
-        description:
-          "A homeowner who needs a basic replacement might spend $900. A homeowner who sees how a $3,500 carriage house door transforms their home's curb appeal? That's a completely different conversation. Vizzion naturally drives upsells by letting homeowners see the premium option on their own home — where it's most compelling.",
-      },
-      {
-        title: "Win Storm Damage Jobs Faster",
-        description:
-          "When hail or wind takes out a door, the homeowner is comparing dealers in a hurry. The company whose website lets them see exactly what the replacement looks like — right now, on their phone, without scheduling an appointment — gets the call first. Speed and clarity win insurance-driven replacements.",
+          "Paste one snippet on WordPress, Wix, Squarespace, or any custom site. No developer required.",
       },
     ],
   },
 
   howItWorks: {
-    headline: "How to Add a Garage Door Visualizer Widget to Your Garage Door Website",
+    headline: "One Snippet. Three Steps for Your Visitor.",
     intro:
-      "Vizzion is designed to be dead simple for garage door dealers and installers. No IT department, no complex integrations, no waiting on a web developer. Embed a snippet, customize the look, and start generating leads from your existing website traffic.",
+      "No developer, no complicated setup. Paste one snippet and your site starts capturing qualified garage door leads.",
     steps: [
       {
         number: 1,
-        title: "Embed the Widget on Your Website",
+        title: "Embed the widget",
         description:
-          'Copy a single code snippet and paste it on any page — your homepage, a product catalog page, or a dedicated "See It on Your Home" landing page. The widget matches your brand colors and styling automatically. Setup takes under five minutes. Works with WordPress, Wix, Squarespace, and custom-built sites.',
+          "Copy one snippet onto any page — your homepage, a landing page, or a product page. It matches your branding and works with WordPress, Wix, Squarespace, or a custom site. Setup takes about five minutes.",
       },
       {
         number: 2,
-        title: "Homeowner Uploads a Photo and Previews Garage Door Styles",
+        title: "They preview on their home",
         description:
-          "A visitor clicks the widget, uploads a photo of their home (phone photo, Google Street View screenshot, or any clear image of their garage), and within seconds sees a realistic preview of a new garage door on their actual house. They can compare styles — carriage house, modern flush, raised panel — on their own home instead of in a catalog.",
+          "A visitor uploads a photo of their home and sees your garage doors on it in seconds. They pick from the styles, colors, and window options you've configured — including custom options you've uploaded yourself — and get a realistic preview on their house.",
       },
       {
         number: 3,
-        title: "You Get a Qualified Lead With Real Purchase Intent",
+        title: "You get the lead",
         description:
-          "To save or share their garage door preview, the homeowner enters their email address. That lead flows directly into your CRM or inbox — with their contact info, home photo, preferred style, and the visualization they engaged with. Your sales team follows up with a homeowner who already knows what door they want on their home.",
+          "To save their preview, they enter their email. The lead lands in your inbox or CRM with their photo and the door they chose. Your follow-up starts at \"which style did you like best?\" instead of \"can I come measure?\"",
       },
     ],
   },
 
   benefits: [
     {
+      metric: "Exclusive",
+      label: "Leads You Own",
+      description:
+        "Every lead comes from your own website traffic — never shared with competitors.",
+    },
+    {
+      metric: "5 min",
+      label: "Setup Time",
+      description:
+        "Paste one embed snippet. No developer, no staging environment.",
+    },
+    {
       metric: "$2,400",
-      label: "Average Garage Door Project Value",
+      label: "Average Garage Door Job",
       description:
-        "The average garage door replacement runs $800 to $4,000 depending on style, material, and insulation. Every qualified lead represents significant revenue — and homeowners who visualize premium options consistently choose higher-value doors.",
-    },
-    {
-      metric: "94%",
-      label: "Cost Recovery at Resale",
-      description:
-        "Garage door replacement recovers 94% of its cost at resale — more than any other home improvement project. When homeowners see this ROI combined with a preview on their actual home, the purchase decision becomes much easier.",
-    },
-    {
-      metric: "38%",
-      label: "Of Curb Appeal Is the Garage Door",
-      description:
-        "On a typical home with a front-facing garage, the door makes up 30-40% of the visible exterior. Homeowners intuitively know this matters — but they can't commit without seeing the transformation. Vizzion closes that gap.",
-    },
-    {
-      metric: "2.1%",
-      label: "Typical Dealer Website Conversion Rate",
-      description:
-        "Most garage door company websites convert at 2-4% with standard estimate request forms. Vizzion's interactive visualization creates 5-8× more engagement than a static form, turning passive browsers into active leads.",
-    },
-    {
-      metric: "$65-$120",
-      label: "Cost Per Lead From Aggregators",
-      description:
-        "Home services leads from Angi, HomeAdvisor, and similar platforms cost $65 to $120 each — and they're shared with multiple competitors. Vizzion generates leads from your existing traffic at zero marginal cost per lead.",
-    },
-    {
-      metric: "3-5×",
-      label: "Upsell Rate on Visualized Projects",
-      description:
-        "Homeowners who see a premium door on their home spend significantly more than those choosing from a catalog. When the carriage house door with decorative hardware looks stunning on their actual house, the $1,500 upgrade sells itself.",
+        "One closed replacement covers months of widget cost.",
     },
   ],
 
   comparison: {
     headline: "The Old Way vs. The Vizzion Way",
     oldWay: [
-      "Homeowners browse a PDF catalog of door styles and guess how they'll look",
-      "Before/after galleries show other people's homes — not theirs",
-      "Showroom visits with 6 display doors out of hundreds of options",
-      "Estimate request forms that convert 2-3% of traffic and capture no style preference",
-      "Leads from Angi and HomeAdvisor shared with 3-4 competing dealers",
-      "Homeowners default to the cheapest safe option because they can't picture the upgrade",
+      "Buy shared leads at $65–$120 and race three dealers to call first",
+      "Point them to a brochure and ask them to imagine the whole door",
+      "Send them to a showroom with a handful of display doors out of hundreds of options",
+      "Lose deals to \"we want to think about the style\" for weeks",
+      "A static gallery of other people's homes, like every competitor",
     ],
     vizzionWay: [
-      "Homeowners see any door style on their actual home in seconds",
-      "Personalized previews on the homeowner's specific house, garage, and driveway",
-      "Every style, color, and window option previewable from their couch",
-      "Interactive widget that captures email, style preference, and home photo together",
-      "Exclusive leads from your own website — no sharing, no bidding wars",
-      "Homeowners choose premium upgrades because they can see the curb appeal transformation",
+      "Exclusive leads from your own site at near-zero marginal cost",
+      "They see your garage door on their real home",
+      "Prospects arrive having already picked a style, color, and window option",
+      "Style decisions happen before the first call, not after the third",
+      "An interactive preview that makes your site the one they remember",
     ],
   },
 
-  testimonials: [
-    {
-      quote:
-        "We sell Clopay and Amarr doors — over 200 style combinations between the two. Homeowners used to freeze up at the catalog and just ask for whatever was cheapest. Since we added Vizzion, they come in asking for specific styles by name because they already saw it on their house. Our average ticket jumped from $1,800 to $2,700 in three months.",
-      author: "Kevin Brandt",
-      company: "Precision Door & Gate, Tampa FL",
-      result: "Average ticket increased from $1,800 to $2,700",
-    },
-    {
-      quote:
-        "After a major hailstorm hit our area last spring, we were flooded with calls. The dealers who got the jobs were the ones who could show homeowners what the replacement would look like — fast. We had Vizzion on our site and closed 40% more storm damage jobs than the same period the year before. Homeowners chose us because we made the decision easy.",
-      author: "Rachel Sievert",
-      company: "Front Range Garage Doors, Colorado Springs CO",
-      result: "40% more storm damage jobs closed vs. prior year",
-    },
-    {
-      quote:
-        "Our website was getting solid traffic from Google Ads — about 1,200 visits a month to our garage door pages. We were converting maybe 25 of those into estimate requests. After embedding Vizzion, that number went to 85 leads a month. Same traffic, same ad spend, completely different result. The ROI was obvious within the first two weeks.",
-      author: "Dan Whitfield",
-      company: "Heritage Overhead Door, Nashville TN",
-      result: "Estimate requests jumped from 25 to 85 per month",
-    },
-  ],
+  testimonials: [],
 
   faq: [
     {
-      question:
-        "How long does it take to set up Vizzion on my garage door website?",
+      question: "How long does it take to add Vizzion to my garage door website?",
       answer:
-        'Under five minutes. Copy one embed snippet onto your website — your homepage, a product catalog page, or a dedicated "See It on Your Home" page. The widget starts working the moment you publish. No staging environment or developer needed. Works with WordPress, Wix, Squarespace, and custom-built sites that most garage door companies use.',
+        "About five minutes. Copy one embed snippet onto any page — no developer needed. It works with WordPress, Wix, Squarespace, and custom-built sites, and starts capturing leads the moment you publish.",
     },
     {
-      question: "How much does Vizzion cost for garage door dealers?",
+      question: "What garage door styles can homeowners preview?",
       answer:
-        "There's a free tier to test the product, with scaled plans based on monthly visualization volume. Compare it to what you're spending now: Angi and HomeAdvisor leads cost $65 to $120 each and are shared with multiple dealers. A single closed garage door replacement at $2,000+ pays for months of Vizzion. Most dealers see positive ROI within the first week.",
+        "Whatever you set up in your widget — the door styles, colors, and window options you sell, plus any custom options you upload yourself. A homeowner selects a door, sees a realistic preview on their own home, and can explore a different look by generating another preview. Each result is tied to the door they chose, so your team knows what caught their interest.",
     },
     {
-      question:
-        "Can homeowners preview different garage door styles and colors?",
+      question: "How is Vizzion different from a manufacturer's design tool or a showroom?",
       answer:
-        "Yes. Homeowners upload one photo of their home and can preview multiple styles — traditional raised panel, carriage house, modern flush, full-view glass, and more. They can compare different colors, window insert patterns (arched, rectangular, prairie, Stockton), and decorative hardware options, all on their actual home. This eliminates the guesswork that slows down purchasing decisions.",
+        "A manufacturer's design tool or showroom shows the door on a stock house or a display floor, and a brochure shows someone else's home — none of them show the door on this homeowner's house. They also live on the manufacturer's site or in your store, not on your website where your traffic already is. Vizzion works at the top of your funnel: the homeowner previews the door on their own home and enters their email, so you capture the lead before they leave to compare other dealers.",
     },
     {
-      question:
-        "Does Vizzion work with the garage door brands I sell?",
+      question: "What if a homeowner uploads a bad photo or something blocks the garage?",
       answer:
-        "Vizzion is brand-agnostic — it works with Clopay, Amarr, Wayne Dalton, CHI Overhead Doors, Raynor, and any other manufacturer. The visualization is style-based, so homeowners see realistic previews of door types (carriage house, flush panel, etc.) that map directly to the products in your showroom or catalog.",
+        "The preview works best with a clear photo that shows the full garage and the front of the house — typically a phone shot taken from the driveway or street. Deep shadows, extreme angles, a parked car, or very low resolution can limit how realistic the result looks. Ask the homeowner to retake the photo with the garage door fully visible.",
     },
     {
-      question: "How does Vizzion integrate with my CRM or lead management?",
+      question: "How much does Vizzion cost compared to buying garage door leads?",
       answer:
-        "Direct integrations with Salesforce, HubSpot, and other major CRMs. We also support webhooks and Zapier, so you can push leads into ServiceTitan, Housecall Pro, JobNimbus, or whatever system your garage door company uses to manage estimates and appointments. Each lead arrives with the homeowner's email, home photo, and preferred door style attached.",
+        "There's a free tier to start, with plans that scale by visualization volume. Compare that to $65–$120 per shared lead split with competitors. A single closed garage door at $2,000+ covers months of Vizzion.",
     },
     {
-      question:
-        "Will homeowners uploading photos of their home create accurate previews?",
+      question: "Does it integrate with my garage door CRM?",
       answer:
-        "Vizzion works with a wide range of image quality — phone photos, Google Street View screenshots, and even slightly angled shots. The system identifies the garage area and generates a realistic preview of the new door on their specific home. For best results, a straight-on photo of the front of the house works great, but the widget handles most angles well and prompts for a clearer photo if needed.",
-    },
-    {
-      question:
-        "Can I customize the widget to match my company's branding?",
-      answer:
-        'Fully white-label. Match your brand colors and logo, set custom CTA text like "See Your New Garage Door" or "Preview Doors on Your Home," and control the messaging end to end. Homeowners experience it as a built-in feature of your site, not a third-party tool. Many dealers embed it directly on their product catalog pages for a seamless experience.',
-    },
-    {
-      question:
-        "How does Vizzion help me sell higher-value garage doors?",
-      answer:
-        "When homeowners can only look at catalog photos, they tend to pick the safest, cheapest option. When they see a premium carriage house door with decorative hardware on their actual home — and see how it transforms their curb appeal — they consistently choose higher-value options. Dealers using Vizzion report average ticket increases of 30-50% because homeowners can finally see what they're paying for before committing.",
+        "Yes — we can integrate with your CRM if needed. Reach out and we'll walk through what your setup looks like.",
     },
   ],
 
   cta: {
-    headline: "Start Turning Website Visitors Into Garage Door Leads",
+    headline: "Your Next Garage Door Lead Is Already on Your Website",
     subtext:
-      "Five-minute setup. No credit card required. See how many of your current visitors are ready to buy a new garage door — they just need to see it on their home first.",
+      "Vizzion just helps them raise their hand. Five-minute setup, no credit card.",
     buttonText: "Get Started Free",
     href: "#signup",
   },
@@ -248,20 +174,23 @@ export const garageDoorsData: IndustryData = {
   seo: {
     keywords: [
       "garage door lead generation",
-      "garage door visualization",
-      "garage door website widget",
       "garage door leads",
       "garage door dealer leads",
-      "garage door preview tool",
-      "garage door curb appeal",
-      "garage door replacement leads",
+      "garage door visualization",
+      "garage door website widget",
+      "garage door lead capture",
+      "exclusive garage door leads",
       "garage door company marketing",
-      "garage door sales tool",
+      "garage door preview tool",
       "garage door style visualizer",
       "garage door website conversion",
+      "garage door replacement leads",
       "garage door installer leads",
-      "garage door estimate leads",
+      "garage door sales tool",
+      "garage door curb appeal",
+      "see garage door on my house",
       "carriage house garage door preview",
+      "garage door lead gen software",
     ],
     schema: {
       "@context": "https://schema.org",
@@ -270,7 +199,7 @@ export const garageDoorsData: IndustryData = {
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
       description:
-        "Embeddable garage door visualization tool that helps garage door dealers and installers generate exclusive, pre-qualified leads from their own website traffic. Homeowners see a realistic preview of new garage door styles on their actual home.",
+        "Embeddable garage door visualization tool that helps garage door dealers generate exclusive, pre-qualified leads from their own website traffic. Homeowners see realistic previews of garage door styles, colors, and window options on their actual home.",
       offers: {
         "@type": "Offer",
         price: "0",
@@ -279,12 +208,12 @@ export const garageDoorsData: IndustryData = {
           "Free tier available. Premium plans based on visualization volume.",
       },
       featureList: [
-        "Realistic garage door style visualization on homeowner photos",
-        "Multiple style comparison (carriage house, modern, raised panel)",
+        "Realistic garage door visualization on homeowner photos",
+        "Configurable door styles, colors, and window options plus custom uploads",
         "Embeddable website widget",
         "White-label branding",
-        "CRM integration (ServiceTitan, HubSpot, Salesforce)",
-        "Lead capture with style preference data",
+        "Optional CRM integration",
+        "Lead capture with home photo and door style preference",
         "5-minute setup",
       ],
       screenshot: "https://vizzion.io/images/industries/garage-doors.png",

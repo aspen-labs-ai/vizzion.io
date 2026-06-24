@@ -5,256 +5,168 @@ export const drivewaysData: IndustryData = {
   name: "Driveways & Hardscaping",
   shortName: "Driveways",
   metaTitle: "Driveway Visualizer Widget for Paving Websites | Vizzion",
-  metaDescription: "Use a driveway visualizer widget on your paving website. Let visitors preview options on their own photo and turn traffic into qualified leads.",
+  metaDescription:
+    "Add a driveway visualizer widget to your website. Visitors preview pavers, stamped concrete, or natural stone on their own driveway and become exclusive, ready-to-quote leads.",
 
-  lastUpdated: "February 15, 2026",
+  lastUpdated: "June 17, 2026",
   evidenceNotes: [
-    "Driveways benchmark ranges shown here are directional and should be validated against your own pipeline data.",
-    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+    "Benchmark ranges are directional — validate against your own pipeline data.",
   ],
 
   header: {
-    badge: "Driveways & Hardscaping",
-    headline:
-      "Let Property Owners Preview Paving Options on Their Driveway",
-    highlightWord: "Paving",
+    badge: "Driveway visualizer widget",
+    headline: "Show homeowners your pavers on their driveway",
+    highlightWord: "driveway",
+    accentLine: "in seconds.",
     intro:
-      "Add a driveway visualizer widget to your paving website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Your prospect stood in your showroom for forty minutes, touched every Belgard and Techo-Bloc sample on the wall, asked about herringbone versus running bond, took four chips home in a zip-lock bag — and hasn't returned your calls in three weeks. That's not a bad lead. That's a homeowner paralyzed by too many choices and zero ability to see the finished result on their own property. Vizzion lets them upload a photo of their driveway and preview exact materials, patterns, and colors on their actual home in seconds. They enter their email to keep the preview. You get a lead who already knows what they want.",
-    introHighlight:
-      "That's not a bad lead. That's a homeowner paralyzed by too many choices and zero ability to see the finished result.",
-    cta: { text: "See It in Action", href: "#how-it-works" },
+      "Homeowners upload a photo of their driveway and preview your pavers, stamped concrete, and stone on it. They enter their email to save the result — you get an exclusive lead from your own site traffic.",
+    cta: { text: "Get Started Free", href: "#signup" },
   },
 
   context: {
-    headline:
-      "Paving Companies Are Bleeding Revenue to a Problem Hiding in Plain Sight",
+    headline: "People Don't Buy a Driveway They Can't Picture",
     paragraphs: [
-      `The American driveway market generates over $10 billion in annual revenue, and it's accelerating. Homeowners are trading plain concrete slabs and aging asphalt for interlocking pavers, natural stone, decorative stamped concrete, and permeable systems that meet new stormwater codes. The decorative paving segment alone is growing at 6 percent year-over-year, fueled by HGTV culture, rising home equity, and the simple fact that a driveway is the largest visible surface on most residential properties. Manufacturers have responded with staggering product depth: Belgard offers over 60 paver styles across dozens of color blends. Techo-Bloc's residential catalog runs 200-plus pages. Unilock, Pavestone, Cambridge, and EP Henry add hundreds more options. Factor in pattern variations — herringbone, running bond, basketweave, ashlar, cobblestone, random lay, circle kits, and soldier course borders — and a single manufacturer's catalog presents thousands of possible combinations. For the homeowner standing in your showroom, this abundance creates the opposite of confidence.`,
+      `Your visitor is about to spend $7,000 or more on the largest visible surface on their property — then tries to imagine the result from a 3-inch sample chip or a photo of someone else's driveway. Pattern and color shift at scale: a chip that looks warm grey in a sample binder can read almost beige across 700 square feet of driveway. They can't picture Belgard Catalina Slate against Techo-Bloc Blu 60 in herringbone on their own driveway, so they stall, delay, and keep shopping.`,
 
-      `The numbers tell the story clearly. Between 35 and 45 percent of qualified driveway prospects stall during the material and pattern selection phase, according to hardscape industry surveys. They visit your showroom, flip through sample boards, collect chips, hold them against their garage at different times of day — and then go dark for weeks. Many never resurface. The average residential driveway covers 600 to 800 square feet of the most visible real estate on the property. It's the first thing the mail carrier sees, the first thing the neighbors notice, the first thing a potential home buyer judges. Homeowners know this. The visibility that makes a beautiful paver driveway so appealing is the same visibility that makes a bad choice unbearable. So they delay. Your estimator burned two hours measuring and quoting. Your office called three times. You lost the job — not to another contractor, but to a homeowner's fear of committing to the wrong stone.`,
-
-      `Existing tools only partially address this. Belgard Design Studio and Unilock's online configurator produce top-down, flat pattern layouts. They're useful for calculating square footage and planning borders, but they don't show a homeowner what their actual property looks like with Techo-Bloc Blu 60mm in Shale Grey laid in herringbone from the garage apron to the street. Manufacturer sample boards and completed-project photo galleries help, but they show someone else's house, in a different neighborhood, under different lighting, with different landscaping. The fundamental gap — between holding a 3-by-3-inch chip and seeing 700 square feet of the finished product on your own home — is where driveway deals go to die. Climate layers on additional complexity: contractors in freeze-thaw zones need to sell permeable pavers and proper base depth, while southern markets deal with heat absorption and UV color stability. Every variable compounds the homeowner's uncertainty. Every week of deliberation is a week your crew sits idle between pours.`,
+      `Vizzion puts the finished driveway in front of them on their actual property in seconds. Once they can picture it, the hardest part of the sale is already done — and they enter their email to save the preview so you can follow up while they're still excited.`,
     ],
     highlights: [
-      "35 to 45 percent stall during selection",
-      "most visible real estate on the property",
-      "where driveway deals go to die",
+      "almost beige across 700 square feet of driveway",
+      "stall, delay, and keep shopping",
     ],
     callout: {
       stat: "41%",
-      text: "of driveway prospects who receive an estimate never move forward — not because of price, but because they couldn't confidently choose a material.",
+      text: "of homeowners who get a driveway estimate never move forward — they couldn't picture the finished result on their own property, so they kept shopping.",
     },
   },
 
-  showcase: {
-    headline: "See the Transformation Instantly",
-    subtext:
-      "This is exactly what your website visitors experience. They upload a photo of their driveway — and within seconds, they see their chosen paver material and pattern on their actual property.",
-    beforeImage: "/images/demo-house-old-roof.png",
-    afterImage: "/images/demo-house-metal-roof.png",
-    beforeLabel: "Current Driveway",
-    afterLabel: "With Paver Installation",
-  },
-
   solution: {
-    headline:
-      "Turn Material Paralysis Into Purchase Confidence — Before Your Estimator Rolls a Truck",
+    headline: "Why Paving Contractors Add It to Their Site",
     intro:
-      "Vizzion embeds on your paving company's website and lets homeowners see pavers, stamped concrete, or natural stone on their actual driveway within seconds. They upload a property photo, browse your material catalog, compare patterns and colors on their own home, and enter their email to save their favorite preview. You receive an exclusive lead with a specific product preference — ready for a quote, not a browsing session.",
+      "Vizzion lives on your paving website and turns browsers into exclusive leads who have already chosen a material.",
     points: [
       {
-        title: "From 120 Options to One Confident Choice",
+        title: "Exclusive leads from your own traffic",
         description:
-          "The showroom overwhelms. Your website doesn't have to. Homeowners click through your curated paver catalog and see each option — Belgard Catalina Slate in Victorian, Cambridge Ledgestone in Onyx Natural, Techo-Bloc Blu 60mm in Shale Grey — rendered on their own driveway at full scale. They compare herringbone against running bond on their actual property, not on a sample board under fluorescent lights. By the time they submit their email, the agonizing selection phase is already behind them.",
+          "Every lead is yours alone — not shared with Angi or auctioned on HomeAdvisor.",
       },
       {
-        title: "Leads Arrive With Product Preferences Attached",
+        title: "Half sold before you call",
         description:
-          "Typical website leads give you a name and maybe a phone number. Vizzion leads arrive with the homeowner's property photo, the specific material they chose, the pattern they preferred, and proof of genuine engagement. Your estimator walks into the appointment knowing the homeowner wants Cambridge Sherwood pavers in a basketweave layout — the conversation starts at pricing, not product education.",
+          "Homeowners arrive with their driveway photo, material choice, and a preview they already love.",
       },
       {
-        title: "Kill the Unqualified Site Visit",
+        title: "Live in five minutes",
         description:
-          "Every estimator visit costs your company time, fuel, and opportunity. The homeowner who hasn't chosen a material yet, hasn't discussed budget with their spouse, and wants to \"get a few ideas\" burns your afternoon without booking a job. When leads pre-visualize their driveway and submit their email to save it, they've demonstrated real intent. Your estimator drives to closeable appointments, not free consultations.",
-      },
-      {
-        title: "One Driveway Photo Unlocks the Full Hardscape Project",
-        description:
-          "A homeowner comes to your site thinking about their driveway. They upload a photo, see pavers on the driveway, and naturally start exploring your patio, walkway, and pool deck options in the same session. The visualization makes the full scope tangible. A single $7,000 driveway lead regularly expands into a $20,000 hardscape package when the homeowner can see the complete transformation on their own property.",
-      },
-      {
-        title: "Compete on Vision, Not Just Price",
-        description:
-          "When homeowners can't see the difference between products, they default to comparing quotes. Vizzion changes the conversation from \"which contractor is cheapest\" to \"which product looks best on my home.\" Premium materials sell themselves when displayed at full scale on the homeowner's actual property — the visual difference between budget concrete pavers and natural stone becomes obvious and worth the upgrade.",
+          "Paste one snippet on WordPress, Wix, Squarespace, or any custom site. No developer required.",
       },
     ],
   },
 
   howItWorks: {
-    headline:
-      "How to Add a Driveway Visualizer Widget to Your Paving Website",
+    headline: "One Snippet. Three Steps for Your Visitor.",
     intro:
-      "No IT department. No developer. No six-week integration project. Paste one embed snippet onto your paving website, configure your product catalog, and start converting your existing traffic into leads who already know what they want.",
+      "No developer, no complicated setup. Paste one snippet and your site starts capturing qualified paving leads.",
     steps: [
       {
         number: 1,
-        title: "Embed the Widget on Your Paving Website",
+        title: "Embed the widget",
         description:
-          `Copy a single code snippet onto any page — your homepage, a dedicated "Design Your Driveway" landing page, or your paver gallery page. The widget matches your brand colors automatically and works with WordPress, Wix, Squarespace, or any custom site. Choose which manufacturers and products to feature based on what you actually stock and install. Total setup: under five minutes.`,
+          "Copy one snippet onto any page — your homepage, a landing page, or a service-area page. It matches your branding and works with WordPress, Wix, Squarespace, or a custom site. Setup takes about five minutes.",
       },
       {
         number: 2,
-        title: "Homeowner Uploads a Property Photo and Explores Materials",
+        title: "They preview on their driveway",
         description:
-          "A visitor clicks the widget, uploads a photo of their driveway — a phone snapshot from the curb, a photo saved from a real estate listing, or a Google Maps screenshot. They browse your paver catalog directly in the widget, selecting material, color, and pattern. Within seconds they see a realistic preview of their choice on their actual driveway. They can swap between herringbone and running bond, toggle colors, or switch from pavers to stamped concrete — comparing options instantly on their own property.",
+          "A visitor uploads a photo of their driveway and sees your materials on it in seconds. They pick from the pavers, stamped concrete, and stone you've configured — including options you've uploaded yourself — and get a realistic preview on their own property.",
       },
       {
         number: 3,
-        title: "You Get an Exclusive Lead With a Clear Direction",
+        title: "You get the lead",
         description:
-          "To save or share their driveway preview, the homeowner enters their email address. That lead flows directly into your CRM or inbox — complete with their contact info, property photo, the material and pattern they selected, and the visualization they engaged with. Your sales team follows up with a prospect who's already chosen a product direction. The first conversation is about scheduling the estimate, not flipping through sample binders.",
+          "To save their preview, they enter their email. The lead lands in your inbox or CRM with their photo and the material they chose. Your follow-up starts at \"which one did you like best?\" instead of \"can I come measure?\"",
       },
     ],
   },
 
   benefits: [
     {
-      metric: "600–800 ft²",
-      label: "Of High-Stakes Visible Space Per Driveway",
+      metric: "Exclusive",
+      label: "Leads You Own",
       description:
-        "A driveway is the single largest designed surface visitors see when approaching a home. It's too big for a sample chip to represent and too visible for a wrong choice. Vizzion bridges the gap by showing full-scale materials on the actual property — giving homeowners the confidence to commit.",
+        "Every lead comes from your own website traffic — never shared with competitors.",
     },
     {
-      metric: "3×",
-      label: "Project Value on Multi-Area Hardscape Leads",
+      metric: "5 min",
+      label: "Setup Time",
       description:
-        "When homeowners visualize pavers on their driveway, they frequently extend to patios, walkways, and front stoops in the same session. Leads who preview multiple surfaces close at nearly three times the value of driveway-only inquiries — turning a standard repaving job into a complete hardscape transformation.",
+        "Paste one embed snippet. No developer, no staging environment.",
     },
     {
-      metric: "23 days",
-      label: "Faster From First Contact to Signed Contract",
+      metric: "$7K+",
+      label: "Average Driveway Job",
       description:
-        "The typical driveway project takes six to ten weeks from inquiry to signed contract, with material selection consuming most of that window. Leads who arrive with a material preference already chosen compress the timeline by over three weeks on average — your crews stay busier and your cash flow improves.",
-    },
-    {
-      metric: "49%",
-      label: "Close Rate on Pre-Visualized Leads",
-      description:
-        "Paving companies report closing nearly half of all leads who previewed a specific material on their property before the first conversation. Compare that to 15 to 20 percent close rates on standard website form fills. The difference is intent: a homeowner who chose Techo-Bloc Villagio in Mojave Beige on their driveway isn't shopping — they're ready to buy.",
-    },
-    {
-      metric: "$0",
-      label: "Marginal Cost Per Lead From Your Own Traffic",
-      description:
-        "HomeAdvisor and Angi charge $25 to $75 per driveway lead — shared with up to four competitors. Google Ads clicks for paver installation keywords run $12 to $30 each with conversion rates under 5 percent. Vizzion generates leads from traffic you already have at zero additional cost per lead.",
-    },
-    {
-      metric: "87%",
-      label: "Of Homeowners Start Driveway Research Online",
-      description:
-        "Nearly nine in ten homeowners planning a driveway project begin their search on the internet — browsing contractor websites, scrolling photo galleries, and comparing materials. They're on your site right now. Without an interactive experience, most browse and bounce. Vizzion captures that intent at the moment it peaks.",
+        "One closed paver driveway covers months of widget cost.",
     },
   ],
 
   comparison: {
     headline: "The Old Way vs. The Vizzion Way",
     oldWay: [
-      "Ship a zip-lock bag of sample chips and hope the homeowner imagines 700 square feet of it",
-      "Send your estimator to a property before the homeowner has chosen a material or discussed budget",
-      "Lose prospects for months while they agonize between Belgard and Techo-Bloc at their kitchen table",
-      "Show completed project galleries from other properties in other neighborhoods under different light",
-      "Call four times only to hear \"we're still going back and forth on the pattern\"",
-      "Get price-shopped because the homeowner can't see why premium pavers cost more than stamped concrete",
+      "Buy shared leads at $25–$75 and race four contractors to call first",
+      "Hand over a 3-inch sample chip and ask them to imagine a whole driveway",
+      "Drive out for an estimate before they've committed to anything",
+      "Lose deals to \"we want to think about the pattern\" for weeks",
+      "A static gallery of other people's driveways, like every competitor",
     ],
     vizzionWay: [
-      "Homeowners see full-scale paver patterns and colors on their actual driveway from your website",
-      "Leads arrive with a material preference — your estimator visits serious buyers with a direction already set",
-      "Material selection happens in minutes on your site, not months in the homeowner's sample drawer",
-      "Personalized previews on the specific property — their driveway, their landscaping, their house color",
-      "Follow up once: \"Loved the Cambridge Ledgestone in basketweave? Let's lock in your install date.\"",
-      "Sell the upgrade by showing the difference — premium natural stone versus basic concrete, side by side on their home",
+      "Exclusive leads from your own site at near-zero marginal cost",
+      "They see their chosen paver or stone on their real driveway",
+      "Prospects arrive having already picked a material and pattern",
+      "Pattern and color decisions happen before the first call, not after the third",
+      "An interactive preview that makes your site the one they remember",
     ],
   },
 
-  testimonials: [
-    {
-      quote:
-        `We tracked it for six months: 37 percent of our estimates were dying in the material selection phase. Homeowners who loved us as a company just couldn't pull the trigger on a paver choice. We added Vizzion to our website in March and the change was immediate. Prospects started showing up to consultations saying "I want the Techo-Bloc Villagio in Chesapeake, herringbone with a charcoal border." Our estimator-to-signed-contract ratio jumped from 22 percent to 48 percent. We booked $410,000 in hardscape work that quarter.`,
-      author: "Jason Burroughs",
-      company: "Summit Hardscapes, Columbus OH",
-      result: "Estimator-to-contract rate doubled — $410K booked in one quarter",
-    },
-    {
-      quote:
-        `The upsell effect caught us off guard. We expected driveway leads. What we got were full-property leads. A homeowner would come to our site to replace their cracked asphalt driveway — a $6,500 job. They'd upload their photo, see pavers on the driveway, and then start clicking through patio and walkway options. Our average project value went from $7,800 to $19,200 in four months. We didn't raise prices. Homeowners could suddenly see the whole vision on their actual property, and they wanted all of it.`,
-      author: "Lena Marchetti",
-      company: "Marchetti Paving & Stone, Morristown NJ",
-      result: "Average project value increased from $7,800 to $19,200",
-    },
-    {
-      quote:
-        `I run three crews and we were wasting 20-plus hours a week on site visits that led nowhere. The homeowner hadn't picked materials, hadn't talked to their partner, hadn't even decided between pavers and stamped concrete. Since adding Vizzion, I only send my estimator after the prospect has visualized their driveway and submitted their contact info. Our close rate on those leads is 51 percent. On regular form fills, we're still at 16. The tool basically pre-sells the project before we show up.`,
-      author: "Darnell Washington",
-      company: "Keystone Paving Co., Richmond VA",
-      result: "51% close rate on Vizzion leads vs. 16% on standard inquiries",
-    },
-  ],
+  testimonials: [],
 
   faq: [
     {
-      question:
-        "How does Vizzion work for a driveway or paving contractor?",
+      question: "How long does it take to add Vizzion to my paving website?",
       answer:
-        `You embed a lightweight widget on your website — your homepage, a dedicated "Design Your Driveway" page, or your paver product gallery. When a homeowner clicks, they upload a photo of their current driveway (a phone photo from the curb works perfectly) and browse your material catalog directly in the widget. They select a paver type, color blend, and pattern — say Cambridge Ledgestone in Onyx Natural with a herringbone layout — and see it rendered on their actual property within seconds. To save the preview, they enter their email. That lead flows to your CRM or inbox with their contact info, property photo, and the specific product and pattern they chose.`,
+        "About five minutes. Copy one embed snippet onto any page — no developer needed. It works with WordPress, Wix, Squarespace, and custom-built sites, and starts capturing leads the moment you publish.",
     },
     {
-      question:
-        "What driveway materials and patterns can homeowners preview?",
+      question: "What materials and patterns can homeowners preview?",
       answer:
-        "Vizzion supports all major hardscape materials — interlocking concrete pavers, natural stone, clay brick, porcelain pavers, stamped concrete, exposed aggregate, and standard poured concrete. You configure which manufacturers and product lines to feature: Belgard, Techo-Bloc, Unilock, Pavestone, Cambridge, EP Henry, or any brand you install. Pattern options include herringbone, running bond, basketweave, ashlar, cobblestone, random lay, circle kits, fan patterns, and soldier course borders. You control the catalog to match your actual inventory and installation capabilities.",
+        "Whatever you set up in your widget — the pavers, stamped concrete, and natural stone you install, in the patterns you offer, plus any custom options you upload yourself. A homeowner selects a material and pattern, sees a realistic preview on their own driveway, and can explore a different look by generating another preview. Each result is tied to the material they chose, so your team knows what caught their interest.",
     },
     {
-      question:
-        "Can homeowners preview more than just their driveway in the same session?",
+      question: "How is Vizzion different from sample binders or a showroom visit?",
       answer:
-        "Yes. The widget works for any hardscape surface — driveways, patios, walkways, front stoops, pool decks, and courtyards. When a homeowner uploads a property photo, they can preview materials on multiple areas in one session. This is where the natural upsell happens: a visitor arrives thinking about their driveway and leaves having also visualized their back patio and front walkway in matching stone. Paving contractors using Vizzion consistently report average project values climbing 40 to 80 percent as homeowners see the full transformation potential.",
+        "Sample binders and showroom chips ask a homeowner to imagine 700 square feet of paving from a 3-inch sample under store lighting — the leap most can't make. Manufacturer design tools like Belgard Design Studio show flat, top-down pattern layouts that help with planning but never show the finished look on the visitor's own driveway. Vizzion works at the top of the funnel: it shows the material on their actual property and captures the email. Use it to get the lead, then your usual tools to plan and close.",
     },
     {
-      question:
-        "How is Vizzion different from Belgard Design Studio or manufacturer configurators?",
+      question: "What if a homeowner uploads a bad photo or a car is parked on the driveway?",
       answer:
-        "Manufacturer tools like Belgard Design Studio and Unilock's configurator generate flat, bird's-eye pattern layouts. They're excellent for planning material quantities and border details, but they don't show a homeowner what the finished product looks like on their specific property from street level. Vizzion provides a realistic, perspective-correct preview on the homeowner's actual driveway photo — the view they'll see every day when they pull into their garage. It also captures the homeowner's email for your lead pipeline, which manufacturer tools don't do. The two tools are complementary: Vizzion captures the lead and confirms the material direction, then manufacturer tools handle detailed layout and ordering.",
+        "The preview works best with a clear photo that shows the full driveway — typically a phone shot taken from the curb. A vehicle parked on the surface, extreme angles, or very low resolution can limit how realistic the result looks. Ask the homeowner to retake the photo with as much of the driveway visible as possible.",
     },
     {
-      question:
-        "How much does Vizzion cost compared to buying driveway leads?",
+      question: "How much does Vizzion cost compared to buying driveway leads?",
       answer:
-        "Vizzion offers a free tier for testing, with scaled plans based on monthly visualization volume. For context, HomeAdvisor and Angi charge $25 to $75 per driveway lead — shared with up to four competing contractors. Google Ads clicks for keywords like \"paver driveway installer near me\" cost $12 to $30 per click with sub-5-percent conversion rates. Direct mail averages 1 to 2 percent response. One closed paver driveway job at $7,000 or more covers months of Vizzion. Most paving companies reach positive ROI within the first two to three weeks.",
+        "There's a free tier to start, with plans that scale by visualization volume. Compare that to $25–$75 per shared lead split with up to four competitors. A single closed paver driveway at $7,000+ covers months of Vizzion.",
     },
     {
-      question:
-        "Does Vizzion integrate with the software we already use?",
+      question: "Does it integrate with my CRM?",
       answer:
-        "Direct integrations with Jobber, ServiceTitan, HubSpot, and Salesforce — the platforms hardscape contractors actually operate on. Webhooks and Zapier connect Vizzion to AccuLynx, CompanyCam, Buildertrend, or any other tool in your workflow. Each lead arrives with the homeowner's email, property photo, chosen material and pattern, and full engagement data. Your team sees exactly what the prospect visualized without asking them to repeat it.",
-    },
-    {
-      question:
-        "What if the homeowner's driveway photo is taken at a weird angle or has a car on it?",
-      answer:
-        "Vizzion handles the real-world photos homeowners actually take — phone shots from the sidewalk, slightly angled views, images with vehicles parked on the driveway, trash cans at the curb, or screenshots from Google Maps Street View. The system identifies the driveway surface and generates a realistic preview despite minor obstructions and perspective variation. If an image is too dark or too low-resolution to produce a quality result, the widget prompts the homeowner to try a clearer shot.",
-    },
-    {
-      question:
-        "Can I white-label the widget to match my paving company's brand?",
-      answer:
-        `Completely. Match your brand colors and logo, set custom CTA text like "Preview Pavers on Your Driveway" or "Design Your New Driveway," and feature only the manufacturers and products you carry. Homeowners experience the tool as a built-in feature of your website — not a third-party add-on. Your brand stays front and center from the first click through the email capture.`,
+        "Yes — we can integrate with your CRM if needed. Reach out and we'll walk through what your setup looks like.",
     },
   ],
 
   cta: {
-    headline: "Start Converting Your Website Traffic Into Signed Paving Jobs",
+    headline: "Your Next Paving Lead Is Already on Your Website",
     subtext:
-      "Five-minute setup. No credit card required. Your visitors are already browsing — give them a reason to stop shopping and start choosing.",
+      "Vizzion just helps them raise their hand. Five-minute setup, no credit card.",
     buttonText: "Get Started Free",
     href: "#signup",
   },
@@ -280,11 +192,11 @@ export const drivewaysData: IndustryData = {
     schema: {
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      name: "Vizzion Driveway & Hardscape Visualization Widget",
+      name: "Vizzion Driveways Visualization Widget",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
       description:
-        "Embeddable driveway and paver visualization tool that helps paving contractors generate exclusive, pre-qualified leads from their own website traffic. Homeowners see a realistic preview of pavers, stamped concrete, or natural stone on their actual driveway.",
+        "Embeddable driveway visualization tool that helps paving contractors generate exclusive, pre-qualified leads from their own website traffic. Homeowners see realistic previews of pavers, stamped concrete, and natural stone on their actual driveway.",
       offers: {
         "@type": "Offer",
         price: "0",
@@ -293,14 +205,13 @@ export const drivewaysData: IndustryData = {
           "Free tier available. Premium plans based on visualization volume.",
       },
       featureList: [
-        "Realistic driveway paver and material visualization",
-        "Pattern preview — herringbone, running bond, basketweave, and more",
-        "Multi-surface support — driveways, patios, walkways, pool decks",
-        "Embeddable website widget with 5-minute setup",
-        "White-label branding for paving companies",
-        "CRM integration with Jobber, ServiceTitan, HubSpot",
-        "Lead capture with material and pattern preference data",
-        "Manufacturer catalog support — Belgard, Techo-Bloc, Unilock, and more",
+        "Realistic driveway material visualization on homeowner photos",
+        "Configurable paving products and custom uploaded materials",
+        "Embeddable website widget",
+        "White-label branding",
+        "Optional CRM integration",
+        "Lead capture with driveway photo and material preference",
+        "5-minute setup",
       ],
       screenshot: "https://vizzion.io/images/industries/driveways.png",
       url: "https://vizzion.io/industries/driveways",

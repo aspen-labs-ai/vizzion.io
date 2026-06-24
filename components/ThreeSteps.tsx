@@ -1,12 +1,4 @@
-'use client';
-
-import { useState } from 'react';
-import Image from 'next/image';
-import EmbedCodePreview from './EmbedCodePreview';
-
 export default function ThreeSteps() {
-  const [currentStep] = useState(2);
-
   return (
     <section
       className="py-24 px-4 sm:px-6 relative overflow-hidden border-t border-accent/10"
@@ -20,14 +12,14 @@ export default function ThreeSteps() {
       <div className="max-w-[1400px] mx-auto overflow-hidden relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16 max-w-3xl mx-auto">
-          <div className="inline-block px-4 py-2 rounded-full bg-accent-light text-accent font-medium text-sm mb-4">
+          <div className="vz-eyebrow mb-4">
             How It Works
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-text-primary">
-            Three Steps to Capturing More Leads
+            Embed, Capture, Close
           </h2>
           <p className="text-xl text-text-secondary">
-            Get up and running in 5 minutes. No developers needed. No complicated setup. Just results.
+            Three steps take you from a single line of embed code to a pre-qualified lead that&apos;s ready to buy.
           </p>
         </div>
         
@@ -68,9 +60,6 @@ export default function ThreeSteps() {
                 <span className="text-text-secondary">Customizable to your brand</span>
               </li>
             </ul>
-            
-            {/* Embed Code Preview */}
-            <EmbedCodePreview />
           </div>
           
           {/* Step 2: Capture Every Lead Automatically */}
@@ -107,20 +96,6 @@ export default function ThreeSteps() {
                 <span className="text-text-secondary">CRM integration (Salesforce, HubSpot)</span>
               </li>
             </ul>
-            
-            <div className="mt-8">
-              <div className="bg-bg-tertiary rounded-lg p-6">
-                <div className="bg-bg-primary border border-border-default rounded-lg p-4 space-y-3">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-accent"></div>
-                    <span className="text-sm font-semibold text-primary">New Lead Captured</span>
-                  </div>
-                  <div className="text-xs text-text-tertiary font-mono truncate">
-                    john.smith@email.com
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
           
           {/* Step 3: Close Deals Faster */}
@@ -163,30 +138,6 @@ export default function ThreeSteps() {
                 <span className="text-text-secondary">Strike while the iron is hot</span>
               </li>
             </ul>
-            
-            <div className="mt-8">
-              <div className="bg-bg-tertiary rounded-lg p-6">
-                <div className="bg-bg-primary border border-accent rounded-lg p-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
-                        <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                        </svg>
-                      </div>
-                      <div>
-                        <div className="text-sm font-semibold text-primary">Deal Closed</div>
-                        <div className="text-xs text-text-tertiary">Summit Roofing Project</div>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-lg font-bold text-accent">$12,500</div>
-                      <div className="text-xs text-text-tertiary">2 days</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
           
         </div>

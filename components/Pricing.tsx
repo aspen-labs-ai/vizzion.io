@@ -311,11 +311,7 @@ export default function Pricing({ plans, featureGroups }: PricingProps) {
 
               <a
                 href="#signup"
-                className={`mb-7 block w-full rounded-lg py-3 text-center text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 ${
-                  plan.featured
-                    ? 'bg-accent text-white shadow-md shadow-accent/20 hover:bg-accent-hover'
-                    : 'border border-border-default bg-bg-tertiary text-text-primary hover:border-accent'
-                }`}
+                className={`mb-7 w-full ${plan.featured ? 'vz-btn-primary' : 'vz-btn-ghost'}`}
               >
                 {plan.cta}
               </a>
@@ -353,11 +349,7 @@ export default function Pricing({ plans, featureGroups }: PricingProps) {
                     </div>
                     <a
                       href="#signup"
-                      className={`inline-block rounded-lg px-5 py-2 text-xs font-semibold transition-all duration-200 hover:-translate-y-0.5 ${
-                        plan.featured
-                          ? 'bg-accent text-white hover:bg-accent-hover'
-                          : 'border border-border-default bg-bg-secondary text-text-primary hover:border-accent'
-                      }`}
+                      className={`vz-btn-sm ${plan.featured ? 'vz-btn-primary' : 'vz-btn-ghost'}`}
                     >
                       {plan.cta}
                     </a>

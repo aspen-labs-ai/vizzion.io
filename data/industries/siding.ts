@@ -5,235 +5,168 @@ export const sidingData: IndustryData = {
   name: "Siding & Exterior Cladding",
   shortName: "Siding",
   metaTitle: "Siding Visualizer Widget for Siding Websites | Vizzion",
-  metaDescription: "Use a siding visualizer widget on your siding website. Let visitors preview options on their own photo and turn traffic into qualified leads.",
+  metaDescription:
+    "Add a siding visualizer widget to your website. Visitors preview vinyl, fiber cement, and more on their own home and become exclusive, ready-to-quote leads.",
 
-  lastUpdated: "February 15, 2026",
+  lastUpdated: "June 17, 2026",
   evidenceNotes: [
-    "Siding benchmark ranges shown here are directional and should be validated against your own pipeline data.",
-    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+    "Benchmark ranges are directional — validate against your own pipeline data.",
   ],
 
   header: {
-    badge: "Siding Industry",
-    headline: "Add a Siding Visualizer to Your Website — Capture More Leads",
-    highlightWord: "Siding",
+    badge: "Siding visualizer widget",
+    headline: "Show homeowners new siding on their home",
+    highlightWord: "siding",
+    accentLine: "in seconds.",
     intro:
-      "Add a siding visualizer widget to your siding website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Homeowners won't commit to a $15,000 siding replacement based on a 3-inch color swatch. Vizzion lets them see fiber cement, vinyl, or engineered wood on their actual home — then captures their email before showing the result. You get an exclusive, self-qualified lead from your own website. No aggregators, no shared leads, no swatch books that end up in a drawer.",
-    introHighlight:
-      "Homeowners won't commit to a $15,000 siding replacement based on a 3-inch color swatch.",
-    cta: { text: "See It in Action", href: "#how-it-works" },
+      "Homeowners upload a photo of their home and preview your siding options on it. They enter their email to save the result — you get an exclusive lead from your own site traffic.",
+    cta: { text: "Get Started Free", href: "#signup" },
   },
 
   context: {
-    headline:
-      "Siding Sales Are Stuck in the Swatch-and-Hope Era",
+    headline: "People Don't Buy Siding They Can't Picture",
     paragraphs: [
-      `The US siding market generates over $12 billion in annual revenue, yet the way siding companies sell hasn't fundamentally changed in decades. A homeowner calls or fills out a form. A rep drives out with a suitcase full of 3-by-5-inch color samples. They hold swatches against the house, squint, try to imagine what 2,400 square feet of "Aged Pewter" would look like versus "Iron Gray." The homeowner says they need to think about it. And then you wait — days, weeks, sometimes months — for a decision on a project that averages $8,000 to $20,000 depending on material.`,
-      `The core problem is visualization at scale. Siding is one of the most visually transformative home improvements — swap vinyl for fiber cement board-and-batten and the same house looks like it gained $80,000 in curb appeal. But homeowners can't see that transformation until it's already installed. Small swatches don't convey how a color reads across an entire facade. They don't show how horizontal lap siding compares to vertical board-and-batten on the same gable. They certainly don't reveal how James Hardie's "Evening Blue" plays against existing stone veneer and a charcoal roof. So homeowners stall. They request a third appointment. They collect more swatches. They search Pinterest for houses that "kind of look like mine." And every week they delay, there's a chance they cool off entirely or call your competitor.`,
-      `Material choice compounds the indecision. The siding market is split between vinyl (still the most installed by volume), fiber cement (James Hardie alone commands roughly 35% of the cladding market by revenue), engineered wood (LP SmartSide growing at double-digit rates), and premium options like natural cedar and stone veneer. Each material has a different texture, shadow profile, and color palette. A homeowner comparing vinyl Dutch lap to Hardie plank to LP SmartSide isn't just choosing a color — they're choosing a completely different aesthetic for their home's exterior. That level of complexity demands more than swatches pinned to a clipboard. It demands seeing each option on their actual house, at full scale, before they write a check.`,
-      `Storm damage restoration adds urgency but not clarity. After a hailstorm or hurricane, insurance adjusters approve siding replacements and homeowners face a fast decision: pick a material, pick a color, sign a contract. Restoration contractors who can show a homeowner exactly what their rebuilt exterior will look like — in their driveway, on their phone, within minutes of the initial inspection — close faster and at higher margins than those who hand over a brochure. In markets like Texas, the Midwest, and the Southeast, storm-driven siding replacements account for a significant share of annual installations. Speed of visualization directly translates to speed of close.`,
-      `Meanwhile, the digital gap keeps widening. National brands like James Hardie offer their own color visualizer tools, but those live on the manufacturer's website — driving traffic away from your company. Third-party lead platforms share leads across multiple contractors in the same ZIP code, replicating the same race-to-the-phone problem solar installers know all too well. Your own website, where the homeowner already found you and trusts your brand, converts at maybe 2 to 4 percent. The other 96% browse your gallery of other people's houses, check your service area, and leave without identifying themselves. That's the gap Vizzion closes: the moment between "I'm curious about new siding" and "here's my email, show me what it looks like on my house."`,
+      `Your visitor is about to re-side the most visible part of their home — an $8,000 to $20,000 decision — then tries to imagine the result from a 3-inch swatch held against the wall or a stock photo of someone else's house. Color shifts at scale: a swatch that reads as a soft gray in the showroom can look cold and stark across an entire facade. They can't picture James Hardie Evening Blue versus Mountain Sage on their own home, so they stall, delay, and keep shopping.`,
+
+      `Vizzion puts the finished siding in front of them on their actual house in seconds. Once they can picture it, the hardest part of the sale is already done — and they enter their email to save the preview so you can follow up while they're still excited.`,
     ],
     highlights: [
-      "$12 billion annually",
-      "visualization at scale",
-      "the gap Vizzion closes",
+      "cold and stark across an entire facade",
+      "stall, delay, and keep shopping",
     ],
     callout: {
       stat: "96%",
-      text: "of siding website visitors leave without converting — taking their home photo, their material preference, and their renovation budget with them.",
+      text: "of siding site visitors leave without asking for a quote. They couldn't picture the finished exterior, so they kept shopping.",
     },
   },
 
   solution: {
-    headline: "Show Homeowners Their New Siding Before a Single Board Is Cut",
+    headline: "Why Siding Contractors Add It to Their Site",
     intro:
-      "Vizzion embeds on your siding company's website and lets homeowners preview new siding on their actual home in seconds. They upload a photo, see a realistic transformation, and enter their email to save it. You get an exclusive lead with real purchase intent — not a name from a shared list.",
+      "Vizzion lives on your siding website and turns browsers into exclusive leads who have already chosen a material.",
     points: [
       {
-        title: "Full-Facade Visualization, Not a Swatch Comparison",
+        title: "Exclusive leads from your own traffic",
         description:
-          "A 3-inch sample doesn't tell a homeowner anything about how a color reads across 2,400 square feet. Vizzion shows the complete transformation — their specific home, their roofline, their existing trim and landscaping — with the siding material and color they're considering. That's the difference between guessing and deciding.",
+          "Every lead is yours alone — not shared with Angi or auctioned on HomeAdvisor.",
       },
       {
-        title: "Material Comparison Without Multiple Sales Visits",
+        title: "Half sold before you call",
         description:
-          "Vinyl, fiber cement, engineered wood, cedar shake — each looks completely different on the same house. Vizzion lets homeowners compare options on their own time, from their phone or laptop, without scheduling three appointments for your rep to hold up different sample boards.",
+          "Homeowners arrive with their house photo, material choice, and a preview they already love.",
       },
       {
-        title: "Storm Damage Restoration at Speed",
+        title: "Live in five minutes",
         description:
-          "When insurance approves a siding replacement after hail or wind damage, homeowners need to decide fast. The contractor who can show them exactly what their rebuilt exterior will look like — in the driveway, during the initial inspection — wins the job. Vizzion gives you that closing tool on your website and in the field.",
-      },
-      {
-        title: "Leads From Your Website, Not a Shared List",
-        description:
-          "Every lead generated through Vizzion belongs to you alone. The homeowner found your website, engaged with your visualization tool, and voluntarily handed over their email. No bidding wars, no speed-to-lead races, no paying $80 per lead only to compete with four other contractors for the same project.",
-      },
-      {
-        title: "Cross-Sell Opportunities Built In",
-        description:
-          "Siding replacements rarely happen alone — 68% of exterior remodeling projects bundle siding with windows, trim, or gutters. When a homeowner visualizes new siding and sees how dated their windows look by comparison, the upsell conversation starts itself. Vizzion captures the lead; your team expands the scope.",
+          "Paste one snippet on WordPress, Wix, Squarespace, or any custom site. No developer required.",
       },
     ],
   },
 
   howItWorks: {
-    headline: "How to Add a Siding Visualizer Widget to Your Siding Website",
+    headline: "One Snippet. Three Steps for Your Visitor.",
     intro:
-      "No IT department, no six-week onboarding, no integration headaches. Embed one snippet on your website and start converting your existing siding traffic into qualified leads.",
+      "No developer, no complicated setup. Paste one snippet and your site starts capturing qualified siding leads.",
     steps: [
       {
         number: 1,
-        title: "Embed the Widget on Your Siding Pages",
+        title: "Embed the widget",
         description:
-          'Copy a single code snippet and paste it onto your homepage, a siding services page, or a dedicated "Preview Your New Siding" landing page. The widget automatically matches your brand colors and styling. Setup takes under five minutes — works on WordPress, Wix, Squarespace, and custom-built sites.',
+          "Copy one snippet onto any page — your homepage, a landing page, or a service-area page. It matches your branding and works with WordPress, Wix, Squarespace, or a custom site. Setup takes about five minutes.",
       },
       {
         number: 2,
-        title: "Homeowner Uploads a Home Photo and Picks a Style",
+        title: "They preview on their home",
         description:
-          "A visitor clicks the widget and uploads a photo of their house — a phone snapshot, a Google Street View screenshot, or any clear exterior image. Within seconds they see a realistic preview of new siding on their actual home. They can explore different materials, colors, and profiles to compare how each option transforms their exterior.",
+          "A visitor uploads a photo of their home and sees your siding options on it in seconds. They pick from the materials and colors you've configured — including lines you've uploaded yourself — and get a realistic preview across their facade.",
       },
       {
         number: 3,
-        title: "You Get an Exclusive Lead With Real Intent",
+        title: "You get the lead",
         description:
-          "To save or share their siding preview, the homeowner enters their email. That lead flows into your CRM or inbox — complete with contact info, their home photo, the siding style they selected, and their engagement data. Your sales team follows up with a prospect who has already seen the transformation and chosen to reach out.",
+          "To save their preview, they enter their email. The lead lands in your inbox or CRM with their photo and the siding they chose. Your follow-up starts at \"which one did you like best?\" instead of \"can I come measure?\"",
       },
     ],
   },
 
   benefits: [
     {
+      metric: "Exclusive",
+      label: "Leads You Own",
+      description:
+        "Every lead comes from your own website traffic — never shared with competitors.",
+    },
+    {
+      metric: "5 min",
+      label: "Setup Time",
+      description:
+        "Paste one embed snippet. No developer, no staging environment.",
+    },
+    {
       metric: "$14K",
-      label: "Average Siding Project Value",
+      label: "Average Siding Job",
       description:
-        "With average siding replacements running $8,000 to $20,000 depending on material and home size, every qualified lead represents serious revenue. A single closed deal can pay for a year of Vizzion.",
-    },
-    {
-      metric: "68%",
-      label: "Bundle With Windows or Trim",
-      description:
-        "Most exterior remodeling projects combine siding with windows, gutters, or trim work. Homeowners who visualize new siding often realize their existing windows and trim need updating — turning a $12K siding job into a $22K+ exterior renovation.",
-    },
-    {
-      metric: "35%",
-      label: "Market Share — James Hardie Alone",
-      description:
-        "James Hardie controls roughly 35% of the US cladding market by revenue. Homeowners are comparing their premium fiber cement against vinyl and LP SmartSide. Vizzion lets them see each option on their home, so the material sells itself.",
-    },
-    {
-      metric: "4.2×",
-      label: "More Leads vs. Static Forms",
-      description:
-        "Interactive tools consistently outperform static contact forms by 3 to 5 times. A homeowner who uploads a photo and previews siding is deeply engaged — far beyond someone scanning a gallery of stock photos.",
-    },
-    {
-      metric: "12 days",
-      label: "Faster Decision on Vizzion Leads",
-      description:
-        "Siding projects typically stall 3 to 6 weeks between initial interest and signing. Leads who've already visualized the result arrive with their decision half-made, compressing the sales cycle by an average of 12 days.",
-    },
-    {
-      metric: "$80+",
-      label: "Saved Per Lead vs. Aggregators",
-      description:
-        "Third-party siding leads from home improvement platforms cost $60 to $120 each — and arrive shared with multiple contractors. Vizzion generates leads from traffic you already have, at zero marginal cost per lead.",
+        "One closed replacement covers months of widget cost.",
     },
   ],
 
   comparison: {
     headline: "The Old Way vs. The Vizzion Way",
     oldWay: [
-      "Drive to the home with a suitcase of 3-inch color swatches",
-      "Homeowner tries to imagine 2,400 sq ft of siding from a tiny sample",
-      "Multiple follow-up visits to show different materials and profiles",
-      "Competitor's James Hardie visualizer tool sends traffic away from your site",
-      "Shared leads from home improvement platforms — 3 to 5 contractors per lead",
-      "Weeks of indecision while homeowner collects Pinterest screenshots of other houses",
+      "Buy shared leads at $60–$120 and race four contractors to call first",
+      "Hand over a 3-inch swatch and ask them to imagine a whole house",
+      "Drive out for an estimate before they've committed to anything",
+      "Lose deals to \"we want to think about the color\" for weeks",
+      "A static gallery of other people's houses, like every competitor",
     ],
     vizzionWay: [
-      "Homeowner previews siding on their actual home from their phone or laptop",
-      "Full-facade visualization shows exactly how each color reads at scale",
-      "Compare vinyl, fiber cement, and engineered wood in one session — no extra appointments",
-      "Visualization lives on your website, building your brand and your lead pipeline",
-      "Every lead is 100% exclusive — generated from your own website traffic",
-      "Homeowners arrive at the sales call with their material and color already chosen",
+      "Exclusive leads from your own site at near-zero marginal cost",
+      "They see their chosen siding on their real home",
+      "Prospects arrive having already picked a material and color",
+      "Color decisions happen before the first call, not after the third",
+      "An interactive preview that makes your site the one they remember",
     ],
   },
 
-  testimonials: [
-    {
-      quote:
-        "We used to spend two hours per appointment holding up swatch boards. Now homeowners come to our site, preview three or four siding options on their house, and by the time they call us they already know they want Hardie plank in Arctic White. Our close rate on Vizzion leads is 34% versus 14% on our standard website leads. We've added it to every landing page we run.",
-      author: "Kevin Brandt",
-      company: "Summit Exteriors, Minneapolis MN",
-      result: "Close rate jumped from 14% to 34% on Vizzion-sourced leads",
-    },
-    {
-      quote:
-        "After the derecho hit Cedar Rapids, we had 300+ homeowners needing siding replaced under insurance claims. The ones who used our Vizzion widget picked their material and color within 48 hours. Without it, we were scheduling three to four follow-up visits per homeowner just to finalize the look. Vizzion cut our average time-to-contract from 22 days to 9 days on storm restoration jobs.",
-      author: "Rachel Dominguez",
-      company: "Heartland Restoration Group, Cedar Rapids IA",
-      result: "Storm restoration time-to-contract dropped from 22 to 9 days",
-    },
-    {
-      quote:
-        "The cross-sell impact caught us off guard. Homeowners visualize new siding and suddenly their old windows look terrible by comparison. About 40% of our Vizzion-sourced siding leads end up adding windows or trim to the project. Average ticket went from $11,500 for siding-only to $19,200 when they bundle. That's the kind of lift that changes your year.",
-      author: "Marcus Ingram",
-      company: "Precision Home Exteriors, Charlotte NC",
-      result: "Average project value increased from $11,500 to $19,200 via bundling",
-    },
-  ],
+  testimonials: [],
 
   faq: [
     {
-      question: "How long does it take to set up Vizzion on my siding company's website?",
+      question: "How long does it take to add Vizzion to my siding website?",
       answer:
-        'Under five minutes. Copy one embed snippet onto your siding services page, homepage, or a dedicated "Preview Your New Siding" landing page. The widget starts working immediately — no staging environment, no developer needed. Compatible with WordPress, Wix, Squarespace, and any site that supports HTML embeds.',
+        "About five minutes. Copy one embed snippet onto any page — no developer needed. It works with WordPress, Wix, Squarespace, and custom-built sites, and starts capturing leads the moment you publish.",
     },
     {
-      question: "Can homeowners compare different siding materials, not just colors?",
+      question: "What siding options can homeowners preview?",
       answer:
-        "Yes. Vizzion supports multiple material profiles — vinyl horizontal lap, fiber cement plank (like James Hardie), engineered wood (like LP SmartSide), board-and-batten, cedar shake, and more. Homeowners can switch between materials and colors on their actual home photo, comparing how each option looks at full scale across their entire facade.",
+        "Whatever you set up in your widget — the vinyl, fiber cement, engineered wood, or other products and colors you sell, plus any custom options you upload yourself. A homeowner selects a siding option, sees a realistic preview on their own home, and can explore a different look by generating another preview to compare. Each result is tied to the option they chose, so your team knows what caught their interest.",
     },
     {
-      question: "How does Vizzion compare to James Hardie's Home Color Tool?",
+      question: "How is Vizzion different from samples or a manufacturer's color tool?",
       answer:
-        "James Hardie's visualizer lives on their website — it drives traffic to Hardie, not to your business. Every homeowner who uses it is on a manufacturer's site, one click away from finding your competitors. Vizzion embeds directly on your website, keeps the traffic on your domain, and captures the lead for your company. Plus, Vizzion isn't limited to one manufacturer — homeowners can compare Hardie, LP SmartSide, vinyl, and other options in one place.",
+        "They solve different problems. Physical swatches and showroom boards are too small to show how a color reads across a whole facade. Manufacturer color tools — like the visualizer on James Hardie's own site — do preview siding on a home, but they live on the manufacturer's domain: they send traffic to that brand, keep you tied to one catalog, and never hand you the lead. Vizzion lives on your own site, previews the brands you actually carry, and captures the homeowner's email so the lead is yours.",
     },
     {
-      question: "Does Vizzion work for storm damage and insurance restoration projects?",
+      question: "What if a homeowner uploads a bad photo or the house is partly obstructed?",
       answer:
-        "Extremely well. After hail, wind, or storm damage, homeowners face a fast decision under insurance timelines. Vizzion lets them see their rebuilt exterior immediately — in your truck, at the kitchen table, on their phone. Contractors using Vizzion for storm restoration report cutting their time-to-contract significantly because homeowners can pick materials and colors without scheduling multiple follow-up visits.",
+        "The preview works best with a clear photo that shows the full facade — typically a phone shot taken from the street or driveway. Heavy landscaping, deep shadows, extreme angles, or very low resolution can limit how realistic the result looks. Ask the homeowner to retake the photo with as much of the exterior visible as possible.",
     },
     {
       question: "How much does Vizzion cost compared to buying siding leads?",
       answer:
-        "Vizzion offers a free tier to test the product, with scaled plans based on monthly visualization volume. Compare that to third-party siding leads at $60 to $120 each — shared with multiple contractors in your area. One closed siding project at $12,000 to $20,000 pays for Vizzion many times over. Most siding companies see positive ROI within the first two weeks.",
+        "There's a free tier to start, with plans that scale by visualization volume. Compare that to $60–$120 per shared lead split with competitors. A single closed siding job at $14,000 covers months of Vizzion.",
     },
     {
-      question: "Can I customize the widget to show only the siding brands I carry?",
+      question: "Does it integrate with my siding CRM?",
       answer:
-        "Fully customizable. Show only the materials and colors you actually install — if you're a certified James Hardie contractor, feature Hardie's full color palette. If you specialize in LP SmartSide or vinyl, curate accordingly. You control the options homeowners see, so every visualization aligns with what you can actually deliver.",
-    },
-    {
-      question: "Does Vizzion integrate with my CRM and sales tools?",
-      answer:
-        "Direct integrations with Salesforce, HubSpot, JobNimbus, and other CRMs commonly used by remodeling and siding contractors. Also supports webhooks and Zapier for custom workflows. Each lead arrives with the homeowner's email, home photo, selected siding material and color, and engagement data — ready for your sales team to follow up with a personalized proposal.",
-    },
-    {
-      question: "What about homeowners who want to see siding plus new windows or trim together?",
-      answer:
-        "This is where Vizzion really shines for exterior remodelers. Homeowners who preview new siding often realize their existing windows, trim, or gutters look outdated by comparison. The visualization creates natural cross-sell opportunities — your rep can follow up with a bundled proposal for siding plus windows, knowing the homeowner has already seen (and been dissatisfied with) their current setup.",
+        "Yes — we can integrate with your CRM if needed. Reach out and we'll walk through what your setup looks like.",
     },
   ],
 
   cta: {
-    headline: "Start Generating Siding Leads From Your Own Website",
+    headline: "Your Next Siding Lead Is Already on Your Website",
     subtext:
-      "Five-minute setup. No credit card required. See how many of your current visitors are ready to commit to new siding — they just need to see it on their home first.",
+      "Vizzion just helps them raise their hand. Five-minute setup, no credit card.",
     buttonText: "Get Started Free",
     href: "#signup",
   },
@@ -241,20 +174,23 @@ export const sidingData: IndustryData = {
   seo: {
     keywords: [
       "siding lead generation",
-      "siding visualization tool",
+      "siding leads",
       "siding company leads",
-      "siding color visualizer",
+      "siding visualization tool",
       "siding website widget",
       "siding lead capture",
-      "James Hardie visualizer",
-      "fiber cement siding preview",
+      "exclusive siding leads",
       "siding marketing tool",
+      "residential siding leads",
       "siding sales tool",
-      "vinyl siding visualizer",
-      "siding contractor leads",
-      "exterior cladding visualization",
+      "siding color visualizer",
       "siding website conversion",
-      "LP SmartSide preview tool",
+      "siding replacement leads",
+      "siding contractor leads",
+      "see siding on my house",
+      "vinyl siding visualizer",
+      "fiber cement siding preview",
+      "James Hardie visualizer",
     ],
     schema: {
       "@context": "https://schema.org",
@@ -263,7 +199,7 @@ export const sidingData: IndustryData = {
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
       description:
-        "Embeddable siding visualization tool that helps siding contractors and exterior remodelers generate exclusive, pre-qualified leads from their own website traffic. Homeowners see a realistic preview of new siding on their actual home.",
+        "Embeddable siding visualization tool that helps siding contractors generate exclusive, pre-qualified leads from their own website traffic. Homeowners see realistic previews of vinyl, fiber cement, engineered wood, and other siding on their actual home.",
       offers: {
         "@type": "Offer",
         price: "0",
@@ -272,12 +208,13 @@ export const sidingData: IndustryData = {
           "Free tier available. Premium plans based on visualization volume.",
       },
       featureList: [
-        "Full-facade siding visualization on homeowner's actual photo",
-        "Multi-material comparison (vinyl, fiber cement, engineered wood, cedar)",
-        "Embeddable website widget with white-label branding",
-        "CRM integration (Salesforce, HubSpot, JobNimbus)",
-        "Lead capture with material preference and engagement data",
-        "5-minute setup on any website platform",
+        "Realistic siding visualization on homeowner photos",
+        "Configurable siding products and custom uploaded materials",
+        "Embeddable website widget",
+        "White-label branding",
+        "Optional CRM integration",
+        "Lead capture with home photo and material preference",
+        "5-minute setup",
       ],
       screenshot: "https://vizzion.io/images/industries/siding.png",
       url: "https://vizzion.io/industries/siding",

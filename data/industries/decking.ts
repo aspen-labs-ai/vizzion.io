@@ -5,242 +5,170 @@ export const deckingData: IndustryData = {
   name: "Decking",
   shortName: "Decking",
   metaTitle: "Deck Visualizer Widget for Decking Websites | Vizzion",
-  metaDescription: "Use a deck visualizer widget on your decking website. Let visitors preview options on their own photo and turn traffic into qualified leads.",
+  metaDescription:
+    "Add a deck visualizer widget to your website. Visitors preview composite and wood decking on their own backyard and become exclusive, ready-to-quote leads.",
 
-  lastUpdated: "February 15, 2026",
+  lastUpdated: "June 17, 2026",
   evidenceNotes: [
-    "Decking benchmark ranges shown here are directional and should be validated against your own pipeline data.",
-    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+    "Benchmark ranges are directional — validate against your own pipeline data.",
   ],
 
   header: {
-    badge: "Decking Industry",
-    headline:
-      "Add a Deck Visualizer to Your Website — Turn Visitors Into Leads",
-    highlightWord: "Deck",
+    badge: "Decking visualizer widget",
+    headline: "Show homeowners your deck on their backyard",
+    highlightWord: "backyard",
+    accentLine: "in seconds.",
     intro:
-      "Add a deck visualizer widget to your decking website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Homeowners want a new deck but can't decide between Trex Transcend in Havana Gold or TimberTech in Coastline. They stare at 3×3 color swatches for weeks, request samples from three builders, and eventually do nothing. Vizzion lets them upload a photo of their backyard and see the exact deck — material, color, railing — on their actual property. They enter their email to save the preview. You get a warm lead who already knows what they want.",
-    introHighlight:
-      "Homeowners want a new deck but can't decide between Trex Transcend in Havana Gold or TimberTech in Coastline.",
-    cta: { text: "See It in Action", href: "#how-it-works" },
+      "Homeowners upload a photo of their backyard and preview your decking materials on it. They enter their email to save the result — you get an exclusive lead from your own site traffic.",
+    cta: { text: "Get Started Free", href: "#signup" },
   },
 
   context: {
-    headline:
-      "The Decking Industry Has a $8 Billion Problem — And It Starts in the Showroom",
+    headline: "People Don't Buy a Deck They Can't Picture",
     paragraphs: [
-      `The U.S. residential decking market generates over $8 billion annually, with more than 4 million decks built or replaced every year. That demand is only accelerating — composite decking alone is growing 5 to 7 percent per year as homeowners shift away from pressure-treated lumber toward low-maintenance alternatives like Trex, TimberTech, Azek, and Fiberon. The average deck build or replacement now runs $15,000 to $35,000, making it one of the largest outdoor improvement projects a homeowner will ever take on. For deck builders and remodelers, every qualified lead represents serious revenue.`,
+      `Your visitor is about to spend $15,000 to $35,000 on the biggest outdoor project they'll take on — then tries to imagine the result from a 3-inch sample board or a stock photo of someone else's yard. Color reads differently at scale: a board that looks warm brown in your hand can wash out across an entire deck surface next to their siding. They can't picture Trex Transcend in Havana Gold versus TimberTech in Coastline on their own backyard, so they stall, delay, and keep shopping.`,
 
-      `But here's where the funnel breaks. Composite manufacturers like Trex offer 25 to 30 color options. TimberTech has another 20-plus. Add in board width choices (standard vs. wide plank), railing styles (cable, aluminum, composite, glass), fascia color, and the need to coordinate everything with the home's siding, trim, and roof color — and you've handed the homeowner 500 possible combinations with no practical way to compare them. The result is analysis paralysis at scale. Builders report that 30 to 40 percent of qualified prospects stall in the material selection phase, many for months. Some never come back at all. That's not a lead quality problem — it's a visualization problem.`,
-
-      `The traditional tools don't help. Color swatches and small sample boards can't show how a full deck surface looks in context. Manufacturer visualizers — like the Trex Deck Starter or TimberTech Deck Designer — are generic renderers that drop preset deck shapes onto stock photos of someone else's house. They don't show your prospect's actual backyard, their specific siding color, or how the deck will look from their kitchen window. And critically, these manufacturer tools sit on the manufacturer's website, not yours. Every prospect you send to Trex.com to "explore colors" is a prospect who may never come back to your site. You're handing your traffic to a manufacturer who also lists your competitors.`,
-
-      `The seasonal pressure compounds the problem. Deck building is intensely seasonal — spring through early fall in most markets, with the selling season effectively running January through May for summer builds. Builders need to lock in contracts during winter proposal season to fill their spring and summer calendars. But that's exactly when homeowners are least able to visualize outdoor projects — they're looking at a snow-covered or dormant backyard and trying to imagine a $25,000 composite deck. Without a tangible visual, the default decision is to wait. Waiting means another builder gets the contract, or the project dies entirely.`,
-
-      `Most deck builders rely on referrals and word-of-mouth, supplemented by home show appearances and local lead services like Angi, HomeAdvisor, or Houzz. Those platforms charge $15 to $75 per lead — and the leads are shared with three to five other builders in your area. Your close rate on shared leads typically runs 8 to 12 percent because you're racing three other contractors to the first callback. Meanwhile, your own website — the one place where the homeowner has already chosen your company — converts at 2 to 4 percent. The 96-plus percent who leave without contacting you aren't uninterested. They're undecided. They can't picture the finished product, so they can't pull the trigger.`,
+      `Vizzion puts the finished deck in front of them on their actual backyard in seconds. Once they can picture it, the hardest part of the sale is already done — and they enter their email to save the preview so you can follow up while they're still excited.`,
     ],
     highlights: [
-      "$15,000 to $35,000 average project",
-      "analysis paralysis at scale",
-      "visualization problem",
+      "wash out across an entire deck surface",
+      "stall, delay, and keep shopping",
     ],
     callout: {
-      stat: "30–40%",
-      text: "of qualified deck prospects stall in the material selection phase — many for months, some permanently. They don't have a budget problem. They have a visualization problem.",
+      stat: "96%",
+      text: "of deck site visitors leave without requesting a quote. They couldn't picture the finished deck, so they kept shopping.",
     },
   },
 
   solution: {
-    headline: "Turn Material Selection From a Roadblock Into a Lead Magnet",
+    headline: "Why Deck Builders Add It to Their Site",
     intro:
-      "Vizzion embeds on your website and lets homeowners see a specific deck — their chosen material, color, and railing style — on their actual backyard. They upload a photo of their property, preview the deck, and enter their email to save it. You get an exclusive lead who has already made their key material decisions.",
+      "Vizzion lives on your decking website and turns browsers into exclusive leads who have already chosen a material.",
     points: [
       {
-        title: "Keep Traffic on Your Site, Not the Manufacturer's",
+        title: "Exclusive leads from your own traffic",
         description:
-          "Every time you tell a prospect to visit Trex.com or TimberTech.com to browse colors, you lose control of that lead. Vizzion puts the visualization experience on your website, under your brand. The homeowner explores options and converts without ever leaving your domain. Your site becomes the destination for deck planning, not a pit stop before the manufacturer's site.",
+          "Every lead is yours alone — not shared with Angi or auctioned on HomeAdvisor.",
       },
       {
-        title: "Collapse the Decision Timeline",
+        title: "Half sold before you call",
         description:
-          "Material selection stalls projects for weeks or months because homeowners can't see how 30 color options look in context. Vizzion lets them try multiple combinations on their actual backyard in minutes — composite vs. hardwood, dark tones vs. light, cable rail vs. glass panel. When they can see the finished product, they decide faster. Builders using visual proof tools report proposal-to-contract timelines shrinking by 30 to 50 percent.",
+          "Homeowners arrive with their backyard photo, material choice, and a preview they already love.",
       },
       {
-        title: "Sell Through Winter Without a Showroom Visit",
+        title: "Live in five minutes",
         description:
-          "During proposal season (January through April), homeowners are planning from their couch, not visiting your outdoor showroom. Vizzion lets them upload a summer photo of their backyard and preview deck options from anywhere, any time. You fill your spring calendar with signed contracts while competitors wait for warmer weather to start selling.",
-      },
-      {
-        title: "Capture Intent That Samples Can't",
-        description:
-          "Mailing sample boards costs you $8 to $15 per kit in materials and shipping, and most sample kits go to people who are still months away from a decision. A homeowner who uploads a backyard photo, previews three deck colors, and submits their email has demonstrated far more purchase intent than someone who requested a free sample. You get richer data — which materials they explored, which combination they saved — and a warmer conversation starter.",
-      },
-      {
-        title: "Exclusive Leads From Your Own Traffic",
-        description:
-          "Every lead generated through Vizzion belongs to you alone. No Angi bidding wars, no HomeAdvisor shared leads, no racing three other contractors to the first callback. These homeowners found your company, engaged with your brand, and chose to share their contact info directly. Your sales team follows up with a prospect who already knows what deck they want on their specific property.",
+          "Paste one snippet on WordPress, Wix, Squarespace, or any custom site. No developer required.",
       },
     ],
   },
 
   howItWorks: {
-    headline: "How to Add a Deck Visualizer Widget to Your Decking Website",
+    headline: "One Snippet. Three Steps for Your Visitor.",
     intro:
-      "No IT department, no complex setup, no six-week onboarding. Embed a snippet on your site and start converting your existing traffic into qualified deck leads.",
+      "No developer, no complicated setup. Paste one snippet and your site starts capturing qualified decking leads.",
     steps: [
       {
         number: 1,
-        title: "Embed the Widget on Your Site",
+        title: "Embed the widget",
         description:
-          "Copy a single code snippet onto any page — your homepage, a dedicated deck gallery page, or a \"Design Your Dream Deck\" landing page. The widget matches your brand colors and styling automatically. Works with WordPress, Wix, Squarespace, and custom-built contractor sites. Total setup: under five minutes.",
+          "Copy one snippet onto any page — your homepage, a landing page, or a deck gallery page. It matches your branding and works with WordPress, Wix, Squarespace, or a custom site. Setup takes about five minutes.",
       },
       {
         number: 2,
-        title: "Homeowner Uploads a Backyard Photo and Previews Their Deck",
+        title: "They preview on their backyard",
         description:
-          "A visitor clicks the widget, uploads a photo of their backyard (phone photo, drone shot, or any clear image of their outdoor space), and within seconds sees a realistic preview of their chosen deck material and color on their actual property. They can swap colors, try different railing styles, and compare composite vs. wood — all on their specific backyard, not a stock photo.",
+          "A visitor uploads a photo of their backyard and sees your decking materials on it in seconds. They pick from the materials you've configured — including options you've uploaded yourself — and get a realistic preview on their own outdoor space.",
       },
       {
         number: 3,
-        title: "You Get a Qualified Lead With Material Preferences Included",
+        title: "You get the lead",
         description:
-          "To save their deck preview, the homeowner enters their email address. That lead flows into your CRM or inbox — complete with their contact info, backyard photo, the specific materials and colors they explored, and the final combination they saved. Your sales team follows up knowing exactly what the prospect wants, on which property, at what approximate scope.",
+          "To save their preview, they enter their email. The lead lands in your inbox or CRM with their photo and the material they chose. Your follow-up starts at \"which one did you like best?\" instead of \"can I come measure?\"",
       },
     ],
   },
 
   benefits: [
     {
+      metric: "Exclusive",
+      label: "Leads You Own",
+      description:
+        "Every lead comes from your own website traffic — never shared with competitors.",
+    },
+    {
+      metric: "5 min",
+      label: "Setup Time",
+      description:
+        "Paste one embed snippet. No developer, no staging environment.",
+    },
+    {
       metric: "$22K",
-      label: "Average Deck Project Value",
+      label: "Average Deck Job",
       description:
-        "The typical deck build or replacement runs $15,000 to $35,000 depending on size, material, and complexity. At that price point, converting even two or three additional leads per month represents $50K to $100K in new revenue.",
-    },
-    {
-      metric: "30–50%",
-      label: "Faster Proposal-to-Contract",
-      description:
-        "Builders report that when homeowners can see the finished deck on their property before the first meeting, the decision cycle compresses dramatically. Material selection — the biggest bottleneck — happens before your sales call, not during a month-long sample exchange.",
-    },
-    {
-      metric: "4M+",
-      label: "Decks Built or Replaced Annually",
-      description:
-        "Over 4 million deck projects happen in the U.S. each year. That's a massive addressable market, and the builders who make it easiest for homeowners to visualize and commit are the ones who capture disproportionate share.",
-    },
-    {
-      metric: "$8–$15",
-      label: "Saved Per Sample Kit Not Mailed",
-      description:
-        "Each physical sample kit costs $8 to $15 in materials, packaging, and shipping. Most go to early-stage tire-kickers. Vizzion lets prospects explore materials digitally — saving you sample costs while generating higher-intent leads.",
-    },
-    {
-      metric: "8–12%",
-      label: "Close Rate on Shared Platform Leads",
-      description:
-        "Leads from Angi, HomeAdvisor, and Houzz are shared with 3 to 5 other contractors. You're in a callback race before you've even quoted the job. Vizzion leads are exclusive — they came from your site, engaged with your brand, and self-qualified through real interaction.",
-    },
-    {
-      metric: "Jan–May",
-      label: "The Window That Makes or Breaks Your Year",
-      description:
-        "Deck building is seasonal. Most contracts for spring and summer builds are signed between January and May. Vizzion lets you sell through winter — homeowners preview their dream deck from their couch, sign in February, and you break ground in April.",
+        "Typical deck builds run $15,000 to $35,000 — one signed job covers months of widget cost.",
     },
   ],
 
   comparison: {
     headline: "The Old Way vs. The Vizzion Way",
     oldWay: [
-      "Mail $12 sample kits to tire-kickers who ghost after receiving them",
-      "Send prospects to Trex.com or TimberTech.com — and hope they come back",
-      "Rely on 3×3 swatches to sell a $25,000 project",
-      "Lose 30–40% of qualified prospects to decision paralysis during material selection",
-      "Pay $15–$75 per Angi/HomeAdvisor lead shared with 3–5 competitors",
-      "Wait for spring foot traffic to fill your summer build calendar",
+      "Buy shared leads at $15–$75 and race three other builders to call first",
+      "Mail a sample board and ask them to imagine a whole deck",
+      "Drive out to measure before they've committed to a material",
+      "Lose deals to \"we want to think about the color\" for weeks",
+      "A static gallery of other people's decks, like every competitor",
     ],
     vizzionWay: [
-      "Homeowners explore materials digitally — no sample waste, higher intent signals",
-      "Keep the entire visualization experience on your site, under your brand",
-      "Prospects see the full deck on their actual backyard in realistic detail",
-      "Material selection happens in minutes, not months — they arrive at the sales call decided",
-      "Exclusive leads from your own website at zero marginal cost per lead",
-      "Sell through winter with digital previews — fill your spring calendar from proposal season",
+      "Exclusive leads from your own site at near-zero marginal cost",
+      "They see their chosen decking material on their real backyard",
+      "Prospects arrive having already picked a material and color",
+      "Color decisions happen before the first call, not after the third",
+      "An interactive preview that makes your site the one they remember",
     ],
   },
 
-  testimonials: [
-    {
-      quote:
-        "We were mailing 200 sample kits a month and maybe 15 of those turned into real conversations. After adding Vizzion to our deck gallery page, prospects come in already knowing they want Trex Transcend in Lava Rock with black aluminum railing. Our close rate on Vizzion leads is 34% versus 11% on our sample-request leads. We've cut sample mailing costs by 60% and our pipeline is twice as full.",
-      author: "Brian Kowalski",
-      company: "Summit Deck & Patio, Columbus OH",
-      result: "34% close rate on Vizzion leads vs. 11% on sample-request leads",
-    },
-    {
-      quote:
-        "Proposal season used to be brutal. We'd quote 40 jobs between January and March and sign maybe 12 because homeowners couldn't visualize the deck on their snow-covered backyard. This past winter we added Vizzion and told every prospect to upload a summer photo. Signed 23 of 38 proposals. The visualization removed the guesswork — they could see exactly what they were committing to.",
-      author: "Rachel Engstrom",
-      company: "NorthStar Outdoor Living, Minneapolis MN",
-      result: "Proposal close rate jumped from 30% to 61% during winter season",
-    },
-    {
-      quote:
-        "The biggest time sink in our sales process was material selection. We'd spend two or three meetings just going back and forth on colors and board widths. Now homeowners try combinations on their own backyard through our website before we ever meet. By the first appointment, they've already narrowed it to one or two options. Average time from first contact to signed contract dropped from 6 weeks to 18 days.",
-      author: "Carlos Medina",
-      company: "Precision Decks, Charlotte NC",
-      result: "Sales cycle shortened from 6 weeks to 18 days",
-    },
-  ],
+  testimonials: [],
 
   faq: [
     {
-      question:
-        "How does Vizzion help with composite decking color selection specifically?",
+      question: "How long does it take to add Vizzion to my decking website?",
       answer:
-        "Composite manufacturers like Trex, TimberTech, Azek, and Fiberon each offer 20 to 30 color options — and colors look dramatically different depending on the home's siding, trim, and landscaping. Vizzion lets homeowners see each color option on their actual backyard, against their specific house exterior. Instead of guessing from a tiny swatch, they compare Trex Havana Gold vs. Tiki Torch vs. Lava Rock right on their property. This eliminates the most common stall point in the deck sales process: weeks of indecision over color.",
+        "About five minutes. Copy one embed snippet onto any page — no developer needed. It works with WordPress, Wix, Squarespace, and custom-built sites, and starts capturing leads the moment you publish.",
     },
     {
-      question: "How long does it take to set up Vizzion on my website?",
+      question: "What decking materials can homeowners preview?",
       answer:
-        "Under five minutes. Copy one embed snippet onto your deck gallery page, homepage, or a dedicated \"Design Your Dream Deck\" landing page. The widget starts working the moment you publish. Works with WordPress, Wix, Squarespace, and custom-built contractor sites — no developer required.",
-    },
-    {
-      question: "How much does Vizzion cost for deck builders?",
-      answer:
-        "There's a free tier to test the product and scaled plans based on monthly visualization volume. Consider the math: your average deck project is $15,000 to $35,000. A single additional closed deal more than covers a full year of Vizzion. Compare that to Angi leads at $15 to $75 each — shared with multiple competitors — and the ROI is immediate.",
+        "Whatever you set up in your widget — the composite and wood decking, colors, and other options you sell, plus any custom materials you upload yourself. A homeowner selects an option, sees a realistic preview on their own backyard, and can explore a different look by generating another preview. Each result is tied to the material they chose, so your team knows what caught their interest.",
     },
     {
       question:
-        "How is this different from the deck visualizers on Trex.com or TimberTech.com?",
+        "How is Vizzion different from sample boards or a manufacturer's visualizer?",
       answer:
-        "Manufacturer visualizers like Trex Deck Starter and TimberTech Deck Designer use generic 3D renderers with stock backgrounds. They don't show the homeowner's actual backyard, siding, or landscaping. More importantly, those tools live on the manufacturer's website — every prospect you send there might never return to your site. Vizzion puts the visualization on your website, under your brand, and captures the lead for you. The homeowner never leaves your domain.",
+        "Sample boards and showroom swatches are too small to show how a full deck reads on your prospect's actual backyard. Manufacturer visualizers drop preset deck shapes onto stock photos of someone else's yard — and they live on the manufacturer's site, alongside your competitors. Vizzion puts the preview on your website, on the homeowner's real backyard, and captures the lead for you. The prospect never leaves your domain.",
     },
     {
-      question: "Can homeowners compare different materials side by side?",
+      question:
+        "What if a homeowner uploads a bad photo or part of the yard is obstructed?",
       answer:
-        "Yes. A homeowner can preview composite, pressure-treated wood, hardwood, and PVC decking on their actual backyard and switch between color options within each material. They can also try different railing styles — cable, aluminum, composite, or glass panel — to see the full picture. This is the key advantage: instead of imagining from swatches, they see real combinations on their real property.",
+        "The preview works best with a clear photo that shows the full deck area — typically a phone shot taken from the yard or patio. Deep shade, extreme angles, or very low resolution can limit how realistic the result looks. Ask the homeowner to retake the photo with as much of the space visible as possible.",
     },
     {
-      question: "Does Vizzion integrate with my CRM?",
+      question: "How much does Vizzion cost compared to buying decking leads?",
       answer:
-        "Direct integrations with HubSpot, Salesforce, JobNimbus, and other CRMs commonly used by contractors. We also support webhooks and Zapier for tools like Buildertrend, CoConstruct, or any other platform in your stack. Each lead arrives with the homeowner's email, backyard photo, the specific materials and colors they explored, and the combination they saved.",
+        "There's a free tier to start, with plans that scale by visualization volume. Compare that to $15–$75 per shared lead split with competitors. A single closed deck at $15,000+ covers months of Vizzion.",
     },
     {
-      question: "How does Vizzion handle seasonal selling challenges?",
+      question: "Does it integrate with my decking CRM?",
       answer:
-        "Deck building is seasonal, but selling doesn't have to be. During winter proposal season (January through April), homeowners can upload a summer or fall photo of their backyard and preview deck options from their couch. This lets you lock in contracts during winter for spring builds — instead of waiting for warm weather to start your sales process. Builders in cold-weather markets see the biggest impact during Q1 when visualization is hardest without a tool like Vizzion.",
-    },
-    {
-      question: "What data do I get with each lead?",
-      answer:
-        "Every Vizzion lead includes the homeowner's email address, their backyard photo, the specific deck materials and colors they explored, the final combination they saved, and engagement data like time spent and number of options tried. This means your first conversation already starts at \"You liked Trex Transcend in Havana Gold with cable railing — let's talk about layout and timing\" instead of \"What kind of deck are you thinking about?\"",
+        "Yes — we can integrate with your CRM if needed. Reach out and we'll walk through what your setup looks like.",
     },
   ],
 
   cta: {
-    headline: "Start Turning Website Visitors Into Booked Deck Builds",
+    headline: "Your Next Deck Lead Is Already on Your Website",
     subtext:
-      "Five-minute setup. No credit card required. See how many of your current visitors are ready to build — they just need to see it on their backyard first.",
+      "Vizzion just helps them raise their hand. Five-minute setup, no credit card.",
     buttonText: "Get Started Free",
     href: "#signup",
   },
@@ -248,20 +176,23 @@ export const deckingData: IndustryData = {
   seo: {
     keywords: [
       "deck builder lead generation",
-      "decking visualization tool",
+      "decking leads",
+      "deck company leads",
+      "deck visualization tool",
       "composite deck visualizer",
-      "deck color previewer",
-      "Trex deck visualizer",
-      "deck builder marketing",
-      "deck leads",
       "decking website widget",
-      "deck design preview tool",
+      "deck lead capture",
+      "exclusive deck leads",
+      "deck builder marketing",
       "residential decking leads",
-      "composite decking sales tool",
-      "deck builder website conversion",
+      "deck preview tool",
+      "deck sales tool",
+      "deck color visualizer",
       "deck material visualizer",
-      "outdoor living lead generation",
-      "deck project lead capture",
+      "decking website conversion",
+      "see a deck on my backyard",
+      "Trex deck visualizer",
+      "deck design preview tool",
     ],
     schema: {
       "@context": "https://schema.org",
@@ -270,7 +201,7 @@ export const deckingData: IndustryData = {
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
       description:
-        "Embeddable deck visualization tool that helps deck builders and remodelers generate exclusive, pre-qualified leads from their own website traffic. Homeowners see a realistic preview of their chosen deck material and color on their actual backyard.",
+        "Embeddable decking visualization tool that helps deck builders generate exclusive, pre-qualified leads from their own website traffic. Homeowners see realistic previews of composite and wood decking materials and colors on their actual backyard.",
       offers: {
         "@type": "Offer",
         price: "0",
@@ -279,13 +210,12 @@ export const deckingData: IndustryData = {
           "Free tier available. Premium plans based on visualization volume.",
       },
       featureList: [
-        "Realistic deck material and color visualization",
-        "Composite, wood, and PVC decking preview",
-        "Railing style comparison",
+        "Realistic deck material visualization on homeowner photos",
+        "Configurable decking products and custom uploaded materials",
         "Embeddable website widget",
         "White-label branding",
-        "CRM integration for contractors",
-        "Lead capture with material preference data",
+        "Optional CRM integration",
+        "Lead capture with backyard photo and material preference",
         "5-minute setup",
       ],
       screenshot: "https://vizzion.io/images/industries/decking.png",

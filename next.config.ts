@@ -73,6 +73,16 @@ const nextConfig: NextConfig = {
         destination: '/industries',
         permanent: true,
       },
+      {
+        source: '/industries/roofing-v2',
+        destination: '/industries/roofing',
+        permanent: true,
+      },
+      {
+        source: '/industries/roofing-v3',
+        destination: '/industries/roofing',
+        permanent: true,
+      },
     ];
   },
 };

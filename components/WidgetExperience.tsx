@@ -216,7 +216,7 @@ export default function WidgetExperience() {
       <div className="max-w-[1400px] mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-20 max-w-3xl mx-auto">
-          <div className="inline-block px-4 py-2 rounded-full bg-accent text-primary font-semibold text-sm mb-4">
+          <div className="vz-eyebrow mb-4">
             The Customer Experience
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-text-primary">
@@ -238,13 +238,8 @@ export default function WidgetExperience() {
                 key={step.number}
                 className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center"
               >
-                {/* Mockup */}
-                <div className={`${isEven ? 'lg:order-2' : ''}`}>
-                  <Mockup />
-                </div>
-
-                {/* Text */}
-                <div className={`space-y-6 ${isEven ? 'lg:order-1' : ''}`}>
+                {/* Text — first in DOM so it stacks above the visual on mobile */}
+                <div className={`space-y-6 ${isEven ? '' : 'lg:order-2'}`}>
                   <div className="flex items-center gap-4">
                     <div className="w-10 h-10 rounded-full bg-accent text-primary font-bold text-lg flex items-center justify-center flex-shrink-0">
                       {step.number}
@@ -266,6 +261,11 @@ export default function WidgetExperience() {
                       </li>
                     ))}
                   </ul>
+                </div>
+
+                {/* Mockup */}
+                <div className={`${isEven ? '' : 'lg:order-1'}`}>
+                  <Mockup />
                 </div>
               </div>
             );

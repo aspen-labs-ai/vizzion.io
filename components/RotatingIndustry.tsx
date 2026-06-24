@@ -30,7 +30,7 @@ export default function RotatingIndustry() {
   );
 
   return (
-    <p className="text-2xl md:text-3xl italic font-medium text-text-primary grid">
+    <p className="text-xl md:text-2xl italic font-medium text-text-primary grid">
       {/* Invisible sizers — all phrases rendered to reserve max height */}
       {phrases.map((phrase, i) => (
         <span

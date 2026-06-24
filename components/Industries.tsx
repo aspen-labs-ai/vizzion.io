@@ -215,7 +215,7 @@ export default function Industries() {
       <div className="max-w-[1400px] mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16 max-w-3xl mx-auto">
-          <div className="inline-block px-4 py-2 rounded-full bg-accent-light text-accent font-medium text-sm mb-4">
+          <div className="vz-eyebrow mb-4">
             Industries
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-text-primary">

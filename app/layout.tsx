@@ -1,6 +1,11 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import { Inter, Bricolage_Grotesque, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
+
+const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '600', '700', '800', '900'], variable: '--font-inter', display: 'swap' });
+const bricolage = Bricolage_Grotesque({ subsets: ['latin'], weight: ['400', '600', '700', '800'], variable: '--font-bricolage', display: 'swap' });
+const jetbrains = JetBrains_Mono({ subsets: ['latin'], weight: ['400', '500', '700'], variable: '--font-jetbrains', display: 'swap' });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://vizzion.io'),
@@ -38,7 +43,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} ${bricolage.variable} ${jetbrains.variable}`}>
       <body>
         <Script id="microsoft-clarity" strategy="afterInteractive">
           {`(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","vhtqb8ecoj");`}
@@ -49,6 +54,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
+              "@id": "https://vizzion.io/#organization",
               "name": "Vizzion",
               "url": "https://vizzion.io",
               "description":
@@ -74,8 +80,10 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
+              "@id": "https://vizzion.io/#website",
               "name": "Vizzion",
               "url": "https://vizzion.io",
+              "publisher": { "@id": "https://vizzion.io/#organization" },
             }),
           }}
         />

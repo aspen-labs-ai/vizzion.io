@@ -160,23 +160,24 @@ export const industrySlugs = Object.keys(industryKeywordConfigs) as IndustrySlug
 
 export function buildIndustryMetaDescription(config: IndustryKeywordConfig): string {
   // Create unique meta descriptions based on industry-specific pain points
+  // Concise meta descriptions (target 140-160 chars): keyword + benefit + soft CTA.
   const industryDescriptions: Record<string, string> = {
-    roofing: `Add a roofing visualizer to your website. Let homeowners see new shingles, metal, or tile on their actual home before calling — capturing exclusive leads at 5-10x lower cost than aggregators.`,
-    siding: `Transform browsers into buyers with a siding visualizer. Homeowners upload their photo, preview vinyl, fiber cement, or wood options instantly, then submit contact info to see results.`,
-    solar: `Stop losing solar leads to uncertainty. Your website visualizer shows panels on their actual roof, closing the gap between curiosity and commitment. Capture exclusive leads 24/7.`,
-    'window and door': `Window shopping becomes window buying. Let visitors visualize new windows and doors on their home photo, reducing decision paralysis and generating warm, exclusive leads.`,
-    deck: `Help homeowners picture their dream deck. Your visualizer widget shows composite, wood, or PVC options on their actual yard — turning fence-sitters into qualified leads instantly.`,
-    flooring: `Show flooring options in their actual space. Visitors upload a room photo, preview hardwood, tile, or luxury vinyl instantly, overcoming the visualization gap that kills conversions.`,
-    countertop: `Let customers see granite, quartz, or marble in their kitchen before visiting your showroom. Capture high-intent leads by solving the "will it match?" question upfront.`,
-    'garage door': `Boost curb appeal conversions. Homeowners preview new garage doors on their actual home, choosing styles and colors with confidence — then submit their info for exclusive follow-up.`,
-    fencing: `End the guesswork in fence selection. Your website visitors see vinyl, wood, or aluminum options on their property photo, converting browsers into buyers with visual certainty.`,
-    gutter: `Make gutter upgrades visible. Show how new gutters and guards look on their specific home, turning a grudge purchase into an excited buyer ready for your quote.`,
-    shutter: `Style decisions made simple. Visitors upload their home, preview shutter styles and colors instantly, then submit contact info — giving you warm leads who've already fallen in love.`,
-    driveway: `Visualize new driveways before breaking ground. Show concrete, asphalt, or paver options on their actual property, capturing leads who are ready to move forward with confidence.`,
-    pool: `Turn pool dreams into pool leads. Let visitors see their backyard transformed with your pool designs, capturing contact info from excited buyers who can finally picture the result.`,
-    'artificial turf': `Show the green without the maintenance. Visitors upload their yard, see realistic turf transformation instantly, then provide contact info — converting lawn frustration into sales opportunities.`,
-    'vehicle wrap': `Add a vehicle wrap visualizer to your website. Customers preview different wrap colors and styles on their car or truck, generating qualified leads ready for your quote.`,
-    'boat decking': `Visualize marine makeovers instantly. Boat owners see teak, synthetic, or custom decking options on their vessel, capturing leads from buyers ready to upgrade their investment.`,
+    roofing: `Add a roofing visualizer to your website. Homeowners preview shingles, metal, or tile on their own home and become exclusive, ready-to-quote leads.`,
+    siding: `Add a siding visualizer to your website. Homeowners preview vinyl, fiber cement, or wood colors on their own home and become exclusive leads.`,
+    solar: `Add a solar visualizer to your website. Homeowners see panels on their actual roof, closing the gap from curious to committed, and become exclusive leads.`,
+    'window and door': `Add a window and door visualizer to your website. Visitors preview new windows and doors on their home photo and become warm, exclusive leads.`,
+    deck: `Add a deck visualizer to your website. Homeowners preview composite, wood, or PVC on their own yard and become qualified, exclusive leads.`,
+    flooring: `Add a flooring visualizer to your website. Visitors preview hardwood, tile, or luxury vinyl in their own room and become qualified, exclusive leads.`,
+    countertop: `Add a countertop visualizer to your website. Customers preview granite, quartz, or marble in their own kitchen and become high-intent, exclusive leads.`,
+    'garage door': `Add a garage door visualizer to your website. Homeowners preview new doors, styles, and colors on their actual home and become exclusive leads.`,
+    fencing: `Add a fence visualizer to your website. Visitors preview vinyl, wood, or aluminum styles on their own property and become qualified, exclusive leads.`,
+    gutter: `Add a gutter visualizer to your website. Homeowners see new gutters and guards on their specific home and become exclusive, ready-to-quote leads.`,
+    shutter: `Add a shutter visualizer to your website. Visitors preview shutter styles and colors on their own home and become warm, exclusive leads.`,
+    driveway: `Add a driveway visualizer to your website. Property owners preview pavers, concrete, or asphalt on their driveway and become confident, exclusive leads.`,
+    pool: `Add a pool visualizer to your website. Visitors see your pool designs in their own backyard and become excited, exclusive leads ready for a quote.`,
+    'artificial turf': `Add an artificial turf visualizer to your website. Homeowners see realistic turf on their actual yard and become qualified, exclusive leads.`,
+    'vehicle wrap': `Add a vehicle wrap visualizer to your website. Customers preview wrap colors and finishes on their own car or truck and become qualified, exclusive leads.`,
+    'boat decking': `Add a marine decking visualizer to your website. Boat owners preview teak, synthetic, or custom decking on their vessel and become exclusive leads.`,
   };
 
   return industryDescriptions[config.industryTerm] || `Use ${config.article} ${config.industryTerm} visualizer widget on your ${config.audienceTerm} website. Let visitors preview options on their own photo and turn traffic into qualified leads.`;

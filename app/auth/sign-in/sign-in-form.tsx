@@ -98,7 +98,7 @@ export function SignInForm({
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-bg-primary transition hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-60"
+          className="vz-btn-primary w-full text-sm disabled:cursor-not-allowed disabled:opacity-60"
         >
           {isSubmitting ? 'Sending...' : 'Send magic link'}
         </button>

@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme inline {
@@ -72,9 +71,9 @@
   --radius-lg: 16px;
   
   /* Fonts */
-  --font-sans: Inter, system-ui, -apple-system, sans-serif;
-  --font-display: Inter, system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), 'JetBrains Mono', ui-monospace, monospace;
   
   /* ==============================================
      ORBITING CIRCLES ANIMATION
@@ -552,7 +551,8 @@
 }
 
 /* Roofing industry page — subtle shingle grid texture */
-.roofing-shingle-grid {
+.roofing-shingle-grid,
+.industry-grid-texture {
   background-image: repeating-linear-gradient(
     -32deg,
     transparent,
@@ -560,4 +560,95 @@
     color-mix(in srgb, var(--color-border-subtle) 55%, transparent) 11px,
     color-mix(in srgb, var(--color-border-subtle) 55%, transparent) 12px
   );
+}
+
+/* ==============================================
+   SHARED MARKETING DESIGN-SYSTEM UTILITIES
+   Matches the industry landing pages site-wide.
+   ============================================== */
+.vz-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+.vz-eyebrow::before {
+  content: "";
+  width: 26px;
+  height: 2px;
+  background: currentColor;
+  display: inline-block;
+}
+
+.vz-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  padding: 17px 30px;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background: var(--color-accent);
+  color: var(--color-bg-primary);
+  box-shadow: 0 6px 0 var(--color-accent-hover);
+  cursor: pointer;
+  line-height: 1;
+  white-space: nowrap;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.vz-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 0 var(--color-accent-hover), 0 14px 30px var(--color-accent-glow);
+}
+.vz-btn-primary:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 var(--color-accent-hover);
+}
+
+.vz-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 700;
+  padding: 15px 28px;
+  border-radius: 10px;
+  border: 2px solid var(--color-border-default);
+  background: transparent;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  line-height: 1;
+  transition: transform 0.15s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.vz-btn-ghost:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.vz-btn-sm {
+  padding: 12px 22px;
+  font-size: 0.95rem;
+}
+
+.vz-btn-lg {
+  padding: 20px 38px;
+  font-size: 1.12rem;
+}
+
+.vz-subhead {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.2rem, 2.2vw, 1.65rem);
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: var(--color-text-secondary);
 }

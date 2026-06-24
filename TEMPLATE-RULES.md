@@ -29,8 +29,8 @@ Vizzion now covers 17 industries — **not all of them are "upload a photo of yo
 
 - **These are interior content pages, NOT standalone landing pages.** They live within the Vizzion site and should feel like a natural deep-dive, not a separate microsite.
 - **Content-forward.** Real paragraphs, real substance. Think industry report meets sales page.
-- **No full-screen heroes.** Use a compact page header: badge, h1, 2-3 sentence intro. That's it.
-- **No aggressive CTAs above the fold.** One tasteful CTA at the bottom. The content sells — the CTA converts.
+- **Hero may show the product.** A focused page header is the default, but a page MAY include a product visual in the first screen (a live widget demo or a before/after) when it helps the visitor instantly grasp the value. No generic full-screen marketing heroes.
+- **A working hero CTA is allowed.** One clear CTA in the hero is fine — point it at a real target (`#signup` or the demo), never a dead anchor. Keep a primary CTA at the bottom too. The content still sells; the CTA converts.
 - **Visual breaks, not visual walls.** Cards, callouts, and metrics should break up the text, not replace it.
 
 ## Structure

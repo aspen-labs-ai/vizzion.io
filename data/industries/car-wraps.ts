@@ -5,231 +5,169 @@ export const carWrapsData: IndustryData = {
   name: "Car & Vehicle Wraps",
   shortName: "Car Wraps",
   metaTitle: "Vehicle Wrap Visualizer Widget for Wrap Shop Websites | Vizzion",
-  metaDescription: "Use a vehicle wrap visualizer widget on your wrap shop website. Let visitors preview options on their own photo and turn traffic into qualified leads.",
+  metaDescription:
+    "Add a vehicle wrap visualizer widget to your website. Visitors preview wrap colors and finishes on their own vehicle and become exclusive, ready-to-quote leads.",
 
-  lastUpdated: "February 15, 2026",
+  lastUpdated: "June 17, 2026",
   evidenceNotes: [
-    "Car Wraps benchmark ranges shown here are directional and should be validated against your own pipeline data.",
-    "Lead-cost, close-rate, and project-value ranges vary by market, channel mix, and seasonality.",
+    "Benchmark ranges are directional — validate against your own pipeline data.",
+    "Wrap project values and designer-time costs vary by market, film, and vehicle.",
   ],
 
   header: {
-    badge: "Vehicle Wrap Industry",
-    headline: "Add a Vehicle Wrap Visualizer — Let Customers Preview Color Options",
-    highlightWord: "Color",
+    badge: "Vehicle wrap visualizer widget",
+    headline: "Show customers your wrap on their car",
+    highlightWord: "car",
+    accentLine: "in seconds.",
     intro:
-      "Add a vehicle wrap visualizer widget to your wrap shop website in minutes. Visitors upload a photo, preview options, and submit their email for follow-up. Your designers spend two hours mocking up a custom wrap for every walk-in and website inquiry. Half of them ghost after seeing the price. Vizzion lets customers upload a photo of their vehicle and see your wrap designs on it instantly — then captures their email before they get the full result. You get a qualified lead who already loves the look. No free design labor, no tire-kickers.",
-    introHighlight: "Half of them ghost after seeing the price.",
-    cta: { text: "See It in Action", href: "#how-it-works" },
+      "Customers upload a photo of their vehicle and preview your wrap colors and finishes on it. They enter their email to save the result — you get an exclusive lead from your own site traffic.",
+    cta: { text: "Get Started Free", href: "#signup" },
   },
 
   context: {
-    headline: "The Wrap Industry Has a Free Labor Problem",
+    headline: "People Don't Buy a Wrap They Can't Picture",
     paragraphs: [
-      `You know the cycle. Someone inquires about a color change on their BMW. Your designer spends an hour or two mocking it up. The customer says "let me think about it" and vanishes. At $2,500 to $5,000 per full wrap, every ghosted deal hurts — but the real drain is the designer time you'll never get back. With wrap designers earning $27 to $44 per hour, those speculative mockups are costing you real money that never shows up on your P&L.`,
-      `The root issue is that wraps are a visual product most people have never bought before. They can't picture matte midnight blue on their Accord just because they saw satin chrome on a Huracán on Instagram. So they request mockup after mockup, using your designer's time to close the imagination gap. The industry has normalized free mockups as part of sales, and every shop is stuck in the same trap: give away design labor and hope enough people convert to cover the ones who don't.`,
-      `Meanwhile, your website is just a gallery — past work photos, a color chart, a contact form. It doesn't help anyone see themselves in the product. The shops that win are the ones who get customers from "I'm curious" to "here's my deposit" with the least friction. Right now that requires a custom mockup, and that's a bottleneck that doesn't scale.`,
+      `Your visitor is about to spend $2,500 to $5,000 to change the most visible thing they own — then tries to imagine the result from a tiny film swatch or a spec sheet of brand names. Color reads differently at scale: a chip that looks deep blue in your hand can wash out or darken across an entire hood and roofline. They can't picture 3M Matte Black versus Avery Dennison Satin on their own car, so they ask for yet another free mockup, or they stall and keep shopping.`,
+
+      `Vizzion puts the finished wrap in front of them on their actual vehicle in seconds. Once they can picture it, the hardest part of the sale is already done — and they enter their email to save the preview so you can follow up while they're still excited, without burning a designer's afternoon on a render.`,
     ],
     highlights: [
-      "$27 to $44 per hour",
-      "imagination gap",
-      "bottleneck that doesn't scale",
+      "ask for yet another free mockup",
+      "stall and keep shopping",
     ],
     callout: {
       stat: "60%+",
-      text: "of wrap mockups are created for customers who never put down a deposit — burning designer hours that could be spent on paying jobs.",
+      text: "of wrap shop site visitors leave without reaching out. They couldn't picture the finish on their own vehicle, so they kept shopping.",
     },
   },
 
   solution: {
-    headline: "Let Your Website Do the Mockup — Save Your Designers for Paying Work",
+    headline: "Why Wrap Shops Add It to Their Site",
     intro:
-      `Vizzion is a lightweight widget you embed on your wrap shop's website. Customers upload a photo of their vehicle and see your wrap designs applied to it in seconds — their car, their angles, your colors. They enter their email to get the full preview. You get a qualified lead; your designer never touches a file.`,
+      "Vizzion lives on your wrap shop website and turns browsers into exclusive leads who have already chosen a finish.",
     points: [
       {
-        title: "Eliminate Free Mockup Culture",
+        title: "Exclusive leads from your own traffic",
         description:
-          "Vizzion moves the preview experience to your website, where it runs automatically. Customers see a realistic wrap on their actual car and you get their contact info — no design hours burned.",
+          "Every lead is yours alone — your own site traffic, never shared or sold to another shop.",
       },
       {
-        title: "Qualify Buyers Before They Hit Your Calendar",
+        title: "Half sold before you call",
         description:
-          `Someone who uploads their vehicle photo, previews a wrap, and submits their email is not a tire-kicker. Your team follows up with a buyer who's already seen the result, not someone who's "just looking."`,
+          "Customers arrive with their vehicle photo, finish choice, and a preview they already love.",
       },
       {
-        title: "Showcase Your Full Color and Finish Library",
+        title: "Live in five minutes",
         description:
-          "Customers browse your entire catalog — matte, satin, gloss, chrome, color-shift, carbon fiber — on their own vehicle. Upselling happens naturally when they discover a premium finish they didn't know you offered.",
-      },
-      {
-        title: "Works for Every Vehicle Type",
-        description:
-          "Cars, trucks, SUVs, vans, motorcycles, trailers, fleet vehicles. If a customer can photograph it, Vizzion can visualize a wrap on it — including branded fleet wraps before a 20-truck commitment.",
-      },
-      {
-        title: "Runs 24/7 Without Staffing",
-        description:
-          `Your shop closes at 6 PM. Your website doesn't. Vizzion captures leads at midnight, on holidays, whenever someone Googles "wrap shop near me" — the exact moment intent is highest.`,
+          "Paste one snippet on WordPress, Wix, Squarespace, or any custom site. No developer required.",
       },
     ],
   },
 
   howItWorks: {
-    headline: "How to Add a Vehicle Wrap Visualizer Widget to Your Wrap Shop Website",
+    headline: "One Snippet. Three Steps for Your Visitor.",
     intro:
-      "No design software to learn, no templates to manage, no developer needed. You paste a code snippet on your site, upload your color and finish options, and Vizzion handles the rest.",
+      "No developer, no complicated setup. Paste one snippet and your site starts capturing qualified wrap leads.",
     steps: [
       {
         number: 1,
-        title: "Embed the Widget on Your Website",
+        title: "Embed the widget",
         description:
-          `Copy a single code snippet and add it to any page — your homepage, a "Visualize Your Wrap" landing page, or your color gallery. The widget matches your site's branding automatically. Five minutes, no developer required.`,
+          "Copy one snippet onto any page — your homepage, a landing page, or your color gallery. It matches your branding and works with WordPress, Wix, Squarespace, or a custom site. Setup takes about five minutes.",
       },
       {
         number: 2,
-        title: "Customer Uploads a Photo and Previews the Wrap",
+        title: "They preview on their vehicle",
         description:
-          "A visitor uploads a photo of their vehicle — a quick phone snap from the driveway is all it takes. They browse your available colors and finishes, tap one, and instantly see a realistic digital preview of that wrap applied to their actual car. They can try multiple colors in seconds, no appointment needed.",
+          "A visitor uploads a photo of their vehicle and sees your wrap finishes on it in seconds. They pick from the films you've configured — including custom films you've uploaded yourself — and get a realistic preview on their actual car. To compare another color or finish, the widget generates a new preview.",
       },
       {
         number: 3,
-        title: "You Get a Qualified Lead, They Get Excited About Their Wrap",
+        title: "You get the lead",
         description:
-          "To save or download their full-resolution preview, the customer enters their email. That lead flows directly into your inbox or CRM — complete with their contact info, vehicle photo, chosen color and finish, and the preview they generated. Your team follows up with someone who already knows exactly what they want.",
+          `To save their preview, they enter their email. The lead lands in your inbox or CRM with their photo and the finish they chose. Your follow-up starts at "which finish did you like best?" instead of "what were you thinking?"`,
       },
     ],
   },
 
   benefits: [
     {
+      metric: "Exclusive",
+      label: "Leads You Own",
+      description:
+        "Every lead comes from your own website traffic — never shared with competitors.",
+    },
+    {
+      metric: "5 min",
+      label: "Setup Time",
+      description:
+        "Paste one embed snippet. No developer, no staging environment.",
+    },
+    {
       metric: "$3,500",
-      label: "Average Full Wrap Job",
+      label: "Average Wrap Job",
       description:
-        "The typical full color-change wrap runs $2,500 to $5,000. Every ghosted mockup isn't just lost time — it's a mid-four-figure deal walking out the door.",
-    },
-    {
-      metric: "10–15 hrs",
-      label: "Lost to Mockups Weekly",
-      description:
-        "Wrap shop designers spend 10 to 15 hours per week on speculative mockups. At $27–$44/hour, that's up to $660 a week in design labor that may never convert.",
-    },
-    {
-      metric: "50%",
-      label: "Sales Time Wasted on Unqualified Leads",
-      description:
-        "Across service businesses, sales teams spend up to half their time on leads who were never serious. Pre-qualified visual leads cut through that noise immediately.",
-    },
-    {
-      metric: "$40K+",
-      label: "Average Fleet Deal",
-      description:
-        "A 10-vehicle fleet wrap runs $20,000 to $40,000 or more. Fleet clients who preview branded wraps on their actual trucks approve faster and commit with fewer revision cycles.",
-    },
-    {
-      metric: "2–3x",
-      label: "More Inquiries With Visual Proof",
-      description:
-        "Visitors who can visualize a wrap on their own vehicle are two to three times more likely to submit an inquiry than those browsing a static gallery.",
-    },
-    {
-      metric: "$65K",
-      label: "Avg. Wrap Designer Salary",
-      description:
-        "The average vehicle wrap designer earns $65,000 per year. Every hour they spend on free mockups instead of production work is a direct hit to your shop's throughput.",
+        "A full color-change wrap typically runs $2,500 to $5,000. One closed job covers months of widget cost.",
     },
   ],
 
   comparison: {
     headline: "The Old Way vs. The Vizzion Way",
     oldWay: [
-      "Spend 2+ hours creating a custom mockup for every inquiry",
-      "60% of mockups go to tire-kickers who never put down a deposit",
-      "Website is a static gallery — photos of past work and a contact form",
-      "Customers can only picture wraps they've already seen on other cars",
-      "Designer time wasted on free previews instead of production work",
-      "No way to capture leads outside of business hours",
+      "Burn an hour or two of designer time on a free mockup for every inquiry",
+      "Hand over a tiny film swatch and ask them to imagine a whole vehicle",
+      "Wait on revision after revision before they've committed to anything",
+      "Lose deals to \"let me think about the color\" for weeks",
+      "A static gallery of other people's cars, like every competitor",
     ],
     vizzionWay: [
-      "Customers preview wraps on their own vehicle instantly — no designer needed",
-      "Every lead has already visualized the wrap and wants to move forward",
-      "Website is an interactive showroom where customers build their own preview",
-      "Full color and finish catalog applied to their actual vehicle in seconds",
-      "Designers focus exclusively on sold, scheduled jobs",
-      "Widget captures leads 24/7 — evenings, weekends, and holidays",
+      "Exclusive leads from your own site at near-zero marginal cost",
+      "They see your wrap finish on their real vehicle",
+      "Prospects arrive having already picked a color and finish",
+      "Color decisions happen before the first quote, not after the third mockup",
+      "An interactive preview that makes your site the one they remember",
     ],
   },
 
-  testimonials: [
-    {
-      quote:
-        `We were doing 15 to 20 free mockups a week and closing maybe 5 of them. That's 30 hours of designer time burned every single week on people who were just shopping around. We added Vizzion to our site two months ago and our designer hasn't touched a mockup for a cold lead since. Customers come in with the preview on their phone saying "I want exactly this." Our close rate on Vizzion leads is over 70%.`,
-      author: "Danny Kowalski",
-      company: "Apex Wraps, Tampa FL",
-      result: "70%+ close rate on Vizzion leads — designer hours reclaimed for production",
-    },
-    {
-      quote:
-        `I run a two-person shop. I'm the installer and the designer. Every hour I spend mocking up a wrap for someone who's just browsing is an hour I'm not wrapping a car that's already paid for. Vizzion took that entire burden off my plate. Last month we had 47 leads come through the widget — all of them had already picked their color and seen it on their car. That's a completely different conversation than "so what were you thinking?"`,
-      author: "Carlos Medina",
-      company: "Medina Vehicle Wraps, Austin TX",
-      result: "47 pre-qualified leads in one month from existing website traffic",
-    },
-    {
-      quote:
-        `We do a lot of fleet work — 10, 20, 50 vehicles at a time. The old process was mocking up the brand wrap on one vehicle template, getting approval, then hoping it looked right across the whole fleet. Now our commercial clients upload photos of their actual trucks and vans, see the branded wrap on their real vehicles, and approve faster. Our fleet close time went from three weeks of back-and-forth to about four days.`,
-      author: "Rachel Simmons",
-      company: "SignCraft Vehicle Graphics, Charlotte NC",
-      result: "Fleet approval cycle reduced from 3 weeks to 4 days",
-    },
-  ],
+  testimonials: [],
 
   faq: [
     {
-      question: "How long does it take to set up Vizzion on my wrap shop website?",
+      question: "How long does it take to add Vizzion to my wrap shop website?",
       answer:
-        `Under five minutes. You copy a single embed code and drop it on any page — most shops add it to their color gallery or portfolio page so customers can go from browsing past jobs to previewing wraps on their own vehicle. Works with WordPress, Wix, Squarespace, or any custom site. No developer needed.`,
+        "About five minutes. Copy one embed snippet onto any page — no developer needed. It works with WordPress, Wix, Squarespace, and custom-built sites, and starts capturing leads the moment you publish.",
     },
     {
-      question: "Can I upload my own color and finish options?",
+      question: "What wrap colors and finishes can customers preview?",
       answer:
-        "Yes. You can configure the widget with your full catalog of available wraps — specific 3M, Avery Dennison, Inozetek, or KPMF colors and finishes. Customers only see what you actually offer and can install, keeping expectations aligned with reality.",
+        "Whatever you set up in your widget — the gloss, matte, satin, and color-shift films you offer, including specific 3M or Avery Dennison lines, plus any custom films you upload yourself. A customer selects an option, sees a realistic preview on their own vehicle, and can explore a different look by generating another preview. Each result is tied to the finish they chose, so your team knows what caught their interest.",
     },
     {
-      question: "Does it work with any vehicle type?",
+      question: "How is Vizzion different from giving away free mockups?",
       answer:
-        "Vizzion works with any vehicle a customer can photograph — cars, trucks, SUVs, vans, motorcycles, boats, trailers, and fleet vehicles. The visualization adapts to the vehicle in the uploaded photo, so there are no template limitations.",
+        "A free mockup costs you an hour or two of designer time for a prospect who may never put down a deposit. Vizzion moves that preview onto your website, where it runs automatically — the customer sees the finish on their own vehicle and you capture their email before any designer touches a file. Use it to get the lead, then your design team to close.",
     },
     {
-      question: "How accurate are the wrap previews?",
+      question: "What if a customer uploads a bad photo or the vehicle is hard to see?",
       answer:
-        `The previews are photo-realistic digital renderings that show the selected color and finish applied to the customer's actual vehicle. They're designed to give a strong visual representation of the final result — accurate enough to drive confident purchase decisions, while understanding that real-world lighting and material behavior will vary slightly from any digital preview.`,
+        "The preview works best with a clear photo that shows the whole vehicle — typically a phone shot taken from the side or three-quarter angle in good light. Harsh glare, extreme angles, or very low resolution can limit how realistic the result looks. Ask the customer to retake the photo with as much of the vehicle in frame as possible.",
     },
     {
-      question: "Will this replace my designer entirely?",
+      question: "How much does Vizzion cost compared to other lead sources?",
       answer:
-        `No — and it's not meant to. Vizzion replaces the free mockup stage: the speculative design work you do for prospects before they commit. Your designer still handles the final production files, custom graphics, partial wraps, and the detail work that turns a color-change preview into a print-ready file. Vizzion just makes sure they're doing that work for customers who have already put down a deposit.`,
+        "There's a free tier to start, with plans that scale by visualization volume. Compare that to the hours of designer time a single spec mockup burns, or the cost of buying leads you still have to qualify. A single closed wrap at $2,500 to $5,000 covers months of Vizzion.",
     },
     {
-      question: "How does Vizzion integrate with my booking or CRM system?",
+      question: "Does it integrate with my wrap shop's CRM?",
       answer:
-        "Vizzion connects with ShopMonkey, Tekmetric, and other shop management platforms via direct integrations, webhooks, or Zapier. Every lead arrives with the customer's vehicle photo, chosen color and finish, and their preview image — so your team can quote accurately without a back-and-forth. It also plugs into scheduling tools like Calendly or Urable if you book consultations online.",
-    },
-    {
-      question: "How much does Vizzion cost?",
-      answer:
-        `There's a free tier to test on your site, with paid plans based on monthly visualization volume. To put it in perspective: one $3,500 full wrap job from a Vizzion lead covers months of the widget — and that's before you factor in the designer hours you're no longer burning on free mockups for people who ghost. Most shops are ROI-positive within the first week.`,
-    },
-    {
-      question: "Can customers preview partial wraps or custom graphics?",
-      answer:
-        "Currently, Vizzion excels at full color-change and finish previews. Support for partial wraps, custom graphics, and branded commercial designs is on the roadmap. For now, the widget is most effective for shops where color-change wraps represent a significant portion of revenue.",
+        "Yes — we can integrate with your CRM if needed. Reach out and we'll walk through what your setup looks like.",
     },
   ],
 
   cta: {
-    headline: "Stop Giving Away Free Design Work",
+    headline: "Your Next Wrap Lead Is Already on Your Website",
     subtext:
-      "Five-minute setup. No credit card required. Let your website handle the mockups — so your designers can focus on the jobs that are already sold.",
+      "Vizzion just helps them raise their hand. Five-minute setup, no credit card.",
     buttonText: "Get Started Free",
     href: "#signup",
   },
@@ -251,6 +189,9 @@ export const carWrapsData: IndustryData = {
       "fleet wrap visualization",
       "3M wrap preview",
       "vinyl wrap lead capture",
+      "exclusive vehicle wrap leads",
+      "see a wrap on my car",
+      "matte wrap visualizer",
     ],
     schema: {
       "@context": "https://schema.org",
@@ -259,21 +200,22 @@ export const carWrapsData: IndustryData = {
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
       description:
-        "Embeddable vehicle wrap visualization tool that helps wrap shops generate qualified leads from their website. Customers see realistic wrap previews on their actual vehicle — then submit their email to get the full result.",
+        "Embeddable vehicle wrap visualization tool that helps wrap shops generate exclusive, pre-qualified leads from their own website traffic. Customers see realistic previews of wrap colors and finishes on their actual vehicle.",
       offers: {
         "@type": "Offer",
         price: "0",
         priceCurrency: "USD",
-        description: "Free tier available. Premium plans based on visualization volume.",
+        description:
+          "Free tier available. Premium plans based on visualization volume.",
       },
       featureList: [
-        "Realistic vehicle wrap visualization",
+        "Realistic wrap visualization on customer vehicle photos",
+        "Configurable wrap films and custom uploaded films",
         "Embeddable website widget",
         "White-label branding",
-        "CRM integration",
-        "Lead capture and routing",
+        "Optional CRM integration",
+        "Lead capture with vehicle photo and finish preference",
         "5-minute setup",
-        "Full color and finish catalog support",
       ],
       screenshot: "https://vizzion.io/images/industries/car-wraps.png",
       url: "https://vizzion.io/industries/car-wraps",
