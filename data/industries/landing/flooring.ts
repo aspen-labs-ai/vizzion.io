@@ -16,9 +16,9 @@ export const flooringLanding: IndustryLandingData = {
 
   gap: {
     eyebrow: 'The visualization gap',
-    headline: "A 3-inch chip can't sell a",
+    headline: "A single plank can't sell a",
     headlineAccent: 'wall-to-wall floor.',
-    body: "A floor covers the whole room, and color and grain shift at scale: a plank that looks like warm honey oak on a sample chip can read orange across a north-facing room. A chip held against the old floor never answers the only question that matters: what will it look like in mine? So shoppers stall, delay, and keep shopping. Vizzion erases that doubt by rendering the real floor in their real room.",
+    body: "A floor covers the whole room, and color and grain shift at scale: a plank that looks like warm honey oak in your hand can read orange across a north-facing room. A single plank held against the old floor never answers the only question that matters: what will it look like in mine? So shoppers stall, delay, and keep shopping. Vizzion erases that doubt by rendering the real floor in their real room.",
     bodyHighlights: ['orange across a north-facing room', 'stall, delay, and keep shopping'],
     video: { src: '/videos/flooring.mp4', poster: '/images/industries/flooring.png' },
   },
@@ -44,7 +44,7 @@ export const flooringLanding: IndustryLandingData = {
   vs: {
     old: [
       'The same lead sold to four other stores',
-      'A 3-inch chip and "just imagine the whole room"',
+      'A single plank and "just imagine the whole room"',
       'Three to five showroom visits before they commit',
       'Deals that stall on "let us think about the color"',
       "A static gallery of other people's rooms",
@@ -74,7 +74,7 @@ export const flooringLanding: IndustryLandingData = {
     },
     {
       q: 'How accurate is the preview?',
-      a: 'Real flooring is rendered into their actual room in true color and grain, at full scale. It is what their room would look like, not a guess pulled from a 3-inch chip held against the old floor.',
+      a: 'Real flooring is rendered into their actual room in true color and grain, at full scale. It is what their room would look like, not a guess pulled from a single plank held against the old floor.',
     },
     {
       q: 'Will it work on my website?',
