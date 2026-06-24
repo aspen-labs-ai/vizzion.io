@@ -16,8 +16,8 @@ export const roofingLanding: IndustryLandingData = {
 
   gap: {
     eyebrow: 'The visualization gap',
-    headline: "A 3-inch sample can't sell a",
-    headlineAccent: '2,000-square-foot roof.',
+    headline: "A 3-inch sample can't sell an",
+    headlineAccent: 'entire roof.',
     body: "The roof is the biggest thing anyone sees on a home, and the single hardest thing to picture changing. A palm-sized swatch or a stock photo of someone else's house never answers the only question that matters: what will it look like on mine? So homeowners stall, keep shopping, and quietly disappear. Vizzion erases that doubt by rendering the real material on their real roof.",
     bodyHighlights: ["someone else's house"],
     video: { src: '/roofing-v3/cant-picture-it.mp4', poster: '/roofing-v3/swatch-poster.png' },

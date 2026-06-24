@@ -17,7 +17,7 @@ export const artificialTurfLanding: IndustryLandingData = {
   gap: {
     eyebrow: 'The visualization gap',
     headline: "A 4-inch swatch can't sell a",
-    headlineAccent: '2,000-square-foot lawn.',
+    headlineAccent: 'whole backyard.',
     body: "A lawn is one of the biggest things anyone sees on a property, and turf is one of the hardest things to picture changing. A 4-inch swatch that looks lush in the hand, or a gallery photo of someone else's yard, never answers the only question that matters: will it look natural on my yard? So homeowners stall, keep shopping, and quietly disappear. Vizzion erases that doubt by rendering real turf on their real yard.",
     bodyHighlights: ["someone else's yard", 'will it look natural on my yard?'],
     video: { src: '/videos/artificial-turf.mp4', poster: '/images/industries/artificial-turf.png' },

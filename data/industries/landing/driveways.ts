@@ -18,8 +18,8 @@ export const drivewaysLanding: IndustryLandingData = {
     eyebrow: 'The visualization gap',
     headline: "A 3-inch chip can't show a",
     headlineAccent: 'whole-driveway pattern.',
-    body: "A driveway is the largest visible surface on a property, and color and pattern rarely read the same at full scale: a chip that looks warm grey in a sample binder can read almost beige across 700 square feet of driveway. A palm-sized sample or a stock photo of someone else's driveway never answers the only question that matters — what will it look like on mine? So homeowners stall, delay, and keep shopping. Vizzion erases that doubt by rendering the real material on their real driveway.",
-    bodyHighlights: ['almost beige across 700 square feet of driveway', 'stall, delay, and keep shopping'],
+    body: "A driveway is the largest visible surface on a property, and color and pattern rarely read the same at full scale: a chip that looks warm grey in a sample binder can read almost beige across 1,000 square feet of driveway. A palm-sized sample or a stock photo of someone else's driveway never answers the only question that matters — what will it look like on mine? So homeowners stall, delay, and keep shopping. Vizzion erases that doubt by rendering the real material on their real driveway.",
+    bodyHighlights: ['almost beige across 1,000 square feet of driveway', 'stall, delay, and keep shopping'],
     video: { src: '/videos/driveways.mp4', poster: '/images/industries/driveways.png' },
   },
 

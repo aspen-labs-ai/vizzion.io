@@ -16,9 +16,9 @@ export const windowsDoorsLanding: IndustryLandingData = {
 
   gap: {
     eyebrow: 'The visualization gap',
-    headline: "A 12-inch sample can't sell a",
+    headline: "A corner sample can't sell a",
     headlineAccent: 'whole new facade.',
-    body: "Windows and doors reshape the most visible part of a home, and style and color shift completely at scale. Black frames that look sharp on a 12-inch sample can completely change the character of an entire facade, and a door that pops in the showroom can disappear against their brick. So homeowners stall, delay, and keep shopping. Vizzion erases that doubt by rendering your real styles and colors on their actual home.",
+    body: "Windows and doors reshape the most visible part of a home, and style and color shift completely at scale. Black frames that look sharp on a corner sample can completely change the character of an entire facade, and a door that pops in the showroom can disappear against their brick. So homeowners stall, delay, and keep shopping. Vizzion erases that doubt by rendering your real styles and colors on their actual home.",
     bodyHighlights: ['completely change the character of an entire facade', 'stall, delay, and keep shopping'],
     video: { src: '/videos/windows-doors.mp4', poster: '/images/industries/windows-doors.png' },
   },

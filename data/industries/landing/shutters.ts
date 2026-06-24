@@ -16,7 +16,7 @@ export const shuttersLanding: IndustryLandingData = {
 
   gap: {
     eyebrow: 'The visualization gap',
-    headline: "A four-inch swatch can't sell a",
+    headline: "A 4-inch swatch can't sell a",
     headlineAccent: 'whole front elevation.',
     body: "Shutters frame every window on the front of a home, and color and style read completely different across a full facade than they do on a four-inch swatch. A sample chip or a portfolio of houses that look nothing like theirs never answers the only question that matters: what will it look like on mine? So homeowners stall, keep shopping, and quietly disappear. Vizzion erases that doubt by rendering your real shutters on their real home.",
     bodyHighlights: ['completely different across a full facade', 'what will it look like on mine?'],

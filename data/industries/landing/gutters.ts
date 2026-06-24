@@ -16,8 +16,8 @@ export const guttersLanding: IndustryLandingData = {
 
   gap: {
     eyebrow: 'The visualization gap',
-    headline: "A two-inch color chip can't show gutters on",
-    headlineAccent: 'their actual home.',
+    headline: "A 2-inch color chip can't show gutters on",
+    headlineAccent: 'the whole roofline.',
     body: "Gutters wrap the entire edge of a home, yet homeowners are asked to choose a color from a ring of two-inch chips fanned out in the driveway. Color shifts at scale: a chip that looks warm bronze in direct sunlight can read flat brown along an entire fascia. So they can't picture musket brown versus dark bronze on their own home, default to white, and the upgrade never happens. Vizzion erases that doubt by rendering the real profile and color on their actual home.",
     bodyHighlights: ['read flat brown along an entire fascia', 'the upgrade never happens'],
     video: { src: '/videos/gutters.mp4', poster: '/images/industries/gutters.png' },
