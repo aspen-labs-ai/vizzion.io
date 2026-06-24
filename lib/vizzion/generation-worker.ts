@@ -379,7 +379,7 @@ async function sendResultEmail(
  * LEAD_NOTIFICATION_BCC; defaults to the founder inbox so it works out of the box.
  */
 function getLeadNotificationBcc(): string[] {
-  const raw = process.env.LEAD_NOTIFICATION_BCC ?? 'trey@aspenlabs.ai';
+  const raw = process.env.LEAD_NOTIFICATION_BCC ?? 'trey@vizzion.io';
   return raw
     .split(',')
     .map(value => value.trim().toLowerCase())
@@ -518,7 +518,9 @@ async function sendLeadNotificationEmail(
     previewImageUrl = signed.data?.signedUrl ?? null;
   }
 
-  const bcc = getLeadNotificationBcc().filter(address => address !== recipient.toLowerCase());
+  // Always include the monitoring BCC, even when it matches the primary
+  // recipient — we want a copy of every lead notification.
+  const bcc = getLeadNotificationBcc();
 
   const resend = new Resend(resendApiKey);
   try {
