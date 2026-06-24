@@ -27,11 +27,11 @@ export default function Hero() {
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 lg:gap-6">
+              <div className="flex flex-col xl:flex-row gap-4 xl:gap-6">
                 <a href="#signup" className="vz-btn-primary">
                   Get Your First Lead in 24 Hours →
                 </a>
-                <a href="#how-it-works" className="vz-btn-ghost">
+                <a href="#how-it-works" className="vz-btn-ghost whitespace-nowrap">
                   See How It Works
                 </a>
               </div>
