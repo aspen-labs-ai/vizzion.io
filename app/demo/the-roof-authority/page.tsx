@@ -9,11 +9,7 @@ const config: DemoConfig = {
   logoUrl:
     'https://www.theroofauthority.com/wp-content/themes/mh_express/design/logo.png',
   embedKey: 'vwk_162d0183647767761ed6074b68f3c6ac054e',
-  productLabel: 'Roofing Visualizer',
-  headline: 'See a new roof on your',
-  headlineHighlight: 'actual property',
-  intro:
-    "Upload a photo of the property and preview The Roof Authority's roofing options on it in seconds.",
+  trade: 'roofing',
 };
 
 export const metadata: Metadata = {
